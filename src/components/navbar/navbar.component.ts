@@ -10,6 +10,7 @@ import { IAppStateClient } from '../../state/app-state.client.interface';
 import { AppState } from '../../state/app-state.model';
 import { getTextToTypeLanguage, TextToTypeLanguage } from '../../state/text-to-type-language.enum';
 import { APP_SETTINGS_CHANGE_EVENT } from '../../constants/constant';
+import { EnableSoundsIconHtmlComponent } from '../enable-sounds-icon/enable-sounds-icon.component';
 
 const APP_SETTINGS_ICON_ID = 'APP_SETTINGS_ICON_ID';
 const ADD_CUSTOM_TEXT_TO_TYPE_ICON_ID = 'ADD_CUSTOM_TEXT_TO_TYPE_ICON_ID';
@@ -18,6 +19,7 @@ export class NavbarHtmlComponent extends BaseHtmlComponent {
   private navbar: HTMLElement;
   private appSettingsIcon: HTMLElement;
   private appSettingsDialog: AppSettingsDialogHtmlComponent;
+  private enableSoundsIcon: EnableSoundsIconHtmlComponent;
   private addCustomTextToTypeIcon: HTMLElement;
   private addCustomTextToTypeDialog: AddCustomTextToTypeDialogHtmlComponent;
   private changeThemeIcon: ChangeThemeIconHtmlComponent;
@@ -41,6 +43,7 @@ export class NavbarHtmlComponent extends BaseHtmlComponent {
       options: getTextToTypeLanguage(this.appState.textToTypeCategory),
       selectedOptionValue: this.appState.textToTypeLanguage,
     });
+    this.enableSoundsIcon = new EnableSoundsIconHtmlComponent(AppStateClient.getInstance());
   }
 
   preInsertHtml() {
@@ -50,6 +53,7 @@ export class NavbarHtmlComponent extends BaseHtmlComponent {
     this.changeThemeIcon.preInsertHtml();
     this.textToTypeCategoriesSelect.preInsertHtml();
     this.textToTypeLanguagesSelect.preInsertHtml();
+    this.enableSoundsIcon.preInsertHtml();
   }
 
   toHtml() {
@@ -64,11 +68,12 @@ export class NavbarHtmlComponent extends BaseHtmlComponent {
         <div class='right'>
           <span class="select">${this.textToTypeCategoriesSelect.toHtml()}</span>
           <span class="select" id="${this.textToTypeLanguagesContainerId}">${this.textToTypeLanguagesSelect.toHtml()}</span>
-          <span title="Change App Theme">${this.changeThemeIcon.toHtml()}</span>
+          <span>${this.enableSoundsIcon.toHtml()}</span>
           <span id="${ADD_CUSTOM_TEXT_TO_TYPE_ICON_ID}" title="Add custom text to type"><span class="iconify" data-icon="grommet-icons:add" data-inline="false"></span></span>
           <span id="${APP_SETTINGS_ICON_ID}" title="App Settings"><span class="iconify" data-icon="jam:settings-alt" data-inline="false" data-rotate="270deg"></span></span>
           <div class="app-settings-drop-down">${this.appSettingsDialog.toHtml()}<div>
           <div class="app-custom-text-to-type-dialog-container">${this.addCustomTextToTypeDialog.toHtml()}<div>
+          <span title="Change App Theme">${this.changeThemeIcon.toHtml()}</span>
         </div>
       </nav>
     `;
@@ -89,6 +94,7 @@ export class NavbarHtmlComponent extends BaseHtmlComponent {
     this.changeThemeIcon.postInsertHtml();
     this.textToTypeCategoriesSelect.onUpdate(this.handleTextToTypeCategoryChangeEvent.bind(this));
     this.textToTypeLanguagesSelect.onUpdate(this.handleTextToTypeLanguageChangeEvent.bind(this));
+    this.enableSoundsIcon.postInsertHtml();
   }
 
   private handleAppSettingsIconClickEvent(event) {

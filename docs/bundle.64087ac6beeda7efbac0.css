@@ -1549,10 +1549,7 @@ nav .right {
     font-size: 2.75rem;
     margin-left: 1.5rem; }
   nav .right .app-settings-drop-down {
-    z-index: 999;
-    position: absolute;
-    top: calc(100% + 2rem);
-    right: 0; }
+    z-index: 999; }
   nav .right .select {
     margin-right: 1.5rem; }
 

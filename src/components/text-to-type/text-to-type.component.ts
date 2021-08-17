@@ -279,7 +279,7 @@ export class TextToTypeHtmlComponent extends BaseHtmlComponent {
   }
 
   private preventDefaultEventExceptFunctionKeys(event: any) {
-    if (/F[1-9]+/.test(event.key)) {
+    if (!/F[1-9]+/.test(event.key)) {
       event.preventDefault();
     }
   }
