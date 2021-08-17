@@ -6,8 +6,8 @@ import { TextToType } from '../components/text-to-type/text-to-type.model';
 export class AppState {
   customTextsToType: TextToType[];
   visitWebsiteForTheFirstTime: boolean = true;
-  textToTypeCategory: TextToTypeCategory;
-  textToTypeLanguage: TextToTypeLanguage;
+  textToTypeCategory: TextToTypeCategory = TextToTypeCategory.QUOTES;
+  textToTypeLanguage: TextToTypeLanguage = TextToTypeLanguage.ENGLISH;
   maxCharactersToType: number;
   currentTheme: string;
   enableSounds: boolean;
