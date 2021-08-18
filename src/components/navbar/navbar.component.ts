@@ -7,7 +7,6 @@ import { AddCustomTextToTypeDialogHtmlComponent } from '../add-custom-text-to-ty
 import { SelectHtmlComponent } from '../_core/select/select.component';
 import { TextToTypeCategory, TEXT_TO_TYPE_CATEGORIES } from '../../state/text-to-type-category.enum';
 import { IAppStateClient } from '../../state/app-state.client.interface';
-import { AppState } from '../../state/app-state.model';
 import { getTextToTypeLanguage, TextToTypeLanguage } from '../../state/text-to-type-language.enum';
 import { APP_SETTINGS_CHANGE_EVENT } from '../../constants/constant';
 import { EnableSoundsIconHtmlComponent } from '../enable-sounds-icon/enable-sounds-icon.component';
@@ -25,23 +24,22 @@ export class NavbarHtmlComponent extends BaseHtmlComponent {
   private changeThemeIcon: ChangeThemeIconHtmlComponent;
   private textToTypeCategoriesSelect: SelectHtmlComponent<TextToTypeCategory>;
   private textToTypeLanguagesSelect: SelectHtmlComponent<TextToTypeLanguage>;
-  private appState: AppState;
   private textToTypeLanguagesContainerId: string;
   private textToTypeLanguagesContainer: HTMLElement;
 
   constructor(private appStateClient: IAppStateClient) {
     super();
-    this.appState = this.appStateClient.getAppState();
+    const appState = this.appStateClient.getAppState();
     this.appSettingsDialog = new AppSettingsDialogHtmlComponent(AppStateClient.getInstance());
     this.addCustomTextToTypeDialog = new AddCustomTextToTypeDialogHtmlComponent(AppStateClient.getInstance());
     this.changeThemeIcon = new ChangeThemeIconHtmlComponent(AppStateClient.getInstance());
     this.textToTypeCategoriesSelect = new SelectHtmlComponent<TextToTypeCategory>({
       options: TEXT_TO_TYPE_CATEGORIES,
-      selectedOptionValue: this.appState.textToTypeCategory,
+      selectedOptionValue: appState.textToTypeCategory,
     });
     this.textToTypeLanguagesSelect = new SelectHtmlComponent<TextToTypeLanguage>({
-      options: getTextToTypeLanguage(this.appState.textToTypeCategory),
-      selectedOptionValue: this.appState.textToTypeLanguage,
+      options: getTextToTypeLanguage(appState.textToTypeCategory),
+      selectedOptionValue: appState.textToTypeLanguage,
     });
     this.enableSoundsIcon = new EnableSoundsIconHtmlComponent(AppStateClient.getInstance());
   }
@@ -95,6 +93,7 @@ export class NavbarHtmlComponent extends BaseHtmlComponent {
     this.textToTypeCategoriesSelect.onUpdate(this.handleTextToTypeCategoryChangeEvent.bind(this));
     this.textToTypeLanguagesSelect.onUpdate(this.handleTextToTypeLanguageChangeEvent.bind(this));
     this.enableSoundsIcon.postInsertHtml();
+    this.addCustomEventListener(APP_SETTINGS_CHANGE_EVENT, this.update.bind(this));
   }
 
   private handleAppSettingsIconClickEvent(event) {
@@ -116,42 +115,62 @@ export class NavbarHtmlComponent extends BaseHtmlComponent {
   }
 
   private handleTextToTypeCategoryChangeEvent(value: TextToTypeCategory) {
-    if (value !== this.appState.textToTypeCategory) {
-      this.appState.textToTypeIndex = 0;
+    const appState = this.appStateClient.getAppState();
+    if (value !== appState.textToTypeCategory) {
+      appState.textToTypeIndex = 0;
     }
-    this.appState.textToTypeCategory = value;
+    appState.textToTypeCategory = value;
     if (value == TextToTypeCategory.CODE) {
-      this.appState.textToTypeLanguage = TextToTypeLanguage.JAVA;
+      appState.textToTypeLanguage = TextToTypeLanguage.JAVA;
     } else {
-      this.appState.textToTypeLanguage = TextToTypeLanguage.ENGLISH;
+      appState.textToTypeLanguage = TextToTypeLanguage.ENGLISH;
     }
     this.textToTypeCategoriesSelect.reset({
       options: TEXT_TO_TYPE_CATEGORIES,
-      selectedOptionValue: this.appState.textToTypeCategory,
+      selectedOptionValue: appState.textToTypeCategory,
     });
     this.textToTypeLanguagesSelect.reset({
-      options: getTextToTypeLanguage(this.appState.textToTypeCategory),
-      selectedOptionValue: this.appState.textToTypeLanguage,
+      options: getTextToTypeLanguage(appState.textToTypeCategory),
+      selectedOptionValue: appState.textToTypeLanguage,
     });
     this.textToTypeLanguagesContainer.classList.remove('hide');
-    if (this.appState.textToTypeCategory == TextToTypeCategory.CUSTOM_TEXT || this.appState.textToTypeCategory == TextToTypeCategory.RANDOM_TEXT) {
+    if (appState.textToTypeCategory == TextToTypeCategory.CUSTOM_TEXT || appState.textToTypeCategory == TextToTypeCategory.RANDOM_TEXT) {
       this.textToTypeLanguagesContainer.classList.add('hide');
     } else {
       this.textToTypeLanguagesContainer.classList.remove('hide');
     }
-    this.saveAppState();
+    this.saveAppState(appState);
   }
 
   private handleTextToTypeLanguageChangeEvent(value: TextToTypeLanguage) {
-    if (value !== this.appState.textToTypeLanguage) {
-      this.appState.textToTypeIndex = 0;
+    const appState = this.appStateClient.getAppState();
+    if (value !== appState.textToTypeLanguage) {
+      appState.textToTypeIndex = 0;
     }
-    this.appState.textToTypeLanguage = value;
-    this.saveAppState();
+    appState.textToTypeLanguage = value;
+    this.saveAppState(appState);
   }
 
-  private saveAppState() {
-    this.appStateClient.saveAppState(this.appState);
+  private saveAppState(appState) {
+    this.appStateClient.saveAppState(appState);
     this.dispatchCustomEvent(APP_SETTINGS_CHANGE_EVENT);
+  }
+
+  private update() {
+    const appState = this.appStateClient.getAppState();
+    this.textToTypeCategoriesSelect.reset({
+      options: TEXT_TO_TYPE_CATEGORIES,
+      selectedOptionValue: appState.textToTypeCategory,
+    });
+    this.textToTypeLanguagesSelect.reset({
+      options: getTextToTypeLanguage(appState.textToTypeCategory),
+      selectedOptionValue: appState.textToTypeLanguage,
+    });
+    this.textToTypeLanguagesContainer.classList.remove('hide');
+    if (appState.textToTypeCategory == TextToTypeCategory.CUSTOM_TEXT || appState.textToTypeCategory == TextToTypeCategory.RANDOM_TEXT) {
+      this.textToTypeLanguagesContainer.classList.add('hide');
+    } else {
+      this.textToTypeLanguagesContainer.classList.remove('hide');
+    }
   }
 }
