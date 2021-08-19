@@ -1456,12 +1456,12 @@ body.dark {
 
 .text-to-type-container {
   width: 100%;
-  margin: 5rem auto 0;
+  margin: 0 auto;
   overflow-y: scroll;
   flex: 1; }
   .text-to-type-container .text-to-type {
     position: relative;
-    padding: 2rem;
+    padding: 1rem 2rem 2rem;
     background-color: var(--text-to-type-background-color);
     border-radius: 0.3rem;
     white-space: pre-wrap; }
@@ -1511,14 +1511,19 @@ body.dark {
     opacity: 0.5; }
 
 .text-to-type-reference {
-  margin: 2rem 0;
+  margin-top: 4rem;
+  z-index: 300;
   font-size: 1.6rem;
-  float: right;
   color: var(--text-to-type-reference-color);
-  font-style: italic;
-  font-weight: bold; }
-  .text-to-type-reference span {
-    float: right; }
+  font-weight: bold;
+  padding: 0.7rem 0; }
+  .text-to-type-reference > span {
+    padding: 0.75rem 2rem;
+    background-color: var(--text-to-type-background-color);
+    border-top-left-radius: 0.6rem;
+    border-top-right-radius: 0.6rem; }
+  .text-to-type-reference .reference-prefix {
+    color: var(--body-color); }
 
 .view-typing-progress-button {
   color: var(--secondary-color);

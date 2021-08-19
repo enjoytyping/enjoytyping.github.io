@@ -28,7 +28,6 @@ const CHARS_To_TYPE: RegExp = /(^[A-Za-z0-9é"'\(-èëê_çàôùœâ\)=:/;.,?<>
 const CHARS_To_TYPE_WITHOUT_PUNCTUATION: RegExp = /[^A-Za-z0-9àçéèëêôùœâ\n ]/g;
 
 export class TextToTypeHtmlComponent extends BaseHtmlComponent {
-  private navBar: HTMLElement;
   private textToTypeDomElement: HTMLElement;
   private textToTypeContainerDomElement: HTMLElement;
   private currentCharToTypeDomElement: HTMLElement;
@@ -39,7 +38,6 @@ export class TextToTypeHtmlComponent extends BaseHtmlComponent {
   private typedKeysStats: Map<string, TypedKeyStats>;
   private keyboardSound: HTMLAudioElement;
   private isDisabled: boolean = false;
-  private textReference: TextToTypeReferenceHtmlComponent;
 
   constructor(private appStateClient: IAppStateClient) {
     super();
@@ -47,8 +45,6 @@ export class TextToTypeHtmlComponent extends BaseHtmlComponent {
 
   preInsertHtml(): void {
     this.keyboardSound = new Audio('keyboard-press-sound-effect.mp3');
-    this.textReference = new TextToTypeReferenceHtmlComponent(AppStateClient.getInstance());
-    this.textReference.preInsertHtml();
   }
 
   toHtml() {
@@ -56,19 +52,16 @@ export class TextToTypeHtmlComponent extends BaseHtmlComponent {
       <div id="${TEXT_TO_TYPE_CONTAINER_DOM_ELEMENT_ID}" class="text-to-type-container">
         <div id="${TEXT_TO_TYPE_DOM_ELEMENT_ID}" class="text-to-type">
         </div>
-        ${this.textReference.toHtml()}
       </div>
     `;
   }
 
   postInsertHtml(): void {
-    this.navBar = document.querySelector('nav');
     const appStorage = this.appStateClient.getAppState();
     appStorage.textToTypeLanguage = appStorage.textToTypeLanguage || TextToTypeLanguage.ENGLISH;
     this.appStateClient.saveAppState(appStorage);
     this.textToTypeDomElement = document.getElementById(TEXT_TO_TYPE_DOM_ELEMENT_ID);
     this.textToTypeContainerDomElement = document.getElementById(TEXT_TO_TYPE_CONTAINER_DOM_ELEMENT_ID);
-    this.textReference.postInsertHtml();
     this.setTextToType();
     document.body.addEventListener('keydown', this.handleKeyDownEvent.bind(this));
     this.addCustomEventListener(APP_SETTINGS_CHANGE_EVENT, this.reset.bind(this));

@@ -34,7 +34,7 @@ export class TextToTypeReferenceHtmlComponent extends BaseHtmlComponent {
     const appState = this.appStateClient.getAppState();
     const textToTypeArray = this.appStateClient.getTextToTypeArray();
     const textToType = textToTypeArray[appState.textToTypeIndex];
-    this.referenceAnchor = `<a href="${textToType.reference}" target="_blank">— ${textToType.author}</a>`;
+    this.referenceAnchor = `<span><span class="reference-prefix"></span><a href="${textToType.reference}" target="_blank">${textToType.author}</a></span>`;
     this.reference.innerHTML = this.referenceAnchor;
   }
 }
