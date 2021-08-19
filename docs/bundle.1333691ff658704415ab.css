@@ -1468,25 +1468,35 @@ body.dark {
     .text-to-type-container .text-to-type.blink span.cursor {
       color: var(--current-char-to-type-color);
       background-color: var(--current-char-to-type-background-color); }
-    .text-to-type-container .text-to-type.disabled {
-      opacity: 0.7; }
-      .text-to-type-container .text-to-type.disabled span.cursor {
-        color: var(--body-color);
-        background-color: var(--body-background-color); }
-      .text-to-type-container .text-to-type.disabled::after {
-        opacity: 1 !important;
-        position: absolute;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%);
-        content: 'click to enable typing';
-        font-size: 1.6rem;
-        font-weight: bold;
-        color: var(--primary-color);
-        background-color: var(--click-to-enable-background-color);
-        border: 2px solid var(--primary-color);
-        border-radius: 100rem;
-        padding: 0.7rem 5.5rem; }
+    .text-to-type-container .text-to-type.disabled span {
+      opacity: 0.5; }
+    .text-to-type-container .text-to-type.disabled span.cursor {
+      color: var(--body-color);
+      background-color: var(--body-background-color); }
+    .text-to-type-container .text-to-type.disabled::before {
+      cursor: pointer;
+      content: '';
+      position: absolute;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      left: 0;
+      border-radius: 0.3rem;
+      background-color: rgba(0, 0, 0, 0.05); }
+    .text-to-type-container .text-to-type.disabled::after {
+      cursor: pointer;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      content: 'click to enable typing';
+      font-size: 1.6rem;
+      font-weight: bold;
+      color: var(--primary-color);
+      background-color: var(--click-to-enable-background-color);
+      border: 2px solid var(--primary-color);
+      border-radius: 100rem;
+      padding: 0.7rem 5.5rem; }
   .text-to-type-container span {
     font-family: 'Roboto Mono';
     font-size: 1.8rem; }

@@ -27,15 +27,29 @@
     }
 
     &.disabled {
-      opacity: 0.7;
+      & span {
+        opacity: 0.5;
+      }
 
       & span.cursor {
         color: var(--body-color);
         background-color: var(--body-background-color);
       }
 
+      &::before {
+        cursor: pointer;
+        content: '';
+        position: absolute;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        border-radius: 0.3rem;
+        background-color: rgba(0, 0, 0, 0.05);
+      }
+
       &::after {
-        opacity: 1 !important;
+        cursor: pointer;
         position: absolute;
         top: 50%;
         left: 50%;
