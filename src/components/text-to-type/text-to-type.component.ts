@@ -15,17 +15,22 @@ import { TextToTypeCategory } from '../../state/text-to-type-category.enum';
 import { TypedTextStats } from '../typed-text-stats/typed-text-stats.model';
 import { TextToTypeLanguage } from '../../state/text-to-type-language.enum';
 import { IAppStateClient } from '../../state/app-state.client.interface';
+import { TextToTypeReferenceHtmlComponent } from './text-to-type-reference.component';
+import { AppStateClient } from '../../state/app-state.client';
 
 const INACTIVITY_TIMEOUT = 10000;
 const BACKSPACE_KEY = 'Backspace';
 const SPACE_KEY = ' ';
 const ENTER_KEY = 'Enter';
 const TEXT_TO_TYPE_DOM_ELEMENT_ID = 'TextToTypeId';
+const TEXT_TO_TYPE_CONTAINER_DOM_ELEMENT_ID = 'TextToTypeContainerId';
 const CHARS_To_TYPE: RegExp = /(^[A-Za-z0-9é"'\(-èëê_çàôùœâ\)=:/;.,?<>!~#{\[|@\]}+% ]$|Enter)/;
 const CHARS_To_TYPE_WITHOUT_PUNCTUATION: RegExp = /[^A-Za-z0-9àçéèëêôùœâ\n ]/g;
 
 export class TextToTypeHtmlComponent extends BaseHtmlComponent {
+  private navBar: HTMLElement;
   private textToTypeDomElement: HTMLElement;
+  private textToTypeContainerDomElement: HTMLElement;
   private currentCharToTypeDomElement: HTMLElement;
   private blinkInterval: any;
   private inactivityTimeout: any;
@@ -34,6 +39,7 @@ export class TextToTypeHtmlComponent extends BaseHtmlComponent {
   private typedKeysStats: Map<string, TypedKeyStats>;
   private keyboardSound: HTMLAudioElement;
   private isDisabled: boolean = false;
+  private textReference: TextToTypeReferenceHtmlComponent;
 
   constructor(private appStateClient: IAppStateClient) {
     super();
@@ -41,19 +47,28 @@ export class TextToTypeHtmlComponent extends BaseHtmlComponent {
 
   preInsertHtml(): void {
     this.keyboardSound = new Audio('keyboard-press-sound-effect.mp3');
+    this.textReference = new TextToTypeReferenceHtmlComponent(AppStateClient.getInstance());
+    this.textReference.preInsertHtml();
   }
 
   toHtml() {
     return /* html */ `
-      <div id="${TEXT_TO_TYPE_DOM_ELEMENT_ID}" class="text-to-type"></div>
+      <div id="${TEXT_TO_TYPE_CONTAINER_DOM_ELEMENT_ID}" class="text-to-type-container">
+        <div id="${TEXT_TO_TYPE_DOM_ELEMENT_ID}" class="text-to-type">
+        </div>
+        ${this.textReference.toHtml()}
+      </div>
     `;
   }
 
   postInsertHtml(): void {
+    this.navBar = document.querySelector('nav');
     const appStorage = this.appStateClient.getAppState();
     appStorage.textToTypeLanguage = appStorage.textToTypeLanguage || TextToTypeLanguage.ENGLISH;
     this.appStateClient.saveAppState(appStorage);
     this.textToTypeDomElement = document.getElementById(TEXT_TO_TYPE_DOM_ELEMENT_ID);
+    this.textToTypeContainerDomElement = document.getElementById(TEXT_TO_TYPE_CONTAINER_DOM_ELEMENT_ID);
+    this.textReference.postInsertHtml();
     this.setTextToType();
     document.body.addEventListener('keydown', this.handleKeyDownEvent.bind(this));
     this.addCustomEventListener(APP_SETTINGS_CHANGE_EVENT, this.reset.bind(this));
@@ -62,6 +77,25 @@ export class TextToTypeHtmlComponent extends BaseHtmlComponent {
     this.addCustomEventListener(START_UPDATING_CUSTOM_TEXT_TO_TYPE_EVENT, this.disable.bind(this));
     this.addCustomEventListener(END_UPDATING_CUSTOM_TEXT_TO_TYPE_EVENT, this.enable.bind(this));
     this.addCustomEventListener(CUSTOM_TEXTS_UPDATE_EVENT, this.reset.bind(this));
+    this.handleDisablingTextToTypeComponent();
+  }
+
+  private handleDisablingTextToTypeComponent() {
+    const navBar = document.querySelector('nav');
+    const statContainer = document.querySelector('.typed-text-stats-container');
+    document.addEventListener('click', (event) => {
+      const eventComposedPath = event.composedPath();
+      console.log(eventComposedPath);
+      console.log(eventComposedPath.indexOf(statContainer));
+      console.log(eventComposedPath.indexOf(navBar));
+      if (eventComposedPath.indexOf(navBar) === -1 && eventComposedPath.indexOf(statContainer) === -1) {
+        this.disable();
+      }
+    });
+    this.textToTypeContainerDomElement.addEventListener('click', (event) => {
+      event.stopPropagation();
+      this.enable();
+    });
   }
 
   private disable() {
@@ -117,7 +151,6 @@ export class TextToTypeHtmlComponent extends BaseHtmlComponent {
       this.blinkInterval = setInterval(this.toggleBlinkCssClass.bind(this), 350);
       this.scrollDownWhenNecessary();
     } else {
-      window.scrollTo(0, 0);
       this.typedKeysStats = this.typedTextStats.endType();
       this.updateAppStorageOnEndTyping();
       this.dispatchCustomEvent(END_TYPING_EVENT, this.typedTextStats);
@@ -129,7 +162,7 @@ export class TextToTypeHtmlComponent extends BaseHtmlComponent {
     const windowHeight = window.innerHeight;
     const top = this.currentCharToTypeDomElement.getBoundingClientRect().top;
     if (top > (2 * windowHeight) / 3) {
-      window.scrollBy(0, 30);
+      this.textToTypeContainerDomElement.scrollBy(0, 30);
     }
   }
 
@@ -187,6 +220,7 @@ export class TextToTypeHtmlComponent extends BaseHtmlComponent {
   }
 
   private async setTextToType() {
+    this.textToTypeContainerDomElement.scroll(0, 0);
     clearInterval(this.blinkInterval);
     const appState = this.appStateClient.getAppState();
     let textToType = this.getTextToType();

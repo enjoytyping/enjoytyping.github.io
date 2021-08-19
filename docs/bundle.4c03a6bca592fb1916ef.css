@@ -216,7 +216,10 @@ body.light {
   --selected-key-color: var(--white-color);
   --selected-key-background-color: var(--secondary-color);
   --typed-key-with-lt-min-stats-to-display-in-app-storage-background-color: var(--secondary-color);
-  --progress-by-key-icon-color: var(--primary-color); }
+  --progress-by-key-icon-color: var(--primary-color);
+  --text-to-type-background-color: #fcfcfc;
+  --click-to-enable-color: var(--text-color-01);
+  --click-to-enable-background-color: var(--background-color-01); }
 
 body.dark {
   --primary-color: #078eed;
@@ -304,7 +307,10 @@ body.dark {
   --selected-key-color: var(--white-color);
   --selected-key-background-color: var(--secondary-color);
   --typed-key-with-lt-min-stats-to-display-in-app-storage-background-color: var(--secondary-color);
-  --progress-by-key-icon-color: var(--primary-color); }
+  --progress-by-key-icon-color: var(--primary-color);
+  --text-to-type-background-color: var(--background-color-02);
+  --click-to-enable-color: var(--text-color-01);
+  --click-to-enable-background-color: var(--background-color-01); }
 
 @font-face {
   font-family: 'Anonymous Pro';
@@ -1284,7 +1290,7 @@ body.dark {
   color: var(--switch-on-color); }
 
 .typed-text-stats-container {
-  margin: 6rem auto 0;
+  margin: 3rem auto 0;
   display: flex;
   justify-content: center; }
   .typed-text-stats-container .typed-text-stat-container {
@@ -1442,35 +1448,57 @@ body.dark {
 
 .text-to-type-page {
   position: relative;
-  padding-bottom: 20rem;
-  min-height: calc(100vh - var(--navbar-height));
+  height: calc(100vh - var(--navbar-height));
   max-width: 94rem;
-  margin: 0 auto; }
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column; }
 
-.text-to-type {
-  max-width: 90rem;
+.text-to-type-container {
+  width: 100%;
   margin: 5rem auto 0;
-  white-space: pre-wrap; }
-  .text-to-type span {
+  overflow-y: scroll;
+  flex: 1; }
+  .text-to-type-container .text-to-type {
+    position: relative;
+    padding: 2rem;
+    background-color: var(--text-to-type-background-color);
+    border-radius: 0.3rem;
+    white-space: pre-wrap; }
+    .text-to-type-container .text-to-type.blink span.cursor {
+      color: var(--current-char-to-type-color);
+      background-color: var(--current-char-to-type-background-color); }
+    .text-to-type-container .text-to-type.disabled {
+      opacity: 0.7; }
+      .text-to-type-container .text-to-type.disabled span.cursor {
+        color: var(--body-color);
+        background-color: var(--body-background-color); }
+      .text-to-type-container .text-to-type.disabled::after {
+        opacity: 1 !important;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        content: 'click to enable typing';
+        font-size: 1.6rem;
+        font-weight: bold;
+        color: var(--primary-color);
+        background-color: var(--click-to-enable-background-color);
+        border: 2px solid var(--primary-color);
+        border-radius: 100rem;
+        padding: 0.7rem 5.5rem; }
+  .text-to-type-container span {
     font-family: 'Roboto Mono';
     font-size: 1.8rem; }
-  .text-to-type span.whitespace {
+  .text-to-type-container span.whitespace {
     color: var(--whitespace-color); }
-  .text-to-type span.dot.NOK {
+  .text-to-type-container span.dot.NOK {
     opacity: 0.7; }
-  .text-to-type span.NOK {
+  .text-to-type-container span.NOK {
     color: var(--nok-typed-char-color);
     border-bottom: 3px solid var(--nok-typed-char-color); }
-  .text-to-type span.OK {
+  .text-to-type-container span.OK {
     opacity: 0.5; }
-  .text-to-type.blink span.cursor {
-    color: var(--current-char-to-type-color);
-    background-color: var(--current-char-to-type-background-color); }
-  .text-to-type.disabled {
-    opacity: 0.5; }
-    .text-to-type.disabled span.cursor {
-      color: var(--body-color);
-      background-color: var(--body-background-color); }
 
 .text-to-type-reference {
   margin: 2rem 0;
@@ -1483,12 +1511,11 @@ body.dark {
     float: right; }
 
 .view-typing-progress-button {
-  position: absolute;
-  bottom: 10rem;
-  left: 50%;
-  transform: translateX(-50%);
   color: var(--secondary-color);
-  font-weight: bold; }
+  font-weight: bold;
+  padding-top: 1.2rem;
+  padding-bottom: 1.2rem;
+  text-align: center; }
 
 footer {
   color: var(--footer-color);
