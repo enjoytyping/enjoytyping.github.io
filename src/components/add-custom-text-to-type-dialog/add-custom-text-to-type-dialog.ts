@@ -126,8 +126,7 @@ export class AddCustomTextToTypeDialogHtmlComponent extends BaseDialogHtmlCompon
       if (!this.appState.customTextsToType) this.appState.customTextsToType = [];
       this.appState.customTextsToType.unshift({
         text: this.customTextToAddTextArea.getValue(),
-        reference: '#',
-        author: 'Custom text',
+        author: '',
       });
       this.customTextToAddTextArea.reset();
       this.appState.textToTypeCategory = TextToTypeCategory.CUSTOM_TEXT;

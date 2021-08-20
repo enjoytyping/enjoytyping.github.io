@@ -269,7 +269,9 @@ export function getTextToTypeLanguage(category: TextToTypeCategory): SelectOptio
         },
       ];
     }
-    default: {
+    case TextToTypeCategory.QUOTES:
+    case TextToTypeCategory.POEMS:
+    case TextToTypeCategory.STORIES: {
       return [
         {
           label: 'English',
@@ -280,6 +282,9 @@ export function getTextToTypeLanguage(category: TextToTypeCategory): SelectOptio
           value: TextToTypeLanguage.FRENCH,
         },
       ];
+    }
+    default: {
+      return [];
     }
   }
 }

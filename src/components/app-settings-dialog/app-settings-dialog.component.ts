@@ -170,10 +170,15 @@ export class AppSettingsDialogHtmlComponent extends BaseDialogHtmlComponent {
       options: TEXT_TO_TYPE_CATEGORIES,
       selectedOptionValue: this.appState.textToTypeCategory,
     });
+    const langages = getTextToTypeLanguage(this.appState.textToTypeCategory);
     this.textToTypeLanguagesSelect.reset({
-      options: getTextToTypeLanguage(this.appState.textToTypeCategory),
+      options: langages,
       selectedOptionValue: this.appState.textToTypeLanguage,
     });
+    this.textToTypeLanguageContainer.classList.add('hide');
+    if (langages.length > 0) {
+      this.textToTypeLanguageContainer.classList.remove('hide');
+    }
     this.maxCharactersToType.reset('' + this.appState.maxCharactersToType);
     this.stopOnErrorSwitch.reset(this.appState.stopOnError);
     this.enableCapitalLettersSwitch.reset(this.appState.enableCapitalLetters);
@@ -182,16 +187,9 @@ export class AppSettingsDialogHtmlComponent extends BaseDialogHtmlComponent {
 
     this.enableCapitalLettersContainer.classList.remove('hide');
     this.enablePunctuationCharactersContainer.classList.remove('hide');
-    this.textToTypeLanguageContainer.classList.remove('hide');
     if (this.appState.textToTypeCategory == TextToTypeCategory.CODE) {
       this.enableCapitalLettersContainer.classList.add('hide');
       this.enablePunctuationCharactersContainer.classList.add('hide');
-    }
-    if (this.appState.textToTypeCategory == TextToTypeCategory.CUSTOM_TEXT) {
-      this.textToTypeLanguageContainer.classList.add('hide');
-    }
-    if (this.appState.textToTypeCategory == TextToTypeCategory.RANDOM_TEXT) {
-      this.textToTypeLanguageContainer.classList.add('hide');
     }
   }
 

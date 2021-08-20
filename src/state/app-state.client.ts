@@ -278,12 +278,10 @@ export class AppStateClient implements IAppStateClient {
       if (i % 4 == 0) result += ' ';
       result += characters.charAt(Math.floor(Math.random() * characters.length));
     }
-    console.log(result);
     return [
       {
         text: result,
-        reference: '#',
-        author: 'Training',
+        author: '',
       },
     ];
   }

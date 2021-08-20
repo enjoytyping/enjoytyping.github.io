@@ -10,7 +10,7 @@ export class TextToTypePageHtmlComponent extends BaseHtmlContainer {
   getComponents(): IHtmlComponent[] {
     const res = [];
     res.push(new TypedTextHtmlComponent(AppStateClient.getInstance()));
-    res.push(new TextToTypeReferenceHtmlComponent(AppStateClient.getInstance()));
+    // res.push(new TextToTypeReferenceHtmlComponent(AppStateClient.getInstance()));
     res.push(new TextToTypeHtmlComponent(AppStateClient.getInstance()));
     res.push(new ViewTypingProgressButtonHtmlComponent(AppStateClient.getInstance()));
     return res;

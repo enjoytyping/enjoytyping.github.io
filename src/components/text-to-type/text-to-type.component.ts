@@ -17,6 +17,7 @@ import { TextToTypeLanguage } from '../../state/text-to-type-language.enum';
 import { IAppStateClient } from '../../state/app-state.client.interface';
 import { TextToTypeReferenceHtmlComponent } from './text-to-type-reference.component';
 import { AppStateClient } from '../../state/app-state.client';
+import { TextToType } from './text-to-type.model';
 
 const INACTIVITY_TIMEOUT = 10000;
 const BACKSPACE_KEY = 'Backspace';
@@ -38,25 +39,32 @@ export class TextToTypeHtmlComponent extends BaseHtmlComponent {
   private typedKeysStats: Map<string, TypedKeyStats>;
   private keyboardSound: HTMLAudioElement;
   private isDisabled: boolean = false;
+  private referenceId: string;
+  private reference: HTMLElement;
 
   constructor(private appStateClient: IAppStateClient) {
     super();
   }
 
   preInsertHtml(): void {
+    this.referenceId = this.generateId();
     this.keyboardSound = new Audio('keyboard-press-sound-effect.mp3');
   }
 
   toHtml() {
     return /* html */ `
-      <div id="${TEXT_TO_TYPE_CONTAINER_DOM_ELEMENT_ID}" class="text-to-type-container">
-        <div id="${TEXT_TO_TYPE_DOM_ELEMENT_ID}" class="text-to-type">
+      <div class="text-to-type-container2">
+        <span id="${this.referenceId}"></span>
+        <div id="${TEXT_TO_TYPE_CONTAINER_DOM_ELEMENT_ID}" class="text-to-type-container1">
+          <div id="${TEXT_TO_TYPE_DOM_ELEMENT_ID}" class="text-to-type">
+          </div>
         </div>
       </div>
     `;
   }
 
   postInsertHtml(): void {
+    this.reference = document.getElementById(this.referenceId);
     const appStorage = this.appStateClient.getAppState();
     appStorage.textToTypeLanguage = appStorage.textToTypeLanguage || TextToTypeLanguage.ENGLISH;
     this.appStateClient.saveAppState(appStorage);
@@ -214,25 +222,27 @@ export class TextToTypeHtmlComponent extends BaseHtmlComponent {
     clearInterval(this.blinkInterval);
     const appState = this.appStateClient.getAppState();
     let textToType = this.getTextToType();
+    let textToTypeText = textToType.text;
+    this.reference.innerHTML = this.getTextReferenceInnerHtml(textToType);
     if (!appState.enableCapitalLetters) {
-      textToType = textToType.toLowerCase();
+      textToTypeText = textToTypeText.toLowerCase();
     }
     if (!appState.enablePunctuationCharacters) {
-      textToType = textToType.replace(CHARS_To_TYPE_WITHOUT_PUNCTUATION, '');
+      textToTypeText = textToTypeText.replace(CHARS_To_TYPE_WITHOUT_PUNCTUATION, '');
     }
-    textToType = textToType.substring(0, appState.maxCharactersToType);
-    textToType = textToType.trim();
-    const textToTypeLength = textToType.split('').length;
+    textToTypeText = textToTypeText.substring(0, appState.maxCharactersToType);
+    textToTypeText = textToTypeText.trim();
+    const textToTypeLength = textToTypeText.split('').length;
     let textToTypeCharArrayAfterTransformation = [];
     if (appState.textToTypeCategory != TextToTypeCategory.CODE || appState.visitWebsiteForTheFirstTime) {
-      textToType = textToType.replace(/ +/g, ' ');
-      textToTypeCharArrayAfterTransformation = textToType.split('').map((c) => this.charToSpan(c, ''));
+      textToTypeText = textToTypeText.replace(/ +/g, ' ');
+      textToTypeCharArrayAfterTransformation = textToTypeText.split('').map((c) => this.charToSpan(c, ''));
     } else {
-      textToType = hljs.highlight(appState.textToTypeLanguage, textToType).value;
-      textToType = textToType.replace(/&lt;/g, '<');
-      textToType = textToType.replace(/&gt;/g, '>');
-      textToType = textToType.replace(/&quot;/g, '"');
-      const textToTypeCharArray = textToType.split('');
+      textToTypeText = hljs.highlight(appState.textToTypeLanguage, textToTypeText).value;
+      textToTypeText = textToTypeText.replace(/&lt;/g, '<');
+      textToTypeText = textToTypeText.replace(/&gt;/g, '>');
+      textToTypeText = textToTypeText.replace(/&quot;/g, '"');
+      const textToTypeCharArray = textToTypeText.split('');
       let openingSpanBegin = false;
       let closingSpanBegin = false;
       let hljsClass = '';
@@ -274,6 +284,16 @@ export class TextToTypeHtmlComponent extends BaseHtmlComponent {
     this.typedTextStats = new TypedTextStats(textToTypeLength);
   }
 
+  private getTextReferenceInnerHtml(text: TextToType): string {
+    if (text.reference) {
+      return `<span class="text-to-type-reference"><a href="${text.reference}">${text.author}</a></span>`;
+    }
+    if (text.author) {
+      return `<span class="text-to-type-reference">${text.author}</span>`;
+    }
+    return '';
+  }
+
   private charToSpan(c: string, clazz: string) {
     // if (c === ' ') return `<span data-key-regex="${SPACE_KEY}" class="whitespace">␣</span><wbr>`;
     if (c === ' ') return `<span data-key-regex="${SPACE_KEY}" class="whitespace dot">&middot;</span><wbr>`;
@@ -293,13 +313,16 @@ export class TextToTypeHtmlComponent extends BaseHtmlComponent {
     return `<span class="${clazz}" data-key-regex="[${c}]">${c}</span>`;
   }
 
-  private getTextToType(): string {
+  private getTextToType(): TextToType {
     const appState = this.appStateClient.getAppState();
     const textToTypeArray = this.appStateClient.getTextToTypeArray();
     if (textToTypeArray.length > 0) {
-      return textToTypeArray[appState.textToTypeIndex].text;
+      return textToTypeArray[appState.textToTypeIndex];
     }
-    return 'Sunt cillum est dolore veniam officia.';
+    return {
+      text: 'Sunt cillum est dolore veniam officia.',
+      author: 'Lorem Ipsum',
+    };
   }
 
   private preventDefaultEventExceptFunctionKeys(event: any) {

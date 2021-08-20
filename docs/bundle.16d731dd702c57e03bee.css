@@ -1454,51 +1454,52 @@ body.dark {
   display: flex;
   flex-direction: column; }
 
-.text-to-type-container {
+.text-to-type-container2 {
+  margin-top: 4rem;
+  flex: 1; }
+
+.text-to-type-container1 {
   width: 100%;
   margin: 0 auto;
   overflow-y: scroll;
-  min-height: 5rem;
-  flex: 1; }
-  .text-to-type-container .text-to-type {
+  min-height: 5rem; }
+  .text-to-type-container1 .text-to-type {
     position: relative;
-    padding: 1rem 2rem 2rem;
+    padding: 2rem;
     background-color: var(--text-to-type-background-color);
     border-radius: 0.3rem;
     white-space: pre-wrap; }
-    .text-to-type-container .text-to-type.blink span.cursor {
+    .text-to-type-container1 .text-to-type.blink span.cursor {
       color: var(--current-char-to-type-color);
       background-color: var(--current-char-to-type-background-color); }
-    .text-to-type-container .text-to-type.disabled span {
+    .text-to-type-container1 .text-to-type.disabled span {
       opacity: 0.5; }
-    .text-to-type-container .text-to-type.disabled span.cursor {
+    .text-to-type-container1 .text-to-type.disabled span.cursor {
       color: var(--body-color);
       background-color: var(--body-background-color); }
-  .text-to-type-container span {
+  .text-to-type-container1 span {
     font-family: 'Roboto Mono';
     font-size: 1.8rem; }
-  .text-to-type-container span.whitespace {
+  .text-to-type-container1 span.whitespace {
     color: var(--whitespace-color); }
-  .text-to-type-container span.dot.NOK {
+  .text-to-type-container1 span.dot.NOK {
     opacity: 0.7; }
-  .text-to-type-container span.NOK {
+  .text-to-type-container1 span.NOK {
     color: var(--nok-typed-char-color);
     border-bottom: 3px solid var(--nok-typed-char-color); }
-  .text-to-type-container span.OK {
+  .text-to-type-container1 span.OK {
     opacity: 0.5; }
 
 .text-to-type-reference {
-  margin-top: 4rem;
   z-index: 300;
   font-size: 1.6rem;
   color: var(--text-to-type-reference-color);
   font-weight: bold;
-  padding: 0.7rem 0; }
-  .text-to-type-reference > span {
-    padding: 0.75rem 2rem;
-    background-color: var(--text-to-type-background-color);
-    border-top-left-radius: 0.6rem;
-    border-top-right-radius: 0.6rem; }
+  padding: 0.7rem 0;
+  padding: 0.75rem 2rem;
+  background-color: var(--text-to-type-background-color);
+  border-top-left-radius: 0.6rem;
+  border-top-right-radius: 0.6rem; }
   .text-to-type-reference .reference-prefix {
     color: var(--body-color); }
 

@@ -94,6 +94,7 @@ export class NavbarHtmlComponent extends BaseHtmlComponent {
     this.textToTypeLanguagesSelect.onUpdate(this.handleTextToTypeLanguageChangeEvent.bind(this));
     this.enableSoundsIcon.postInsertHtml();
     this.addCustomEventListener(APP_SETTINGS_CHANGE_EVENT, this.update.bind(this));
+    this.update();
   }
 
   private handleAppSettingsIconClickEvent(event) {
@@ -125,15 +126,14 @@ export class NavbarHtmlComponent extends BaseHtmlComponent {
       selectedOptionValue: appState.textToTypeCategory,
     });
     const options = getTextToTypeLanguage(appState.textToTypeCategory);
-    appState.textToTypeLanguage = options[0].value;
-    this.textToTypeLanguagesSelect.reset({
-      options,
-      selectedOptionValue: appState.textToTypeLanguage,
-    });
-    this.textToTypeLanguagesContainer.classList.remove('hide');
-    if (appState.textToTypeCategory == TextToTypeCategory.CUSTOM_TEXT || appState.textToTypeCategory == TextToTypeCategory.RANDOM_TEXT) {
-      this.textToTypeLanguagesContainer.classList.add('hide');
-    } else {
+    this.textToTypeLanguagesContainer.classList.add('hide');
+    if (options.length > 0) {
+      const selectedLanguage = options[0].value;
+      appState.textToTypeLanguage = selectedLanguage;
+      this.textToTypeLanguagesSelect.reset({
+        options,
+        selectedOptionValue: selectedLanguage,
+      });
       this.textToTypeLanguagesContainer.classList.remove('hide');
     }
     this.saveAppState(appState);
@@ -159,14 +159,13 @@ export class NavbarHtmlComponent extends BaseHtmlComponent {
       options: TEXT_TO_TYPE_CATEGORIES,
       selectedOptionValue: appState.textToTypeCategory,
     });
+    const options = getTextToTypeLanguage(appState.textToTypeCategory);
     this.textToTypeLanguagesSelect.reset({
-      options: getTextToTypeLanguage(appState.textToTypeCategory),
+      options,
       selectedOptionValue: appState.textToTypeLanguage,
     });
-    this.textToTypeLanguagesContainer.classList.remove('hide');
-    if (appState.textToTypeCategory == TextToTypeCategory.CUSTOM_TEXT || appState.textToTypeCategory == TextToTypeCategory.RANDOM_TEXT) {
-      this.textToTypeLanguagesContainer.classList.add('hide');
-    } else {
+    this.textToTypeLanguagesContainer.classList.add('hide');
+    if (options.length > 0) {
       this.textToTypeLanguagesContainer.classList.remove('hide');
     }
   }
