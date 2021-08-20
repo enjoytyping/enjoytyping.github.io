@@ -7,7 +7,7 @@ import { AppStateClient } from '../../state/app-state.client';
 export class MainHtmlComponent extends BaseHtmlContainer {
   getComponents(): IHtmlComponent[] {
     const res = [];
-    res.push(new TextToTypePageHtmlComponent());
+    res.push(new TextToTypePageHtmlComponent(AppStateClient.getInstance()));
     res.push(new TypingProgressSectionHtmlComponent(AppStateClient.getInstance()));
     return res;
   }

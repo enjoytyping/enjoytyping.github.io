@@ -52,64 +52,64 @@ export function getTextToTypeLanguage(category: TextToTypeCategory): SelectOptio
     case TextToTypeCategory.TRAINING_AZERTY: {
       return [
         {
-          label: 'Keys fj',
+          label: 'Keys FJ',
           value: TextToTypeLanguage.KEYS_F_AND_J,
         },
         {
-          label: 'Keys dk',
+          label: 'Keys DK',
           value: TextToTypeLanguage.KEYS_D_AND_K,
         },
         {
-          label: 'Keys fjdk',
+          label: 'Keys FJDK',
           value: TextToTypeLanguage.KEYS_FJDK,
         },
         {
-          label: 'Keys sl',
+          label: 'Keys SL',
           value: TextToTypeLanguage.KEYS_S_AND_L,
         },
         {
-          label: 'Keys qm',
+          label: 'Keys QM',
           value: TextToTypeLanguage.KEYS_Q_AND_M,
         },
         {
-          label: 'Keys slqm',
+          label: 'Keys SLQM',
           value: TextToTypeLanguage.KEYS_SLQM,
         },
         {
-          label: 'Keys gh',
+          label: 'Keys GH',
           value: TextToTypeLanguage.KEYS_G_AND_H,
         },
         {
-          label: 'Home Row',
+          label: 'Home ROW',
           value: TextToTypeLanguage.HOME_ROW,
         },
 
         {
-          label: 'Keys ru',
+          label: 'Keys RU',
           value: TextToTypeLanguage.KEYS_R_AND_U,
         },
         {
-          label: 'Keys ei',
+          label: 'Keys EI',
           value: TextToTypeLanguage.KEYS_E_AND_I,
         },
         {
-          label: 'Keys ruei',
+          label: 'Keys RUEI',
           value: TextToTypeLanguage.KEYS_RUEI,
         },
         {
-          label: 'Keys zo',
+          label: 'Keys ZO',
           value: TextToTypeLanguage.KEYS_Z_AND_O,
         },
         {
-          label: 'Keys ap',
+          label: 'Keys AP',
           value: TextToTypeLanguage.KEYS_A_AND_P,
         },
         {
-          label: 'Keys azop',
+          label: 'Keys AZOP',
           value: TextToTypeLanguage.KEYS_AZOP,
         },
         {
-          label: 'Keys ty',
+          label: 'Keys TY',
           value: TextToTypeLanguage.KEYS_T_AND_Y,
         },
         {
@@ -118,31 +118,31 @@ export function getTextToTypeLanguage(category: TextToTypeCategory): SelectOptio
         },
 
         {
-          label: 'Keys v,',
+          label: 'Keys V,',
           value: TextToTypeLanguage.KEYS_V_AND_COMMA,
         },
         {
-          label: 'Keys c;',
+          label: 'Keys C;',
           value: TextToTypeLanguage.KEYS_C_AND_SEMI_COLON,
         },
         {
-          label: 'Keys cv,;',
+          label: 'Keys CV,;',
           value: TextToTypeLanguage.KEYS_CV_COMMA_SEMI_COLON,
         },
         {
-          label: 'Keys x:',
+          label: 'Keys X:',
           value: TextToTypeLanguage.KEYS_X_AND_COLON,
         },
         {
-          label: 'Keys w!',
+          label: 'Keys W!',
           value: TextToTypeLanguage.KEYS_W_AND_EX,
         },
         {
-          label: 'Keys wx:!',
+          label: 'Keys WX:!',
           value: TextToTypeLanguage.KEYS_WX_COLON_EX,
         },
         {
-          label: 'Keys bn',
+          label: 'Keys BN',
           value: TextToTypeLanguage.KEYS_B_AND_N,
         },
         {
@@ -154,31 +154,31 @@ export function getTextToTypeLanguage(category: TextToTypeCategory): SelectOptio
     case TextToTypeCategory.TRAINING_QWERTY: {
       return [
         {
-          label: 'Keys fj',
+          label: 'Keys FJ',
           value: TextToTypeLanguage.KEYS_F_AND_J,
         },
         {
-          label: 'Keys dk',
+          label: 'Keys DK',
           value: TextToTypeLanguage.KEYS_D_AND_K,
         },
         {
-          label: 'Keys fjdk',
+          label: 'Keys FJDK',
           value: TextToTypeLanguage.KEYS_FJDK,
         },
         {
-          label: 'Keys sl',
+          label: 'Keys SL',
           value: TextToTypeLanguage.KEYS_S_AND_L,
         },
         {
-          label: 'Keys a;',
+          label: 'Keys A;',
           value: TextToTypeLanguage.KEYS_A_AND_SEMI_COLON,
         },
         {
-          label: 'Keys asl;',
+          label: 'Keys ASL;',
           value: TextToTypeLanguage.KEYS_ASL_SEMI_COLON,
         },
         {
-          label: 'Keys gh',
+          label: 'Keys GH',
           value: TextToTypeLanguage.KEYS_G_AND_H,
         },
         {
@@ -187,31 +187,31 @@ export function getTextToTypeLanguage(category: TextToTypeCategory): SelectOptio
         },
 
         {
-          label: 'Keys ru',
+          label: 'Keys RU',
           value: TextToTypeLanguage.KEYS_R_AND_U,
         },
         {
-          label: 'Keys ei',
+          label: 'Keys EI',
           value: TextToTypeLanguage.KEYS_E_AND_I,
         },
         {
-          label: 'Keys ruei',
+          label: 'Keys RUEI',
           value: TextToTypeLanguage.KEYS_RUEI,
         },
         {
-          label: 'Keys wo',
+          label: 'Keys WO',
           value: TextToTypeLanguage.KEYS_W_AND_O,
         },
         {
-          label: 'Keys qp',
+          label: 'Keys QP',
           value: TextToTypeLanguage.KEYS_Q_AND_P,
         },
         {
-          label: 'Keys qwop',
+          label: 'Keys QWOP',
           value: TextToTypeLanguage.KEYS_QWOP,
         },
         {
-          label: 'Keys ty',
+          label: 'Keys TY',
           value: TextToTypeLanguage.KEYS_T_AND_Y,
         },
         {
@@ -220,31 +220,31 @@ export function getTextToTypeLanguage(category: TextToTypeCategory): SelectOptio
         },
 
         {
-          label: 'Keys vm',
+          label: 'Keys VM',
           value: TextToTypeLanguage.KEYS_V_AND_M,
         },
         {
-          label: 'Keys c,',
+          label: 'Keys C,',
           value: TextToTypeLanguage.KEYS_C_AND_COMMA,
         },
         {
-          label: 'Keys cvm,',
+          label: 'Keys CVM,',
           value: TextToTypeLanguage.KEYS_CVM_COMMA,
         },
         {
-          label: 'Keys x.',
+          label: 'Keys X.',
           value: TextToTypeLanguage.KEYS_X_AND_DOT,
         },
         {
-          label: 'Keys z/',
+          label: 'Keys Z/',
           value: TextToTypeLanguage.KEYS_Z_AND_SLASH,
         },
         {
-          label: 'Keys zx./',
+          label: 'Keys ZX./',
           value: TextToTypeLanguage.KEYS_ZX_DOT_SLASH,
         },
         {
-          label: 'Keys bn',
+          label: 'Keys BN',
           value: TextToTypeLanguage.KEYS_B_AND_N,
         },
         {

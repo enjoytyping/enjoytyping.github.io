@@ -1,0 +1,33 @@
+.training-container {
+  margin: 3rem 8rem 0;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  overflow-x: scroll;
+}
+
+.training-row-container,
+.training-keys-container {
+  cursor: pointer;
+  flex-shrink: 0;
+  border-radius: 0.3rem;
+  width: 8rem;
+  height: 8rem;
+  background-color: #f1f1f1;
+  margin-right: 0.5rem;
+  font-size: 1.6rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  & .keys {
+    font-weight: bold;
+    font-size: 2rem;
+  }
+
+  & .row {
+    font-weight: bold;
+    font-size: 2rem;
+  }
+}
