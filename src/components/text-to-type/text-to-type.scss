@@ -8,16 +8,16 @@
   flex-direction: column;
 }
 
-.text-to-type-container2 {
-  margin-top: 4rem;
-  flex: 1;
+.separator {
+  height: 4rem;
 }
 
-.text-to-type-container1 {
+.text-to-type-container {
   width: 100%;
   margin: 0 auto;
-  overflow-y: scroll;
   min-height: 5rem;
+  flex: 1;
+  overflow-y: scroll;
 
   & .text-to-type {
     position: relative;
@@ -40,34 +40,6 @@
         color: var(--body-color);
         background-color: var(--body-background-color);
       }
-
-      // &::before {
-      //   cursor: pointer;
-      //   content: '';
-      //   position: absolute;
-      //   top: 0;
-      //   right: 0;
-      //   bottom: 0;
-      //   left: 0;
-      //   border-radius: 0.3rem;
-      //   background-color: rgba(0, 0, 0, 0.05);
-      // }
-
-      // &::after {
-      //   cursor: pointer;
-      //   position: absolute;
-      //   top: 50%;
-      //   left: 50%;
-      //   transform: translate(-50%, -50%);
-      //   content: 'click to enable typing';
-      //   font-size: 1.6rem;
-      //   font-weight: bold;
-      //   color: var(--primary-color);
-      //   background-color: var(--click-to-enable-background-color);
-      //   border: 2px solid var(--primary-color);
-      //   border-radius: 100rem;
-      //   padding: 0.7rem 5.5rem;
-      // }
     }
   }
 
@@ -95,22 +67,13 @@
 }
 
 .text-to-type-reference {
-  z-index: 300;
   font-size: 1.6rem;
   color: var(--text-to-type-reference-color);
   font-weight: bold;
-  padding: 0.7rem 0;
-
   padding: 0.75rem 2rem;
   background-color: var(--text-to-type-background-color);
   border-top-left-radius: 0.6rem;
   border-top-right-radius: 0.6rem;
-  & > span {
-  }
-
-  & .reference-prefix {
-    color: var(--body-color);
-  }
 }
 
 .view-typing-progress-button {

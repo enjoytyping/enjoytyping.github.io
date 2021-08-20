@@ -4,13 +4,11 @@ import { TypedTextHtmlComponent } from '../typed-text-stats/typed-text-stats.com
 import { TextToTypeHtmlComponent } from './text-to-type.component';
 import { AppStateClient } from '../../state/app-state.client';
 import { ViewTypingProgressButtonHtmlComponent } from './view-typing-progress-button.component';
-import { TextToTypeReferenceHtmlComponent } from './text-to-type-reference.component';
 
 export class TextToTypePageHtmlComponent extends BaseHtmlContainer {
   getComponents(): IHtmlComponent[] {
     const res = [];
     res.push(new TypedTextHtmlComponent(AppStateClient.getInstance()));
-    // res.push(new TextToTypeReferenceHtmlComponent(AppStateClient.getInstance()));
     res.push(new TextToTypeHtmlComponent(AppStateClient.getInstance()));
     res.push(new ViewTypingProgressButtonHtmlComponent(AppStateClient.getInstance()));
     return res;

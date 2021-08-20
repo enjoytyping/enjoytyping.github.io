@@ -15,7 +15,6 @@ import { TextToTypeCategory } from '../../state/text-to-type-category.enum';
 import { TypedTextStats } from '../typed-text-stats/typed-text-stats.model';
 import { TextToTypeLanguage } from '../../state/text-to-type-language.enum';
 import { IAppStateClient } from '../../state/app-state.client.interface';
-import { TextToTypeReferenceHtmlComponent } from './text-to-type-reference.component';
 import { AppStateClient } from '../../state/app-state.client';
 import { TextToType } from './text-to-type.model';
 
@@ -53,11 +52,10 @@ export class TextToTypeHtmlComponent extends BaseHtmlComponent {
 
   toHtml() {
     return /* html */ `
-      <div class="text-to-type-container2">
-        <span id="${this.referenceId}"></span>
-        <div id="${TEXT_TO_TYPE_CONTAINER_DOM_ELEMENT_ID}" class="text-to-type-container1">
-          <div id="${TEXT_TO_TYPE_DOM_ELEMENT_ID}" class="text-to-type">
-          </div>
+      <span class="separator"></span>
+      <span id="${this.referenceId}"></span>
+      <div id="${TEXT_TO_TYPE_CONTAINER_DOM_ELEMENT_ID}" class="text-to-type-container">
+        <div id="${TEXT_TO_TYPE_DOM_ELEMENT_ID}" class="text-to-type">
         </div>
       </div>
     `;
@@ -78,22 +76,6 @@ export class TextToTypeHtmlComponent extends BaseHtmlComponent {
     this.addCustomEventListener(START_UPDATING_CUSTOM_TEXT_TO_TYPE_EVENT, this.disable.bind(this));
     this.addCustomEventListener(END_UPDATING_CUSTOM_TEXT_TO_TYPE_EVENT, this.enable.bind(this));
     this.addCustomEventListener(CUSTOM_TEXTS_UPDATE_EVENT, this.reset.bind(this));
-    // this.handleDisablingTextToTypeComponent();
-  }
-
-  private handleDisablingTextToTypeComponent() {
-    const navBar = document.querySelector('nav');
-    const statContainer = document.querySelector('.typed-text-stats-container');
-    document.addEventListener('click', (event) => {
-      const eventComposedPath = event.composedPath();
-      if (eventComposedPath.indexOf(navBar) === -1 && eventComposedPath.indexOf(statContainer) === -1) {
-        this.disable();
-      }
-    });
-    this.textToTypeContainerDomElement.addEventListener('click', (event) => {
-      event.stopPropagation();
-      this.enable();
-    });
   }
 
   private disable() {
