@@ -70,7 +70,7 @@ export class TextToTypeHtmlComponent extends BaseHtmlComponent {
     this.addCustomEventListener(START_UPDATING_CUSTOM_TEXT_TO_TYPE_EVENT, this.disable.bind(this));
     this.addCustomEventListener(END_UPDATING_CUSTOM_TEXT_TO_TYPE_EVENT, this.enable.bind(this));
     this.addCustomEventListener(CUSTOM_TEXTS_UPDATE_EVENT, this.reset.bind(this));
-    this.handleDisablingTextToTypeComponent();
+    // this.handleDisablingTextToTypeComponent();
   }
 
   private handleDisablingTextToTypeComponent() {
@@ -78,9 +78,6 @@ export class TextToTypeHtmlComponent extends BaseHtmlComponent {
     const statContainer = document.querySelector('.typed-text-stats-container');
     document.addEventListener('click', (event) => {
       const eventComposedPath = event.composedPath();
-      console.log(eventComposedPath);
-      console.log(eventComposedPath.indexOf(statContainer));
-      console.log(eventComposedPath.indexOf(navBar));
       if (eventComposedPath.indexOf(navBar) === -1 && eventComposedPath.indexOf(statContainer) === -1) {
         this.disable();
       }

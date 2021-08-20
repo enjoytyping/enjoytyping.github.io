@@ -120,17 +120,14 @@ export class NavbarHtmlComponent extends BaseHtmlComponent {
       appState.textToTypeIndex = 0;
     }
     appState.textToTypeCategory = value;
-    if (value == TextToTypeCategory.CODE) {
-      appState.textToTypeLanguage = TextToTypeLanguage.JAVA;
-    } else {
-      appState.textToTypeLanguage = TextToTypeLanguage.ENGLISH;
-    }
     this.textToTypeCategoriesSelect.reset({
       options: TEXT_TO_TYPE_CATEGORIES,
       selectedOptionValue: appState.textToTypeCategory,
     });
+    const options = getTextToTypeLanguage(appState.textToTypeCategory);
+    appState.textToTypeLanguage = options[0].value;
     this.textToTypeLanguagesSelect.reset({
-      options: getTextToTypeLanguage(appState.textToTypeCategory),
+      options,
       selectedOptionValue: appState.textToTypeLanguage,
     });
     this.textToTypeLanguagesContainer.classList.remove('hide');

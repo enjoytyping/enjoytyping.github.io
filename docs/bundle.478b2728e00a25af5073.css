@@ -1458,6 +1458,7 @@ body.dark {
   width: 100%;
   margin: 0 auto;
   overflow-y: scroll;
+  min-height: 5rem;
   flex: 1; }
   .text-to-type-container .text-to-type {
     position: relative;
@@ -1473,30 +1474,6 @@ body.dark {
     .text-to-type-container .text-to-type.disabled span.cursor {
       color: var(--body-color);
       background-color: var(--body-background-color); }
-    .text-to-type-container .text-to-type.disabled::before {
-      cursor: pointer;
-      content: '';
-      position: absolute;
-      top: 0;
-      right: 0;
-      bottom: 0;
-      left: 0;
-      border-radius: 0.3rem;
-      background-color: rgba(0, 0, 0, 0.05); }
-    .text-to-type-container .text-to-type.disabled::after {
-      cursor: pointer;
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      content: 'click to enable typing';
-      font-size: 1.6rem;
-      font-weight: bold;
-      color: var(--primary-color);
-      background-color: var(--click-to-enable-background-color);
-      border: 2px solid var(--primary-color);
-      border-radius: 100rem;
-      padding: 0.7rem 5.5rem; }
   .text-to-type-container span {
     font-family: 'Roboto Mono';
     font-size: 1.8rem; }
@@ -1594,6 +1571,8 @@ nav .right {
     z-index: 999; }
   nav .right .select {
     margin-right: 1.5rem; }
+  nav .right .select-container {
+    width: 21rem; }
 
 .app-settings-dialog {
   --dialog-min-width: 60rem;
@@ -1722,7 +1701,9 @@ nav .right {
     background-color: var(--select-options-background-color);
     box-shadow: var(--select-options-box-shadow);
     border-radius: 0.3rem;
-    padding: 0.5rem 0; }
+    padding: 0.5rem 0;
+    max-height: 40rem;
+    overflow-y: scroll; }
   .select-container .select-option {
     padding: 0.8rem 1.6rem; }
   .select-container .select-option:hover {

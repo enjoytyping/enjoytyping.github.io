@@ -82,15 +82,160 @@ export class AppStateClient implements IAppStateClient {
     if (this.appState.textToTypeCategory === TextToTypeCategory.CUSTOM_TEXT) {
       return this.appState.customTextsToType;
     }
-    if (this.appState.textToTypeCategory === TextToTypeCategory.RANDOM_TEXT) {
-      return [
-        {
-          text: lorem.generateParagraphs(1),
-          reference: 'https://www.npmjs.com/package/lorem-ipsum',
-          author: 'Lorem Ipsum',
-        },
-      ];
+    if (this.appState.textToTypeCategory === TextToTypeCategory.TRAINING_AZERTY) {
+      if (this.appState.textToTypeLanguage === TextToTypeLanguage.KEYS_F_AND_J) {
+        return this.generateTrainingTextToType('fj');
+      }
+      if (this.appState.textToTypeLanguage === TextToTypeLanguage.KEYS_D_AND_K) {
+        return this.generateTrainingTextToType('dk');
+      }
+      if (this.appState.textToTypeLanguage === TextToTypeLanguage.KEYS_FJDK) {
+        return this.generateTrainingTextToType('fjdk');
+      }
+      if (this.appState.textToTypeLanguage === TextToTypeLanguage.KEYS_S_AND_L) {
+        return this.generateTrainingTextToType('sl');
+      }
+      if (this.appState.textToTypeLanguage === TextToTypeLanguage.KEYS_Q_AND_M) {
+        return this.generateTrainingTextToType('qm');
+      }
+      if (this.appState.textToTypeLanguage === TextToTypeLanguage.KEYS_SLQM) {
+        return this.generateTrainingTextToType('slqm');
+      }
+      if (this.appState.textToTypeLanguage === TextToTypeLanguage.KEYS_G_AND_H) {
+        return this.generateTrainingTextToType('gh');
+      }
+      if (this.appState.textToTypeLanguage === TextToTypeLanguage.HOME_ROW) {
+        return this.generateTrainingTextToType('qsdfjklmgh');
+      }
+
+      if (this.appState.textToTypeLanguage === TextToTypeLanguage.KEYS_R_AND_U) {
+        return this.generateTrainingTextToType('ru');
+      }
+      if (this.appState.textToTypeLanguage === TextToTypeLanguage.KEYS_E_AND_I) {
+        return this.generateTrainingTextToType('ei');
+      }
+      if (this.appState.textToTypeLanguage === TextToTypeLanguage.KEYS_RUEI) {
+        return this.generateTrainingTextToType('ruei');
+      }
+      if (this.appState.textToTypeLanguage === TextToTypeLanguage.KEYS_Z_AND_O) {
+        return this.generateTrainingTextToType('zo');
+      }
+      if (this.appState.textToTypeLanguage === TextToTypeLanguage.KEYS_A_AND_P) {
+        return this.generateTrainingTextToType('ap');
+      }
+      if (this.appState.textToTypeLanguage === TextToTypeLanguage.KEYS_AZOP) {
+        return this.generateTrainingTextToType('azop');
+      }
+      if (this.appState.textToTypeLanguage === TextToTypeLanguage.KEYS_T_AND_Y) {
+        return this.generateTrainingTextToType('ty');
+      }
+      if (this.appState.textToTypeLanguage === TextToTypeLanguage.TOP_ROW) {
+        return this.generateTrainingTextToType('azertyuiop');
+      }
+
+      if (this.appState.textToTypeLanguage === TextToTypeLanguage.KEYS_V_AND_COMMA) {
+        return this.generateTrainingTextToType('v,');
+      }
+      if (this.appState.textToTypeLanguage === TextToTypeLanguage.KEYS_C_AND_SEMI_COLON) {
+        return this.generateTrainingTextToType('c;');
+      }
+      if (this.appState.textToTypeLanguage === TextToTypeLanguage.KEYS_CV_COMMA_SEMI_COLON) {
+        return this.generateTrainingTextToType('cv,;');
+      }
+      if (this.appState.textToTypeLanguage === TextToTypeLanguage.KEYS_X_AND_COLON) {
+        return this.generateTrainingTextToType('x:');
+      }
+      if (this.appState.textToTypeLanguage === TextToTypeLanguage.KEYS_W_AND_EX) {
+        return this.generateTrainingTextToType('w!');
+      }
+      if (this.appState.textToTypeLanguage === TextToTypeLanguage.KEYS_WX_COLON_EX) {
+        return this.generateTrainingTextToType('wx:!');
+      }
+      if (this.appState.textToTypeLanguage === TextToTypeLanguage.KEYS_B_AND_N) {
+        return this.generateTrainingTextToType('bn');
+      }
+      if (this.appState.textToTypeLanguage === TextToTypeLanguage.BOTTOM_ROW) {
+        return this.generateTrainingTextToType('wxcvbn,;:!');
+      }
     }
+
+    if (this.appState.textToTypeCategory === TextToTypeCategory.TRAINING_QWERTY) {
+      if (this.appState.textToTypeLanguage === TextToTypeLanguage.KEYS_F_AND_J) {
+        return this.generateTrainingTextToType('fj');
+      }
+      if (this.appState.textToTypeLanguage === TextToTypeLanguage.KEYS_D_AND_K) {
+        return this.generateTrainingTextToType('dk');
+      }
+      if (this.appState.textToTypeLanguage === TextToTypeLanguage.KEYS_FJDK) {
+        return this.generateTrainingTextToType('fjdk');
+      }
+      if (this.appState.textToTypeLanguage === TextToTypeLanguage.KEYS_S_AND_L) {
+        return this.generateTrainingTextToType('sl');
+      }
+      if (this.appState.textToTypeLanguage === TextToTypeLanguage.KEYS_A_AND_SEMI_COLON) {
+        return this.generateTrainingTextToType('a;');
+      }
+      if (this.appState.textToTypeLanguage === TextToTypeLanguage.KEYS_ASL_SEMI_COLON) {
+        return this.generateTrainingTextToType('asl;');
+      }
+      if (this.appState.textToTypeLanguage === TextToTypeLanguage.KEYS_G_AND_H) {
+        return this.generateTrainingTextToType('gh');
+      }
+      if (this.appState.textToTypeLanguage === TextToTypeLanguage.HOME_ROW) {
+        return this.generateTrainingTextToType('asdfghjkl;');
+      }
+
+      if (this.appState.textToTypeLanguage === TextToTypeLanguage.KEYS_R_AND_U) {
+        return this.generateTrainingTextToType('ru');
+      }
+      if (this.appState.textToTypeLanguage === TextToTypeLanguage.KEYS_E_AND_I) {
+        return this.generateTrainingTextToType('ei');
+      }
+      if (this.appState.textToTypeLanguage === TextToTypeLanguage.KEYS_RUEI) {
+        return this.generateTrainingTextToType('ruei');
+      }
+      if (this.appState.textToTypeLanguage === TextToTypeLanguage.KEYS_W_AND_O) {
+        return this.generateTrainingTextToType('wo');
+      }
+      if (this.appState.textToTypeLanguage === TextToTypeLanguage.KEYS_Q_AND_P) {
+        return this.generateTrainingTextToType('qp');
+      }
+      if (this.appState.textToTypeLanguage === TextToTypeLanguage.KEYS_QWOP) {
+        return this.generateTrainingTextToType('qwop');
+      }
+      if (this.appState.textToTypeLanguage === TextToTypeLanguage.KEYS_T_AND_Y) {
+        return this.generateTrainingTextToType('ty');
+      }
+      if (this.appState.textToTypeLanguage === TextToTypeLanguage.TOP_ROW) {
+        return this.generateTrainingTextToType('qwertyuiop');
+      }
+
+      if (this.appState.textToTypeLanguage === TextToTypeLanguage.KEYS_V_AND_M) {
+        return this.generateTrainingTextToType('vm');
+      }
+      if (this.appState.textToTypeLanguage === TextToTypeLanguage.KEYS_C_AND_COMMA) {
+        return this.generateTrainingTextToType('c,');
+      }
+      if (this.appState.textToTypeLanguage === TextToTypeLanguage.KEYS_CVM_COMMA) {
+        return this.generateTrainingTextToType('cvm,');
+      }
+      if (this.appState.textToTypeLanguage === TextToTypeLanguage.KEYS_X_AND_DOT) {
+        return this.generateTrainingTextToType('x.');
+      }
+      if (this.appState.textToTypeLanguage === TextToTypeLanguage.KEYS_Z_AND_SLASH) {
+        return this.generateTrainingTextToType('z/');
+      }
+      if (this.appState.textToTypeLanguage === TextToTypeLanguage.KEYS_ZX_DOT_SLASH) {
+        return this.generateTrainingTextToType('zx./');
+      }
+      if (this.appState.textToTypeLanguage === TextToTypeLanguage.KEYS_B_AND_N) {
+        return this.generateTrainingTextToType('bn');
+      }
+      if (this.appState.textToTypeLanguage === TextToTypeLanguage.BOTTOM_ROW) {
+        return this.generateTrainingTextToType('zxcvbnm,./');
+      }
+    }
+
     if (this.appState.textToTypeCategory === TextToTypeCategory.QUOTES && this.appState.textToTypeLanguage === TextToTypeLanguage.ENGLISH) {
       return englishQuotes;
     }
@@ -118,6 +263,28 @@ export class AppStateClient implements IAppStateClient {
     if (this.appState.textToTypeCategory === TextToTypeCategory.CODE && this.appState.textToTypeLanguage === TextToTypeLanguage.HTML) {
       return htmlCode;
     }
-    return [];
+    return [
+      {
+        text: lorem.generateParagraphs(1),
+        reference: 'https://www.npmjs.com/package/lorem-ipsum',
+        author: 'Lorem Ipsum',
+      },
+    ];
+  }
+
+  private generateTrainingTextToType(characters: string) {
+    let result = '';
+    for (var i = 0; i < 128; i++) {
+      if (i % 4 == 0) result += ' ';
+      result += characters.charAt(Math.floor(Math.random() * characters.length));
+    }
+    console.log(result);
+    return [
+      {
+        text: result,
+        reference: '#',
+        author: 'Training',
+      },
+    ];
   }
 }
