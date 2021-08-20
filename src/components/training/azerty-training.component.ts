@@ -1,48 +1,50 @@
 import './training.scss';
 import { BaseHtmlComponent } from '../_core/base-component';
 import { TrainingKeysHtmlComponent } from './training-keys.component';
+import { TextToTypeSubCategory } from '../../state/text-to-type-sub-category.enum';
+import { IHtmlComponent } from '../_core/component.interface';
 
 export class AzertyTrainingHtmlComponent extends BaseHtmlComponent {
-  private trainingArray: BaseHtmlComponent[] = [];
+  private array: IHtmlComponent[] = [];
 
   preInsertHtml(): void {
-    this.trainingArray.push(new TrainingKeysHtmlComponent('FJ'));
-    this.trainingArray.push(new TrainingKeysHtmlComponent('DK'));
-    this.trainingArray.push(new TrainingKeysHtmlComponent('DFJK'));
-    this.trainingArray.push(new TrainingKeysHtmlComponent('SL'));
-    this.trainingArray.push(new TrainingKeysHtmlComponent('QM'));
-    this.trainingArray.push(new TrainingKeysHtmlComponent('QSLM'));
-    this.trainingArray.push(new TrainingKeysHtmlComponent('GH'));
-    this.trainingArray.push(new TrainingKeysHtmlComponent('FGHJ'));
+    this.array.push(new TrainingKeysHtmlComponent('FJ', TextToTypeSubCategory.KEYS_F_AND_J));
+    this.array.push(new TrainingKeysHtmlComponent('DK', TextToTypeSubCategory.KEYS_D_AND_K));
+    this.array.push(new TrainingKeysHtmlComponent('DFJK', TextToTypeSubCategory.KEYS_FJDK));
+    this.array.push(new TrainingKeysHtmlComponent('SL', TextToTypeSubCategory.KEYS_S_AND_L));
+    this.array.push(new TrainingKeysHtmlComponent('QM', TextToTypeSubCategory.KEYS_Q_AND_M));
+    this.array.push(new TrainingKeysHtmlComponent('QSLM', TextToTypeSubCategory.KEYS_QSLM));
+    this.array.push(new TrainingKeysHtmlComponent('GH', TextToTypeSubCategory.KEYS_G_AND_H));
+    this.array.push(new TrainingKeysHtmlComponent('FGHJ', TextToTypeSubCategory.KEYS_FGHJ));
 
-    this.trainingArray.push(new TrainingKeysHtmlComponent('RU'));
-    this.trainingArray.push(new TrainingKeysHtmlComponent('EI'));
-    this.trainingArray.push(new TrainingKeysHtmlComponent('ERUI'));
-    this.trainingArray.push(new TrainingKeysHtmlComponent('ZO'));
-    this.trainingArray.push(new TrainingKeysHtmlComponent('AP'));
-    this.trainingArray.push(new TrainingKeysHtmlComponent('AZOP'));
-    this.trainingArray.push(new TrainingKeysHtmlComponent('TY'));
-    this.trainingArray.push(new TrainingKeysHtmlComponent('RTYU'));
+    this.array.push(new TrainingKeysHtmlComponent('RU', TextToTypeSubCategory.KEYS_R_AND_U));
+    this.array.push(new TrainingKeysHtmlComponent('EI', TextToTypeSubCategory.KEYS_E_AND_I));
+    this.array.push(new TrainingKeysHtmlComponent('ERUI', TextToTypeSubCategory.KEYS_ERUI));
+    this.array.push(new TrainingKeysHtmlComponent('ZO', TextToTypeSubCategory.KEYS_Z_AND_O));
+    this.array.push(new TrainingKeysHtmlComponent('AP', TextToTypeSubCategory.KEYS_A_AND_P));
+    this.array.push(new TrainingKeysHtmlComponent('AZOP', TextToTypeSubCategory.KEYS_AZOP));
+    this.array.push(new TrainingKeysHtmlComponent('TY', TextToTypeSubCategory.KEYS_T_AND_Y));
+    this.array.push(new TrainingKeysHtmlComponent('RTYU', TextToTypeSubCategory.KEYS_RTYU));
 
-    this.trainingArray.push(new TrainingKeysHtmlComponent('V,'));
-    this.trainingArray.push(new TrainingKeysHtmlComponent('C;'));
-    this.trainingArray.push(new TrainingKeysHtmlComponent('CV,;'));
-    this.trainingArray.push(new TrainingKeysHtmlComponent('X:'));
-    this.trainingArray.push(new TrainingKeysHtmlComponent('W!'));
-    this.trainingArray.push(new TrainingKeysHtmlComponent('WX:!'));
-    this.trainingArray.push(new TrainingKeysHtmlComponent('BN'));
-    this.trainingArray.push(new TrainingKeysHtmlComponent('VBN,'));
+    this.array.push(new TrainingKeysHtmlComponent('V,', TextToTypeSubCategory.KEYS_V_AND_COMMA));
+    this.array.push(new TrainingKeysHtmlComponent('C;', TextToTypeSubCategory.KEYS_C_AND_SEMI_COLON));
+    this.array.push(new TrainingKeysHtmlComponent('CV,;', TextToTypeSubCategory.KEYS_CV_COMMA_SEMI_COLON));
+    this.array.push(new TrainingKeysHtmlComponent('X:', TextToTypeSubCategory.KEYS_X_AND_COLON));
+    this.array.push(new TrainingKeysHtmlComponent('W!', TextToTypeSubCategory.KEYS_W_AND_EX));
+    this.array.push(new TrainingKeysHtmlComponent('WX:!', TextToTypeSubCategory.KEYS_WX_COLON_EX));
+    this.array.push(new TrainingKeysHtmlComponent('BN', TextToTypeSubCategory.KEYS_B_AND_N));
+    this.array.push(new TrainingKeysHtmlComponent('VBN,', TextToTypeSubCategory.KEYS_VBN_COMMA));
   }
 
   toHtml() {
     return /* html */ `
       <div class="training-container">
-        ${this.trainingArray.map((k) => k.toHtml()).join('')}
+        ${this.array.map((k) => k.toHtml()).join('')}
       </div>
     `;
   }
 
   postInsertHtml(): void {
-    // nothing to do
+    this.array.forEach((c) => c.postInsertHtml());
   }
 }

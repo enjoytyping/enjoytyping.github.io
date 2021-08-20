@@ -14,7 +14,7 @@ import { TextToTypeCategory } from './text-to-type-category.enum';
 import { TextToType } from '../components/text-to-type/text-to-type.model';
 import { AppState } from './app-state.model';
 import { IAppStateClient } from './app-state.client.interface';
-import { TextToTypeLanguage } from './text-to-type-language.enum';
+import { TextToTypeSubCategory } from './text-to-type-sub-category.enum';
 import { LoremIpsum } from 'lorem-ipsum';
 
 const lorem = new LoremIpsum({
@@ -83,184 +83,184 @@ export class AppStateClient implements IAppStateClient {
       return this.appState.customTextsToType;
     }
     if (this.appState.textToTypeCategory === TextToTypeCategory.TRAINING_AZERTY) {
-      if (this.appState.textToTypeLanguage === TextToTypeLanguage.KEYS_F_AND_J) {
+      if (this.appState.textToTypeSubCategory === TextToTypeSubCategory.KEYS_F_AND_J) {
         return this.generateTrainingTextToType('fj');
       }
-      if (this.appState.textToTypeLanguage === TextToTypeLanguage.KEYS_D_AND_K) {
+      if (this.appState.textToTypeSubCategory === TextToTypeSubCategory.KEYS_D_AND_K) {
         return this.generateTrainingTextToType('dk');
       }
-      if (this.appState.textToTypeLanguage === TextToTypeLanguage.KEYS_FJDK) {
+      if (this.appState.textToTypeSubCategory === TextToTypeSubCategory.KEYS_FJDK) {
         return this.generateTrainingTextToType('fjdk');
       }
-      if (this.appState.textToTypeLanguage === TextToTypeLanguage.KEYS_S_AND_L) {
+      if (this.appState.textToTypeSubCategory === TextToTypeSubCategory.KEYS_S_AND_L) {
         return this.generateTrainingTextToType('sl');
       }
-      if (this.appState.textToTypeLanguage === TextToTypeLanguage.KEYS_Q_AND_M) {
+      if (this.appState.textToTypeSubCategory === TextToTypeSubCategory.KEYS_Q_AND_M) {
         return this.generateTrainingTextToType('qm');
       }
-      if (this.appState.textToTypeLanguage === TextToTypeLanguage.KEYS_SLQM) {
+      if (this.appState.textToTypeSubCategory === TextToTypeSubCategory.KEYS_QSLM) {
         return this.generateTrainingTextToType('slqm');
       }
-      if (this.appState.textToTypeLanguage === TextToTypeLanguage.KEYS_G_AND_H) {
+      if (this.appState.textToTypeSubCategory === TextToTypeSubCategory.KEYS_G_AND_H) {
         return this.generateTrainingTextToType('gh');
       }
-      if (this.appState.textToTypeLanguage === TextToTypeLanguage.HOME_ROW) {
-        return this.generateTrainingTextToType('qsdfjklmgh');
+      if (this.appState.textToTypeSubCategory === TextToTypeSubCategory.KEYS_FGHJ) {
+        return this.generateTrainingTextToType('fghj');
       }
 
-      if (this.appState.textToTypeLanguage === TextToTypeLanguage.KEYS_R_AND_U) {
+      if (this.appState.textToTypeSubCategory === TextToTypeSubCategory.KEYS_R_AND_U) {
         return this.generateTrainingTextToType('ru');
       }
-      if (this.appState.textToTypeLanguage === TextToTypeLanguage.KEYS_E_AND_I) {
+      if (this.appState.textToTypeSubCategory === TextToTypeSubCategory.KEYS_E_AND_I) {
         return this.generateTrainingTextToType('ei');
       }
-      if (this.appState.textToTypeLanguage === TextToTypeLanguage.KEYS_RUEI) {
+      if (this.appState.textToTypeSubCategory === TextToTypeSubCategory.KEYS_ERUI) {
         return this.generateTrainingTextToType('ruei');
       }
-      if (this.appState.textToTypeLanguage === TextToTypeLanguage.KEYS_Z_AND_O) {
+      if (this.appState.textToTypeSubCategory === TextToTypeSubCategory.KEYS_Z_AND_O) {
         return this.generateTrainingTextToType('zo');
       }
-      if (this.appState.textToTypeLanguage === TextToTypeLanguage.KEYS_A_AND_P) {
+      if (this.appState.textToTypeSubCategory === TextToTypeSubCategory.KEYS_A_AND_P) {
         return this.generateTrainingTextToType('ap');
       }
-      if (this.appState.textToTypeLanguage === TextToTypeLanguage.KEYS_AZOP) {
+      if (this.appState.textToTypeSubCategory === TextToTypeSubCategory.KEYS_AZOP) {
         return this.generateTrainingTextToType('azop');
       }
-      if (this.appState.textToTypeLanguage === TextToTypeLanguage.KEYS_T_AND_Y) {
+      if (this.appState.textToTypeSubCategory === TextToTypeSubCategory.KEYS_T_AND_Y) {
         return this.generateTrainingTextToType('ty');
       }
-      if (this.appState.textToTypeLanguage === TextToTypeLanguage.TOP_ROW) {
-        return this.generateTrainingTextToType('azertyuiop');
+      if (this.appState.textToTypeSubCategory === TextToTypeSubCategory.KEYS_RTYU) {
+        return this.generateTrainingTextToType('rtyu');
       }
 
-      if (this.appState.textToTypeLanguage === TextToTypeLanguage.KEYS_V_AND_COMMA) {
+      if (this.appState.textToTypeSubCategory === TextToTypeSubCategory.KEYS_V_AND_COMMA) {
         return this.generateTrainingTextToType('v,');
       }
-      if (this.appState.textToTypeLanguage === TextToTypeLanguage.KEYS_C_AND_SEMI_COLON) {
+      if (this.appState.textToTypeSubCategory === TextToTypeSubCategory.KEYS_C_AND_SEMI_COLON) {
         return this.generateTrainingTextToType('c;');
       }
-      if (this.appState.textToTypeLanguage === TextToTypeLanguage.KEYS_CV_COMMA_SEMI_COLON) {
+      if (this.appState.textToTypeSubCategory === TextToTypeSubCategory.KEYS_CV_COMMA_SEMI_COLON) {
         return this.generateTrainingTextToType('cv,;');
       }
-      if (this.appState.textToTypeLanguage === TextToTypeLanguage.KEYS_X_AND_COLON) {
+      if (this.appState.textToTypeSubCategory === TextToTypeSubCategory.KEYS_X_AND_COLON) {
         return this.generateTrainingTextToType('x:');
       }
-      if (this.appState.textToTypeLanguage === TextToTypeLanguage.KEYS_W_AND_EX) {
+      if (this.appState.textToTypeSubCategory === TextToTypeSubCategory.KEYS_W_AND_EX) {
         return this.generateTrainingTextToType('w!');
       }
-      if (this.appState.textToTypeLanguage === TextToTypeLanguage.KEYS_WX_COLON_EX) {
+      if (this.appState.textToTypeSubCategory === TextToTypeSubCategory.KEYS_WX_COLON_EX) {
         return this.generateTrainingTextToType('wx:!');
       }
-      if (this.appState.textToTypeLanguage === TextToTypeLanguage.KEYS_B_AND_N) {
+      if (this.appState.textToTypeSubCategory === TextToTypeSubCategory.KEYS_B_AND_N) {
         return this.generateTrainingTextToType('bn');
       }
-      if (this.appState.textToTypeLanguage === TextToTypeLanguage.BOTTOM_ROW) {
-        return this.generateTrainingTextToType('wxcvbn,;:!');
+      if (this.appState.textToTypeSubCategory === TextToTypeSubCategory.KEYS_VBN_COMMA) {
+        return this.generateTrainingTextToType('vbn,');
       }
     }
 
     if (this.appState.textToTypeCategory === TextToTypeCategory.TRAINING_QWERTY) {
-      if (this.appState.textToTypeLanguage === TextToTypeLanguage.KEYS_F_AND_J) {
+      if (this.appState.textToTypeSubCategory === TextToTypeSubCategory.KEYS_F_AND_J) {
         return this.generateTrainingTextToType('fj');
       }
-      if (this.appState.textToTypeLanguage === TextToTypeLanguage.KEYS_D_AND_K) {
+      if (this.appState.textToTypeSubCategory === TextToTypeSubCategory.KEYS_D_AND_K) {
         return this.generateTrainingTextToType('dk');
       }
-      if (this.appState.textToTypeLanguage === TextToTypeLanguage.KEYS_FJDK) {
+      if (this.appState.textToTypeSubCategory === TextToTypeSubCategory.KEYS_FJDK) {
         return this.generateTrainingTextToType('fjdk');
       }
-      if (this.appState.textToTypeLanguage === TextToTypeLanguage.KEYS_S_AND_L) {
+      if (this.appState.textToTypeSubCategory === TextToTypeSubCategory.KEYS_S_AND_L) {
         return this.generateTrainingTextToType('sl');
       }
-      if (this.appState.textToTypeLanguage === TextToTypeLanguage.KEYS_A_AND_SEMI_COLON) {
+      if (this.appState.textToTypeSubCategory === TextToTypeSubCategory.KEYS_A_AND_SEMI_COLON) {
         return this.generateTrainingTextToType('a;');
       }
-      if (this.appState.textToTypeLanguage === TextToTypeLanguage.KEYS_ASL_SEMI_COLON) {
+      if (this.appState.textToTypeSubCategory === TextToTypeSubCategory.KEYS_ASL_SEMI_COLON) {
         return this.generateTrainingTextToType('asl;');
       }
-      if (this.appState.textToTypeLanguage === TextToTypeLanguage.KEYS_G_AND_H) {
+      if (this.appState.textToTypeSubCategory === TextToTypeSubCategory.KEYS_G_AND_H) {
         return this.generateTrainingTextToType('gh');
       }
-      if (this.appState.textToTypeLanguage === TextToTypeLanguage.HOME_ROW) {
-        return this.generateTrainingTextToType('asdfghjkl;');
+      if (this.appState.textToTypeSubCategory === TextToTypeSubCategory.KEYS_FGHJ) {
+        return this.generateTrainingTextToType('fghj');
       }
 
-      if (this.appState.textToTypeLanguage === TextToTypeLanguage.KEYS_R_AND_U) {
+      if (this.appState.textToTypeSubCategory === TextToTypeSubCategory.KEYS_R_AND_U) {
         return this.generateTrainingTextToType('ru');
       }
-      if (this.appState.textToTypeLanguage === TextToTypeLanguage.KEYS_E_AND_I) {
+      if (this.appState.textToTypeSubCategory === TextToTypeSubCategory.KEYS_E_AND_I) {
         return this.generateTrainingTextToType('ei');
       }
-      if (this.appState.textToTypeLanguage === TextToTypeLanguage.KEYS_RUEI) {
+      if (this.appState.textToTypeSubCategory === TextToTypeSubCategory.KEYS_ERUI) {
         return this.generateTrainingTextToType('ruei');
       }
-      if (this.appState.textToTypeLanguage === TextToTypeLanguage.KEYS_W_AND_O) {
+      if (this.appState.textToTypeSubCategory === TextToTypeSubCategory.KEYS_W_AND_O) {
         return this.generateTrainingTextToType('wo');
       }
-      if (this.appState.textToTypeLanguage === TextToTypeLanguage.KEYS_Q_AND_P) {
+      if (this.appState.textToTypeSubCategory === TextToTypeSubCategory.KEYS_Q_AND_P) {
         return this.generateTrainingTextToType('qp');
       }
-      if (this.appState.textToTypeLanguage === TextToTypeLanguage.KEYS_QWOP) {
+      if (this.appState.textToTypeSubCategory === TextToTypeSubCategory.KEYS_QWOP) {
         return this.generateTrainingTextToType('qwop');
       }
-      if (this.appState.textToTypeLanguage === TextToTypeLanguage.KEYS_T_AND_Y) {
+      if (this.appState.textToTypeSubCategory === TextToTypeSubCategory.KEYS_T_AND_Y) {
         return this.generateTrainingTextToType('ty');
       }
-      if (this.appState.textToTypeLanguage === TextToTypeLanguage.TOP_ROW) {
-        return this.generateTrainingTextToType('qwertyuiop');
+      if (this.appState.textToTypeSubCategory === TextToTypeSubCategory.KEYS_RTYU) {
+        return this.generateTrainingTextToType('rtyu');
       }
 
-      if (this.appState.textToTypeLanguage === TextToTypeLanguage.KEYS_V_AND_M) {
+      if (this.appState.textToTypeSubCategory === TextToTypeSubCategory.KEYS_V_AND_M) {
         return this.generateTrainingTextToType('vm');
       }
-      if (this.appState.textToTypeLanguage === TextToTypeLanguage.KEYS_C_AND_COMMA) {
+      if (this.appState.textToTypeSubCategory === TextToTypeSubCategory.KEYS_C_AND_COMMA) {
         return this.generateTrainingTextToType('c,');
       }
-      if (this.appState.textToTypeLanguage === TextToTypeLanguage.KEYS_CVM_COMMA) {
+      if (this.appState.textToTypeSubCategory === TextToTypeSubCategory.KEYS_CVM_COMMA) {
         return this.generateTrainingTextToType('cvm,');
       }
-      if (this.appState.textToTypeLanguage === TextToTypeLanguage.KEYS_X_AND_DOT) {
+      if (this.appState.textToTypeSubCategory === TextToTypeSubCategory.KEYS_X_AND_DOT) {
         return this.generateTrainingTextToType('x.');
       }
-      if (this.appState.textToTypeLanguage === TextToTypeLanguage.KEYS_Z_AND_SLASH) {
+      if (this.appState.textToTypeSubCategory === TextToTypeSubCategory.KEYS_Z_AND_SLASH) {
         return this.generateTrainingTextToType('z/');
       }
-      if (this.appState.textToTypeLanguage === TextToTypeLanguage.KEYS_ZX_DOT_SLASH) {
+      if (this.appState.textToTypeSubCategory === TextToTypeSubCategory.KEYS_ZX_DOT_SLASH) {
         return this.generateTrainingTextToType('zx./');
       }
-      if (this.appState.textToTypeLanguage === TextToTypeLanguage.KEYS_B_AND_N) {
+      if (this.appState.textToTypeSubCategory === TextToTypeSubCategory.KEYS_B_AND_N) {
         return this.generateTrainingTextToType('bn');
       }
-      if (this.appState.textToTypeLanguage === TextToTypeLanguage.BOTTOM_ROW) {
-        return this.generateTrainingTextToType('zxcvbnm,./');
+      if (this.appState.textToTypeSubCategory === TextToTypeSubCategory.KEYS_VBNM) {
+        return this.generateTrainingTextToType('vbnm');
       }
     }
 
-    if (this.appState.textToTypeCategory === TextToTypeCategory.QUOTES && this.appState.textToTypeLanguage === TextToTypeLanguage.ENGLISH) {
+    if (this.appState.textToTypeCategory === TextToTypeCategory.QUOTES && this.appState.textToTypeSubCategory === TextToTypeSubCategory.ENGLISH) {
       return englishQuotes;
     }
-    if (this.appState.textToTypeCategory === TextToTypeCategory.QUOTES && this.appState.textToTypeLanguage === TextToTypeLanguage.FRENCH) {
+    if (this.appState.textToTypeCategory === TextToTypeCategory.QUOTES && this.appState.textToTypeSubCategory === TextToTypeSubCategory.FRENCH) {
       return frenchQuotes;
     }
-    if (this.appState.textToTypeCategory === TextToTypeCategory.POEMS && this.appState.textToTypeLanguage === TextToTypeLanguage.ENGLISH) {
+    if (this.appState.textToTypeCategory === TextToTypeCategory.POEMS && this.appState.textToTypeSubCategory === TextToTypeSubCategory.ENGLISH) {
       return englishPoems;
     }
-    if (this.appState.textToTypeCategory === TextToTypeCategory.POEMS && this.appState.textToTypeLanguage === TextToTypeLanguage.FRENCH) {
+    if (this.appState.textToTypeCategory === TextToTypeCategory.POEMS && this.appState.textToTypeSubCategory === TextToTypeSubCategory.FRENCH) {
       return frenchPoems;
     }
-    if (this.appState.textToTypeCategory === TextToTypeCategory.STORIES && this.appState.textToTypeLanguage === TextToTypeLanguage.ENGLISH) {
+    if (this.appState.textToTypeCategory === TextToTypeCategory.STORIES && this.appState.textToTypeSubCategory === TextToTypeSubCategory.ENGLISH) {
       return englishStories;
     }
-    if (this.appState.textToTypeCategory === TextToTypeCategory.STORIES && this.appState.textToTypeLanguage === TextToTypeLanguage.FRENCH) {
+    if (this.appState.textToTypeCategory === TextToTypeCategory.STORIES && this.appState.textToTypeSubCategory === TextToTypeSubCategory.FRENCH) {
       return frenchStories;
     }
-    if (this.appState.textToTypeCategory === TextToTypeCategory.CODE && this.appState.textToTypeLanguage === TextToTypeLanguage.JAVA) {
+    if (this.appState.textToTypeCategory === TextToTypeCategory.CODE && this.appState.textToTypeSubCategory === TextToTypeSubCategory.JAVA) {
       return javaCode;
     }
-    if (this.appState.textToTypeCategory === TextToTypeCategory.CODE && this.appState.textToTypeLanguage === TextToTypeLanguage.PYTHON) {
+    if (this.appState.textToTypeCategory === TextToTypeCategory.CODE && this.appState.textToTypeSubCategory === TextToTypeSubCategory.PYTHON) {
       return pythonCode;
     }
-    if (this.appState.textToTypeCategory === TextToTypeCategory.CODE && this.appState.textToTypeLanguage === TextToTypeLanguage.HTML) {
+    if (this.appState.textToTypeCategory === TextToTypeCategory.CODE && this.appState.textToTypeSubCategory === TextToTypeSubCategory.HTML) {
       return htmlCode;
     }
     return [

@@ -57,7 +57,6 @@ export class TypingProgressGraphHtmlComponent extends BaseHtmlComponent {
   }
 
   reset(input: TypingProgressGraphHtmlComponentInput): void {
-    console.log(input);
     this.input = { ...this.input, ...input };
     this.updateInnerHTML();
   }

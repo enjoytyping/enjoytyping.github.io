@@ -219,7 +219,8 @@ body.light {
   --progress-by-key-icon-color: var(--primary-color);
   --text-to-type-background-color: #fbfbfb;
   --click-to-enable-color: var(--text-color-01);
-  --click-to-enable-background-color: var(--background-color-01); }
+  --click-to-enable-background-color: var(--background-color-01);
+  --training-keys-background-color: #f1f1f1; }
 
 body.dark {
   --primary-color: #078eed;
@@ -310,7 +311,8 @@ body.dark {
   --progress-by-key-icon-color: var(--primary-color);
   --text-to-type-background-color: var(--background-color-02);
   --click-to-enable-color: var(--text-color-01);
-  --click-to-enable-background-color: var(--background-color-01); }
+  --click-to-enable-background-color: var(--background-color-01);
+  --training-keys-background-color: var(--background-color-04); }
 
 @font-face {
   font-family: 'Anonymous Pro';
@@ -1513,26 +1515,24 @@ body.dark {
   flex-wrap: nowrap;
   overflow-x: scroll; }
 
-.training-row-container,
 .training-keys-container {
   cursor: pointer;
   flex-shrink: 0;
   border-radius: 0.3rem;
   width: 8rem;
   height: 8rem;
-  background-color: #f1f1f1;
+  background-color: var(--training-keys-background-color);
   margin-right: 0.5rem;
   font-size: 1.6rem;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center; }
-  .training-row-container .keys,
+  .training-keys-container.selected {
+    border: 2px solid var(--secondary-color); }
+    .training-keys-container.selected span {
+      color: var(--secondary-color); }
   .training-keys-container .keys {
-    font-weight: bold;
-    font-size: 2rem; }
-  .training-row-container .row,
-  .training-keys-container .row {
     font-weight: bold;
     font-size: 2rem; }
 

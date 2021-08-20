@@ -6,14 +6,13 @@
   overflow-x: scroll;
 }
 
-.training-row-container,
 .training-keys-container {
   cursor: pointer;
   flex-shrink: 0;
   border-radius: 0.3rem;
   width: 8rem;
   height: 8rem;
-  background-color: #f1f1f1;
+  background-color: var(--training-keys-background-color);
   margin-right: 0.5rem;
   font-size: 1.6rem;
   display: flex;
@@ -21,12 +20,15 @@
   align-items: center;
   justify-content: center;
 
-  & .keys {
-    font-weight: bold;
-    font-size: 2rem;
+  &.selected {
+    border: 2px solid var(--secondary-color);
+
+    & span {
+      color: var(--secondary-color);
+    }
   }
 
-  & .row {
+  & .keys {
     font-weight: bold;
     font-size: 2rem;
   }

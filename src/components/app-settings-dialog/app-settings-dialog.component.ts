@@ -7,7 +7,7 @@ import { TextToTypeCategory, TEXT_TO_TYPE_CATEGORIES } from '../../state/text-to
 import { ButtonHtmlComponent, ButtonStyle } from '../_core/button/button.component';
 import { AppState } from '../../state/app-state.model';
 import { SwitchHtmlComponent } from '../_core/switch/switch.component';
-import { TextToTypeLanguage, getTextToTypeLanguage } from '../../state/text-to-type-language.enum';
+import { TextToTypeSubCategory, getTextToTypeSubCategory } from '../../state/text-to-type-sub-category.enum';
 import { IAppStateClient } from '../../state/app-state.client.interface';
 
 export class AppSettingsDialogHtmlComponent extends BaseDialogHtmlComponent {
@@ -17,14 +17,14 @@ export class AppSettingsDialogHtmlComponent extends BaseDialogHtmlComponent {
   private enableSoundsSwitch: SwitchHtmlComponent;
   private maxCharactersToType: InputHtmlComponent;
   private textToTypeCategoriesSelect: SelectHtmlComponent<TextToTypeCategory>;
-  private textToTypeLanguagesSelect: SelectHtmlComponent<TextToTypeLanguage>;
+  private textToTypeSubCategoriesSelect: SelectHtmlComponent<TextToTypeSubCategory>;
   private enableCapitalLettersContainer: HTMLElement;
   private enablePunctuationCharactersContainer: HTMLElement;
-  private textToTypeLanguagesContainerId: string;
+  private textToTypeSubCategoriesContainerId: string;
   private enableCapitalLettersContainerId: string;
   private enablePunctuationCharactersContainerId: string;
-  private textToTypeLanguageContainerId: string;
-  private textToTypeLanguageContainer: HTMLElement;
+  private textToTypeSubCategoryContainerId: string;
+  private textToTypeSubCategoryContainer: HTMLElement;
   private saveButton: ButtonHtmlComponent;
   private cancelButton: ButtonHtmlComponent;
   private appState: AppState;
@@ -37,13 +37,13 @@ export class AppSettingsDialogHtmlComponent extends BaseDialogHtmlComponent {
 
   preInsertHtml(): void {
     super.preInsertHtml();
-    this.textToTypeLanguageContainerId = this.generateId();
+    this.textToTypeSubCategoryContainerId = this.generateId();
     this.enableCapitalLettersContainerId = this.generateId();
     this.enablePunctuationCharactersContainerId = this.generateId();
-    this.textToTypeLanguagesContainerId = this.generateId();
+    this.textToTypeSubCategoriesContainerId = this.generateId();
     this.appState = this.appStateClient.getAppState();
     this.appState.textToTypeCategory = this.appState.textToTypeCategory || TextToTypeCategory.QUOTES;
-    this.appState.textToTypeLanguage = this.appState.textToTypeLanguage || TextToTypeLanguage.ENGLISH;
+    this.appState.textToTypeSubCategory = this.appState.textToTypeSubCategory || TextToTypeSubCategory.ENGLISH;
     this.appState.stopOnError = this.appState.stopOnError || false;
     this.appState.enableCapitalLetters = this.appState.enableCapitalLetters || true;
     this.appState.enablePunctuationCharacters = this.appState.enablePunctuationCharacters || true;
@@ -59,9 +59,9 @@ export class AppSettingsDialogHtmlComponent extends BaseDialogHtmlComponent {
       options: TEXT_TO_TYPE_CATEGORIES,
       selectedOptionValue: this.appState.textToTypeCategory,
     });
-    this.textToTypeLanguagesSelect = new SelectHtmlComponent<TextToTypeLanguage>({
-      options: getTextToTypeLanguage(this.appState.textToTypeCategory),
-      selectedOptionValue: this.appState.textToTypeLanguage,
+    this.textToTypeSubCategoriesSelect = new SelectHtmlComponent<TextToTypeSubCategory>({
+      options: getTextToTypeSubCategory(this.appState.textToTypeCategory),
+      selectedOptionValue: this.appState.textToTypeSubCategory,
     });
     this.saveButton = new ButtonHtmlComponent('Save');
     this.cancelButton = new ButtonHtmlComponent('Cancel', ButtonStyle.SECONDARY);
@@ -71,7 +71,7 @@ export class AppSettingsDialogHtmlComponent extends BaseDialogHtmlComponent {
     this.enableSoundsSwitch.preInsertHtml();
     this.maxCharactersToType.preInsertHtml();
     this.textToTypeCategoriesSelect.preInsertHtml();
-    this.textToTypeLanguagesSelect.preInsertHtml();
+    this.textToTypeSubCategoriesSelect.preInsertHtml();
     this.saveButton.preInsertHtml();
     this.cancelButton.preInsertHtml();
   }
@@ -90,9 +90,9 @@ export class AppSettingsDialogHtmlComponent extends BaseDialogHtmlComponent {
         <span>Text to type category</span>
         <span>${this.textToTypeCategoriesSelect.toHtml()}</span>
       </div>
-      <div id="${this.textToTypeLanguageContainerId}" class="app-setting">
-        <span>Text to type language</span>
-        <span id="${this.textToTypeLanguagesContainerId}">${this.textToTypeLanguagesSelect.toHtml()}</span>
+      <div id="${this.textToTypeSubCategoryContainerId}" class="app-setting">
+        <span>Text to type sub-category</span>
+        <span id="${this.textToTypeSubCategoriesContainerId}">${this.textToTypeSubCategoriesSelect.toHtml()}</span>
       </div>
       <div class="app-setting">
         <span>Max characters to type</span>
@@ -128,7 +128,7 @@ export class AppSettingsDialogHtmlComponent extends BaseDialogHtmlComponent {
 
   postInsertHtml(): void {
     super.postInsertHtml();
-    this.textToTypeLanguageContainer = document.getElementById(this.textToTypeLanguageContainerId);
+    this.textToTypeSubCategoryContainer = document.getElementById(this.textToTypeSubCategoryContainerId);
     this.enableCapitalLettersContainer = document.getElementById(this.enableCapitalLettersContainerId);
     this.enablePunctuationCharactersContainer = document.getElementById(this.enablePunctuationCharactersContainerId);
     this.stopOnErrorSwitch.postInsertHtml();
@@ -136,7 +136,7 @@ export class AppSettingsDialogHtmlComponent extends BaseDialogHtmlComponent {
     this.enablePunctuationCharactersSwitch.postInsertHtml();
     this.enableSoundsSwitch.postInsertHtml();
     this.textToTypeCategoriesSelect.postInsertHtml();
-    this.textToTypeLanguagesSelect.postInsertHtml();
+    this.textToTypeSubCategoriesSelect.postInsertHtml();
     this.maxCharactersToType.postInsertHtml();
     this.saveButton.postInsertHtml();
     this.cancelButton.postInsertHtml();
@@ -149,7 +149,7 @@ export class AppSettingsDialogHtmlComponent extends BaseDialogHtmlComponent {
     this.enableSoundsSwitch.onUpdate(this.handleEnableSoundsChangeEvent.bind(this));
     this.maxCharactersToType.onUpdate(this.handleMaxCharactersToTypeChangeEvent.bind(this));
     this.textToTypeCategoriesSelect.onUpdate(this.handleTextToTypeCategoryChangeEvent.bind(this));
-    this.textToTypeLanguagesSelect.onUpdate(this.handleTextToTypeLanguageChangeEvent.bind(this));
+    this.textToTypeSubCategoriesSelect.onUpdate(this.handleTextToTypeSubCategoryChangeEvent.bind(this));
     this.saveButton.onClick(this.handleSaveButtonClickEvent.bind(this));
     this.cancelButton.onClick(this.handleCancelButtonClickEvent.bind(this));
   }
@@ -170,14 +170,14 @@ export class AppSettingsDialogHtmlComponent extends BaseDialogHtmlComponent {
       options: TEXT_TO_TYPE_CATEGORIES,
       selectedOptionValue: this.appState.textToTypeCategory,
     });
-    const langages = getTextToTypeLanguage(this.appState.textToTypeCategory);
-    this.textToTypeLanguagesSelect.reset({
+    const langages = getTextToTypeSubCategory(this.appState.textToTypeCategory);
+    this.textToTypeSubCategoriesSelect.reset({
       options: langages,
-      selectedOptionValue: this.appState.textToTypeLanguage,
+      selectedOptionValue: this.appState.textToTypeSubCategory,
     });
-    this.textToTypeLanguageContainer.classList.add('hide');
+    this.textToTypeSubCategoryContainer.classList.add('hide');
     if (langages.length > 0) {
-      this.textToTypeLanguageContainer.classList.remove('hide');
+      this.textToTypeSubCategoryContainer.classList.remove('hide');
     }
     this.maxCharactersToType.reset('' + this.appState.maxCharactersToType);
     this.stopOnErrorSwitch.reset(this.appState.stopOnError);
@@ -226,18 +226,20 @@ export class AppSettingsDialogHtmlComponent extends BaseDialogHtmlComponent {
     }
     this.appState.textToTypeCategory = value;
     if (value == TextToTypeCategory.CODE) {
-      this.appState.textToTypeLanguage = TextToTypeLanguage.JAVA;
+      this.appState.textToTypeSubCategory = TextToTypeSubCategory.JAVA;
+    } else if (value == TextToTypeCategory.TRAINING_AZERTY || value == TextToTypeCategory.TRAINING_QWERTY) {
+      this.appState.textToTypeSubCategory = TextToTypeSubCategory.KEYS_F_AND_J;
     } else {
-      this.appState.textToTypeLanguage = TextToTypeLanguage.ENGLISH;
+      this.appState.textToTypeSubCategory = TextToTypeSubCategory.ENGLISH;
     }
     this.updateInnerHTML();
   }
 
-  private handleTextToTypeLanguageChangeEvent(value: TextToTypeLanguage) {
-    if (value !== this.appState.textToTypeLanguage) {
+  private handleTextToTypeSubCategoryChangeEvent(value: TextToTypeSubCategory) {
+    if (value !== this.appState.textToTypeSubCategory) {
       this.appState.textToTypeIndex = 0;
     }
-    this.appState.textToTypeLanguage = value;
+    this.appState.textToTypeSubCategory = value;
   }
 
   private handleSaveButtonClickEvent() {

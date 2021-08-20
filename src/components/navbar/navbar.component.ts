@@ -7,7 +7,7 @@ import { AddCustomTextToTypeDialogHtmlComponent } from '../add-custom-text-to-ty
 import { SelectHtmlComponent } from '../_core/select/select.component';
 import { TextToTypeCategory, TEXT_TO_TYPE_CATEGORIES } from '../../state/text-to-type-category.enum';
 import { IAppStateClient } from '../../state/app-state.client.interface';
-import { getTextToTypeLanguage, TextToTypeLanguage } from '../../state/text-to-type-language.enum';
+import { getTextToTypeSubCategory, TextToTypeSubCategory } from '../../state/text-to-type-sub-category.enum';
 import { APP_SETTINGS_CHANGE_EVENT } from '../../constants/constant';
 import { EnableSoundsIconHtmlComponent } from '../enable-sounds-icon/enable-sounds-icon.component';
 
@@ -23,9 +23,9 @@ export class NavbarHtmlComponent extends BaseHtmlComponent {
   private addCustomTextToTypeDialog: AddCustomTextToTypeDialogHtmlComponent;
   private changeThemeIcon: ChangeThemeIconHtmlComponent;
   private textToTypeCategoriesSelect: SelectHtmlComponent<TextToTypeCategory>;
-  private textToTypeLanguagesSelect: SelectHtmlComponent<TextToTypeLanguage>;
-  private textToTypeLanguagesContainerId: string;
-  private textToTypeLanguagesContainer: HTMLElement;
+  private textToTypeSubCategorySelect: SelectHtmlComponent<TextToTypeSubCategory>;
+  private textToTypeSubCategoryContainerId: string;
+  private textToTypeSubCategoryContainer: HTMLElement;
 
   constructor(private appStateClient: IAppStateClient) {
     super();
@@ -37,20 +37,20 @@ export class NavbarHtmlComponent extends BaseHtmlComponent {
       options: TEXT_TO_TYPE_CATEGORIES,
       selectedOptionValue: appState.textToTypeCategory,
     });
-    this.textToTypeLanguagesSelect = new SelectHtmlComponent<TextToTypeLanguage>({
-      options: getTextToTypeLanguage(appState.textToTypeCategory),
-      selectedOptionValue: appState.textToTypeLanguage,
+    this.textToTypeSubCategorySelect = new SelectHtmlComponent<TextToTypeSubCategory>({
+      options: getTextToTypeSubCategory(appState.textToTypeCategory),
+      selectedOptionValue: appState.textToTypeSubCategory,
     });
     this.enableSoundsIcon = new EnableSoundsIconHtmlComponent(AppStateClient.getInstance());
   }
 
   preInsertHtml() {
-    this.textToTypeLanguagesContainerId = this.generateId();
+    this.textToTypeSubCategoryContainerId = this.generateId();
     this.appSettingsDialog.preInsertHtml();
     this.addCustomTextToTypeDialog.preInsertHtml();
     this.changeThemeIcon.preInsertHtml();
     this.textToTypeCategoriesSelect.preInsertHtml();
-    this.textToTypeLanguagesSelect.preInsertHtml();
+    this.textToTypeSubCategorySelect.preInsertHtml();
     this.enableSoundsIcon.preInsertHtml();
   }
 
@@ -65,7 +65,7 @@ export class NavbarHtmlComponent extends BaseHtmlComponent {
         </div>
         <div class='right'>
           <span class="select">${this.textToTypeCategoriesSelect.toHtml()}</span>
-          <span class="select" id="${this.textToTypeLanguagesContainerId}">${this.textToTypeLanguagesSelect.toHtml()}</span>
+          <span class="select" id="${this.textToTypeSubCategoryContainerId}">${this.textToTypeSubCategorySelect.toHtml()}</span>
           <span>${this.enableSoundsIcon.toHtml()}</span>
           <span id="${ADD_CUSTOM_TEXT_TO_TYPE_ICON_ID}" title="Add custom text to type"><span class="iconify" data-icon="grommet-icons:add" data-inline="false"></span></span>
           <span id="${APP_SETTINGS_ICON_ID}" title="App Settings"><span class="iconify" data-icon="jam:settings-alt" data-inline="false" data-rotate="270deg"></span></span>
@@ -78,11 +78,11 @@ export class NavbarHtmlComponent extends BaseHtmlComponent {
   }
 
   postInsertHtml() {
-    this.textToTypeLanguagesContainer = document.getElementById(this.textToTypeLanguagesContainerId);
+    this.textToTypeSubCategoryContainer = document.getElementById(this.textToTypeSubCategoryContainerId);
     this.appSettingsDialog.postInsertHtml();
     this.addCustomTextToTypeDialog.postInsertHtml();
     this.textToTypeCategoriesSelect.postInsertHtml();
-    this.textToTypeLanguagesSelect.postInsertHtml();
+    this.textToTypeSubCategorySelect.postInsertHtml();
     this.navbar = document.querySelector('nav');
     this.appSettingsIcon = document.getElementById(APP_SETTINGS_ICON_ID);
     this.appSettingsIcon.addEventListener('click', this.handleAppSettingsIconClickEvent.bind(this));
@@ -91,7 +91,7 @@ export class NavbarHtmlComponent extends BaseHtmlComponent {
     window.addEventListener('scroll', this.onWindowScrollEvent.bind(this));
     this.changeThemeIcon.postInsertHtml();
     this.textToTypeCategoriesSelect.onUpdate(this.handleTextToTypeCategoryChangeEvent.bind(this));
-    this.textToTypeLanguagesSelect.onUpdate(this.handleTextToTypeLanguageChangeEvent.bind(this));
+    this.textToTypeSubCategorySelect.onUpdate(this.handleTextToTypeSubCategoryChangeEvent.bind(this));
     this.enableSoundsIcon.postInsertHtml();
     this.addCustomEventListener(APP_SETTINGS_CHANGE_EVENT, this.update.bind(this));
     this.update();
@@ -125,26 +125,29 @@ export class NavbarHtmlComponent extends BaseHtmlComponent {
       options: TEXT_TO_TYPE_CATEGORIES,
       selectedOptionValue: appState.textToTypeCategory,
     });
-    const options = getTextToTypeLanguage(appState.textToTypeCategory);
-    this.textToTypeLanguagesContainer.classList.add('hide');
+    const options = getTextToTypeSubCategory(appState.textToTypeCategory);
+    this.textToTypeSubCategoryContainer.classList.add('hide');
     if (options.length > 0) {
-      const selectedLanguage = options[0].value;
-      appState.textToTypeLanguage = selectedLanguage;
-      this.textToTypeLanguagesSelect.reset({
+      const selectedSubCategory = options[0].value;
+      appState.textToTypeSubCategory = selectedSubCategory;
+      this.textToTypeSubCategorySelect.reset({
         options,
-        selectedOptionValue: selectedLanguage,
+        selectedOptionValue: selectedSubCategory,
       });
-      this.textToTypeLanguagesContainer.classList.remove('hide');
+      this.textToTypeSubCategoryContainer.classList.remove('hide');
+    }
+    if (value == TextToTypeCategory.TRAINING_AZERTY || value == TextToTypeCategory.TRAINING_QWERTY) {
+      appState.textToTypeSubCategory = TextToTypeSubCategory.KEYS_F_AND_J;
     }
     this.saveAppState(appState);
   }
 
-  private handleTextToTypeLanguageChangeEvent(value: TextToTypeLanguage) {
+  private handleTextToTypeSubCategoryChangeEvent(value: TextToTypeSubCategory) {
     const appState = this.appStateClient.getAppState();
-    if (value !== appState.textToTypeLanguage) {
+    if (value !== appState.textToTypeSubCategory) {
       appState.textToTypeIndex = 0;
     }
-    appState.textToTypeLanguage = value;
+    appState.textToTypeSubCategory = value;
     this.saveAppState(appState);
   }
 
@@ -159,14 +162,14 @@ export class NavbarHtmlComponent extends BaseHtmlComponent {
       options: TEXT_TO_TYPE_CATEGORIES,
       selectedOptionValue: appState.textToTypeCategory,
     });
-    const options = getTextToTypeLanguage(appState.textToTypeCategory);
-    this.textToTypeLanguagesSelect.reset({
+    const options = getTextToTypeSubCategory(appState.textToTypeCategory);
+    this.textToTypeSubCategorySelect.reset({
       options,
-      selectedOptionValue: appState.textToTypeLanguage,
+      selectedOptionValue: appState.textToTypeSubCategory,
     });
-    this.textToTypeLanguagesContainer.classList.add('hide');
+    this.textToTypeSubCategoryContainer.classList.add('hide');
     if (options.length > 0) {
-      this.textToTypeLanguagesContainer.classList.remove('hide');
+      this.textToTypeSubCategoryContainer.classList.remove('hide');
     }
   }
 }

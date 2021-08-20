@@ -8,12 +8,13 @@ import {
   CUSTOM_TEXTS_UPDATE_EVENT,
   START_UPDATING_APP_SETTINGS_EVENT,
   START_UPDATING_CUSTOM_TEXT_TO_TYPE_EVENT,
+  TRAINING_LESSON_CHANGE_EVENT,
 } from '../../constants/constant';
 import { BaseHtmlComponent } from '../_core/base-component';
 import { TypedKeyStats } from '../typed-keys/typed-key-stats.model';
 import { TextToTypeCategory } from '../../state/text-to-type-category.enum';
 import { TypedTextStats } from '../typed-text-stats/typed-text-stats.model';
-import { TextToTypeLanguage } from '../../state/text-to-type-language.enum';
+import { TextToTypeSubCategory } from '../../state/text-to-type-sub-category.enum';
 import { IAppStateClient } from '../../state/app-state.client.interface';
 import { AppStateClient } from '../../state/app-state.client';
 import { TextToType } from './text-to-type.model';
@@ -64,7 +65,7 @@ export class TextToTypeHtmlComponent extends BaseHtmlComponent {
   postInsertHtml(): void {
     this.reference = document.getElementById(this.referenceId);
     const appStorage = this.appStateClient.getAppState();
-    appStorage.textToTypeLanguage = appStorage.textToTypeLanguage || TextToTypeLanguage.ENGLISH;
+    appStorage.textToTypeSubCategory = appStorage.textToTypeSubCategory || TextToTypeSubCategory.ENGLISH;
     this.appStateClient.saveAppState(appStorage);
     this.textToTypeDomElement = document.getElementById(TEXT_TO_TYPE_DOM_ELEMENT_ID);
     this.textToTypeContainerDomElement = document.getElementById(TEXT_TO_TYPE_CONTAINER_DOM_ELEMENT_ID);
@@ -76,6 +77,7 @@ export class TextToTypeHtmlComponent extends BaseHtmlComponent {
     this.addCustomEventListener(START_UPDATING_CUSTOM_TEXT_TO_TYPE_EVENT, this.disable.bind(this));
     this.addCustomEventListener(END_UPDATING_CUSTOM_TEXT_TO_TYPE_EVENT, this.enable.bind(this));
     this.addCustomEventListener(CUSTOM_TEXTS_UPDATE_EVENT, this.reset.bind(this));
+    this.addCustomEventListener(TRAINING_LESSON_CHANGE_EVENT, this.reset.bind(this));
   }
 
   private disable() {
@@ -220,7 +222,7 @@ export class TextToTypeHtmlComponent extends BaseHtmlComponent {
       textToTypeText = textToTypeText.replace(/ +/g, ' ');
       textToTypeCharArrayAfterTransformation = textToTypeText.split('').map((c) => this.charToSpan(c, ''));
     } else {
-      textToTypeText = hljs.highlight(appState.textToTypeLanguage, textToTypeText).value;
+      textToTypeText = hljs.highlight(appState.textToTypeSubCategory, textToTypeText).value;
       textToTypeText = textToTypeText.replace(/&lt;/g, '<');
       textToTypeText = textToTypeText.replace(/&gt;/g, '>');
       textToTypeText = textToTypeText.replace(/&quot;/g, '"');

@@ -7,6 +7,7 @@ export const DARK_THEME_VALUE = 'dark';
 export const END_TYPING_EVENT = 'end-typing-event';
 export const CHANGE_THEME_EVENT = 'change-theme-event';
 export const APP_SETTINGS_CHANGE_EVENT = 'app-settings-change-event';
+export const TRAINING_LESSON_CHANGE_EVENT = 'training-lesson-change-event';
 export const START_UPDATING_APP_SETTINGS_EVENT = 'start-changing-app-settings-event';
 export const END_UPDATING_APP_SETTINGS_EVENT = 'end-changing-app-settings-event';
 export const START_UPDATING_CUSTOM_TEXT_TO_TYPE_EVENT = 'start-changing-custom-text-to-type-event';

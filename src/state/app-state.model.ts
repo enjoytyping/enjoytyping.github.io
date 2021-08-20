@@ -1,13 +1,13 @@
 import { TextToTypeCategory } from './text-to-type-category.enum';
 import { TypedTextStats } from '../components/typed-text-stats/typed-text-stats.model';
-import { TextToTypeLanguage } from './text-to-type-language.enum';
+import { TextToTypeSubCategory } from './text-to-type-sub-category.enum';
 import { TextToType } from '../components/text-to-type/text-to-type.model';
 
 export class AppState {
   customTextsToType: TextToType[];
   visitWebsiteForTheFirstTime: boolean = true;
   textToTypeCategory: TextToTypeCategory = TextToTypeCategory.QUOTES;
-  textToTypeLanguage: TextToTypeLanguage = TextToTypeLanguage.ENGLISH;
+  textToTypeSubCategory: TextToTypeSubCategory = TextToTypeSubCategory.ENGLISH;
   maxCharactersToType: number;
   currentTheme: string;
   enableSounds: boolean;

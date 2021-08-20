@@ -11,7 +11,7 @@ import {
 import { AppState } from '../../state/app-state.model';
 import { TableAction, TableColumn, TableHtmlComponent } from '../_core/table/table.component';
 import { TextToTypeCategory } from '../../state/text-to-type-category.enum';
-import { TextToTypeLanguage } from '../../state/text-to-type-language.enum';
+import { TextToTypeSubCategory } from '../../state/text-to-type-sub-category.enum';
 
 class DisplayedCustomTextToAdd {
   text: string;
@@ -96,7 +96,7 @@ export class AddCustomTextToTypeDialogHtmlComponent extends BaseDialogHtmlCompon
     this.appState.textToTypeIndex = 0;
     if (this.appState.customTextsToType.length === 0) {
       this.appState.textToTypeCategory = TextToTypeCategory.QUOTES;
-      this.appState.textToTypeLanguage = TextToTypeLanguage.ENGLISH;
+      this.appState.textToTypeSubCategory = TextToTypeSubCategory.ENGLISH;
     }
     this.customTextsUpdated = true;
     this.updateInnerHTML();
