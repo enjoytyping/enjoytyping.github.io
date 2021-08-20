@@ -1449,7 +1449,7 @@ body.dark {
 .text-to-type-page {
   position: relative;
   height: calc(100vh - var(--navbar-height));
-  max-width: 94rem;
+  max-width: 105rem;
   margin: 0 auto;
   display: flex;
   flex-direction: column; }
@@ -1479,7 +1479,7 @@ body.dark {
       background-color: var(--body-background-color); }
   .text-to-type-container1 span {
     font-family: 'Roboto Mono';
-    font-size: 1.8rem; }
+    font-size: 2.2rem; }
   .text-to-type-container1 span.whitespace {
     color: var(--whitespace-color); }
   .text-to-type-container1 span.dot.NOK {

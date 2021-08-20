@@ -274,7 +274,7 @@ export class AppStateClient implements IAppStateClient {
 
   private generateTrainingTextToType(characters: string) {
     let result = '';
-    for (var i = 0; i < 128; i++) {
+    for (var i = 0; i < 120; i++) {
       if (i % 4 == 0) result += ' ';
       result += characters.charAt(Math.floor(Math.random() * characters.length));
     }
