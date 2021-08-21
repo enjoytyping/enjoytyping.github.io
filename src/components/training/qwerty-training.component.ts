@@ -1,12 +1,9 @@
 import './training.scss';
-import { BaseHtmlComponent } from '../_core/base-component';
 import { TrainingKeysHtmlComponent } from './training-keys.component';
 import { TextToTypeSubCategory } from '../../state/text-to-type-sub-category.enum';
-import { IHtmlComponent } from '../_core/component.interface';
+import { BaseTrainingHtmlComponent } from './base-training.component';
 
-export class QwertyTrainingHtmlComponent extends BaseHtmlComponent {
-  private array: IHtmlComponent[] = [];
-
+export class QwertyTrainingHtmlComponent extends BaseTrainingHtmlComponent {
   preInsertHtml(): void {
     this.array.push(new TrainingKeysHtmlComponent('FJ', TextToTypeSubCategory.KEYS_F_AND_J));
     this.array.push(new TrainingKeysHtmlComponent('DK', TextToTypeSubCategory.KEYS_D_AND_K));
@@ -34,17 +31,5 @@ export class QwertyTrainingHtmlComponent extends BaseHtmlComponent {
     this.array.push(new TrainingKeysHtmlComponent('ZX./', TextToTypeSubCategory.KEYS_ZX_DOT_SLASH));
     this.array.push(new TrainingKeysHtmlComponent('BN', TextToTypeSubCategory.KEYS_B_AND_N));
     this.array.push(new TrainingKeysHtmlComponent('VBNM', TextToTypeSubCategory.KEYS_VBNM));
-  }
-
-  toHtml() {
-    return /* html */ `
-      <div class="training-container">
-        ${this.array.map((k) => k.toHtml()).join('')}
-      </div>
-    `;
-  }
-
-  postInsertHtml(): void {
-    this.array.forEach((c) => c.postInsertHtml());
   }
 }
