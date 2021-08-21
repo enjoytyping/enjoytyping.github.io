@@ -5,8 +5,40 @@
   color: var(--primary-color);
 }
 
-.training-container {
+.training-container2 {
   margin: 0 8rem;
+  position: relative;
+
+  & .arrow-left,
+  & .arrow-right {
+    z-index: 200;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background-color: var(--arrow-background-color);
+    display: flex;
+    align-items: center;
+    padding: 0.5rem;
+    border-radius: 100rem;
+    box-shadow: var(--box-shadow-01);
+  }
+
+  & .arrow-left {
+    left: 1.2rem;
+  }
+
+  & .arrow-right {
+    right: 1.2rem;
+  }
+
+  & .arrow-left,
+  & .arrow-right {
+    font-size: 3.7rem;
+  }
+}
+
+.training-container1 {
+  scroll-behavior: smooth;
   display: flex;
   flex-direction: row;
   flex-wrap: nowrap;
