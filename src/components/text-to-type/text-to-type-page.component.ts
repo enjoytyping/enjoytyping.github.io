@@ -48,6 +48,13 @@ export class TextToTypePageHtmlComponent extends BaseHtmlComponent {
   private getComponents(): IHtmlComponent[] {
     const appState = this.appStateClient.getAppState();
     const res = [];
+    if (appState.visitWebsiteForTheFirstTime) {
+      res.push(new TypedTextStatsHtmlComponent(AppStateClient.getInstance()));
+      res.push(new TypedKeysStatsHtmlComponent(AppStateClient.getInstance()));
+      res.push(new TextToTypeHtmlComponent(AppStateClient.getInstance()));
+      res.push(new ViewTypingProgressButtonHtmlComponent(AppStateClient.getInstance()));
+      return res;
+    }
     if (appState.textToTypeCategory == TextToTypeCategory.TRAINING_AZERTY) {
       res.push(new TypedTextStatsHtmlComponent(AppStateClient.getInstance()));
       res.push(new AzertyTrainingHtmlComponent());

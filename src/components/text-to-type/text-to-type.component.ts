@@ -16,10 +16,9 @@ import { TextToTypeCategory } from '../../state/text-to-type-category.enum';
 import { TypedTextStats } from '../typed-text-stats/typed-text-stats.model';
 import { TextToTypeSubCategory } from '../../state/text-to-type-sub-category.enum';
 import { IAppStateClient } from '../../state/app-state.client.interface';
-import { AppStateClient } from '../../state/app-state.client';
 import { TextToType } from './text-to-type.model';
 
-const INACTIVITY_TIMEOUT = 10000;
+const INACTIVITY_TIMEOUT = 60000;
 const BACKSPACE_KEY = 'Backspace';
 const SPACE_KEY = ' ';
 const ENTER_KEY = 'Enter';
