@@ -1,4 +1,4 @@
-export const APP_STATE_LOCAL_STORAGE_KEY = 'app-state-local-storage-key-v1.1';
+export const APP_STATE_LOCAL_STORAGE_KEY = 'app-state-local-storage-key-v2.0';
 export const PROGRESS_DIV_ID = 'ProgressDivId';
 export const MIN_STATS_TO_DISPLAY_PROGRESS_GRAPH = 5;
 export const LIGHT_THEME_VALUE = 'light';
@@ -6,6 +6,7 @@ export const DARK_THEME_VALUE = 'dark';
 
 export const END_TYPING_EVENT = 'end-typing-event';
 export const CHANGE_THEME_EVENT = 'change-theme-event';
+export const CHANGE_FONT_SIZE_EVENT = 'change-font-size-event';
 export const APP_SETTINGS_CHANGE_EVENT = 'app-settings-change-event';
 export const TRAINING_LESSON_CHANGE_EVENT = 'training-lesson-change-event';
 export const START_UPDATING_APP_SETTINGS_EVENT = 'start-changing-app-settings-event';

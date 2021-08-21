@@ -17,4 +17,5 @@ export class AppState {
   textToTypeIndex: number = 0;
   typedTextsStats: TypedTextStats[] = [];
   typedKeysStatsJson: string;
+  fontSize: number = 22;
 }

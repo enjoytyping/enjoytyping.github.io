@@ -9,6 +9,7 @@ import {
   START_UPDATING_APP_SETTINGS_EVENT,
   START_UPDATING_CUSTOM_TEXT_TO_TYPE_EVENT,
   TRAINING_LESSON_CHANGE_EVENT,
+  CHANGE_FONT_SIZE_EVENT,
 } from '../../constants/constant';
 import { BaseHtmlComponent } from '../_core/base-component';
 import { TypedKeyStats } from '../typed-keys/typed-key-stats.model';
@@ -63,12 +64,13 @@ export class TextToTypeHtmlComponent extends BaseHtmlComponent {
 
   postInsertHtml(): void {
     this.reference = document.getElementById(this.referenceId);
-    const appStorage = this.appStateClient.getAppState();
-    appStorage.textToTypeSubCategory = appStorage.textToTypeSubCategory || TextToTypeSubCategory.ENGLISH;
-    this.appStateClient.saveAppState(appStorage);
+    const appState = this.appStateClient.getAppState();
+    appState.textToTypeSubCategory = appState.textToTypeSubCategory || TextToTypeSubCategory.ENGLISH;
+    this.appStateClient.saveAppState(appState);
     this.textToTypeDomElement = document.getElementById(TEXT_TO_TYPE_DOM_ELEMENT_ID);
     this.textToTypeContainerDomElement = document.getElementById(TEXT_TO_TYPE_CONTAINER_DOM_ELEMENT_ID);
     this.setTextToType();
+    this.updateFontSize();
     document.body.addEventListener('keydown', this.handleKeyDownEvent.bind(this));
     this.addCustomEventListener(APP_SETTINGS_CHANGE_EVENT, this.reset.bind(this));
     this.addCustomEventListener(START_UPDATING_APP_SETTINGS_EVENT, this.disable.bind(this));
@@ -77,6 +79,12 @@ export class TextToTypeHtmlComponent extends BaseHtmlComponent {
     this.addCustomEventListener(END_UPDATING_CUSTOM_TEXT_TO_TYPE_EVENT, this.enable.bind(this));
     this.addCustomEventListener(CUSTOM_TEXTS_UPDATE_EVENT, this.reset.bind(this));
     this.addCustomEventListener(TRAINING_LESSON_CHANGE_EVENT, this.reset.bind(this));
+    this.addCustomEventListener(CHANGE_FONT_SIZE_EVENT, this.updateFontSize.bind(this));
+  }
+
+  private updateFontSize() {
+    const appState = this.appStateClient.getAppState();
+    this.textToTypeDomElement.style.fontSize = `${appState.fontSize}px`;
   }
 
   private disable() {

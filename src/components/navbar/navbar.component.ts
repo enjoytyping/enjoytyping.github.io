@@ -10,6 +10,7 @@ import { IAppStateClient } from '../../state/app-state.client.interface';
 import { getTextToTypeSubCategory, TextToTypeSubCategory } from '../../state/text-to-type-sub-category.enum';
 import { APP_SETTINGS_CHANGE_EVENT } from '../../constants/constant';
 import { EnableSoundsIconHtmlComponent } from '../enable-sounds-icon/enable-sounds-icon.component';
+import { IncreaseDecreaseFontIconHtmlComponent } from '../increase-decrease-font-icon/increase-decrease-font-icon.component';
 
 const APP_SETTINGS_ICON_ID = 'APP_SETTINGS_ICON_ID';
 const ADD_CUSTOM_TEXT_TO_TYPE_ICON_ID = 'ADD_CUSTOM_TEXT_TO_TYPE_ICON_ID';
@@ -26,6 +27,7 @@ export class NavbarHtmlComponent extends BaseHtmlComponent {
   private textToTypeSubCategorySelect: SelectHtmlComponent<TextToTypeSubCategory>;
   private textToTypeSubCategoryContainerId: string;
   private textToTypeSubCategoryContainer: HTMLElement;
+  private increaseDecreaseFontSizeIcon: IncreaseDecreaseFontIconHtmlComponent;
 
   constructor(private appStateClient: IAppStateClient) {
     super();
@@ -42,6 +44,7 @@ export class NavbarHtmlComponent extends BaseHtmlComponent {
       selectedOptionValue: appState.textToTypeSubCategory,
     });
     this.enableSoundsIcon = new EnableSoundsIconHtmlComponent(AppStateClient.getInstance());
+    this.increaseDecreaseFontSizeIcon = new IncreaseDecreaseFontIconHtmlComponent();
   }
 
   preInsertHtml() {
@@ -52,6 +55,7 @@ export class NavbarHtmlComponent extends BaseHtmlComponent {
     this.textToTypeCategoriesSelect.preInsertHtml();
     this.textToTypeSubCategorySelect.preInsertHtml();
     this.enableSoundsIcon.preInsertHtml();
+    this.increaseDecreaseFontSizeIcon.preInsertHtml();
   }
 
   toHtml() {
@@ -66,6 +70,7 @@ export class NavbarHtmlComponent extends BaseHtmlComponent {
         <div class='right'>
           <span class="select">${this.textToTypeCategoriesSelect.toHtml()}</span>
           <span class="select" id="${this.textToTypeSubCategoryContainerId}">${this.textToTypeSubCategorySelect.toHtml()}</span>
+          <span>${this.increaseDecreaseFontSizeIcon.toHtml()}</span>
           <span>${this.enableSoundsIcon.toHtml()}</span>
           <span id="${ADD_CUSTOM_TEXT_TO_TYPE_ICON_ID}" title="Add custom text to type"><span class="iconify" data-icon="grommet-icons:add" data-inline="false"></span></span>
           <span id="${APP_SETTINGS_ICON_ID}" title="App Settings"><span class="iconify" data-icon="jam:settings-alt" data-inline="false" data-rotate="270deg"></span></span>
@@ -83,6 +88,7 @@ export class NavbarHtmlComponent extends BaseHtmlComponent {
     this.addCustomTextToTypeDialog.postInsertHtml();
     this.textToTypeCategoriesSelect.postInsertHtml();
     this.textToTypeSubCategorySelect.postInsertHtml();
+    this.increaseDecreaseFontSizeIcon.postInsertHtml();
     this.navbar = document.querySelector('nav');
     this.appSettingsIcon = document.getElementById(APP_SETTINGS_ICON_ID);
     this.appSettingsIcon.addEventListener('click', this.handleAppSettingsIconClickEvent.bind(this));

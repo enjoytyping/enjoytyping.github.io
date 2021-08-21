@@ -89,6 +89,7 @@ body.light {
   --click-to-enable-color: var(--text-color-01);
   --click-to-enable-background-color: var(--background-color-01);
   --training-keys-background-color: #f1f1f1;
+  --increase-decrease-font-icon-background-color-on-hover: var(--background-color-04);
 }
 
 body.dark {
@@ -183,4 +184,5 @@ body.dark {
   --click-to-enable-color: var(--text-color-01);
   --click-to-enable-background-color: var(--background-color-01);
   --training-keys-background-color: var(--background-color-04);
+  --increase-decrease-font-icon-background-color-on-hover: var(--background-color-04);
 }
