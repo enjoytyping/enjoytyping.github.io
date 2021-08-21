@@ -7,6 +7,7 @@
 }
 
 .training-keys-container {
+  position: relative;
   cursor: pointer;
   flex-shrink: 0;
   border-radius: 0.3rem;
@@ -21,11 +22,45 @@
   justify-content: center;
 
   &.selected {
-    border: 2px solid var(--secondary-color);
+    // border: 2px solid var(--secondary-color);
 
     & span {
       color: var(--secondary-color);
     }
+  }
+
+  &.avg-wpm-lt-10::after,
+  &.avg-wpm-lt-20::after,
+  &.avg-wpm-lt-30::after,
+  &.avg-wpm-lt-40::after,
+  &.avg-wpm-lt-50::after,
+  &.avg-wpm-gte-50::after {
+    content: '';
+    position: absolute;
+    bottom: 0.4rem;
+    left: 0.4rem;
+    right: 0.4rem;
+    height: 0.6rem;
+    border-radius: 100rem;
+  }
+
+  &.avg-wpm-lt-10::after {
+    background-color: var(--typed-key-avg-wpm-lt-10);
+  }
+  &.avg-wpm-lt-20::after {
+    background-color: var(--typed-key-avg-wpm-lt-20);
+  }
+  &.avg-wpm-lt-30::after {
+    background-color: var(--typed-key-avg-wpm-lt-30);
+  }
+  &.avg-wpm-lt-40::after {
+    background-color: var(--typed-key-avg-wpm-lt-40);
+  }
+  &.avg-wpm-lt-50::after {
+    background-color: var(--typed-key-avg-wpm-lt-50);
+  }
+  &.avg-wpm-gte-50::after {
+    background-color: var(--typed-key-avg-wpm-gte-50);
   }
 
   & .keys {

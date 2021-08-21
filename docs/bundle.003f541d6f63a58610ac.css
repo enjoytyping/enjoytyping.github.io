@@ -1516,6 +1516,7 @@ body.dark {
   overflow-x: scroll; }
 
 .training-keys-container {
+  position: relative;
   cursor: pointer;
   flex-shrink: 0;
   border-radius: 0.3rem;
@@ -1528,10 +1529,28 @@ body.dark {
   flex-direction: column;
   align-items: center;
   justify-content: center; }
-  .training-keys-container.selected {
-    border: 2px solid var(--secondary-color); }
-    .training-keys-container.selected span {
-      color: var(--secondary-color); }
+  .training-keys-container.selected span {
+    color: var(--secondary-color); }
+  .training-keys-container.avg-wpm-lt-10::after, .training-keys-container.avg-wpm-lt-20::after, .training-keys-container.avg-wpm-lt-30::after, .training-keys-container.avg-wpm-lt-40::after, .training-keys-container.avg-wpm-lt-50::after, .training-keys-container.avg-wpm-gte-50::after {
+    content: '';
+    position: absolute;
+    bottom: 0.4rem;
+    left: 0.4rem;
+    right: 0.4rem;
+    height: 0.6rem;
+    border-radius: 100rem; }
+  .training-keys-container.avg-wpm-lt-10::after {
+    background-color: var(--typed-key-avg-wpm-lt-10); }
+  .training-keys-container.avg-wpm-lt-20::after {
+    background-color: var(--typed-key-avg-wpm-lt-20); }
+  .training-keys-container.avg-wpm-lt-30::after {
+    background-color: var(--typed-key-avg-wpm-lt-30); }
+  .training-keys-container.avg-wpm-lt-40::after {
+    background-color: var(--typed-key-avg-wpm-lt-40); }
+  .training-keys-container.avg-wpm-lt-50::after {
+    background-color: var(--typed-key-avg-wpm-lt-50); }
+  .training-keys-container.avg-wpm-gte-50::after {
+    background-color: var(--typed-key-avg-wpm-gte-50); }
   .training-keys-container .keys {
     font-weight: bold;
     font-size: 2rem; }
