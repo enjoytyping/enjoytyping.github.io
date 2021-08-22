@@ -6,6 +6,7 @@ import { TypedKeysHighlighter } from './typed-keys-highlighter';
 import { TypedKeysHtmlComponent, TYPED_KEY_CLASS } from '../typed-keys/typed-keys.component';
 import { TypedTextStats } from '../typed-text-stats/typed-text-stats.model';
 import { IAppStateClient } from '../../state/app-state.client.interface';
+import { Color } from '../_core/color';
 
 // const TYPED_KEYS = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789"{}()[]<>+-=,.;:';
 const TYPED_KEYS = 'abcdefghijklmnopqrstuvwxyz';
@@ -27,7 +28,7 @@ export class TypingProgressHtmlComponent extends BaseHtmlComponent {
     private typedTextsStatsToProgressData: (typedTextsStats: TypedTextStats[]) => number[],
     private typedKeysStatsToProgressData: (typedKeysStats: TypedKeyStats[]) => number[],
     private typedKeysHighlighter: TypedKeysHighlighter,
-    private barColor: string,
+    private barColor: Color,
     private withAverageLine: boolean
   ) {
     super();

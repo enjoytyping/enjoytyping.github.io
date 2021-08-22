@@ -1,11 +1,12 @@
 import './typing-progress.scss';
-import { DELETE_PROGRESS_DATA_EVENT, PROGRESS_DIV_ID } from '../../constants/constant';
+import { DELETE_PROGRESS_DATA_EVENT, LIGHT_THEME_VALUE, PROGRESS_DIV_ID } from '../../constants/constant';
 import { ErrorProgressTypedKeysHighlighter } from './error-progress-typed-keys-highlighter';
 import { TypingProgressHtmlComponent } from './typing-progress.component';
 import { BaseHtmlComponent } from '../_core/base-component';
 import { SpeedProgressTypedKeysHighlighter } from './speed-progress-typed-keys-highlighter';
 import { IAppStateClient } from '../../state/app-state.client.interface';
 import { AppStateClient } from '../../state/app-state.client';
+import { TYPING_ERROR_GRAPH_BAR_COLOR, TYPING_SPEED_GRAPH_BAR_COLOR } from '../_core/color';
 
 export class TypingProgressSectionHtmlComponent extends BaseHtmlComponent {
   private speedProgress: TypingProgressHtmlComponent;
@@ -29,7 +30,7 @@ export class TypingProgressSectionHtmlComponent extends BaseHtmlComponent {
       (typedTextStats) => typedTextStats.filter((s) => s.wpm > 0).map((s) => s.wpm),
       (typedKeysStats) => typedKeysStats.filter((s) => s.wpm > 0).map((s) => s.wpm),
       new SpeedProgressTypedKeysHighlighter(AppStateClient.getInstance()),
-      '#AECBFA',
+      TYPING_SPEED_GRAPH_BAR_COLOR,
       true
     );
     this.errorProgress = new TypingProgressHtmlComponent(
@@ -38,7 +39,7 @@ export class TypingProgressSectionHtmlComponent extends BaseHtmlComponent {
       (typedTextStats) => typedTextStats.map((s) => s.errors),
       (typedKeysStats) => typedKeysStats.map((s) => s.missCount),
       new ErrorProgressTypedKeysHighlighter(AppStateClient.getInstance()),
-      '#FFB1C1',
+      TYPING_ERROR_GRAPH_BAR_COLOR,
       false
     );
     this.speedProgress.preInsertHtml();
@@ -55,6 +56,14 @@ export class TypingProgressSectionHtmlComponent extends BaseHtmlComponent {
         <div>
       </div>
     `;
+  }
+
+  private getErrorBarColor(): string {
+    const appState = this.appStateClient.getAppState();
+    if (appState.currentTheme == LIGHT_THEME_VALUE) {
+      return '#FFB1C1';
+    }
+    return 'red';
   }
 
   postInsertHtml(): void {
