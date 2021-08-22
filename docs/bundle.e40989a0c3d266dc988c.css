@@ -1469,12 +1469,13 @@ body.dark {
   flex-direction: column; }
 
 .separator {
-  height: 4rem; }
+  height: 4rem;
+  flex-shrink: 0; }
 
 .text-to-type-container {
   width: 100%;
   margin: 0 auto;
-  min-height: 5rem;
+  min-height: 15rem;
   flex: 1;
   overflow-y: scroll; }
   .text-to-type-container .text-to-type {
