@@ -13,10 +13,11 @@ const TYPED_KEYS = 'abcdefghijklmnopqrstuvwxyz';
 
 export class TypingProgressHtmlComponent extends BaseHtmlComponent {
   private graph: TypingProgressGraphHtmlComponent;
-  private byKeySwitch: SwitchHtmlComponent;
-  private byKeySwitchValue: boolean;
   private smoothness: number = 0;
   private typedKeysProgressId: string;
+  private progressByKeyValue: boolean;
+  private progressByKey: HTMLElement;
+  private progressByKeyId: string;
   private typedKeysProgress: HTMLElement;
   private typedKeys: TypedKeysHtmlComponent;
   private containerId: string;
@@ -34,10 +35,10 @@ export class TypingProgressHtmlComponent extends BaseHtmlComponent {
   }
 
   preInsertHtml(): void {
+    this.progressByKeyValue = false;
     this.containerId = this.generateId();
+    this.progressByKeyId = this.generateId();
     this.typedKeysProgressId = this.generateId();
-    this.byKeySwitchValue = false;
-    this.byKeySwitch = new SwitchHtmlComponent(this.byKeySwitchValue);
     this.graph = new TypingProgressGraphHtmlComponent(
       this.appStateClient,
       this.typedTextsStatsToProgressData(this.appStateClient.getAppState().typedTextsStats),
@@ -46,7 +47,6 @@ export class TypingProgressHtmlComponent extends BaseHtmlComponent {
       this.withAverageLine
     );
     this.typedKeys = new TypedKeysHtmlComponent(TYPED_KEYS, 'a');
-    this.byKeySwitch.preInsertHtml();
     this.graph.preInsertHtml();
     this.typedKeys.preInsertHtml();
   }
@@ -57,9 +57,7 @@ export class TypingProgressHtmlComponent extends BaseHtmlComponent {
       <div id="${this.containerId}">
         <div class="progress-header">
           <span class="progress-name">${this.graphName}</span>
-          <div class="progress-ctrl">
-            <div class="progress-by-key"><span class="label">By key </span>${this.byKeySwitch.toHtml()}</div>
-          </div>
+          <span id="${this.progressByKeyId}" class="progress-by-key">By key </span>
         </div>
         <div id="${this.typedKeysProgressId}" class="typed-keys-progress">${this.typedKeys.toHtml()}</div>
         <div class="progress-body">
@@ -71,25 +69,28 @@ export class TypingProgressHtmlComponent extends BaseHtmlComponent {
 
   postInsertHtml(): void {
     this.typedKeysProgress = document.getElementById(this.typedKeysProgressId);
+    this.progressByKey = document.getElementById(this.progressByKeyId);
     this.typedKeysProgress.classList.add('hide');
-    this.byKeySwitch.postInsertHtml();
     this.graph.postInsertHtml();
     this.typedKeys.postInsertHtml();
-
+    this.progressByKey.addEventListener('click', this.handleProgressByKeyUpdateEvent.bind(this));
     this.typedKeys.onClick((key) => this.handleSelectKey(key));
-    this.byKeySwitch.onUpdate(this.handleProgressByKeyUpdateEvent.bind(this));
     this.addCustomEventListener(END_TYPING_EVENT, this.handleEndTypingEvent.bind(this));
     this.addCustomEventListener(DELETE_PROGRESS_DATA_EVENT, this.handleDeleteProgressDataEvent.bind(this));
     this.typedKeysHighlighter.highligh(this.typedKeysProgressId, TYPED_KEY_CLASS);
   }
 
-  private handleProgressByKeyUpdateEvent(active: boolean) {
-    if (active) {
-      this.typedKeysProgress.classList.remove('hide');
-      this.handleSelectKey('a');
-    } else {
+  private handleProgressByKeyUpdateEvent() {
+    if (this.progressByKeyValue) {
+      this.progressByKeyValue = false;
+      this.progressByKey.classList.remove('selected');
       this.typedKeysProgress.classList.add('hide');
       this.useTypedTextsStats();
+    } else {
+      this.progressByKeyValue = true;
+      this.progressByKey.classList.add('selected');
+      this.typedKeysProgress.classList.remove('hide');
+      this.handleSelectKey('a');
     }
   }
 

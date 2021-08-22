@@ -25,7 +25,6 @@
   & .progress-header {
     display: flex;
     align-items: center;
-    justify-content: space-between;
     margin-bottom: 2rem;
   }
 
@@ -38,25 +37,22 @@
   & .progress-ctrl {
     display: flex;
     align-items: center;
+    margin-left: 2rem;
   }
 
   & .progress-by-key {
-    display: flex;
-    align-items: center;
+    cursor: pointer;
+    margin-left: 1rem;
+    font-size: 1.25rem;
+    font-weight: bold;
+    padding: 0.2rem 1.5rem;
+    border-radius: 100rem;
+    color: var(--secondary-color);
+    border: 2px solid var(--secondary-color);
 
-    & .label {
-      margin-right: 1rem;
-      font-size: 1.4rem;
-      font-weight: 700;
-    }
-
-    & .iconify {
-      font-size: 2.3rem;
-      color: var(--border-color);
-    }
-
-    & .iconify.switch-on {
-      color: var(--progress-by-key-icon-color);
+    &.selected {
+      background-color: var(--secondary-color);
+      color: white;
     }
   }
 

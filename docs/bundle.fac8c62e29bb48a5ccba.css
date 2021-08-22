@@ -215,7 +215,7 @@ body.light {
   --delete-progress-data-button-box-shadow: var(--box-shadow-01);
   --typed-key-background-color: var(--background-color-04);
   --selected-key-color: var(--white-color);
-  --selected-key-background-color: var(--secondary-color);
+  --selected-key-background-color: var(--primary-color);
   --typed-key-with-lt-min-stats-to-display-in-app-storage-background-color: var(--secondary-color);
   --progress-by-key-icon-color: var(--primary-color);
   --text-to-type-background-color: #fbfbfb;
@@ -310,7 +310,7 @@ body.dark {
   --delete-progress-data-button-box-shadow: var(--box-shadow-01);
   --typed-key-background-color: var(--background-color-04);
   --selected-key-color: var(--white-color);
-  --selected-key-background-color: var(--secondary-color);
+  --selected-key-background-color: var(--primary-color);
   --typed-key-with-lt-min-stats-to-display-in-app-storage-background-color: var(--secondary-color);
   --progress-by-key-icon-color: var(--primary-color);
   --text-to-type-background-color: var(--background-color-02);
@@ -1174,7 +1174,6 @@ body.dark {
   .progress-graph .progress-header {
     display: flex;
     align-items: center;
-    justify-content: space-between;
     margin-bottom: 2rem; }
   .progress-graph .progress-name {
     font-size: 2rem;
@@ -1182,19 +1181,20 @@ body.dark {
     font-weight: bold; }
   .progress-graph .progress-ctrl {
     display: flex;
-    align-items: center; }
+    align-items: center;
+    margin-left: 2rem; }
   .progress-graph .progress-by-key {
-    display: flex;
-    align-items: center; }
-    .progress-graph .progress-by-key .label {
-      margin-right: 1rem;
-      font-size: 1.4rem;
-      font-weight: 700; }
-    .progress-graph .progress-by-key .iconify {
-      font-size: 2.3rem;
-      color: var(--border-color); }
-    .progress-graph .progress-by-key .iconify.switch-on {
-      color: var(--progress-by-key-icon-color); }
+    cursor: pointer;
+    margin-left: 1rem;
+    font-size: 1.25rem;
+    font-weight: bold;
+    padding: 0.2rem 1.5rem;
+    border-radius: 100rem;
+    color: var(--secondary-color);
+    border: 2px solid var(--secondary-color); }
+    .progress-graph .progress-by-key.selected {
+      background-color: var(--secondary-color);
+      color: white; }
   .progress-graph .progress-slider {
     cursor: pointer;
     display: flex;
@@ -1289,17 +1289,6 @@ body.dark {
       background-color: var(--typed-key-avg-error-lt-10); }
     .typed-keys-container .typed-key.avg-error-gte-10::after {
       background-color: var(--typed-key-avg-error-gte-10); }
-
-.switch-off,
-.switch-on {
-  cursor: pointer;
-  font-size: 4rem; }
-
-.switch-on {
-  color: var(--switch-on-color); }
-
-.switch-off {
-  color: var(--switch-off-color); }
 
 .typed-text-stats-container {
   margin: 3rem auto 0;
@@ -1820,6 +1809,17 @@ body.dark {
     color: var(--button-secondary-color); }
     .button-container button.secondary:hover {
       opacity: 0.85; }
+
+.switch-off,
+.switch-on {
+  cursor: pointer;
+  font-size: 4rem; }
+
+.switch-on {
+  color: var(--switch-on-color); }
+
+.switch-off {
+  color: var(--switch-off-color); }
 
 body.dark {
   --text-to-add-textarea-label-color: var(--text-color-03);
