@@ -1672,7 +1672,6 @@ nav .right {
     display: none; } }
 
 .app-settings-dialog {
-  --dialog-min-width: 60rem;
   --input-width: 10rem; }
   .app-settings-dialog .app-setting {
     padding-bottom: 2.5rem;
@@ -1744,6 +1743,18 @@ nav .right {
     border-top: 1px solid var(--border-color);
     padding-top: 2rem;
     font-size: 1.6rem; }
+
+@media only screen and (max-width: 1024px) {
+  .dialog {
+    --dialog-width: 50%; } }
+
+@media only screen and (max-width: 768px) {
+  .dialog {
+    --dialog-width: 60%; } }
+
+@media only screen and (max-width: 425px) {
+  .dialog {
+    --dialog-width: 80%; } }
 
 .input-container {
   display: flex;
@@ -1853,28 +1864,28 @@ body.light {
   --text-to-add-textarea-label-color: var(--text-color-03);
   --add-icon-color-on-hover: var(--primary-color); }
 
-.add-custom-text-to-type-dialog {
-  --dialog-min-width: 75rem; }
-  .add-custom-text-to-type-dialog .text-to-add-textarea-header {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    font-size: 1.5rem; }
-    .add-custom-text-to-type-dialog .text-to-add-textarea-header .label {
-      font-weight: bold;
-      color: var(--text-to-add-textarea-label-color); }
-    .add-custom-text-to-type-dialog .text-to-add-textarea-header .iconify {
-      font-size: 3.2rem; }
-      .add-custom-text-to-type-dialog .text-to-add-textarea-header .iconify:hover {
-        color: var(--add-icon-color-on-hover); }
-  .add-custom-text-to-type-dialog .add-custom-text-to-type-dialog-footer {
-    display: flex;
-    align-items: center;
-    justify-content: flex-end; }
-    .add-custom-text-to-type-dialog .add-custom-text-to-type-dialog-footer > * {
-      margin-left: 1.2rem; }
-  .add-custom-text-to-type-dialog .added-custom-texts-table {
-    margin-top: 3.5rem; }
+.add-custom-text-to-type-dialog .text-to-add-textarea-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 1.5rem; }
+  .add-custom-text-to-type-dialog .text-to-add-textarea-header .label {
+    font-weight: bold;
+    color: var(--text-to-add-textarea-label-color); }
+  .add-custom-text-to-type-dialog .text-to-add-textarea-header .iconify {
+    font-size: 3.2rem; }
+    .add-custom-text-to-type-dialog .text-to-add-textarea-header .iconify:hover {
+      color: var(--add-icon-color-on-hover); }
+
+.add-custom-text-to-type-dialog .add-custom-text-to-type-dialog-footer {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end; }
+  .add-custom-text-to-type-dialog .add-custom-text-to-type-dialog-footer > * {
+    margin-left: 1.2rem; }
+
+.add-custom-text-to-type-dialog .added-custom-texts-table {
+  margin-top: 3.5rem; }
 
 .textarea-container {
   display: flex;
