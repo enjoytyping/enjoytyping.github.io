@@ -4,6 +4,7 @@ import { TextToTypeSubCategory } from '../../state/text-to-type-sub-category.enu
 import { IAppStateClient } from '../../state/app-state.client.interface';
 import { AppStateClient } from '../../state/app-state.client';
 import { END_TYPING_EVENT, MIN_STATS_TO_DISPLAY_PROGRESS_GRAPH, TRAINING_LESSON_CHANGE_EVENT } from '../../constants/constant';
+import { TrainingLesson } from '../../state/training-lesson.enum';
 
 export class TrainingKeysHtmlComponent extends BaseHtmlComponent {
   private containerId: string;
@@ -11,7 +12,7 @@ export class TrainingKeysHtmlComponent extends BaseHtmlComponent {
 
   constructor(
     private keysAyString: string,
-    private keys: TextToTypeSubCategory,
+    private trainingLesson: TrainingLesson,
     private appSettingsClient: IAppStateClient = AppStateClient.getInstance()
   ) {
     super();
@@ -39,7 +40,7 @@ export class TrainingKeysHtmlComponent extends BaseHtmlComponent {
 
   private update() {
     const appSettings = this.appSettingsClient.getAppState();
-    if (appSettings.textToTypeSubCategory === this.keys) {
+    if (appSettings.trainingLesson === this.trainingLesson) {
       this.container.classList.add('selected');
     } else {
       this.container.classList.remove('selected');
@@ -84,7 +85,7 @@ export class TrainingKeysHtmlComponent extends BaseHtmlComponent {
 
   private handleContainerClickEvent() {
     const appSettings = this.appSettingsClient.getAppState();
-    appSettings.textToTypeSubCategory = this.keys;
+    appSettings.trainingLesson = this.trainingLesson;
     this.appSettingsClient.saveAppState(appSettings);
     this.dispatchCustomEvent(TRAINING_LESSON_CHANGE_EVENT);
   }

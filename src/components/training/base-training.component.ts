@@ -46,12 +46,12 @@ export abstract class BaseTrainingHtmlComponent extends BaseHtmlComponent {
   abstract getComponents(): TrainingKeysHtmlComponent[];
 
   private handleArrowLeftClickEvent() {
-    this.container.scrollBy(-250, 0);
+    this.container.scrollBy(-300, 0);
     this.update();
   }
 
   private handleArrowRightClickEvent() {
-    this.container.scrollBy(250, 0);
+    this.container.scrollBy(300, 0);
     this.update();
   }
 

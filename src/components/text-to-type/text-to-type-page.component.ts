@@ -10,6 +10,7 @@ import { IAppStateClient } from '../../state/app-state.client.interface';
 import { TextToTypeCategory } from '../../state/text-to-type-category.enum';
 import { APP_SETTINGS_CHANGE_EVENT } from '../../constants/constant';
 import { QwertyTrainingHtmlComponent } from '../training/qwerty-training.component';
+import { TextToTypeSubCategory } from '../../state/text-to-type-sub-category.enum';
 
 const CONTAINER_ID = 'TextToTypePageHtmlComponentId';
 
@@ -55,14 +56,14 @@ export class TextToTypePageHtmlComponent extends BaseHtmlComponent {
       res.push(new ViewTypingProgressButtonHtmlComponent(AppStateClient.getInstance()));
       return res;
     }
-    if (appState.textToTypeCategory == TextToTypeCategory.TRAINING_AZERTY) {
+    if (appState.textToTypeCategory == TextToTypeCategory.TRAINING && appState.textToTypeSubCategory == TextToTypeSubCategory.AZERTY_KEYBOARD) {
       res.push(new TypedTextStatsHtmlComponent(AppStateClient.getInstance()));
       res.push(new AzertyTrainingHtmlComponent());
       res.push(new TextToTypeHtmlComponent(AppStateClient.getInstance()));
       res.push(new ViewTypingProgressButtonHtmlComponent(AppStateClient.getInstance()));
       return res;
     }
-    if (appState.textToTypeCategory == TextToTypeCategory.TRAINING_QWERTY) {
+    if (appState.textToTypeCategory == TextToTypeCategory.TRAINING && appState.textToTypeSubCategory == TextToTypeSubCategory.QWERTY_KEYBOARD) {
       res.push(new TypedTextStatsHtmlComponent(AppStateClient.getInstance()));
       res.push(new QwertyTrainingHtmlComponent());
       res.push(new TextToTypeHtmlComponent(AppStateClient.getInstance()));

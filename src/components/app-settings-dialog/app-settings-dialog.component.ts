@@ -9,6 +9,7 @@ import { AppState } from '../../state/app-state.model';
 import { SwitchHtmlComponent } from '../_core/switch/switch.component';
 import { TextToTypeSubCategory, getTextToTypeSubCategory } from '../../state/text-to-type-sub-category.enum';
 import { IAppStateClient } from '../../state/app-state.client.interface';
+import { TrainingLesson } from '../../state/training-lesson.enum';
 
 export class AppSettingsDialogHtmlComponent extends BaseDialogHtmlComponent {
   private stopOnErrorSwitch: SwitchHtmlComponent;
@@ -227,8 +228,9 @@ export class AppSettingsDialogHtmlComponent extends BaseDialogHtmlComponent {
     this.appState.textToTypeCategory = value;
     if (value == TextToTypeCategory.CODE) {
       this.appState.textToTypeSubCategory = TextToTypeSubCategory.JAVA;
-    } else if (value == TextToTypeCategory.TRAINING_AZERTY || value == TextToTypeCategory.TRAINING_QWERTY) {
-      this.appState.textToTypeSubCategory = TextToTypeSubCategory.KEYS_F_AND_J;
+    } else if (value == TextToTypeCategory.TRAINING) {
+      this.appState.textToTypeSubCategory = TextToTypeSubCategory.AZERTY_KEYBOARD;
+      this.appState.trainingLesson = TrainingLesson.KEYS_F_AND_J;
     } else {
       this.appState.textToTypeSubCategory = TextToTypeSubCategory.ENGLISH;
     }

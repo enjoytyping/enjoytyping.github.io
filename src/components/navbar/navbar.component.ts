@@ -11,6 +11,7 @@ import { getTextToTypeSubCategory, TextToTypeSubCategory } from '../../state/tex
 import { APP_SETTINGS_CHANGE_EVENT } from '../../constants/constant';
 import { EnableSoundsIconHtmlComponent } from '../enable-sounds-icon/enable-sounds-icon.component';
 import { IncreaseDecreaseFontIconHtmlComponent } from '../increase-decrease-font-icon/increase-decrease-font-icon.component';
+import { TrainingLesson } from '../../state/training-lesson.enum';
 
 const APP_SETTINGS_ICON_ID = 'APP_SETTINGS_ICON_ID';
 const ADD_CUSTOM_TEXT_TO_TYPE_ICON_ID = 'ADD_CUSTOM_TEXT_TO_TYPE_ICON_ID';
@@ -142,8 +143,9 @@ export class NavbarHtmlComponent extends BaseHtmlComponent {
       });
       this.textToTypeSubCategoryContainer.classList.remove('hide');
     }
-    if (value == TextToTypeCategory.TRAINING_AZERTY || value == TextToTypeCategory.TRAINING_QWERTY) {
-      appState.textToTypeSubCategory = TextToTypeSubCategory.KEYS_F_AND_J;
+    if (value == TextToTypeCategory.TRAINING) {
+      appState.textToTypeSubCategory = TextToTypeSubCategory.AZERTY_KEYBOARD;
+      appState.trainingLesson = TrainingLesson.KEYS_F_AND_J;
     }
     this.saveAppState(appState);
   }
@@ -154,6 +156,9 @@ export class NavbarHtmlComponent extends BaseHtmlComponent {
       appState.textToTypeIndex = 0;
     }
     appState.textToTypeSubCategory = value;
+    if (appState.textToTypeCategory == TextToTypeCategory.TRAINING) {
+      appState.trainingLesson = TrainingLesson.KEYS_F_AND_J;
+    }
     this.saveAppState(appState);
   }
 

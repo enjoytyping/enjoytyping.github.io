@@ -16,6 +16,7 @@ import { AppState } from './app-state.model';
 import { IAppStateClient } from './app-state.client.interface';
 import { TextToTypeSubCategory } from './text-to-type-sub-category.enum';
 import { LoremIpsum } from 'lorem-ipsum';
+import { TrainingLesson } from './training-lesson.enum';
 
 const lorem = new LoremIpsum({
   sentencesPerParagraph: {
@@ -82,156 +83,162 @@ export class AppStateClient implements IAppStateClient {
     if (this.appState.textToTypeCategory === TextToTypeCategory.CUSTOM_TEXT) {
       return this.appState.customTextsToType;
     }
-    if (this.appState.textToTypeCategory === TextToTypeCategory.TRAINING_AZERTY) {
-      if (this.appState.textToTypeSubCategory === TextToTypeSubCategory.KEYS_F_AND_J) {
+    if (
+      this.appState.textToTypeCategory === TextToTypeCategory.TRAINING &&
+      this.appState.textToTypeSubCategory === TextToTypeSubCategory.AZERTY_KEYBOARD
+    ) {
+      if (this.appState.trainingLesson === TrainingLesson.KEYS_F_AND_J) {
         return this.generateTrainingTextToType('fj');
       }
-      if (this.appState.textToTypeSubCategory === TextToTypeSubCategory.KEYS_D_AND_K) {
+      if (this.appState.trainingLesson === TrainingLesson.KEYS_D_AND_K) {
         return this.generateTrainingTextToType('dk');
       }
-      if (this.appState.textToTypeSubCategory === TextToTypeSubCategory.KEYS_FJDK) {
+      if (this.appState.trainingLesson === TrainingLesson.KEYS_FJDK) {
         return this.generateTrainingTextToType('fjdk');
       }
-      if (this.appState.textToTypeSubCategory === TextToTypeSubCategory.KEYS_S_AND_L) {
+      if (this.appState.trainingLesson === TrainingLesson.KEYS_S_AND_L) {
         return this.generateTrainingTextToType('sl');
       }
-      if (this.appState.textToTypeSubCategory === TextToTypeSubCategory.KEYS_Q_AND_M) {
+      if (this.appState.trainingLesson === TrainingLesson.KEYS_Q_AND_M) {
         return this.generateTrainingTextToType('qm');
       }
-      if (this.appState.textToTypeSubCategory === TextToTypeSubCategory.KEYS_QSLM) {
+      if (this.appState.trainingLesson === TrainingLesson.KEYS_QSLM) {
         return this.generateTrainingTextToType('slqm');
       }
-      if (this.appState.textToTypeSubCategory === TextToTypeSubCategory.KEYS_G_AND_H) {
+      if (this.appState.trainingLesson === TrainingLesson.KEYS_G_AND_H) {
         return this.generateTrainingTextToType('gh');
       }
-      if (this.appState.textToTypeSubCategory === TextToTypeSubCategory.KEYS_FGHJ) {
+      if (this.appState.trainingLesson === TrainingLesson.KEYS_FGHJ) {
         return this.generateTrainingTextToType('fghj');
       }
 
-      if (this.appState.textToTypeSubCategory === TextToTypeSubCategory.KEYS_R_AND_U) {
+      if (this.appState.trainingLesson === TrainingLesson.KEYS_R_AND_U) {
         return this.generateTrainingTextToType('ru');
       }
-      if (this.appState.textToTypeSubCategory === TextToTypeSubCategory.KEYS_E_AND_I) {
+      if (this.appState.trainingLesson === TrainingLesson.KEYS_E_AND_I) {
         return this.generateTrainingTextToType('ei');
       }
-      if (this.appState.textToTypeSubCategory === TextToTypeSubCategory.KEYS_ERUI) {
+      if (this.appState.trainingLesson === TrainingLesson.KEYS_ERUI) {
         return this.generateTrainingTextToType('ruei');
       }
-      if (this.appState.textToTypeSubCategory === TextToTypeSubCategory.KEYS_Z_AND_O) {
+      if (this.appState.trainingLesson === TrainingLesson.KEYS_Z_AND_O) {
         return this.generateTrainingTextToType('zo');
       }
-      if (this.appState.textToTypeSubCategory === TextToTypeSubCategory.KEYS_A_AND_P) {
+      if (this.appState.trainingLesson === TrainingLesson.KEYS_A_AND_P) {
         return this.generateTrainingTextToType('ap');
       }
-      if (this.appState.textToTypeSubCategory === TextToTypeSubCategory.KEYS_AZOP) {
+      if (this.appState.trainingLesson === TrainingLesson.KEYS_AZOP) {
         return this.generateTrainingTextToType('azop');
       }
-      if (this.appState.textToTypeSubCategory === TextToTypeSubCategory.KEYS_T_AND_Y) {
+      if (this.appState.trainingLesson === TrainingLesson.KEYS_T_AND_Y) {
         return this.generateTrainingTextToType('ty');
       }
-      if (this.appState.textToTypeSubCategory === TextToTypeSubCategory.KEYS_RTYU) {
+      if (this.appState.trainingLesson === TrainingLesson.KEYS_RTYU) {
         return this.generateTrainingTextToType('rtyu');
       }
 
-      if (this.appState.textToTypeSubCategory === TextToTypeSubCategory.KEYS_V_AND_COMMA) {
+      if (this.appState.trainingLesson === TrainingLesson.KEYS_V_AND_COMMA) {
         return this.generateTrainingTextToType('v,');
       }
-      if (this.appState.textToTypeSubCategory === TextToTypeSubCategory.KEYS_C_AND_SEMI_COLON) {
+      if (this.appState.trainingLesson === TrainingLesson.KEYS_C_AND_SEMI_COLON) {
         return this.generateTrainingTextToType('c;');
       }
-      if (this.appState.textToTypeSubCategory === TextToTypeSubCategory.KEYS_CV_COMMA_SEMI_COLON) {
+      if (this.appState.trainingLesson === TrainingLesson.KEYS_CV_COMMA_SEMI_COLON) {
         return this.generateTrainingTextToType('cv,;');
       }
-      if (this.appState.textToTypeSubCategory === TextToTypeSubCategory.KEYS_X_AND_COLON) {
+      if (this.appState.trainingLesson === TrainingLesson.KEYS_X_AND_COLON) {
         return this.generateTrainingTextToType('x:');
       }
-      if (this.appState.textToTypeSubCategory === TextToTypeSubCategory.KEYS_W_AND_EX) {
+      if (this.appState.trainingLesson === TrainingLesson.KEYS_W_AND_EX) {
         return this.generateTrainingTextToType('w!');
       }
-      if (this.appState.textToTypeSubCategory === TextToTypeSubCategory.KEYS_WX_COLON_EX) {
+      if (this.appState.trainingLesson === TrainingLesson.KEYS_WX_COLON_EX) {
         return this.generateTrainingTextToType('wx:!');
       }
-      if (this.appState.textToTypeSubCategory === TextToTypeSubCategory.KEYS_B_AND_N) {
+      if (this.appState.trainingLesson === TrainingLesson.KEYS_B_AND_N) {
         return this.generateTrainingTextToType('bn');
       }
-      if (this.appState.textToTypeSubCategory === TextToTypeSubCategory.KEYS_VBN_COMMA) {
+      if (this.appState.trainingLesson === TrainingLesson.KEYS_VBN_COMMA) {
         return this.generateTrainingTextToType('vbn,');
       }
     }
 
-    if (this.appState.textToTypeCategory === TextToTypeCategory.TRAINING_QWERTY) {
-      if (this.appState.textToTypeSubCategory === TextToTypeSubCategory.KEYS_F_AND_J) {
+    if (
+      this.appState.textToTypeCategory === TextToTypeCategory.TRAINING &&
+      this.appState.textToTypeSubCategory === TextToTypeSubCategory.QWERTY_KEYBOARD
+    ) {
+      if (this.appState.trainingLesson === TrainingLesson.KEYS_F_AND_J) {
         return this.generateTrainingTextToType('fj');
       }
-      if (this.appState.textToTypeSubCategory === TextToTypeSubCategory.KEYS_D_AND_K) {
+      if (this.appState.trainingLesson === TrainingLesson.KEYS_D_AND_K) {
         return this.generateTrainingTextToType('dk');
       }
-      if (this.appState.textToTypeSubCategory === TextToTypeSubCategory.KEYS_FJDK) {
+      if (this.appState.trainingLesson === TrainingLesson.KEYS_FJDK) {
         return this.generateTrainingTextToType('fjdk');
       }
-      if (this.appState.textToTypeSubCategory === TextToTypeSubCategory.KEYS_S_AND_L) {
+      if (this.appState.trainingLesson === TrainingLesson.KEYS_S_AND_L) {
         return this.generateTrainingTextToType('sl');
       }
-      if (this.appState.textToTypeSubCategory === TextToTypeSubCategory.KEYS_A_AND_SEMI_COLON) {
+      if (this.appState.trainingLesson === TrainingLesson.KEYS_A_AND_SEMI_COLON) {
         return this.generateTrainingTextToType('a;');
       }
-      if (this.appState.textToTypeSubCategory === TextToTypeSubCategory.KEYS_ASL_SEMI_COLON) {
+      if (this.appState.trainingLesson === TrainingLesson.KEYS_ASL_SEMI_COLON) {
         return this.generateTrainingTextToType('asl;');
       }
-      if (this.appState.textToTypeSubCategory === TextToTypeSubCategory.KEYS_G_AND_H) {
+      if (this.appState.trainingLesson === TrainingLesson.KEYS_G_AND_H) {
         return this.generateTrainingTextToType('gh');
       }
-      if (this.appState.textToTypeSubCategory === TextToTypeSubCategory.KEYS_FGHJ) {
+      if (this.appState.trainingLesson === TrainingLesson.KEYS_FGHJ) {
         return this.generateTrainingTextToType('fghj');
       }
 
-      if (this.appState.textToTypeSubCategory === TextToTypeSubCategory.KEYS_R_AND_U) {
+      if (this.appState.trainingLesson === TrainingLesson.KEYS_R_AND_U) {
         return this.generateTrainingTextToType('ru');
       }
-      if (this.appState.textToTypeSubCategory === TextToTypeSubCategory.KEYS_E_AND_I) {
+      if (this.appState.trainingLesson === TrainingLesson.KEYS_E_AND_I) {
         return this.generateTrainingTextToType('ei');
       }
-      if (this.appState.textToTypeSubCategory === TextToTypeSubCategory.KEYS_ERUI) {
+      if (this.appState.trainingLesson === TrainingLesson.KEYS_ERUI) {
         return this.generateTrainingTextToType('ruei');
       }
-      if (this.appState.textToTypeSubCategory === TextToTypeSubCategory.KEYS_W_AND_O) {
+      if (this.appState.trainingLesson === TrainingLesson.KEYS_W_AND_O) {
         return this.generateTrainingTextToType('wo');
       }
-      if (this.appState.textToTypeSubCategory === TextToTypeSubCategory.KEYS_Q_AND_P) {
+      if (this.appState.trainingLesson === TrainingLesson.KEYS_Q_AND_P) {
         return this.generateTrainingTextToType('qp');
       }
-      if (this.appState.textToTypeSubCategory === TextToTypeSubCategory.KEYS_QWOP) {
+      if (this.appState.trainingLesson === TrainingLesson.KEYS_QWOP) {
         return this.generateTrainingTextToType('qwop');
       }
-      if (this.appState.textToTypeSubCategory === TextToTypeSubCategory.KEYS_T_AND_Y) {
+      if (this.appState.trainingLesson === TrainingLesson.KEYS_T_AND_Y) {
         return this.generateTrainingTextToType('ty');
       }
-      if (this.appState.textToTypeSubCategory === TextToTypeSubCategory.KEYS_RTYU) {
+      if (this.appState.trainingLesson === TrainingLesson.KEYS_RTYU) {
         return this.generateTrainingTextToType('rtyu');
       }
 
-      if (this.appState.textToTypeSubCategory === TextToTypeSubCategory.KEYS_V_AND_M) {
+      if (this.appState.trainingLesson === TrainingLesson.KEYS_V_AND_M) {
         return this.generateTrainingTextToType('vm');
       }
-      if (this.appState.textToTypeSubCategory === TextToTypeSubCategory.KEYS_C_AND_COMMA) {
+      if (this.appState.trainingLesson === TrainingLesson.KEYS_C_AND_COMMA) {
         return this.generateTrainingTextToType('c,');
       }
-      if (this.appState.textToTypeSubCategory === TextToTypeSubCategory.KEYS_CVM_COMMA) {
+      if (this.appState.trainingLesson === TrainingLesson.KEYS_CVM_COMMA) {
         return this.generateTrainingTextToType('cvm,');
       }
-      if (this.appState.textToTypeSubCategory === TextToTypeSubCategory.KEYS_X_AND_DOT) {
+      if (this.appState.trainingLesson === TrainingLesson.KEYS_X_AND_DOT) {
         return this.generateTrainingTextToType('x.');
       }
-      if (this.appState.textToTypeSubCategory === TextToTypeSubCategory.KEYS_Z_AND_SLASH) {
+      if (this.appState.trainingLesson === TrainingLesson.KEYS_Z_AND_SLASH) {
         return this.generateTrainingTextToType('z/');
       }
-      if (this.appState.textToTypeSubCategory === TextToTypeSubCategory.KEYS_ZX_DOT_SLASH) {
+      if (this.appState.trainingLesson === TrainingLesson.KEYS_ZX_DOT_SLASH) {
         return this.generateTrainingTextToType('zx./');
       }
-      if (this.appState.textToTypeSubCategory === TextToTypeSubCategory.KEYS_B_AND_N) {
+      if (this.appState.trainingLesson === TrainingLesson.KEYS_B_AND_N) {
         return this.generateTrainingTextToType('bn');
       }
-      if (this.appState.textToTypeSubCategory === TextToTypeSubCategory.KEYS_VBNM) {
+      if (this.appState.trainingLesson === TrainingLesson.KEYS_VBNM) {
         return this.generateTrainingTextToType('vbnm');
       }
     }
