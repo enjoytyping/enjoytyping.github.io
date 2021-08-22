@@ -40,9 +40,9 @@ export class WelcomeMessageDialogHtmlComponent extends BaseDialogHtmlComponent {
   postInsertHtml() {
     super.postInsertHtml();
     const appState = this.appStateClient.getAppState();
-    if (!appState.visitWebsiteForTheFirstTime) {
+    if (appState.visitWebsiteForTheFirstTime) {
       this.show();
-      appState.visitWebsiteForTheFirstTime = true;
+      appState.visitWebsiteForTheFirstTime = false;
       this.appStateClient.saveAppState(appState);
     }
   }

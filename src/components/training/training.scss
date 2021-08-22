@@ -107,3 +107,13 @@
     font-size: 2rem;
   }
 }
+
+@media screen and (max-width: 768px) {
+  .training-title {
+    margin: 2rem 0 0.4rem;
+  }
+
+  .training-container2 {
+    margin: 0;
+  }
+}
