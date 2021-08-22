@@ -109,6 +109,9 @@ p {
 .primary-color {
   color: var(--primary-color); }
 
+.secondary-color {
+  color: var(--secondary-color); }
+
 .hide {
   display: none !important; }
 
@@ -1949,4 +1952,52 @@ body.dark {
     border-left: 1px solid var(--border-color);
     border-right: 1px solid var(--border-color);
     font-family: 'Roboto Mono', monospace; }
+
+.welcome-message-dialog {
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%); }
+  .welcome-message-dialog .dialog-body {
+    padding-bottom: 0; }
+  .welcome-message-dialog .enjoy {
+    float: right;
+    margin-top: 10rem;
+    margin-right: 0.8rem;
+    display: flex;
+    padding-bottom: 0.5rem; }
+    .welcome-message-dialog .enjoy .letter {
+      font-family: cursive;
+      font-size: 3rem;
+      font-weight: bold;
+      width: 4rem;
+      height: 4rem;
+      border-radius: 1rem;
+      box-shadow: var(--box-shadow-02);
+      margin-right: -0.65rem;
+      display: flex;
+      align-items: center;
+      justify-content: center; }
+    .welcome-message-dialog .enjoy .E {
+      background-color: #67cbff;
+      color: #006599; }
+    .welcome-message-dialog .enjoy .N {
+      margin-top: -0.75rem;
+      background-color: #f6ae67;
+      color: white; }
+    .welcome-message-dialog .enjoy .J {
+      background-color: #ff689b;
+      color: #fecccb; }
+    .welcome-message-dialog .enjoy .O {
+      margin-top: 0.75rem;
+      background-color: #9acc32;
+      color: white; }
+    .welcome-message-dialog .enjoy .Y {
+      background-color: #65cafc;
+      color: white; }
+    .welcome-message-dialog .enjoy .exclamation {
+      margin-top: -0.75rem;
+      background-color: #fd6599;
+      color: white; }
+  .welcome-message-dialog .dialog-footer {
+    display: none; }
 

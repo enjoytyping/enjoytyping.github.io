@@ -75,11 +75,6 @@ export class AppStateClient implements IAppStateClient {
   }
 
   getTextToTypeArray(): TextToType[] {
-    if (this.appState.visitWebsiteForTheFirstTime) {
-      this.appState.visitWebsiteForTheFirstTime = false;
-      this.saveAppState(this.appState);
-      return [welcomeMessage];
-    }
     if (this.appState.textToTypeCategory === TextToTypeCategory.CUSTOM_TEXT) {
       return this.appState.customTextsToType;
     }

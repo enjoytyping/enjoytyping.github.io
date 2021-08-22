@@ -5,8 +5,10 @@ import { FooterHtmlComponent } from './components/footer/footer.component';
 import { NavbarHtmlComponent } from './components/navbar/navbar.component';
 import { IHtmlComponent } from './components/_core/component.interface';
 import { AppStateClient } from './state/app-state.client';
+import { WelcomeMessageDialogHtmlComponent } from './components/welcome-message-dialog/welcome-message-dialog.component';
 
 const components: IHtmlComponent[] = [];
+components.push(new WelcomeMessageDialogHtmlComponent(AppStateClient.getInstance()));
 components.push(new NavbarHtmlComponent(AppStateClient.getInstance()));
 components.push(new MainHtmlComponent());
 components.push(new FooterHtmlComponent());
