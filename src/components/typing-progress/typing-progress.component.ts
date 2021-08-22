@@ -5,7 +5,6 @@ import { BaseHtmlComponent } from '../_core/base-component';
 import { TypedKeysHighlighter } from './typed-keys-highlighter';
 import { TypedKeysHtmlComponent, TYPED_KEY_CLASS } from '../typed-keys/typed-keys.component';
 import { TypedTextStats } from '../typed-text-stats/typed-text-stats.model';
-import { SwitchHtmlComponent } from '../_core/switch/switch.component';
 import { IAppStateClient } from '../../state/app-state.client.interface';
 
 // const TYPED_KEYS = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789"{}()[]<>+-=,.;:';
