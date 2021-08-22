@@ -1383,12 +1383,14 @@ body.dark {
 @media screen and (max-width: 426px) {
   .typed-text-stat-container {
     width: 10rem !important;
-    height: 10rem !important; } }
+    height: 10rem !important;
+    margin: 0.5rem; } }
 
 @media screen and (max-width: 320px) {
   .typed-text-stat-container {
     width: 8rem !important;
-    height: 8rem !important; }
+    height: 8rem !important;
+    margin: 0.5rem; }
   .typed-text-stat-label {
     font-size: 1.2rem !important; } }
 
