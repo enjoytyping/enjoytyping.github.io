@@ -1647,6 +1647,13 @@ nav .right {
   nav .right .select-container {
     width: 21rem; }
 
+@media only screen and (max-width: 768px) {
+  nav .text-to-type-category,
+  nav .increase-decrease-font-size,
+  nav .enable-sounds,
+  nav .text-to-type-subcategory {
+    display: none; } }
+
 .app-settings-dialog {
   --dialog-min-width: 60rem;
   --input-width: 10rem; }

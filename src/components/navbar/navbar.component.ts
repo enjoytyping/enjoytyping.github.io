@@ -69,10 +69,12 @@ export class NavbarHtmlComponent extends BaseHtmlComponent {
           </a>
         </div>
         <div class='right'>
-          <span class="select">${this.textToTypeCategoriesSelect.toHtml()}</span>
-          <span class="select" id="${this.textToTypeSubCategoryContainerId}">${this.textToTypeSubCategorySelect.toHtml()}</span>
-          <span>${this.increaseDecreaseFontSizeIcon.toHtml()}</span>
-          <span>${this.enableSoundsIcon.toHtml()}</span>
+          <span class="select text-to-type-category">${this.textToTypeCategoriesSelect.toHtml()}</span>
+          <span class="select text-to-type-subcategory" id="${
+            this.textToTypeSubCategoryContainerId
+          }">${this.textToTypeSubCategorySelect.toHtml()}</span>
+          <span class="increase-decrease-font-size">${this.increaseDecreaseFontSizeIcon.toHtml()}</span>
+          <span class="enable-sounds">${this.enableSoundsIcon.toHtml()}</span>
           <span id="${ADD_CUSTOM_TEXT_TO_TYPE_ICON_ID}" title="Add custom text to type"><span class="iconify" data-icon="grommet-icons:add" data-inline="false"></span></span>
           <span id="${APP_SETTINGS_ICON_ID}" title="App Settings"><span class="iconify" data-icon="jam:settings-alt" data-inline="false" data-rotate="270deg"></span></span>
           <div class="app-settings-drop-down">${this.appSettingsDialog.toHtml()}<div>
