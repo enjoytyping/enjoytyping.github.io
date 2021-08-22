@@ -84,9 +84,10 @@
 .typed-keys-stats-container {
   max-width: 82rem;
   margin: 3rem auto 0;
-  display: grid;
+  display: flex;
+  flex-wrap: wrap;
   grid-gap: 2px;
-  grid-template-columns: repeat(auto-fit, minmax(2.8rem, 1fr));
+
   & .typed-key {
     color: black;
     font-size: 1.4rem;

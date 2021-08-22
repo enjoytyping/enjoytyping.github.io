@@ -1354,9 +1354,9 @@ body.dark {
 .typed-keys-stats-container {
   max-width: 82rem;
   margin: 3rem auto 0;
-  display: grid;
-  grid-gap: 2px;
-  grid-template-columns: repeat(auto-fit, minmax(2.8rem, 1fr)); }
+  display: flex;
+  flex-wrap: wrap;
+  grid-gap: 2px; }
   .typed-keys-stats-container .typed-key {
     color: black;
     font-size: 1.4rem;
