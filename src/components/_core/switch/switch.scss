@@ -1,8 +1,13 @@
 .switch-off,
 .switch-on {
-  font-size: 4.5rem;
+  cursor: pointer;
+  font-size: 4rem;
 }
 
 .switch-on {
   color: var(--switch-on-color);
+}
+
+.switch-off {
+  color: var(--switch-off-color);
 }

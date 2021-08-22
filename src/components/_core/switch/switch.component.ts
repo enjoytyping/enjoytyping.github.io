@@ -23,8 +23,8 @@ export class SwitchHtmlComponent extends BaseHtmlComponent {
   toHtml() {
     return /* html */ `
       <span id="${this.switchContainerId}" class="switch-container">
-        <span id="${this.switchOffId}"><span class="iconify switch-off" data-icon="ic:outline-check-box-outline-blank" data-inline="false"></span></span>
-        <span id="${this.switchOnId}"><span class="iconify switch-on" data-icon="ic:outline-check-box" data-inline="false"></span></span>
+        <svg id="${this.switchOffId}" class="switch-off" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" aria-hidden="true" role="img" width="1em" height="1em" preserveAspectRatio="xMidYMid meet" viewBox="0 0 24 24"><path d="M17 7H7a5 5 0 0 0-5 5a5 5 0 0 0 5 5h10a5 5 0 0 0 5-5a5 5 0 0 0-5-5M7 15a3 3 0 0 1-3-3a3 3 0 0 1 3-3a3 3 0 0 1 3 3a3 3 0 0 1-3 3z" fill="currentColor"/></svg>
+        <svg id="${this.switchOnId}" class="switch-on" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" aria-hidden="true" role="img" width="1em" height="1em" preserveAspectRatio="xMidYMid meet" viewBox="0 0 24 24"><path d="M17 7H7a5 5 0 0 0-5 5a5 5 0 0 0 5 5h10a5 5 0 0 0 5-5a5 5 0 0 0-5-5m0 8a3 3 0 0 1-3-3a3 3 0 0 1 3-3a3 3 0 0 1 3 3a3 3 0 0 1-3 3z" fill="currentColor"/></svg>
       </span>
     `;
   }

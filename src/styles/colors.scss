@@ -37,7 +37,8 @@ body.light {
   --whitespace-color: rgb(221, 221, 221);
   --typed-text-stat-value-color: var(--text-color-03);
   --typed-text-stat-container-border-color: var(--secondary-color);
-  --switch-on-color: #065fd4;
+  --switch-on-color: #1a73e8;
+  --switch-off-color: #bdc1c6;
   --dialog-box-shadow: var(--box-shadow-01);
   --slider-color: var(--primary-color);
   --slider-background-color: var(--border-color);
@@ -132,7 +133,8 @@ body.dark {
   --whitespace-color: #383838;
   --typed-text-stat-value-color: var(--text-color-03);
   --typed-text-stat-container-border-color: var(--secondary-color);
-  --switch-on-color: #1378fd;
+  --switch-on-color: #1a73e8;
+  --switch-off-color: #d3d3d3;
   --dialog-box-shadow: var(--box-shadow-01);
   --dialog-background-color: var(--background-color-01);
   --slider-color: var(--primary-color);
