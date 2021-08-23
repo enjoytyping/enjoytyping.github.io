@@ -1513,12 +1513,23 @@ body.dark {
   border-top-left-radius: 0.6rem;
   border-top-right-radius: 0.6rem; }
 
+.view-typing-progress-button-container {
+  display: flex;
+  align-items: center;
+  justify-content: center; }
+
 .view-typing-progress-button {
   color: var(--secondary-color);
   font-weight: bold;
-  padding-top: 2rem;
-  padding-bottom: 2rem;
-  text-align: center; }
+  font-size: 1.35rem;
+  margin: 1.6rem;
+  padding: 0.4rem 3rem;
+  text-align: center;
+  transition: all 0.2s ease-in;
+  border-radius: 100rem;
+  border: 2px solid var(--secondary-color); }
+  .view-typing-progress-button:hover {
+    text-decoration: none; }
 
 .training-title {
   margin: 2rem 8rem 0.4rem;
