@@ -1564,7 +1564,11 @@ body.dark {
   .increase-decrease-value-container .increase-value,
   .increase-decrease-value-container .decrease-value {
     cursor: pointer;
-    font-weight: bold; }
+    font-weight: bold;
+    -webkit-user-select: none;
+       -moz-user-select: none;
+        -ms-user-select: none;
+            user-select: none; }
   .increase-decrease-value-container .increase-value:hover,
   .increase-decrease-value-container .decrease-value:hover {
     background-color: var(--increase-decrease-value-background-color-on-hover); }

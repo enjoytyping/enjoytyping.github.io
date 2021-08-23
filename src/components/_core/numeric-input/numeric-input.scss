@@ -14,6 +14,7 @@
   & .decrease-value {
     cursor: pointer;
     font-weight: bold;
+    user-select: none;
   }
 
   & .increase-value:hover,

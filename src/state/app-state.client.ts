@@ -9,7 +9,6 @@ import frenchStories from './stories.french';
 import javaCode from './code.java';
 import pythonCode from './code.python';
 import htmlCode from './code.html';
-import welcomeMessage from './welcome-message';
 import { TextToTypeCategory } from './text-to-type-category.enum';
 import { TextToType } from '../components/text-to-type/text-to-type.model';
 import { AppState } from './app-state.model';
