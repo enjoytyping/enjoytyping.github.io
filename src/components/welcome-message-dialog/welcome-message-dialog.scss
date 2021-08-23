@@ -18,47 +18,39 @@
       font-family: cursive;
       font-size: 3rem;
       font-weight: bold;
-      width: 4rem;
-      height: 4rem;
-      border-radius: 1rem;
+      width: 4.4rem;
+      height: 4.4rem;
+      border-radius: 100rem;
       box-shadow: var(--box-shadow-02);
-      margin-right: -0.65rem;
+      margin-right: -0.6rem;
       display: flex;
       align-items: center;
       justify-content: center;
+      color: white;
     }
 
     & .E {
       background-color: #67cbff;
-      color: #006599;
     }
 
     & .N {
-      margin-top: -0.75rem;
       background-color: #f6ae67;
-      color: white;
     }
 
     & .J {
       background-color: #ff689b;
-      color: #fecccb;
     }
 
     & .O {
-      margin-top: 0.75rem;
       background-color: #9acc32;
-      color: white;
     }
 
     & .Y {
       background-color: #65cafc;
-      color: white;
     }
 
     & .exclamation {
-      margin-top: -0.75rem;
       background-color: #fd6599;
-      color: white;
     }
   }
 

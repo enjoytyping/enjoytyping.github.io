@@ -2010,35 +2010,27 @@ body.dark {
       font-family: cursive;
       font-size: 3rem;
       font-weight: bold;
-      width: 4rem;
-      height: 4rem;
-      border-radius: 1rem;
+      width: 4.4rem;
+      height: 4.4rem;
+      border-radius: 100rem;
       box-shadow: var(--box-shadow-02);
-      margin-right: -0.65rem;
+      margin-right: -0.6rem;
       display: flex;
       align-items: center;
-      justify-content: center; }
+      justify-content: center;
+      color: white; }
     .welcome-message-dialog .enjoy .E {
-      background-color: #67cbff;
-      color: #006599; }
+      background-color: #67cbff; }
     .welcome-message-dialog .enjoy .N {
-      margin-top: -0.75rem;
-      background-color: #f6ae67;
-      color: white; }
+      background-color: #f6ae67; }
     .welcome-message-dialog .enjoy .J {
-      background-color: #ff689b;
-      color: #fecccb; }
+      background-color: #ff689b; }
     .welcome-message-dialog .enjoy .O {
-      margin-top: 0.75rem;
-      background-color: #9acc32;
-      color: white; }
+      background-color: #9acc32; }
     .welcome-message-dialog .enjoy .Y {
-      background-color: #65cafc;
-      color: white; }
+      background-color: #65cafc; }
     .welcome-message-dialog .enjoy .exclamation {
-      margin-top: -0.75rem;
-      background-color: #fd6599;
-      color: white; }
+      background-color: #fd6599; }
   .welcome-message-dialog .dialog-footer {
     display: none; }
 
