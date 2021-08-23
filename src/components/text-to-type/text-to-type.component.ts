@@ -277,7 +277,7 @@ export class TextToTypeHtmlComponent extends BaseHtmlComponent {
 
   private getTextReferenceInnerHtml(text: TextToType): string {
     if (text.reference) {
-      return `<span class="text-to-type-reference"><a href="${text.reference}">${text.author}</a></span>`;
+      return `<span class="text-to-type-reference"><a target="_blank" href="${text.reference}">${text.author}</a></span>`;
     }
     if (text.author) {
       return `<span class="text-to-type-reference">${text.author}</span>`;
