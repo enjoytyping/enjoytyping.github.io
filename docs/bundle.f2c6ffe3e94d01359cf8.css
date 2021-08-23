@@ -1530,8 +1530,9 @@ body.dark {
     font-weight: bold;
     font-size: 1.4rem;
     margin-right: 0.6rem;
-    margin-left: 1.5rem;
     color: var(--text-to-type-ctrl-label-color); }
+  .text-to-type-ctrl .font-size-label {
+    margin-left: 1.5rem; }
 
 .view-typing-progress-button-container {
   display: flex;
@@ -1554,10 +1555,11 @@ body.dark {
 
 .increase-decrease-value-container {
   border: 1px solid var(--border-color);
-  border-radius: 0.3rem;
+  border-radius: 100rem;
   display: inline-flex;
   align-items: center;
-  justify-content: center; }
+  justify-content: center;
+  overflow: hidden; }
   .increase-decrease-value-container span {
     font-size: 1.3rem;
     padding: 0.2rem 0.75rem; }

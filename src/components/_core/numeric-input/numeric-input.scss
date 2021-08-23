@@ -1,9 +1,10 @@
 .increase-decrease-value-container {
   border: 1px solid var(--border-color);
-  border-radius: 0.3rem;
+  border-radius: 100rem;
   display: inline-flex;
   align-items: center;
   justify-content: center;
+  overflow: hidden;
 
   & span {
     font-size: 1.3rem;
