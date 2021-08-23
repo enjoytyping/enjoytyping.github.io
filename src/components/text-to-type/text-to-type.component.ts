@@ -10,6 +10,7 @@ import {
   START_UPDATING_CUSTOM_TEXT_TO_TYPE_EVENT,
   TRAINING_LESSON_CHANGE_EVENT,
   CHANGE_FONT_SIZE_EVENT,
+  CHANGE_TRAINING_SIZE_EVENT,
 } from '../../constants/constant';
 import { BaseHtmlComponent } from '../_core/base-component';
 import { TypedKeyStats } from '../typed-keys/typed-key-stats.model';
@@ -18,6 +19,8 @@ import { TypedTextStats } from '../typed-text-stats/typed-text-stats.model';
 import { TextToTypeSubCategory } from '../../state/text-to-type-sub-category.enum';
 import { IAppStateClient } from '../../state/app-state.client.interface';
 import { TextToType } from './text-to-type.model';
+import { FontSizeInputHtmlComponent } from '../font-size-input/font-size-input.component';
+import { TrainingSizeInputHtmlComponent } from '../training-size-input/training-size-input.component';
 
 const INACTIVITY_TIMEOUT = 60000;
 const BACKSPACE_KEY = 'Backspace';
@@ -41,20 +44,33 @@ export class TextToTypeHtmlComponent extends BaseHtmlComponent {
   private isDisabled: boolean = false;
   private referenceId: string;
   private reference: HTMLElement;
+  private fontSizeInput: FontSizeInputHtmlComponent;
+  private trainingSizeInput: TrainingSizeInputHtmlComponent;
 
   constructor(private appStateClient: IAppStateClient) {
     super();
+    this.fontSizeInput = new FontSizeInputHtmlComponent();
+    this.trainingSizeInput = new TrainingSizeInputHtmlComponent();
   }
 
   preInsertHtml(): void {
     this.referenceId = this.generateId();
     this.keyboardSound = new Audio('keyboard-press-sound-effect.mp3');
+    this.fontSizeInput.preInsertHtml();
+    this.trainingSizeInput.preInsertHtml();
   }
 
   toHtml() {
     return /* html */ `
       <span class="separator"></span>
-      <span id="${this.referenceId}"></span>
+      <div class="text-to-type-top-section">
+        <span id="${this.referenceId}"></span>
+        <div class="text-to-type-ctrl">
+          ${this.getTrainingSizeHtml()}
+          <span class="label font-size-label">Font size</span>
+          ${this.fontSizeInput.toHtml()}
+        </div>
+      </div>
       <div id="${TEXT_TO_TYPE_CONTAINER_DOM_ELEMENT_ID}" class="text-to-type-container">
         <div id="${TEXT_TO_TYPE_DOM_ELEMENT_ID}" class="text-to-type">
         </div>
@@ -63,6 +79,8 @@ export class TextToTypeHtmlComponent extends BaseHtmlComponent {
   }
 
   postInsertHtml(): void {
+    this.fontSizeInput.postInsertHtml();
+    this.postInsertTrainingSizeHtml();
     this.reference = document.getElementById(this.referenceId);
     const appState = this.appStateClient.getAppState();
     appState.textToTypeSubCategory = appState.textToTypeSubCategory || TextToTypeSubCategory.ENGLISH;
@@ -80,6 +98,25 @@ export class TextToTypeHtmlComponent extends BaseHtmlComponent {
     this.addCustomEventListener(CUSTOM_TEXTS_UPDATE_EVENT, this.reset.bind(this));
     this.addCustomEventListener(TRAINING_LESSON_CHANGE_EVENT, this.reset.bind(this));
     this.addCustomEventListener(CHANGE_FONT_SIZE_EVENT, this.updateFontSize.bind(this));
+    this.addCustomEventListener(CHANGE_TRAINING_SIZE_EVENT, this.reset.bind(this));
+  }
+
+  private getTrainingSizeHtml() {
+    const appState = this.appStateClient.getAppState();
+    if (appState.textToTypeCategory !== TextToTypeCategory.TRAINING) {
+      return '';
+    }
+    return /* html */ `
+      <span class="label training-size-label">Training size</span>
+      ${this.trainingSizeInput.toHtml()}
+    `;
+  }
+
+  private postInsertTrainingSizeHtml() {
+    const appState = this.appStateClient.getAppState();
+    if (appState.textToTypeCategory == TextToTypeCategory.TRAINING) {
+      this.trainingSizeInput.postInsertHtml();
+    }
   }
 
   private updateFontSize() {

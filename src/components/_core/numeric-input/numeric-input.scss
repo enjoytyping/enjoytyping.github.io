@@ -1,27 +1,27 @@
-.increase-decrease-font-icon-container {
+.increase-decrease-value-container {
   border: 1px solid var(--border-color);
   border-radius: 0.3rem;
-  display: flex;
+  display: inline-flex;
   align-items: center;
   justify-content: center;
 
   & span {
-    font-size: 1.6rem;
-    padding: 0.65rem 1rem;
+    font-size: 1.3rem;
+    padding: 0.2rem 0.75rem;
   }
 
-  & .increase-font-icon,
-  & .decrease-font-icon {
+  & .increase-value,
+  & .decrease-value {
     cursor: pointer;
     font-weight: bold;
   }
 
-  & .increase-font-icon:hover,
-  & .decrease-font-icon:hover {
-    background-color: var(--increase-decrease-font-icon-background-color-on-hover);
+  & .increase-value:hover,
+  & .decrease-value:hover {
+    background-color: var(--increase-decrease-value-background-color-on-hover);
   }
 
-  & .font-size {
+  & .value {
     border-left: 1px solid var(--border-color);
     border-right: 1px solid var(--border-color);
     font-family: 'Roboto Mono', monospace;

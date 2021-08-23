@@ -3,6 +3,7 @@ import { TypedTextStats } from '../components/typed-text-stats/typed-text-stats.
 import { TextToTypeSubCategory } from './text-to-type-sub-category.enum';
 import { TextToType } from '../components/text-to-type/text-to-type.model';
 import { TrainingLesson } from './training-lesson.enum';
+import { TRAINING_SIZE_DEFAULT_VALUE } from '../constants/constant';
 
 export class AppState {
   customTextsToType: TextToType[];
@@ -19,5 +20,6 @@ export class AppState {
   typedTextsStats: TypedTextStats[] = [];
   typedKeysStatsJson: string;
   fontSize: number = 22;
+  trainingSize: number = TRAINING_SIZE_DEFAULT_VALUE;
   trainingLesson = TrainingLesson.KEYS_F_AND_J;
 }

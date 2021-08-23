@@ -66,6 +66,12 @@
   }
 }
 
+.text-to-type-top-section {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
 .text-to-type-reference {
   font-size: 1.6rem;
   color: var(--text-to-type-reference-color);
@@ -77,6 +83,17 @@
 
   &:hover a {
     text-decoration: none;
+  }
+}
+
+.text-to-type-ctrl {
+  margin-bottom: 0.5rem;
+  & .label {
+    font-weight: bold;
+    font-size: 1.4rem;
+    margin-right: 0.6rem;
+    margin-left: 1.5rem;
+    color: var(--text-to-type-ctrl-label-color);
   }
 }
 
