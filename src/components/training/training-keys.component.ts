@@ -75,7 +75,7 @@ export class TrainingKeysHtmlComponent extends BaseHtmlComponent {
       } else {
         this.container.classList.add('avg-wpm-gte-50');
       }
-      this.container.title = `Typing speed: ${this.arrayAvg(speeds)}`;
+      this.container.title = `Typing speed: ${this.arrayAvg(speeds)}wpm`;
     }
   }
 
