@@ -1476,11 +1476,19 @@ body.dark {
   height: 4rem;
   flex-shrink: 0; }
 
+.view-typing-progress-link {
+  font-size: 1.2rem;
+  font-weight: bold;
+  font-style: italic;
+  float: right;
+  color: var(--secondary-color);
+  margin-top: 0.3rem;
+  margin-bottom: 3rem;
+  align-self: flex-end; }
+
 .text-to-type-container {
   width: 100%;
   margin: 0 auto;
-  min-height: 15rem;
-  flex: 1;
   overflow-y: scroll; }
   .text-to-type-container .text-to-type {
     position: relative;

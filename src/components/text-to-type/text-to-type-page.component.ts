@@ -2,7 +2,6 @@ import { IHtmlComponent } from '../_core/component.interface';
 import { TypedTextStatsHtmlComponent } from '../typed-text-stats/typed-text-stats.component';
 import { TextToTypeHtmlComponent } from './text-to-type.component';
 import { AppStateClient } from '../../state/app-state.client';
-import { ViewTypingProgressButtonHtmlComponent } from './view-typing-progress-button.component';
 import { AzertyTrainingHtmlComponent } from '../training/azerty-training.component';
 import { TypedKeysStatsHtmlComponent } from '../typed-text-stats/typed-keys-stats.component';
 import { BaseHtmlComponent } from '../_core/base-component';
@@ -53,20 +52,17 @@ export class TextToTypePageHtmlComponent extends BaseHtmlComponent {
       res.push(new TypedTextStatsHtmlComponent(AppStateClient.getInstance()));
       res.push(new AzertyTrainingHtmlComponent());
       res.push(new TextToTypeHtmlComponent(AppStateClient.getInstance()));
-      res.push(new ViewTypingProgressButtonHtmlComponent(AppStateClient.getInstance()));
       return res;
     }
     if (appState.textToTypeCategory == TextToTypeCategory.TRAINING && appState.textToTypeSubCategory == TextToTypeSubCategory.QWERTY_KEYBOARD) {
       res.push(new TypedTextStatsHtmlComponent(AppStateClient.getInstance()));
       res.push(new QwertyTrainingHtmlComponent());
       res.push(new TextToTypeHtmlComponent(AppStateClient.getInstance()));
-      res.push(new ViewTypingProgressButtonHtmlComponent(AppStateClient.getInstance()));
       return res;
     }
     res.push(new TypedTextStatsHtmlComponent(AppStateClient.getInstance()));
     res.push(new TypedKeysStatsHtmlComponent(AppStateClient.getInstance()));
     res.push(new TextToTypeHtmlComponent(AppStateClient.getInstance()));
-    res.push(new ViewTypingProgressButtonHtmlComponent(AppStateClient.getInstance()));
     return res;
   }
 

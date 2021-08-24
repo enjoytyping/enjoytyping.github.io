@@ -11,6 +11,7 @@ import {
   TRAINING_LESSON_CHANGE_EVENT,
   CHANGE_FONT_SIZE_EVENT,
   CHANGE_TRAINING_SIZE_EVENT,
+  PROGRESS_DIV_ID,
 } from '../../constants/constant';
 import { BaseHtmlComponent } from '../_core/base-component';
 import { TypedKeyStats } from '../typed-keys/typed-key-stats.model';
@@ -75,6 +76,9 @@ export class TextToTypeHtmlComponent extends BaseHtmlComponent {
         <div id="${TEXT_TO_TYPE_DOM_ELEMENT_ID}" class="text-to-type">
         </div>
       </div>
+      <a class="view-typing-progress-link" href="#${PROGRESS_DIV_ID}">
+        View typing progress
+      </a>
     `;
   }
 
