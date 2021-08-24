@@ -112,7 +112,7 @@ export class TextToTypeHtmlComponent extends BaseHtmlComponent {
       return '';
     }
     return /* html */ `
-      <span class="label training-size-label">Training size</span>
+      <span class="label training-size-label">Lesson size</span>
       ${this.trainingSizeInput.toHtml()}
     `;
   }
