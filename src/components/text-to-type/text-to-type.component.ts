@@ -23,7 +23,7 @@ import { TextToType } from './text-to-type.model';
 import { FontSizeInputHtmlComponent } from '../font-size-input/font-size-input.component';
 import { TrainingSizeInputHtmlComponent } from '../training-size-input/training-size-input.component';
 
-const INACTIVITY_TIMEOUT = 60000;
+const INACTIVITY_TIMEOUT = 10000;
 const BACKSPACE_KEY = 'Backspace';
 const SPACE_KEY = ' ';
 const ENTER_KEY = 'Enter';
@@ -47,6 +47,7 @@ export class TextToTypeHtmlComponent extends BaseHtmlComponent {
   private reference: HTMLElement;
   private fontSizeInput: FontSizeInputHtmlComponent;
   private trainingSizeInput: TrainingSizeInputHtmlComponent;
+  private textToType: TextToType;
 
   constructor(private appStateClient: IAppStateClient) {
     super();
@@ -91,7 +92,7 @@ export class TextToTypeHtmlComponent extends BaseHtmlComponent {
     this.appStateClient.saveAppState(appState);
     this.textToTypeDomElement = document.getElementById(TEXT_TO_TYPE_DOM_ELEMENT_ID);
     this.textToTypeContainerDomElement = document.getElementById(TEXT_TO_TYPE_CONTAINER_DOM_ELEMENT_ID);
-    this.setTextToType();
+    this.setTextToType(this.getTextToType());
     this.updateFontSize();
     document.body.addEventListener('keydown', this.handleKeyDownEvent.bind(this));
     this.addCustomEventListener(APP_SETTINGS_CHANGE_EVENT, this.reset.bind(this));
@@ -139,14 +140,14 @@ export class TextToTypeHtmlComponent extends BaseHtmlComponent {
   }
 
   private reset() {
-    this.setTextToType();
+    this.setTextToType(this.getTextToType());
   }
 
   private handleKeyDownEvent(event) {
     if (this.isDisabled) return;
     this.preventDefaultEventExceptFunctionKeys(event);
     clearTimeout(this.inactivityTimeout);
-    this.inactivityTimeout = setTimeout(this.setTextToType.bind(this), INACTIVITY_TIMEOUT);
+    this.inactivityTimeout = setTimeout(this.handleInactivityTimeoutEvent.bind(this), INACTIVITY_TIMEOUT);
     const typedKey = event.key;
     const expectedKeyRegex = new RegExp(this.currentCharToTypeDomElement.dataset.keyRegex);
     this.handleKeySounds(typedKey);
@@ -184,7 +185,15 @@ export class TextToTypeHtmlComponent extends BaseHtmlComponent {
       this.typedKeysStats = this.typedTextStats.endType();
       this.updateAppStorageOnEndTyping();
       this.dispatchCustomEvent(END_TYPING_EVENT, this.typedTextStats);
-      this.setTextToType();
+      this.setTextToType(this.getTextToType());
+    }
+  }
+
+  private handleInactivityTimeoutEvent() {
+    if (this.textToType) {
+      this.setTextToType(this.textToType);
+    } else {
+      this.reset();
     }
   }
 
@@ -249,11 +258,11 @@ export class TextToTypeHtmlComponent extends BaseHtmlComponent {
     this.textToTypeDomElement.classList.toggle('blink');
   }
 
-  private async setTextToType() {
+  private async setTextToType(textToType: TextToType) {
     this.textToTypeContainerDomElement.scroll(0, 0);
     clearInterval(this.blinkInterval);
+    this.textToType = textToType;
     const appState = this.appStateClient.getAppState();
-    let textToType = this.getTextToType();
     let textToTypeText = textToType.text;
     this.reference.innerHTML = this.getTextReferenceInnerHtml(textToType);
     if (!appState.enableCapitalLetters) {
