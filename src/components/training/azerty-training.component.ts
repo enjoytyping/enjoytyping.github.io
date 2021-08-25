@@ -1,7 +1,7 @@
 import './training.scss';
 import { TrainingKeysHtmlComponent } from './training-keys.component';
 import { BaseTrainingHtmlComponent } from './base-training.component';
-import { TrainingLesson } from '../../state/training-lesson.enum';
+import { TrainingLesson } from './training-lesson.enum';
 
 export class AzertyTrainingHtmlComponent extends BaseTrainingHtmlComponent {
   getComponents(): TrainingKeysHtmlComponent[] {

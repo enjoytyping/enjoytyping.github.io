@@ -15,7 +15,8 @@ import { AppState } from './app-state.model';
 import { IAppStateClient } from './app-state.client.interface';
 import { TextToTypeSubCategory } from './text-to-type-sub-category.enum';
 import { LoremIpsum } from 'lorem-ipsum';
-import { TrainingLesson } from './training-lesson.enum';
+import { TrainingLesson } from '../components/training/training-lesson.enum';
+import { TrainingLessonStats } from '../components/training/training-lesson-stats.model';
 
 const lorem = new LoremIpsum({
   sentencesPerParagraph: {
@@ -63,6 +64,18 @@ export class AppStateClient implements IAppStateClient {
 
   getTypedKeysStatsMap(): Map<string, TypedKeyStats[]> {
     return new Map(JSON.parse(this.appState.typedKeysStatsJson || '[]'));
+  }
+
+  toTrainingLessonStatsJson(trainingLessonStatsMap: Map<TrainingLesson, TrainingLessonStats[]>): string {
+    return JSON.stringify(Array.from(trainingLessonStatsMap.entries()));
+  }
+
+  toTrainingLessonStatsMap(trainingLessonStatsJson: string): Map<TrainingLesson, TrainingLessonStats[]> {
+    return new Map(JSON.parse(trainingLessonStatsJson || '[]'));
+  }
+
+  getTrainingLessonStatsMap(): Map<TrainingLesson, TrainingLessonStats[]> {
+    return new Map(JSON.parse(this.appState.trainingLessonStatsJson || '[]'));
   }
 
   nextTextToTypeIndex(): number {

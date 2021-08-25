@@ -9,7 +9,7 @@ import { AppState } from '../../state/app-state.model';
 import { SwitchHtmlComponent } from '../_core/switch/switch.component';
 import { TextToTypeSubCategory, getTextToTypeSubCategory } from '../../state/text-to-type-sub-category.enum';
 import { IAppStateClient } from '../../state/app-state.client.interface';
-import { TrainingLesson } from '../../state/training-lesson.enum';
+import { TrainingLesson } from '../training/training-lesson.enum';
 
 export class AppSettingsDialogHtmlComponent extends BaseDialogHtmlComponent {
   private stopOnErrorSwitch: SwitchHtmlComponent;

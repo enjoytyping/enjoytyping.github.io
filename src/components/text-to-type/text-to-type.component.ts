@@ -22,6 +22,8 @@ import { IAppStateClient } from '../../state/app-state.client.interface';
 import { TextToType } from './text-to-type.model';
 import { FontSizeInputHtmlComponent } from '../font-size-input/font-size-input.component';
 import { TrainingSizeInputHtmlComponent } from '../training-size-input/training-size-input.component';
+import { TrainingLessonStats } from '../training/training-lesson-stats.model';
+import { TrainingLesson } from '../training/training-lesson.enum';
 
 const INACTIVITY_TIMEOUT = 10000;
 const BACKSPACE_KEY = 'Backspace';
@@ -228,6 +230,19 @@ export class TextToTypeHtmlComponent extends BaseHtmlComponent {
       }
       appState.typedKeysStatsJson = this.appStateClient.toTypedKeysStatsJson(typedKeysStatsMap);
     });
+    if (appState.textToTypeCategory == TextToTypeCategory.TRAINING) {
+      let trainingLessonStatsMap = this.appStateClient.toTrainingLessonStatsMap(appState.trainingLessonStatsJson);
+      if (!trainingLessonStatsMap) trainingLessonStatsMap = new Map<TrainingLesson, TrainingLessonStats[]>();
+      let trainingLessonStats = trainingLessonStatsMap.get(appState.trainingLesson);
+      let value = new TrainingLessonStats(this.typedTextStats);
+      if (!trainingLessonStats) {
+        trainingLessonStatsMap.set(appState.trainingLesson, [value]);
+      } else {
+        trainingLessonStatsMap.set(appState.trainingLesson, [...trainingLessonStats, value]);
+      }
+      appState.trainingLessonStatsJson = this.appStateClient.toTrainingLessonStatsJson(trainingLessonStatsMap);
+    }
+
     this.appStateClient.saveAppState(appState);
   }
 

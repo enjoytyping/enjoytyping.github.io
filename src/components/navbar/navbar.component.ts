@@ -10,7 +10,7 @@ import { IAppStateClient } from '../../state/app-state.client.interface';
 import { getTextToTypeSubCategory, TextToTypeSubCategory } from '../../state/text-to-type-sub-category.enum';
 import { APP_SETTINGS_CHANGE_EVENT } from '../../constants/constant';
 import { EnableSoundsIconHtmlComponent } from '../enable-sounds-icon/enable-sounds-icon.component';
-import { TrainingLesson } from '../../state/training-lesson.enum';
+import { TrainingLesson } from '../training/training-lesson.enum';
 
 const APP_SETTINGS_ICON_ID = 'APP_SETTINGS_ICON_ID';
 const ADD_CUSTOM_TEXT_TO_TYPE_ICON_ID = 'ADD_CUSTOM_TEXT_TO_TYPE_ICON_ID';

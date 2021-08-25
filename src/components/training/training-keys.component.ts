@@ -4,7 +4,7 @@ import { TextToTypeSubCategory } from '../../state/text-to-type-sub-category.enu
 import { IAppStateClient } from '../../state/app-state.client.interface';
 import { AppStateClient } from '../../state/app-state.client';
 import { END_TYPING_EVENT, MIN_STATS_TO_DISPLAY_PROGRESS_GRAPH, TRAINING_LESSON_CHANGE_EVENT } from '../../constants/constant';
-import { TrainingLesson } from '../../state/training-lesson.enum';
+import { TrainingLesson } from './training-lesson.enum';
 
 export class TrainingKeysHtmlComponent extends BaseHtmlComponent {
   private containerId: string;
@@ -45,37 +45,25 @@ export class TrainingKeysHtmlComponent extends BaseHtmlComponent {
     } else {
       this.container.classList.remove('selected');
     }
-    const keyStats = this.appSettingsClient.getTypedKeysStatsMap();
-    if (keyStats) {
-      const speeds = this.keysAyString
-        .toLowerCase()
-        .split('')
-        .map((c) => {
-          if (keyStats.get(c)) {
-            let stats = keyStats.get(c);
-            let statsWpm = stats.filter((s) => s.wpm > 0).map((s) => s.wpm);
-            if (statsWpm.length >= MIN_STATS_TO_DISPLAY_PROGRESS_GRAPH) {
-              return this.arrayAvg(statsWpm);
-            }
-          }
-          return 0;
-        });
-      if (speeds.filter((s) => s == 0).length > 0) {
-        this.container.classList.remove('avg-wpm-lt-10', 'avg-wpm-lt-20', 'avg-wpm-lt-30', 'avg-wpm-lt-40', 'avg-wpm-lt-50', 'avg-wpm-gte-50');
-      } else if (speeds.filter((s) => s < 10).length > 0) {
+    const trainingLessonStatsMap = this.appSettingsClient.getTrainingLessonStatsMap();
+    const trainingLessonStats = trainingLessonStatsMap.get(this.trainingLesson);
+    this.container.classList.remove('avg-wpm-lt-10', 'avg-wpm-lt-20', 'avg-wpm-lt-30', 'avg-wpm-lt-40', 'avg-wpm-lt-50', 'avg-wpm-gte-50');
+    if (trainingLessonStats && trainingLessonStats.length >= MIN_STATS_TO_DISPLAY_PROGRESS_GRAPH) {
+      const avgWpm = this.arrayAvg(trainingLessonStats.map((s) => s.wpm));
+      if (avgWpm < 10) {
         this.container.classList.add('avg-wpm-lt-10');
-      } else if (speeds.filter((s) => s < 20).length > 0) {
+      } else if (avgWpm < 20) {
         this.container.classList.add('avg-wpm-lt-20');
-      } else if (speeds.filter((s) => s < 30).length > 0) {
+      } else if (avgWpm < 30) {
         this.container.classList.add('avg-wpm-lt-30');
-      } else if (speeds.filter((s) => s < 40).length > 0) {
+      } else if (avgWpm < 40) {
         this.container.classList.add('avg-wpm-lt-40');
-      } else if (speeds.filter((s) => s < 50).length > 0) {
+      } else if (avgWpm < 50) {
         this.container.classList.add('avg-wpm-lt-50');
       } else {
         this.container.classList.add('avg-wpm-gte-50');
       }
-      this.container.title = `Typing speed: ${this.arrayAvg(speeds)}wpm`;
+      this.container.title = `Typing speed: ${avgWpm}wpm`;
     }
   }
 
