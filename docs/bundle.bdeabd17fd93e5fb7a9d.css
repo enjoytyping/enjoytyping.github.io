@@ -1624,7 +1624,7 @@ body.dark {
   flex-wrap: nowrap;
   overflow-x: scroll; }
 
-.training-keys-container {
+.training-lesson-container {
   position: relative;
   cursor: pointer;
   flex-shrink: 0;
@@ -1638,9 +1638,9 @@ body.dark {
   flex-direction: column;
   align-items: center;
   justify-content: center; }
-  .training-keys-container.selected span {
+  .training-lesson-container.selected span {
     color: var(--secondary-color); }
-  .training-keys-container.avg-wpm-lt-10::after, .training-keys-container.avg-wpm-lt-20::after, .training-keys-container.avg-wpm-lt-30::after, .training-keys-container.avg-wpm-lt-40::after, .training-keys-container.avg-wpm-lt-50::after, .training-keys-container.avg-wpm-gte-50::after {
+  .training-lesson-container.avg-wpm-lt-10::after, .training-lesson-container.avg-wpm-lt-20::after, .training-lesson-container.avg-wpm-lt-30::after, .training-lesson-container.avg-wpm-lt-40::after, .training-lesson-container.avg-wpm-lt-50::after, .training-lesson-container.avg-wpm-gte-50::after {
     content: '';
     position: absolute;
     bottom: 0.4rem;
@@ -1648,19 +1648,19 @@ body.dark {
     right: 0.4rem;
     height: 0.6rem;
     border-radius: 100rem; }
-  .training-keys-container.avg-wpm-lt-10::after {
+  .training-lesson-container.avg-wpm-lt-10::after {
     background-color: var(--typed-key-avg-wpm-lt-10); }
-  .training-keys-container.avg-wpm-lt-20::after {
+  .training-lesson-container.avg-wpm-lt-20::after {
     background-color: var(--typed-key-avg-wpm-lt-20); }
-  .training-keys-container.avg-wpm-lt-30::after {
+  .training-lesson-container.avg-wpm-lt-30::after {
     background-color: var(--typed-key-avg-wpm-lt-30); }
-  .training-keys-container.avg-wpm-lt-40::after {
+  .training-lesson-container.avg-wpm-lt-40::after {
     background-color: var(--typed-key-avg-wpm-lt-40); }
-  .training-keys-container.avg-wpm-lt-50::after {
+  .training-lesson-container.avg-wpm-lt-50::after {
     background-color: var(--typed-key-avg-wpm-lt-50); }
-  .training-keys-container.avg-wpm-gte-50::after {
+  .training-lesson-container.avg-wpm-gte-50::after {
     background-color: var(--typed-key-avg-wpm-gte-50); }
-  .training-keys-container .keys {
+  .training-lesson-container .lesson-label {
     font-weight: bold;
     font-size: 2rem; }
 
@@ -1669,6 +1669,25 @@ body.dark {
     margin: 2rem 0 0.4rem; }
   .training-container2 {
     margin: 0; } }
+
+.training-lesson-level-container {
+  flex-shrink: 0;
+  border-radius: 0.3rem;
+  width: 3rem;
+  height: 8rem;
+  margin-right: 0.5rem;
+  display: flex;
+  align-items: flex-start;
+  align-items: center;
+  justify-content: center;
+  background-color: #ffefef;
+  background-color: #078ded17; }
+  .training-lesson-level-container span {
+    padding: 0.5rem 1rem;
+    font-size: 1.35rem;
+    font-weight: bold;
+    white-space: nowrap;
+    transform: rotate(-90deg); }
 
 footer {
   color: var(--footer-color);

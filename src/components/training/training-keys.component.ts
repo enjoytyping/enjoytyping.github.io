@@ -1,6 +1,5 @@
 import './training.scss';
 import { BaseHtmlComponent } from '../_core/base-component';
-import { TextToTypeSubCategory } from '../../state/text-to-type-sub-category.enum';
 import { IAppStateClient } from '../../state/app-state.client.interface';
 import { AppStateClient } from '../../state/app-state.client';
 import { END_TYPING_EVENT, MIN_STATS_TO_DISPLAY_PROGRESS_GRAPH, TRAINING_LESSON_CHANGE_EVENT } from '../../constants/constant';
@@ -11,9 +10,9 @@ export class TrainingKeysHtmlComponent extends BaseHtmlComponent {
   private container: HTMLElement;
 
   constructor(
-    private keysAyString: string,
-    private trainingLesson: TrainingLesson,
-    private appSettingsClient: IAppStateClient = AppStateClient.getInstance()
+    protected trainingLesson: TrainingLesson,
+    protected trainingLessonAyString: string,
+    protected appSettingsClient: IAppStateClient = AppStateClient.getInstance()
   ) {
     super();
     this.containerId = this.generateId();
@@ -23,9 +22,9 @@ export class TrainingKeysHtmlComponent extends BaseHtmlComponent {
 
   toHtml() {
     return /* html */ `
-      <div id="${this.containerId}" class="training-keys-container">
-        <span class="keys">${this.keysAyString}</span>
-        <span>Keys</span>
+      <div id="${this.containerId}" class="training-lesson-container ${this.getContainerClass()}">
+        <span class="lesson-label">${this.getLessonAsString()}</span>
+        <span class="lesson-category">${this.getLessonCategory()}</span>
       </div>
     `;
   }
@@ -36,6 +35,18 @@ export class TrainingKeysHtmlComponent extends BaseHtmlComponent {
     this.addCustomEventListener(TRAINING_LESSON_CHANGE_EVENT, this.update.bind(this));
     this.addCustomEventListener(END_TYPING_EVENT, this.update.bind(this));
     this.container.addEventListener('click', this.handleContainerClickEvent.bind(this));
+  }
+
+  protected getContainerClass() {
+    return '';
+  }
+
+  protected getLessonCategory() {
+    return 'Keys';
+  }
+
+  protected getLessonAsString() {
+    return this.trainingLessonAyString;
   }
 
   private update() {

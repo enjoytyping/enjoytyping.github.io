@@ -118,6 +118,9 @@ export class AppStateClient implements IAppStateClient {
       if (this.appState.trainingLesson === TrainingLesson.KEYS_FGHJ) {
         return this.generateTrainingTextToType('fghj');
       }
+      if (this.appState.trainingLesson === TrainingLesson.HOME_ROW) {
+        return this.generateTrainingTextToType('qsdfghjklm');
+      }
 
       if (this.appState.trainingLesson === TrainingLesson.KEYS_R_AND_U) {
         return this.generateTrainingTextToType('ru');
@@ -143,6 +146,9 @@ export class AppStateClient implements IAppStateClient {
       if (this.appState.trainingLesson === TrainingLesson.KEYS_RTYU) {
         return this.generateTrainingTextToType('rtyu');
       }
+      if (this.appState.trainingLesson === TrainingLesson.TOP_ROW) {
+        return this.generateTrainingTextToType('azertyuiop');
+      }
 
       if (this.appState.trainingLesson === TrainingLesson.KEYS_V_AND_COMMA) {
         return this.generateTrainingTextToType('v,');
@@ -167,6 +173,9 @@ export class AppStateClient implements IAppStateClient {
       }
       if (this.appState.trainingLesson === TrainingLesson.KEYS_VBN_COMMA) {
         return this.generateTrainingTextToType('vbn,');
+      }
+      if (this.appState.trainingLesson === TrainingLesson.BOTTOM_ROW) {
+        return this.generateTrainingTextToType('wxcvbn,;:!');
       }
     }
 
@@ -198,6 +207,9 @@ export class AppStateClient implements IAppStateClient {
       if (this.appState.trainingLesson === TrainingLesson.KEYS_FGHJ) {
         return this.generateTrainingTextToType('fghj');
       }
+      if (this.appState.trainingLesson === TrainingLesson.HOME_ROW) {
+        return this.generateTrainingTextToType('asdfghjkl;');
+      }
 
       if (this.appState.trainingLesson === TrainingLesson.KEYS_R_AND_U) {
         return this.generateTrainingTextToType('ru');
@@ -223,6 +235,9 @@ export class AppStateClient implements IAppStateClient {
       if (this.appState.trainingLesson === TrainingLesson.KEYS_RTYU) {
         return this.generateTrainingTextToType('rtyu');
       }
+      if (this.appState.trainingLesson === TrainingLesson.TOP_ROW) {
+        return this.generateTrainingTextToType('qwertyuiop');
+      }
 
       if (this.appState.trainingLesson === TrainingLesson.KEYS_V_AND_M) {
         return this.generateTrainingTextToType('vm');
@@ -247,6 +262,9 @@ export class AppStateClient implements IAppStateClient {
       }
       if (this.appState.trainingLesson === TrainingLesson.KEYS_VBNM) {
         return this.generateTrainingTextToType('vbnm');
+      }
+      if (this.appState.trainingLesson === TrainingLesson.BOTTOM_ROW) {
+        return this.generateTrainingTextToType('zxcvbnm,');
       }
     }
 

@@ -45,7 +45,7 @@
   overflow-x: scroll;
 }
 
-.training-keys-container {
+.training-lesson-container {
   position: relative;
   cursor: pointer;
   flex-shrink: 0;
@@ -102,11 +102,35 @@
     background-color: var(--typed-key-avg-wpm-gte-50);
   }
 
-  & .keys {
+  & .lesson-label {
     font-weight: bold;
     font-size: 2rem;
   }
 }
+
+// .training-row-container {
+//   margin-right: 1.5rem;
+//   position: relative;
+
+//   &::after {
+//     content: '';
+//     width: 0.5rem;
+//     border-radius: 0.3rem;
+//     position: absolute;
+//     top: 0;
+//     bottom: 0;
+//     right: -1rem;
+//     background-color: var(--training-keys-background-color);
+//   }
+// }
+
+// .training-row-container:last-of-type {
+//   margin-right: 0;
+
+//   &::after {
+//     display: none;
+//   }
+// }
 
 @media screen and (max-width: 768px) {
   .training-title {
@@ -115,5 +139,28 @@
 
   .training-container2 {
     margin: 0;
+  }
+}
+
+.training-lesson-level-container {
+  flex-shrink: 0;
+  border-radius: 0.3rem;
+  width: 3rem;
+  height: 8rem;
+  margin-right: 0.5rem;
+  display: flex;
+  align-items: flex-start;
+  align-items: center;
+  justify-content: center;
+  background-color: rgb(255, 239, 239);
+  background-color: #078ded17;
+
+  & span {
+    // text-transform: uppercase;
+    padding: 0.5rem 1rem;
+    font-size: 1.35rem;
+    font-weight: bold;
+    white-space: nowrap;
+    transform: rotate(-90deg);
   }
 }
