@@ -6,7 +6,9 @@
   justify-content: center;
   overflow: hidden;
 
-  & span {
+  & .value,
+  & .increase-value,
+  & .decrease-value {
     font-size: 1.3rem;
     padding: 0.2rem 0.75rem;
   }

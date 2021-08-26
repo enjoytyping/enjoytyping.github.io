@@ -9,7 +9,7 @@ export class NumericInputHtmlComponent extends BaseHtmlComponent {
   private valueDomElementId: string;
   private valueDomElement: HTMLElement;
   private containerId: string;
-  private callbacks: ((value: boolean) => void)[] = [];
+  private callbacks: ((value: number) => void)[] = [];
 
   constructor(private value: number) {
     super();
@@ -42,9 +42,10 @@ export class NumericInputHtmlComponent extends BaseHtmlComponent {
   private updateValue(valueChange: number) {
     this.value += valueChange;
     this.valueDomElement.innerHTML = `${this.value}`;
-    this.onUpdate(this.value);
+    this.callbacks.forEach((callback) => callback(this.value));
   }
 
-  abstract onUpdate(newValue: number);
-  abstract getInitialValue();
+  onUpdate(callback: (value: number) => void) {
+    this.callbacks.push(callback);
+  }
 }

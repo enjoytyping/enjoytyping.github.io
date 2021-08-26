@@ -9,8 +9,6 @@ import {
   START_UPDATING_APP_SETTINGS_EVENT,
   START_UPDATING_CUSTOM_TEXT_TO_TYPE_EVENT,
   TRAINING_LESSON_CHANGE_EVENT,
-  CHANGE_FONT_SIZE_EVENT,
-  CHANGE_TRAINING_SIZE_EVENT,
   PROGRESS_DIV_ID,
 } from '../../constants/constant';
 import { BaseHtmlComponent } from '../_core/base-component';
@@ -20,10 +18,9 @@ import { TypedTextStats } from '../typed-text-stats/typed-text-stats.model';
 import { TextToTypeSubCategory } from '../../state/text-to-type-sub-category.enum';
 import { IAppStateClient } from '../../state/app-state.client.interface';
 import { TextToType } from './text-to-type.model';
-import { FontSizeInputHtmlComponent } from '../font-size-input/font-size-input.component';
-import { TrainingSizeInputHtmlComponent } from '../training-size-input/training-size-input.component';
 import { TrainingLessonStats } from '../training/training-lesson-stats.model';
 import { TrainingLesson } from '../training/training-lesson.enum';
+import { NumericInputHtmlComponent } from '../_core/numeric-input/numeric-input.component';
 
 const INACTIVITY_TIMEOUT = 10000;
 const BACKSPACE_KEY = 'Backspace';
@@ -47,14 +44,14 @@ export class TextToTypeHtmlComponent extends BaseHtmlComponent {
   private isDisabled: boolean = false;
   private referenceId: string;
   private reference: HTMLElement;
-  private fontSizeInput: FontSizeInputHtmlComponent;
-  private trainingSizeInput: TrainingSizeInputHtmlComponent;
+  private fontSizeInput: NumericInputHtmlComponent;
+  private trainingSizeInput: NumericInputHtmlComponent;
   private textToType: TextToType;
 
   constructor(private appStateClient: IAppStateClient) {
     super();
-    this.fontSizeInput = new FontSizeInputHtmlComponent();
-    this.trainingSizeInput = new TrainingSizeInputHtmlComponent();
+    this.fontSizeInput = new NumericInputHtmlComponent(this.appStateClient.getAppState().fontSize);
+    this.trainingSizeInput = new NumericInputHtmlComponent(this.appStateClient.getAppState().trainingSize);
   }
 
   preInsertHtml(): void {
@@ -87,6 +84,7 @@ export class TextToTypeHtmlComponent extends BaseHtmlComponent {
 
   postInsertHtml(): void {
     this.fontSizeInput.postInsertHtml();
+    this.fontSizeInput.onUpdate((value) => this.onFontSizeInputChange(value));
     this.postInsertTrainingSizeHtml();
     this.reference = document.getElementById(this.referenceId);
     const appState = this.appStateClient.getAppState();
@@ -104,8 +102,13 @@ export class TextToTypeHtmlComponent extends BaseHtmlComponent {
     this.addCustomEventListener(END_UPDATING_CUSTOM_TEXT_TO_TYPE_EVENT, this.enable.bind(this));
     this.addCustomEventListener(CUSTOM_TEXTS_UPDATE_EVENT, this.reset.bind(this));
     this.addCustomEventListener(TRAINING_LESSON_CHANGE_EVENT, this.reset.bind(this));
-    this.addCustomEventListener(CHANGE_FONT_SIZE_EVENT, this.updateFontSize.bind(this));
-    this.addCustomEventListener(CHANGE_TRAINING_SIZE_EVENT, this.reset.bind(this));
+  }
+
+  private onFontSizeInputChange(newValue: number) {
+    const appState = this.appStateClient.getAppState();
+    appState.fontSize = newValue;
+    this.appStateClient.saveAppState(appState);
+    this.updateFontSize();
   }
 
   private getTrainingSizeHtml() {
@@ -123,7 +126,15 @@ export class TextToTypeHtmlComponent extends BaseHtmlComponent {
     const appState = this.appStateClient.getAppState();
     if (appState.textToTypeCategory == TextToTypeCategory.TRAINING) {
       this.trainingSizeInput.postInsertHtml();
+      this.trainingSizeInput.onUpdate((value) => this.onTrainingSizeInputChange(value));
     }
+  }
+
+  private onTrainingSizeInputChange(newValue: number) {
+    const appState = this.appStateClient.getAppState();
+    appState.trainingSize = newValue;
+    this.appStateClient.saveAppState(appState);
+    this.reset();
   }
 
   private updateFontSize() {
