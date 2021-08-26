@@ -12,7 +12,6 @@ export class FontSizeInputHtmlComponent extends BaseNumericInputHtmlComponent {
   onUpdate(newValue: number) {
     const appState = this.appStateClient.getAppState();
     appState.fontSize = newValue;
-    console.log(newValue);
     this.appStateClient.saveAppState(appState);
     this.dispatchCustomEvent(CHANGE_FONT_SIZE_EVENT);
   }

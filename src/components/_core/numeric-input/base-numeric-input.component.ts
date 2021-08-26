@@ -1,7 +1,7 @@
 import { BaseHtmlComponent } from '../base-component';
 import './numeric-input.scss';
 
-export class NumericInputHtmlComponent extends BaseHtmlComponent {
+export abstract class BaseNumericInputHtmlComponent extends BaseHtmlComponent {
   private increaseButtonDomElementId: string;
   private increaseButtonDomElement: HTMLElement;
   private decreaseButtonDomElementId: string;
@@ -9,9 +9,9 @@ export class NumericInputHtmlComponent extends BaseHtmlComponent {
   private valueDomElementId: string;
   private valueDomElement: HTMLElement;
   private containerId: string;
-  private callbacks: ((value: boolean) => void)[] = [];
+  private value: number;
 
-  constructor(private value: number) {
+  constructor() {
     super();
     this.increaseButtonDomElementId = this.generateId();
     this.decreaseButtonDomElementId = this.generateId();
@@ -19,7 +19,9 @@ export class NumericInputHtmlComponent extends BaseHtmlComponent {
     this.containerId = this.generateId();
   }
 
-  preInsertHtml(): void {}
+  preInsertHtml(): void {
+    this.value = this.getInitialValue();
+  }
 
   toHtml() {
     return /* html */ `

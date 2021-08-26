@@ -2,7 +2,7 @@ import './training-size-input.scss';
 import { IAppStateClient } from '../../state/app-state.client.interface';
 import { AppStateClient } from '../../state/app-state.client';
 import { CHANGE_TRAINING_SIZE_EVENT, TRAINING_SIZE_DEFAULT_VALUE } from '../../constants/constant';
-import { BaseNumericInputHtmlComponent } from '../_core/numeric-input/numeric-input.component';
+import { BaseNumericInputHtmlComponent } from '../_core/numeric-input/base-numeric-input.component';
 
 export class TrainingSizeInputHtmlComponent extends BaseNumericInputHtmlComponent {
   constructor(private appStateClient: IAppStateClient = AppStateClient.getInstance()) {

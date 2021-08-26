@@ -1,5 +1,5 @@
 import './typing-progress.scss';
-import { DELETE_PROGRESS_DATA_EVENT, LIGHT_THEME_VALUE, PROGRESS_DIV_ID } from '../../constants/constant';
+import { DELETE_PROGRESS_DATA_EVENT, PROGRESS_DIV_ID } from '../../constants/constant';
 import { ErrorProgressTypedKeysHighlighter } from './error-progress-typed-keys-highlighter';
 import { TypingProgressHtmlComponent } from './typing-progress.component';
 import { BaseHtmlComponent } from '../_core/base-component';
@@ -56,14 +56,6 @@ export class TypingProgressSectionHtmlComponent extends BaseHtmlComponent {
         <div>
       </div>
     `;
-  }
-
-  private getErrorBarColor(): string {
-    const appState = this.appStateClient.getAppState();
-    if (appState.currentTheme == LIGHT_THEME_VALUE) {
-      return '#FFB1C1';
-    }
-    return 'red';
   }
 
   postInsertHtml(): void {
