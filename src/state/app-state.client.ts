@@ -1,5 +1,5 @@
 import { TypedKeyStats } from '../components/typed-keys/typed-key-stats.model';
-import { APP_STATE_LOCAL_STORAGE_KEY, TRAINING_SIZE_DEFAULT_VALUE } from '../constants/constant';
+import { APP_STATE_LOCAL_STORAGE_KEY, FONT_SIZE_DEFAULT_VALUE, TRAINING_SIZE_DEFAULT_VALUE } from '../constants/constant';
 import englishQuotes from './quotes.english';
 import frenchQuotes from './quotes.french';
 import englishPoems from './poems.english';
@@ -304,6 +304,14 @@ export class AppStateClient implements IAppStateClient {
     ];
   }
 
+  getFontSize(): number {
+    return this.appState.fontSize || FONT_SIZE_DEFAULT_VALUE;
+  }
+
+  getTrainingSize(): number {
+    return this.appState.trainingSize || TRAINING_SIZE_DEFAULT_VALUE;
+  }
+
   private generateTrainingTextToType(characters: string) {
     let result = '';
     const length = this.getTrainingSize();
@@ -317,9 +325,5 @@ export class AppStateClient implements IAppStateClient {
         author: '',
       },
     ];
-  }
-
-  private getTrainingSize(): number {
-    return this.appState.trainingSize || TRAINING_SIZE_DEFAULT_VALUE;
   }
 }

@@ -15,3 +15,4 @@ export const END_UPDATING_CUSTOM_TEXT_TO_TYPE_EVENT = 'end-changing-custom-text-
 export const CUSTOM_TEXTS_UPDATE_EVENT = 'custom-texts-update-event';
 export const DELETE_PROGRESS_DATA_EVENT = 'delete-progress-data-event';
 export const TRAINING_SIZE_DEFAULT_VALUE = 120;
+export const FONT_SIZE_DEFAULT_VALUE = 22;

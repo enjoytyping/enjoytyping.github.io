@@ -50,8 +50,8 @@ export class TextToTypeHtmlComponent extends BaseHtmlComponent {
 
   constructor(private appStateClient: IAppStateClient) {
     super();
-    this.fontSizeInput = new NumericInputHtmlComponent(this.appStateClient.getAppState().fontSize);
-    this.trainingSizeInput = new NumericInputHtmlComponent(this.appStateClient.getAppState().trainingSize);
+    this.fontSizeInput = new NumericInputHtmlComponent(this.appStateClient.getFontSize());
+    this.trainingSizeInput = new NumericInputHtmlComponent(this.appStateClient.getTrainingSize());
   }
 
   preInsertHtml(): void {

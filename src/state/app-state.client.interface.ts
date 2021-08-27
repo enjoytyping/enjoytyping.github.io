@@ -26,4 +26,8 @@ export interface IAppStateClient {
   previousTextToTypeIndex(): number;
 
   getTextToTypeArray(): TextToType[];
+
+  getFontSize(): number;
+
+  getTrainingSize(): number;
 }
