@@ -34,7 +34,6 @@ export class TypingProgressHtmlComponent extends BaseHtmlComponent {
   }
 
   preInsertHtml(): void {
-    this.progressByKeyValue = false;
     this.containerId = this.generateId();
     this.typedKeysProgressId = this.generateId();
     this.graph = new TypingProgressGraphHtmlComponent(

@@ -24,8 +24,8 @@ export class EnableSoundsIconHtmlComponent extends BaseHtmlComponent {
   toHtml() {
     return /* html */ `
       <span id="${this.containerId}" class="enable-sound-icon-container">
-      <span id="${ENABLE_SOUNDS_ICON_ID}" title="Enable Sound"><span class="iconify" data-icon="akar-icons:sound-on"></span></span>
-      <span id="${DISABLE_SOUNDS_ICON_ID}" title="Disable Sound"><span class="iconify" data-icon="akar-icons:sound-off"></span></span>
+      <span id="${ENABLE_SOUNDS_ICON_ID}" title="Enable Sound"><span class="iconify" data-icon="akar-icons:sound-off"></span></span>
+      <span id="${DISABLE_SOUNDS_ICON_ID}" title="Disable Sound"><span class="iconify" data-icon="akar-icons:sound-on"></span></span>
       </span>
     `;
   }
@@ -53,7 +53,6 @@ export class EnableSoundsIconHtmlComponent extends BaseHtmlComponent {
     const appState = this.appStateClient.getAppState();
     appState.enableSounds = !appState.enableSounds;
     this.appStateClient.saveAppState(appState);
-    this.dispatchCustomEvent(APP_SETTINGS_CHANGE_EVENT);
     this.updateInnerHTML();
   }
 }
