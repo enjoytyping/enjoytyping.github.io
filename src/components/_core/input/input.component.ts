@@ -59,7 +59,7 @@ export class InputHtmlComponent extends BaseHtmlComponent {
   }
 
   isNotValid(): boolean {
-    return this.container.classList.contains('error');
+    return this.container.classList.contains('error') || !this.getValue();
   }
 
   getValue(): string {

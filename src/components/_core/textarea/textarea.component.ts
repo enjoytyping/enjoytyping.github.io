@@ -80,7 +80,7 @@ export class TextAreaHtmlComponent extends BaseHtmlComponent {
   }
 
   isNotValid(): boolean {
-    return this.container.classList.contains('error');
+    return this.container.classList.contains('error') || !this.getValue();
   }
 
   private onTextAreaChange() {
