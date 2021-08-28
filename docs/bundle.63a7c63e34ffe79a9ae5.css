@@ -1981,81 +1981,16 @@ body.light {
     .add-custom-text-to-type-dialog .text-to-add-textarea-header .iconify:hover {
       color: var(--add-icon-color-on-hover); }
 
-.add-custom-text-to-type-dialog .add-custom-text-to-type-dialog-footer {
+.add-custom-text-to-type-dialog .add-custom-text-to-type-buttons {
+  margin-top: 2rem;
   display: flex;
   align-items: center;
   justify-content: flex-end; }
-  .add-custom-text-to-type-dialog .add-custom-text-to-type-dialog-footer > * {
+  .add-custom-text-to-type-dialog .add-custom-text-to-type-buttons > * {
     margin-left: 1.2rem; }
 
 .add-custom-text-to-type-dialog .added-custom-texts-table {
   margin-top: 3.5rem; }
-
-.dialog-background {
-  z-index: 1000;
-  position: fixed;
-  top: 0;
-  right: 0;
-  bottom: 0;
-  left: 0;
-  background-color: rgba(0, 0, 0, 0.5); }
-
-.dialog {
-  position: fixed;
-  top: 8rem;
-  left: 50%;
-  transform: translateX(-50%);
-  border: none;
-  border-radius: 0.3rem;
-  box-shadow: var(--dialog-box-shadow);
-  min-width: var(--dialog-min-width, 30rem);
-  width: var(--dialog-width, 40%);
-  max-width: var(--dialog-max-width, 100rem);
-  border-radius: 0.5rem; }
-  .dialog::-webkit-backdrop {
-    background-color: #181a1fc4; }
-  .dialog::backdrop {
-    background-color: #181a1fc4; }
-  .dialog .dialog-container {
-    padding: 3rem;
-    background-color: var(--dialog-background-color);
-    border-radius: 0.3rem; }
-  .dialog .dialog-header {
-    padding-bottom: 1rem;
-    border-bottom: 1px solid var(--border-color);
-    display: flex;
-    align-items: center;
-    justify-content: space-between; }
-    .dialog .dialog-header span {
-      font-size: 1.85rem;
-      font-weight: bold;
-      color: var(--body-color); }
-    .dialog .dialog-header .close {
-      font-size: 3rem;
-      transition: var(--transition);
-      transition-property: color; }
-      .dialog .dialog-header .close:hover {
-        color: var(--close-color); }
-  .dialog .dialog-body {
-    padding: 3rem 0;
-    max-height: calc(100vh - 30rem);
-    overflow-y: scroll; }
-  .dialog .dialog-footer {
-    border-top: 1px solid var(--border-color);
-    padding-top: 2rem;
-    font-size: 1.6rem; }
-
-@media only screen and (max-width: 1024px) {
-  .dialog {
-    --dialog-width: 50%; } }
-
-@media only screen and (max-width: 768px) {
-  .dialog {
-    --dialog-width: 60%; } }
-
-@media only screen and (max-width: 425px) {
-  .dialog {
-    --dialog-width: 80%; } }
 
 .textarea-container {
   display: flex;
@@ -2176,6 +2111,72 @@ body.dark {
       background-color: #fd6599; }
   .welcome-message-dialog .dialog-footer {
     display: none; }
+
+.dialog-background {
+  z-index: 1000;
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background-color: rgba(0, 0, 0, 0.5); }
+
+.dialog {
+  position: fixed;
+  top: 8rem;
+  left: 50%;
+  transform: translateX(-50%);
+  border: none;
+  border-radius: 0.3rem;
+  box-shadow: var(--dialog-box-shadow);
+  min-width: var(--dialog-min-width, 30rem);
+  width: var(--dialog-width, 40%);
+  max-width: var(--dialog-max-width, 100rem);
+  border-radius: 0.5rem; }
+  .dialog::-webkit-backdrop {
+    background-color: #181a1fc4; }
+  .dialog::backdrop {
+    background-color: #181a1fc4; }
+  .dialog .dialog-container {
+    padding: 3rem;
+    background-color: var(--dialog-background-color);
+    border-radius: 0.3rem; }
+  .dialog .dialog-header {
+    padding-bottom: 1rem;
+    border-bottom: 1px solid var(--border-color);
+    display: flex;
+    align-items: center;
+    justify-content: space-between; }
+    .dialog .dialog-header span {
+      font-size: 1.85rem;
+      font-weight: bold;
+      color: var(--body-color); }
+    .dialog .dialog-header .close {
+      font-size: 3rem;
+      transition: var(--transition);
+      transition-property: color; }
+      .dialog .dialog-header .close:hover {
+        color: var(--close-color); }
+  .dialog .dialog-body {
+    padding: 3rem 0;
+    max-height: calc(100vh - 30rem);
+    overflow-y: scroll; }
+  .dialog .dialog-footer {
+    border-top: 1px solid var(--border-color);
+    padding-top: 2rem;
+    font-size: 1.6rem; }
+
+@media only screen and (max-width: 1024px) {
+  .dialog {
+    --dialog-width: 50%; } }
+
+@media only screen and (max-width: 768px) {
+  .dialog {
+    --dialog-width: 60%; } }
+
+@media only screen and (max-width: 425px) {
+  .dialog {
+    --dialog-width: 80%; } }
 
 .feedback-icon-container {
   position: fixed;

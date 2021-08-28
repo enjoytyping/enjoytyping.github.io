@@ -3,7 +3,7 @@ import { AppSettingsHtmlComponent } from '../app-settings/app-settings.component
 import { ChangeThemeIconHtmlComponent } from '../change-theme-icon/change-theme-icon.component';
 import { BaseHtmlComponent } from '../_core/base-component';
 import { AppStateClient } from '../../state/app-state.client';
-import { AddCustomTextToTypeDialogHtmlComponent } from '../add-custom-text-to-type-dialog/add-custom-text-to-type-dialog';
+import { AddCustomTextToTypeHtmlComponent } from '../add-custom-text-to-type/add-custom-text-to-type';
 import { SelectHtmlComponent } from '../_core/select/select.component';
 import { TextToTypeCategory, TEXT_TO_TYPE_CATEGORIES } from '../../state/text-to-type-category.enum';
 import { IAppStateClient } from '../../state/app-state.client.interface';
@@ -21,7 +21,7 @@ export class NavbarHtmlComponent extends BaseHtmlComponent {
   private appSettingsDialog: AppSettingsHtmlComponent;
   private enableSoundsIcon: EnableSoundsIconHtmlComponent;
   private addCustomTextToTypeIcon: HTMLElement;
-  private addCustomTextToTypeDialog: AddCustomTextToTypeDialogHtmlComponent;
+  private addCustomTextToTypeDialog: AddCustomTextToTypeHtmlComponent;
   private changeThemeIcon: ChangeThemeIconHtmlComponent;
   private textToTypeCategoriesSelect: SelectHtmlComponent<TextToTypeCategory>;
   private textToTypeSubCategorySelect: SelectHtmlComponent<TextToTypeSubCategory>;
@@ -32,7 +32,7 @@ export class NavbarHtmlComponent extends BaseHtmlComponent {
     super();
     const appState = this.appStateClient.getAppState();
     this.appSettingsDialog = new AppSettingsHtmlComponent(AppStateClient.getInstance());
-    this.addCustomTextToTypeDialog = new AddCustomTextToTypeDialogHtmlComponent(AppStateClient.getInstance());
+    this.addCustomTextToTypeDialog = new AddCustomTextToTypeHtmlComponent(AppStateClient.getInstance());
     this.changeThemeIcon = new ChangeThemeIconHtmlComponent(AppStateClient.getInstance());
     this.textToTypeCategoriesSelect = new SelectHtmlComponent<TextToTypeCategory>({
       options: TEXT_TO_TYPE_CATEGORIES,
@@ -107,7 +107,7 @@ export class NavbarHtmlComponent extends BaseHtmlComponent {
 
   private handleAAddCustomTextToTypeIconClickEvent(event) {
     event.stopPropagation();
-    this.addCustomTextToTypeDialog.show();
+    this.addCustomTextToTypeDialog.open();
   }
 
   private onWindowScrollEvent() {

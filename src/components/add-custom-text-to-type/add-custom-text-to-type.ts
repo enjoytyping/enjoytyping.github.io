@@ -1,5 +1,4 @@
-import './add-custom-text-to-type-dialog.scss';
-import { BaseDialogHtmlComponent, DialogPhase } from '../_core/dialog/base-dialog-component';
+import './add-custom-text-to-type.scss';
 import { ButtonHtmlComponent, ButtonStyle } from '../_core/button/button.component';
 import { IAppStateClient } from '../../state/app-state.client.interface';
 import { TextAreaHtmlComponent } from '../_core/textarea/textarea.component';
@@ -12,12 +11,13 @@ import { AppState } from '../../state/app-state.model';
 import { TableAction, TableColumn, TableHtmlComponent } from '../_core/table/table.component';
 import { TextToTypeCategory } from '../../state/text-to-type-category.enum';
 import { TextToTypeSubCategory } from '../../state/text-to-type-sub-category.enum';
+import { BaseSidePanelHtmlComponent } from '../_core/side-panel/side-panel.component';
 
 class DisplayedCustomTextToAdd {
   text: string;
 }
 
-export class AddCustomTextToTypeDialogHtmlComponent extends BaseDialogHtmlComponent {
+export class AddCustomTextToTypeHtmlComponent extends BaseSidePanelHtmlComponent {
   private saveButton: ButtonHtmlComponent;
   private cancelButton: ButtonHtmlComponent;
   private customTextToAddTextArea: TextAreaHtmlComponent;
@@ -33,8 +33,6 @@ export class AddCustomTextToTypeDialogHtmlComponent extends BaseDialogHtmlCompon
     this.customTextToAddTextArea = new TextAreaHtmlComponent('');
     this.appState = this.appStateClient.getAppState();
     this.displayedCustomTextToAddTable = new TableHtmlComponent<DisplayedCustomTextToAdd>();
-    this.addPhaseListener(DialogPhase.POST_DIALOG_SHOW, this.postShow.bind(this));
-    this.addPhaseListener(DialogPhase.POST_DIALOG_HIDE, this.postHide.bind(this));
     this.addIconId = this.generateId();
   }
 
@@ -46,15 +44,15 @@ export class AddCustomTextToTypeDialogHtmlComponent extends BaseDialogHtmlCompon
     this.displayedCustomTextToAddTable.preInsertHtml();
   }
 
-  getDialogCssClass(): string {
+  getSidePanelCssClass(): string {
     return 'add-custom-text-to-type-dialog';
   }
 
-  getDialogTitle(): string {
+  getTitle(): string {
     return 'Custom text to type';
   }
 
-  getDialogBody(): string {
+  getBody(): string {
     return /* html */ `
       <div class="text-to-add-textarea-header">
         <span class="label">Text to add</span>
@@ -64,12 +62,7 @@ export class AddCustomTextToTypeDialogHtmlComponent extends BaseDialogHtmlCompon
       <div class="added-custom-texts-table">
         ${this.displayedCustomTextToAddTable.toHtml()}
       </div>
-    `;
-  }
-
-  getDialogFooter(): string {
-    return /* html */ `
-      <div class="add-custom-text-to-type-dialog-footer">
+      <div class="add-custom-text-to-type-buttons">
         ${this.cancelButton.toHtml()}
         ${this.saveButton.toHtml()}
       </div>
@@ -138,25 +131,26 @@ export class AddCustomTextToTypeDialogHtmlComponent extends BaseDialogHtmlCompon
     }
   }
 
-  private postShow(): void {
+  open(): void {
+    super.open();
     this.appState = this.appStateClient.getAppState();
     this.customTextToAddTextArea.focus();
     this.dispatchCustomEvent(START_UPDATING_CUSTOM_TEXT_TO_TYPE_EVENT);
   }
 
-  private postHide(): void {
-    super.hide();
+  close(): void {
+    super.close();
     if (this.customTextsUpdated) this.dispatchCustomEvent(CUSTOM_TEXTS_UPDATE_EVENT);
     this.dispatchCustomEvent(END_UPDATING_CUSTOM_TEXT_TO_TYPE_EVENT);
   }
 
   private handleSaveButtonClickEvent() {
     this.appStateClient.saveAppState(this.appState);
-    this.hide();
+    this.close();
   }
 
   private handleCancelButtonClickEvent() {
-    this.hide();
+    this.close();
   }
 
   private getCustomTextToAddRows(): DisplayedCustomTextToAdd[] {
