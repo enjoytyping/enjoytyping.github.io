@@ -63,9 +63,9 @@ export class FeedbackFormHtmlComponent extends BaseSidePanelHtmlComponent {
       email: this.emailInput.getValue(),
       message: this.messageInput.getValue(),
     };
-    // this.httpClient.open('POST', 'https://app.99inbound.com/api/e/JeIE6Bmh', true);
-    // this.httpClient.setRequestHeader('Content-Type', 'application/json;charset=UTF-8');
-    // this.httpClient.send(JSON.stringify(body));
+    this.httpClient.open('POST', 'https://app.99inbound.com/api/e/JeIE6Bmh', true);
+    this.httpClient.setRequestHeader('Content-Type', 'application/json;charset=UTF-8');
+    this.httpClient.send(JSON.stringify(body));
     this.close();
     setTimeout(() => this.toastClient.show('Thank you for your feedback!'), 500);
   }
