@@ -8,39 +8,50 @@ body.light {
   --add-icon-color-on-hover: var(--primary-color);
 }
 
-.add-custom-text-to-type-dialog {
-  & .text-to-add-textarea-header {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    font-size: 1.5rem;
+.text-to-add-textarea-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 1.5rem;
 
-    & .label {
-      font-weight: bold;
-      color: var(--text-to-add-textarea-label-color);
-    }
-
-    & .iconify {
-      font-size: 3.2rem;
-
-      &:hover {
-        color: var(--add-icon-color-on-hover);
-      }
-    }
+  & .label {
+    font-weight: bold;
+    color: var(--text-to-add-textarea-label-color);
   }
 
-  & .add-custom-text-to-type-buttons {
-    margin-top: 2rem;
-    display: flex;
-    align-items: center;
-    justify-content: flex-end;
+  & .iconify {
+    font-size: 3.2rem;
+    padding: 0.4rem;
+    border-radius: 0.3rem;
+    background-color: var(--icon-background-color);
 
-    & > * {
-      margin-left: 1.2rem;
+    &:hover {
+      color: var(--add-icon-color-on-hover);
     }
   }
+}
 
-  & .added-custom-texts-table {
-    margin-top: 3.5rem;
+.add-custom-text-to-type-buttons {
+  margin-top: 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+
+  & > * {
+    margin-left: 1.2rem;
+  }
+}
+
+.added-custom-texts-table {
+  margin-top: 3.5rem;
+}
+
+.add-custom-text-to-type-side-panel {
+  --side-panel-width: 55rem !important;
+}
+
+@media only screen and (max-width: 60rem) {
+  .add-custom-text-to-type-side-panel {
+    --side-panel-width: 80% !important;
   }
 }

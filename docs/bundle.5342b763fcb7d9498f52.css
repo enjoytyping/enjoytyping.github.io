@@ -232,7 +232,8 @@ body.light {
   --feedback-icon-container-background-color: var(--background-color-04);
   --feedback-icon-background-color-on-hover: var(--background-color-01);
   --side-panel-background-background-color: #eeeeee44;
-  --side-panel-background-color: var(--background-color-01); }
+  --side-panel-background-color: var(--background-color-01);
+  --icon-background-color: var(--background-color-04); }
 
 body.dark {
   --primary-color: #078eed;
@@ -333,7 +334,8 @@ body.dark {
   --feedback-icon-container-background-color: var(--background-color-04);
   --feedback-icon-background-color-on-hover: var(--background-color-01);
   --side-panel-background-background-color: #3b3b3b44;
-  --side-panel-background-color: var(--background-color-01); }
+  --side-panel-background-color: var(--background-color-01);
+  --icon-background-color: var(--background-color-04); }
 
 @font-face {
   font-family: 'Anonymous Pro';
@@ -1872,7 +1874,7 @@ body.dark {
     width: var(--side-panel-width);
     transition: 0.5s; }
   .side-panel-container .side-panel-title {
-    font-size: 3rem;
+    font-size: 2.5rem;
     font-weight: bold;
     margin-bottom: 2rem;
     color: var(--primary-color); }
@@ -1968,29 +1970,39 @@ body.light {
   --text-to-add-textarea-label-color: var(--text-color-03);
   --add-icon-color-on-hover: var(--primary-color); }
 
-.add-custom-text-to-type-dialog .text-to-add-textarea-header {
+.text-to-add-textarea-header {
   display: flex;
   align-items: center;
   justify-content: space-between;
   font-size: 1.5rem; }
-  .add-custom-text-to-type-dialog .text-to-add-textarea-header .label {
+  .text-to-add-textarea-header .label {
     font-weight: bold;
     color: var(--text-to-add-textarea-label-color); }
-  .add-custom-text-to-type-dialog .text-to-add-textarea-header .iconify {
-    font-size: 3.2rem; }
-    .add-custom-text-to-type-dialog .text-to-add-textarea-header .iconify:hover {
+  .text-to-add-textarea-header .iconify {
+    font-size: 3.2rem;
+    padding: 0.4rem;
+    border-radius: 0.3rem;
+    background-color: var(--icon-background-color); }
+    .text-to-add-textarea-header .iconify:hover {
       color: var(--add-icon-color-on-hover); }
 
-.add-custom-text-to-type-dialog .add-custom-text-to-type-buttons {
+.add-custom-text-to-type-buttons {
   margin-top: 2rem;
   display: flex;
   align-items: center;
   justify-content: flex-end; }
-  .add-custom-text-to-type-dialog .add-custom-text-to-type-buttons > * {
+  .add-custom-text-to-type-buttons > * {
     margin-left: 1.2rem; }
 
-.add-custom-text-to-type-dialog .added-custom-texts-table {
+.added-custom-texts-table {
   margin-top: 3.5rem; }
+
+.add-custom-text-to-type-side-panel {
+  --side-panel-width: 55rem !important; }
+
+@media only screen and (max-width: 60rem) {
+  .add-custom-text-to-type-side-panel {
+    --side-panel-width: 80% !important; } }
 
 .textarea-container {
   display: flex;

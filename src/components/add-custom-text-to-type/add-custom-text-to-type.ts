@@ -30,7 +30,7 @@ export class AddCustomTextToTypeHtmlComponent extends BaseSidePanelHtmlComponent
     super();
     this.saveButton = new ButtonHtmlComponent('Save');
     this.cancelButton = new ButtonHtmlComponent('Cancel', ButtonStyle.SECONDARY);
-    this.customTextToAddTextArea = new TextAreaHtmlComponent('');
+    this.customTextToAddTextArea = new TextAreaHtmlComponent('', '100%', '20rem');
     this.appState = this.appStateClient.getAppState();
     this.displayedCustomTextToAddTable = new TableHtmlComponent<DisplayedCustomTextToAdd>();
     this.addIconId = this.generateId();
@@ -45,7 +45,7 @@ export class AddCustomTextToTypeHtmlComponent extends BaseSidePanelHtmlComponent
   }
 
   getSidePanelCssClass(): string {
-    return 'add-custom-text-to-type-dialog';
+    return 'add-custom-text-to-type-side-panel';
   }
 
   getTitle(): string {
