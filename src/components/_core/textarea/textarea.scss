@@ -17,8 +17,7 @@
     font-family: var(--font-family);
     resize: vertical;
 
-    &:focus,
-    &:hover {
+    &:focus {
       border-color: var(--input-border-color-on-active);
     }
   }

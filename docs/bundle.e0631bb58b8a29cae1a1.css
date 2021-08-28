@@ -231,8 +231,8 @@ body.light {
   --text-to-type-ctrl-label-color: var(--text-color-04);
   --feedback-icon-container-background-color: var(--background-color-04);
   --feedback-icon-background-color-on-hover: var(--background-color-01);
-  --feedback-form-background-background-color: #eeeeee44;
-  --feedback-form-background-color: var(--background-color-01); }
+  --side-panel-background-background-color: #eeeeee44;
+  --side-panel-background-color: var(--background-color-01); }
 
 body.dark {
   --primary-color: #078eed;
@@ -332,8 +332,8 @@ body.dark {
   --text-to-type-ctrl-label-color: var(--text-color-04);
   --feedback-icon-container-background-color: var(--background-color-04);
   --feedback-icon-background-color-on-hover: var(--background-color-01);
-  --feedback-form-background-background-color: #3b3b3b44;
-  --feedback-form-background-color: var(--background-color-01); }
+  --side-panel-background-background-color: #3b3b3b44;
+  --side-panel-background-color: var(--background-color-01); }
 
 @font-face {
   font-family: 'Anonymous Pro';
@@ -1884,7 +1884,7 @@ nav .right {
     border-bottom: 2px solid var(--input-border-color);
     transition: var(--transition);
     transition-property: color, background-color, border-color; }
-    .input-container .input:focus, .input-container .input:hover {
+    .input-container .input:focus {
       border-color: var(--input-border-color-on-active); }
   .input-container .input-error-message {
     display: none; }
@@ -2016,7 +2016,7 @@ body.light {
     font-size: 1.5rem;
     font-family: var(--font-family);
     resize: vertical; }
-    .textarea-container .textarea:focus, .textarea-container .textarea:hover {
+    .textarea-container .textarea:focus {
       border-color: var(--input-border-color-on-active); }
   .textarea-container .textarea-error-message {
     display: none; }
@@ -2120,7 +2120,6 @@ body.dark {
     display: none; }
 
 .feedback-icon-container {
-  --feedback-width: 40rem;
   position: fixed;
   bottom: 2rem;
   right: 2rem;
@@ -2149,33 +2148,8 @@ body.dark {
   .feedback-icon-container:hover .iconify {
     background-color: var(--feedback-icon-background-color-on-hover); }
 
-.feedback-form-container .feedback-form-background {
-  display: none;
-  background-color: var(--feedback-form-background-background-color);
-  position: fixed;
-  top: 0;
-  right: 0;
-  left: 0;
-  bottom: 0; }
-
-.feedback-form-container .feedback-form {
-  padding: calc(var(--navbar-height) + 2rem) 2rem 2rem;
-  z-index: 300;
-  background-color: var(--feedback-form-background-color);
-  position: fixed;
-  top: 0;
-  bottom: 0;
-  right: -40rem;
-  width: 40rem;
-  transition: 0.5s; }
-
-.feedback-form-container.active .feedback-form-background {
-  display: block; }
-
-.feedback-form-container.active .feedback-form {
-  right: 0; }
-
 .feedback-form {
+  flex: 1;
   display: flex;
   flex-direction: column;
   justify-content: space-between; }
@@ -2190,12 +2164,6 @@ body.dark {
   justify-content: flex-end; }
   .feedback-form-buttons button {
     margin-left: 1rem; }
-
-.feedback-form-title {
-  font-size: 3rem;
-  font-weight: bold;
-  margin-bottom: 2rem;
-  color: var(--primary-color); }
 
 .email-input {
   margin-bottom: 2rem; }
@@ -2212,4 +2180,38 @@ body.dark {
   background-color: #4385f5;
   color: white;
   font-size: 1.5rem; }
+
+.side-panel-container .side-panel-background {
+  display: none;
+  background-color: var(--side-panel-background-background-color);
+  position: fixed;
+  top: 0;
+  right: 0;
+  left: 0;
+  bottom: 0; }
+
+.side-panel-container .side-panel {
+  display: flex;
+  flex-direction: column;
+  padding: calc(var(--navbar-height) + 2rem) 2rem 2rem;
+  z-index: 300;
+  background-color: var(--side-panel-background-color);
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  right: -40rem;
+  width: 40rem;
+  transition: 0.5s; }
+
+.side-panel-container .side-panel-title {
+  font-size: 3rem;
+  font-weight: bold;
+  margin-bottom: 2rem;
+  color: var(--primary-color); }
+
+.side-panel-container.active .side-panel-background {
+  display: block; }
+
+.side-panel-container.active .side-panel {
+  right: 0; }
 

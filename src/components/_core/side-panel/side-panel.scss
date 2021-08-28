@@ -1,0 +1,41 @@
+.side-panel-container {
+  & .side-panel-background {
+    display: none;
+    background-color: var(--side-panel-background-background-color);
+    position: fixed;
+    top: 0;
+    right: 0;
+    left: 0;
+    bottom: 0;
+  }
+
+  & .side-panel {
+    display: flex;
+    flex-direction: column;
+    padding: calc(var(--navbar-height) + 2rem) 2rem 2rem;
+    z-index: 300;
+    background-color: var(--side-panel-background-color);
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    right: -40rem;
+    width: 40rem;
+    transition: 0.5s;
+  }
+
+  & .side-panel-title {
+    font-size: 3rem;
+    font-weight: bold;
+    margin-bottom: 2rem;
+    color: var(--primary-color);
+  }
+
+  &.active {
+    & .side-panel-background {
+      display: block;
+    }
+    & .side-panel {
+      right: 0;
+    }
+  }
+}
