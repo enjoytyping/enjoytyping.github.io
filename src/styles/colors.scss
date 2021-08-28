@@ -94,6 +94,10 @@ body.light {
   --increase-decrease-value-background-color-on-hover: var(--background-color-04);
   --arrow-background-color: var(--background-color-01);
   --text-to-type-ctrl-label-color: var(--text-color-04);
+  --feedback-icon-container-background-color: var(--background-color-04);
+  --feedback-icon-background-color-on-hover: var(--background-color-01);
+  --feedback-form-background-background-color: #eeeeee44;
+  --feedback-form-background-color: var(--background-color-01);
 }
 
 body.dark {
@@ -193,4 +197,8 @@ body.dark {
   --increase-decrease-value-background-color-on-hover: var(--background-color-04);
   --arrow-background-color: var(--background-color-02);
   --text-to-type-ctrl-label-color: var(--text-color-04);
+  --feedback-icon-container-background-color: var(--background-color-04);
+  --feedback-icon-background-color-on-hover: var(--background-color-01);
+  --feedback-form-background-background-color: #3b3b3b44;
+  --feedback-form-background-color: var(--background-color-01);
 }

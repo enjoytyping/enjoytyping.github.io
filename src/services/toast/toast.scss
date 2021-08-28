@@ -1,0 +1,13 @@
+.toast-container {
+  z-index: 100000;
+  position: fixed;
+  top: calc(var(--navbar-height) + 2rem);
+  right: -30rem;
+  width: 30rem;
+  border-radius: 0.3rem;
+  transition: right 0.5s ease-in;
+  padding: 1.5rem;
+  background-color: #4385f5;
+  color: white;
+  font-size: 1.5rem;
+}

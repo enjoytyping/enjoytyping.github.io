@@ -1,6 +1,4 @@
 .app-settings-dialog {
-  --input-width: 10rem;
-
   & .app-setting {
     padding-bottom: 2.5rem;
     display: flex;
@@ -14,6 +12,10 @@
     & span {
       font-size: 1.5rem;
       color: var(--body-color);
+    }
+
+    & input {
+      width: 10rem;
     }
   }
 

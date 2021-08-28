@@ -15,6 +15,7 @@
     transition-property: color, background-color, border-color;
     font-size: 1.5rem;
     font-family: var(--font-family);
+    resize: vertical;
 
     &:focus,
     &:hover {
@@ -36,4 +37,15 @@
   &.error .textarea {
     border-color: var(--error-message-color);
   }
+}
+
+.textarea-label {
+  font-size: 1.3rem;
+  font-weight: bold;
+  border-radius: 100rem;
+}
+
+.textarea-label-mandatory {
+  color: #ff4a59;
+  font-size: 1.5rem;
 }

@@ -5,6 +5,8 @@ export const LIGHT_THEME_VALUE = 'light';
 export const DARK_THEME_VALUE = 'dark';
 
 export const END_TYPING_EVENT = 'end-typing-event';
+export const OPEN_FEEDBACK_FORM_EVENT = 'open-feedback-form-event';
+export const CLOSE_FEEDBACK_FORM_EVENT = 'close-feedback-form-event';
 export const CHANGE_THEME_EVENT = 'change-theme-event';
 export const APP_SETTINGS_CHANGE_EVENT = 'app-settings-change-event';
 export const TRAINING_LESSON_CHANGE_EVENT = 'training-lesson-change-event';
