@@ -13,6 +13,7 @@ export abstract class BaseSidePanelHtmlComponent extends BaseHtmlComponent {
 
   abstract getTitle(): string;
   abstract getBody(): string;
+  abstract getSidePanelCssClass(): string;
 
   preInsertHtml(): void {
     this.containerId = this.generateId();
@@ -23,7 +24,7 @@ export abstract class BaseSidePanelHtmlComponent extends BaseHtmlComponent {
   toHtml() {
     return /* html */ `
       <div id="${this.containerId}" class="side-panel-container">
-        <div id="${this.sidePanelId}" class="side-panel">
+        <div id="${this.sidePanelId}" class="side-panel ${this.getSidePanelCssClass()}">
           <h2 class="side-panel-title">${this.getTitle()}</h2>
           ${this.getBody()}
         </div>

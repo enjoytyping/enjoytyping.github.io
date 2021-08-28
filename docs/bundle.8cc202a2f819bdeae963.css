@@ -1774,8 +1774,8 @@ nav .right {
     z-index: 999; }
   nav .right .select {
     margin-right: 1.5rem; }
-  nav .right .select-container {
-    width: 21rem; }
+    nav .right .select .select-container {
+      width: 21rem; }
 
 @media only screen and (max-width: 768px) {
   nav .text-to-type-category,
@@ -1784,25 +1784,212 @@ nav .right {
   nav .text-to-type-subcategory {
     display: none; } }
 
-.app-settings-dialog .app-setting {
-  padding-bottom: 2.5rem;
+.app-settings {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  margin-top: 1rem; }
+  .app-settings .app-setting {
+    padding-bottom: 2.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between; }
+    .app-settings .app-setting:last-child {
+      padding-bottom: 0; }
+    .app-settings .app-setting span {
+      color: var(--body-color); }
+    .app-settings .app-setting .app-setting-label {
+      font-weight: bold;
+      font-size: 1.4rem; }
+    .app-settings .app-setting .app-setting-input,
+    .app-settings .app-setting .app-setting-select {
+      width: 100%; }
+  .app-settings .app-settings-buttons {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end; }
+    .app-settings .app-settings-buttons > * {
+      margin-left: 1.2rem; }
+
+.app-settings-side-panel {
+  --side-panel-width: 55rem !important; }
+
+@media only screen and (max-width: 60rem) {
+  .app-settings-side-panel {
+    --side-panel-width: 80% !important; } }
+
+body.light {
+  --button-secondary-background-color: var(--background-color-04);
+  --button-secondary-color: var(--text-color-03); }
+
+body.dark {
+  --button-secondary-background-color: var(--background-color-04);
+  --button-secondary-color: var(--text-color-03); }
+
+.button-container button {
+  padding: 0.6rem 1.5rem;
+  cursor: pointer;
+  border-radius: 0.2rem;
+  border: none;
+  outline: none;
+  font-weight: bold;
+  transition: var(--transition);
+  transition-property: opacity; }
+  .button-container button.primary {
+    background-color: var(--primary-color);
+    color: var(--white-color); }
+    .button-container button.primary:hover {
+      opacity: 0.85; }
+  .button-container button.secondary {
+    background-color: var(--button-secondary-background-color);
+    color: var(--button-secondary-color); }
+    .button-container button.secondary:hover {
+      opacity: 0.85; }
+
+.side-panel-container {
+  z-index: 1000000; }
+  .side-panel-container .side-panel-background {
+    display: none;
+    background-color: var(--side-panel-background-background-color);
+    position: fixed;
+    top: 0;
+    right: 0;
+    left: 0;
+    bottom: 0; }
+  .side-panel-container .side-panel {
+    --side-panel-width: 40rem;
+    box-shadow: var(--box-shadow-02);
+    display: flex;
+    flex-direction: column;
+    padding: 2rem;
+    z-index: 300;
+    background-color: var(--side-panel-background-color);
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    right: calc(var(--side-panel-width) * -1);
+    width: var(--side-panel-width);
+    transition: 0.5s; }
+  .side-panel-container .side-panel-title {
+    font-size: 3rem;
+    font-weight: bold;
+    margin-bottom: 2rem;
+    color: var(--primary-color); }
+  .side-panel-container.active .side-panel-background {
+    display: block; }
+  .side-panel-container.active .side-panel {
+    right: 0; }
+
+@media only screen and (max-width: 45rem) {
+  .side-panel-container .side-panel {
+    --side-panel-width: 80%; } }
+
+.select-container {
+  position: relative;
+  cursor: pointer;
+  width: 100%; }
+  .select-container.open {
+    z-index: 100; }
+  .select-container .select-header {
+    padding: 0.5rem 0.8rem 0.5rem 1.4rem;
+    border-radius: 0.3rem;
+    border: 1px solid var(--border-color);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-size: 1.5rem; }
+    .select-container .select-header .iconify {
+      margin-left: 1rem; }
+  .select-container .select-options {
+    font-size: 1.5rem;
+    position: absolute;
+    top: calc(100% + 0.5rem);
+    left: 0;
+    right: 0;
+    display: flex;
+    flex-direction: column;
+    background-color: var(--select-options-background-color);
+    box-shadow: var(--select-options-box-shadow);
+    border-radius: 0.3rem;
+    padding: 0.5rem 0;
+    max-height: 40rem;
+    overflow-y: scroll; }
+  .select-container .select-option {
+    padding: 0.8rem 1.6rem; }
+  .select-container .select-option:hover {
+    background-color: var(--select-option-background-color-on-hover); }
+
+.select-label {
+  font-size: 1.3rem;
+  font-weight: bold;
+  border-radius: 100rem; }
+
+.input-container {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end; }
+  .input-container .input {
+    padding: 0.8rem 1rem;
+    border: none;
+    outline: none;
+    color: var(--input-color);
+    background-color: var(--input-background-color);
+    width: 100%;
+    border-bottom: 2px solid var(--input-border-color);
+    transition: var(--transition);
+    transition-property: color, background-color, border-color; }
+    .input-container .input:focus {
+      border-color: var(--input-border-color-on-active); }
+  .input-container .input-error-message {
+    display: none; }
+  .input-container.error .input-error-message {
+    display: inline;
+    font-size: 1.2rem;
+    color: var(--error-message-color);
+    font-style: italic; }
+  .input-container.error .input {
+    border-color: var(--error-message-color); }
+
+.input-label {
+  font-size: 1.3rem;
+  font-weight: bold;
+  border-radius: 100rem; }
+
+.input-label-mandatory {
+  color: #ff4a59;
+  font-size: 1.5rem; }
+
+body.dark {
+  --text-to-add-textarea-label-color: var(--text-color-03);
+  --add-icon-color-on-hover: var(--primary-color); }
+
+body.light {
+  --text-to-add-textarea-label-color: var(--text-color-03);
+  --add-icon-color-on-hover: var(--primary-color); }
+
+.add-custom-text-to-type-dialog .text-to-add-textarea-header {
   display: flex;
   align-items: center;
-  justify-content: space-between; }
-  .app-settings-dialog .app-setting:last-child {
-    padding-bottom: 0; }
-  .app-settings-dialog .app-setting span {
-    font-size: 1.5rem;
-    color: var(--body-color); }
-  .app-settings-dialog .app-setting input {
-    width: 10rem; }
+  justify-content: space-between;
+  font-size: 1.5rem; }
+  .add-custom-text-to-type-dialog .text-to-add-textarea-header .label {
+    font-weight: bold;
+    color: var(--text-to-add-textarea-label-color); }
+  .add-custom-text-to-type-dialog .text-to-add-textarea-header .iconify {
+    font-size: 3.2rem; }
+    .add-custom-text-to-type-dialog .text-to-add-textarea-header .iconify:hover {
+      color: var(--add-icon-color-on-hover); }
 
-.app-settings-dialog .app-settings-dialog-footer {
+.add-custom-text-to-type-dialog .add-custom-text-to-type-dialog-footer {
   display: flex;
   align-items: center;
   justify-content: flex-end; }
-  .app-settings-dialog .app-settings-dialog-footer > * {
+  .add-custom-text-to-type-dialog .add-custom-text-to-type-dialog-footer > * {
     margin-left: 1.2rem; }
+
+.add-custom-text-to-type-dialog .added-custom-texts-table {
+  margin-top: 3.5rem; }
 
 .dialog-background {
   z-index: 1000;
@@ -1869,135 +2056,6 @@ nav .right {
 @media only screen and (max-width: 425px) {
   .dialog {
     --dialog-width: 80%; } }
-
-.input-container {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-end; }
-  .input-container .input {
-    padding: 0.8rem 1rem;
-    border: none;
-    outline: none;
-    color: var(--input-color);
-    background-color: var(--input-background-color);
-    width: 100%;
-    border-bottom: 2px solid var(--input-border-color);
-    transition: var(--transition);
-    transition-property: color, background-color, border-color; }
-    .input-container .input:focus {
-      border-color: var(--input-border-color-on-active); }
-  .input-container .input-error-message {
-    display: none; }
-  .input-container.error .input-error-message {
-    display: inline;
-    font-size: 1.2rem;
-    color: var(--error-message-color);
-    font-style: italic; }
-  .input-container.error .input {
-    border-color: var(--error-message-color); }
-
-.input-label {
-  font-size: 1.3rem;
-  font-weight: bold;
-  border-radius: 100rem; }
-
-.input-label-mandatory {
-  color: #ff4a59;
-  font-size: 1.5rem; }
-
-.select-container {
-  width: 18rem;
-  position: relative;
-  cursor: pointer; }
-  .select-container.open {
-    z-index: 100; }
-  .select-container .select-header {
-    padding: 0.5rem 0.8rem 0.5rem 1.4rem;
-    border-radius: 0.3rem;
-    border: 1px solid var(--border-color);
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    font-size: 1.5rem; }
-    .select-container .select-header .iconify {
-      margin-left: 1rem; }
-  .select-container .select-options {
-    font-size: 1.5rem;
-    position: absolute;
-    top: calc(100% + 0.5rem);
-    left: 0;
-    right: 0;
-    display: flex;
-    flex-direction: column;
-    background-color: var(--select-options-background-color);
-    box-shadow: var(--select-options-box-shadow);
-    border-radius: 0.3rem;
-    padding: 0.5rem 0;
-    max-height: 40rem;
-    overflow-y: scroll; }
-  .select-container .select-option {
-    padding: 0.8rem 1.6rem; }
-  .select-container .select-option:hover {
-    background-color: var(--select-option-background-color-on-hover); }
-
-body.light {
-  --button-secondary-background-color: var(--background-color-04);
-  --button-secondary-color: var(--text-color-03); }
-
-body.dark {
-  --button-secondary-background-color: var(--background-color-04);
-  --button-secondary-color: var(--text-color-03); }
-
-.button-container button {
-  padding: 0.6rem 1.5rem;
-  cursor: pointer;
-  border-radius: 0.2rem;
-  border: none;
-  outline: none;
-  font-weight: bold;
-  transition: var(--transition);
-  transition-property: opacity; }
-  .button-container button.primary {
-    background-color: var(--primary-color);
-    color: var(--white-color); }
-    .button-container button.primary:hover {
-      opacity: 0.85; }
-  .button-container button.secondary {
-    background-color: var(--button-secondary-background-color);
-    color: var(--button-secondary-color); }
-    .button-container button.secondary:hover {
-      opacity: 0.85; }
-
-body.dark {
-  --text-to-add-textarea-label-color: var(--text-color-03);
-  --add-icon-color-on-hover: var(--primary-color); }
-
-body.light {
-  --text-to-add-textarea-label-color: var(--text-color-03);
-  --add-icon-color-on-hover: var(--primary-color); }
-
-.add-custom-text-to-type-dialog .text-to-add-textarea-header {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  font-size: 1.5rem; }
-  .add-custom-text-to-type-dialog .text-to-add-textarea-header .label {
-    font-weight: bold;
-    color: var(--text-to-add-textarea-label-color); }
-  .add-custom-text-to-type-dialog .text-to-add-textarea-header .iconify {
-    font-size: 3.2rem; }
-    .add-custom-text-to-type-dialog .text-to-add-textarea-header .iconify:hover {
-      color: var(--add-icon-color-on-hover); }
-
-.add-custom-text-to-type-dialog .add-custom-text-to-type-dialog-footer {
-  display: flex;
-  align-items: center;
-  justify-content: flex-end; }
-  .add-custom-text-to-type-dialog .add-custom-text-to-type-dialog-footer > * {
-    margin-left: 1.2rem; }
-
-.add-custom-text-to-type-dialog .added-custom-texts-table {
-  margin-top: 3.5rem; }
 
 .textarea-container {
   display: flex;
@@ -2180,38 +2238,4 @@ body.dark {
   background-color: #4385f5;
   color: white;
   font-size: 1.5rem; }
-
-.side-panel-container .side-panel-background {
-  display: none;
-  background-color: var(--side-panel-background-background-color);
-  position: fixed;
-  top: 0;
-  right: 0;
-  left: 0;
-  bottom: 0; }
-
-.side-panel-container .side-panel {
-  display: flex;
-  flex-direction: column;
-  padding: calc(var(--navbar-height) + 2rem) 2rem 2rem;
-  z-index: 300;
-  background-color: var(--side-panel-background-color);
-  position: fixed;
-  top: 0;
-  bottom: 0;
-  right: -40rem;
-  width: 40rem;
-  transition: 0.5s; }
-
-.side-panel-container .side-panel-title {
-  font-size: 3rem;
-  font-weight: bold;
-  margin-bottom: 2rem;
-  color: var(--primary-color); }
-
-.side-panel-container.active .side-panel-background {
-  display: block; }
-
-.side-panel-container.active .side-panel {
-  right: 0; }
 

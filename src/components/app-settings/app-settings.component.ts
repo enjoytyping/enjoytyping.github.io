@@ -1,6 +1,5 @@
-import './app-settings-dialog.scss';
+import './app-settings.scss';
 import { APP_SETTINGS_CHANGE_EVENT, END_UPDATING_APP_SETTINGS_EVENT, START_UPDATING_APP_SETTINGS_EVENT } from '../../constants/constant';
-import { BaseDialogHtmlComponent, DialogPhase } from '../_core/dialog/base-dialog-component';
 import { InputHtmlComponent } from '../_core/input/input.component';
 import { SelectHtmlComponent } from '../_core/select/select.component';
 import { TextToTypeCategory, TEXT_TO_TYPE_CATEGORIES } from '../../state/text-to-type-category.enum';
@@ -10,15 +9,18 @@ import { SwitchHtmlComponent } from '../_core/switch/switch.component';
 import { TextToTypeSubCategory, getTextToTypeSubCategory } from '../../state/text-to-type-sub-category.enum';
 import { IAppStateClient } from '../../state/app-state.client.interface';
 import { TrainingLesson } from '../training/training-lesson.enum';
+import { BaseSidePanelHtmlComponent } from '../_core/side-panel/side-panel.component';
+import { LabeledSelectHtmlComponent } from '../_core/select/labeled-select.component ';
+import { LabeledInputHtmlComponent } from '../_core/input/labeled-input.component';
 
-export class AppSettingsDialogHtmlComponent extends BaseDialogHtmlComponent {
+export class AppSettingsHtmlComponent extends BaseSidePanelHtmlComponent {
   private stopOnErrorSwitch: SwitchHtmlComponent;
   private enableCapitalLettersSwitch: SwitchHtmlComponent;
   private enablePunctuationCharactersSwitch: SwitchHtmlComponent;
   private enableSoundsSwitch: SwitchHtmlComponent;
-  private maxCharactersToType: InputHtmlComponent;
-  private textToTypeCategoriesSelect: SelectHtmlComponent<TextToTypeCategory>;
-  private textToTypeSubCategoriesSelect: SelectHtmlComponent<TextToTypeSubCategory>;
+  private maxCharactersToType: LabeledInputHtmlComponent;
+  private textToTypeCategoriesSelect: LabeledSelectHtmlComponent<TextToTypeCategory>;
+  private textToTypeSubCategoriesSelect: LabeledSelectHtmlComponent<TextToTypeSubCategory>;
   private enableCapitalLettersContainer: HTMLElement;
   private enablePunctuationCharactersContainer: HTMLElement;
   private textToTypeSubCategoriesContainerId: string;
@@ -32,8 +34,6 @@ export class AppSettingsDialogHtmlComponent extends BaseDialogHtmlComponent {
 
   constructor(private appStateClient: IAppStateClient) {
     super();
-    this.addPhaseListener(DialogPhase.POST_DIALOG_SHOW, this.postShow.bind(this));
-    this.addPhaseListener(DialogPhase.POST_DIALOG_HIDE, this.postHide.bind(this));
   }
 
   preInsertHtml(): void {
@@ -55,15 +55,21 @@ export class AppSettingsDialogHtmlComponent extends BaseDialogHtmlComponent {
     this.enableCapitalLettersSwitch = new SwitchHtmlComponent(this.appState.enableCapitalLetters);
     this.enableSoundsSwitch = new SwitchHtmlComponent(this.appState.enableSounds);
     this.enablePunctuationCharactersSwitch = new SwitchHtmlComponent(this.appState.enablePunctuationCharacters);
-    this.maxCharactersToType = new InputHtmlComponent(this.appState.maxCharactersToType.toString());
-    this.textToTypeCategoriesSelect = new SelectHtmlComponent<TextToTypeCategory>({
-      options: TEXT_TO_TYPE_CATEGORIES,
-      selectedOptionValue: this.appState.textToTypeCategory,
-    });
-    this.textToTypeSubCategoriesSelect = new SelectHtmlComponent<TextToTypeSubCategory>({
-      options: getTextToTypeSubCategory(this.appState.textToTypeCategory),
-      selectedOptionValue: this.appState.textToTypeSubCategory,
-    });
+    this.maxCharactersToType = new LabeledInputHtmlComponent('Max characters to type', this.appState.maxCharactersToType.toString(), false);
+    this.textToTypeCategoriesSelect = new LabeledSelectHtmlComponent<TextToTypeCategory>(
+      {
+        options: TEXT_TO_TYPE_CATEGORIES,
+        selectedOptionValue: this.appState.textToTypeCategory,
+      },
+      'Text to type category'
+    );
+    this.textToTypeSubCategoriesSelect = new LabeledSelectHtmlComponent<TextToTypeSubCategory>(
+      {
+        options: getTextToTypeSubCategory(this.appState.textToTypeCategory),
+        selectedOptionValue: this.appState.textToTypeSubCategory,
+      },
+      'Text to type subcategory'
+    );
     this.saveButton = new ButtonHtmlComponent('Save');
     this.cancelButton = new ButtonHtmlComponent('Cancel', ButtonStyle.SECONDARY);
     this.stopOnErrorSwitch.preInsertHtml();
@@ -77,54 +83,50 @@ export class AppSettingsDialogHtmlComponent extends BaseDialogHtmlComponent {
     this.cancelButton.preInsertHtml();
   }
 
-  getDialogCssClass(): string {
-    return 'app-settings-dialog';
-  }
-
-  getDialogTitle(): string {
+  getTitle(): string {
     return 'Settings';
   }
 
-  getDialogBody(): string {
+  getBody(): string {
     return /* html */ `
-      <div class="app-setting">
-        <span>Text to type category</span>
-        <span>${this.textToTypeCategoriesSelect.toHtml()}</span>
-      </div>
-      <div id="${this.textToTypeSubCategoryContainerId}" class="app-setting">
-        <span>Text to type sub-category</span>
-        <span id="${this.textToTypeSubCategoriesContainerId}">${this.textToTypeSubCategoriesSelect.toHtml()}</span>
-      </div>
-      <div class="app-setting">
-        <span>Max characters to type</span>
-        <span>${this.maxCharactersToType.toHtml()}</span>
-      </div>
-      <div class="app-setting">
-        <span>Stop on error</span>
-        <span>${this.stopOnErrorSwitch.toHtml()}</span>
-      </div>
-      <div id="${this.enableCapitalLettersContainerId}" class="app-setting">
-        <span>Enable capital letters</span>
-        <span>${this.enableCapitalLettersSwitch.toHtml()}</span>
-      </div>
-      <div id="${this.enablePunctuationCharactersContainerId}" class="app-setting">
-        <span>Enable punctuation characters</span>
-        <span>${this.enablePunctuationCharactersSwitch.toHtml()}</span>
-      </div>
-      <div class="app-setting">
-        <span>Enable sounds</span>
-        <span>${this.enableSoundsSwitch.toHtml()}</span>
+      <div class="app-settings">
+        <div class="app-settings-inputs">
+          <div class="app-setting">
+            <span class="app-setting-select">${this.textToTypeCategoriesSelect.toHtml()}</span>
+          </div>
+          <div id="${this.textToTypeSubCategoryContainerId}" class="app-setting">
+            <span id="${this.textToTypeSubCategoriesContainerId}" class="app-setting-select">${this.textToTypeSubCategoriesSelect.toHtml()}</span>
+          </div>
+          <div class="app-setting">
+            <span class="app-setting-input">${this.maxCharactersToType.toHtml()}</span>
+          </div>
+          <div class="app-setting">
+            <span class="app-setting-label">Stop on error</span>
+            <span>${this.stopOnErrorSwitch.toHtml()}</span>
+          </div>
+          <div id="${this.enableCapitalLettersContainerId}" class="app-setting">
+            <span class="app-setting-label">Enable capital letters</span>
+            <span>${this.enableCapitalLettersSwitch.toHtml()}</span>
+          </div>
+          <div id="${this.enablePunctuationCharactersContainerId}" class="app-setting">
+            <span class="app-setting-label">Enable punctuation characters</span>
+            <span>${this.enablePunctuationCharactersSwitch.toHtml()}</span>
+          </div>
+          <div class="app-setting">
+            <span class="app-setting-label">Enable sounds</span>
+            <span>${this.enableSoundsSwitch.toHtml()}</span>
+          </div>
+        </div>
+        <div class="app-settings-buttons">
+          ${this.cancelButton.toHtml()}
+          ${this.saveButton.toHtml()}
+        </div>
       </div>
     `;
   }
 
-  getDialogFooter(): string {
-    return /* html */ `
-      <div class="app-settings-dialog-footer">
-        ${this.cancelButton.toHtml()}
-        ${this.saveButton.toHtml()}
-      </div>
-    `;
+  getSidePanelCssClass(): string {
+    return 'app-settings-side-panel';
   }
 
   postInsertHtml(): void {
@@ -155,14 +157,16 @@ export class AppSettingsDialogHtmlComponent extends BaseDialogHtmlComponent {
     this.cancelButton.onClick(this.handleCancelButtonClickEvent.bind(this));
   }
 
-  private postShow(): void {
+  open(): void {
+    super.open();
     this.maxCharactersToType.blur();
     this.appState = this.appStateClient.getAppState();
     this.updateInnerHTML();
     this.dispatchCustomEvent(START_UPDATING_APP_SETTINGS_EVENT);
   }
 
-  private postHide(): void {
+  close(): void {
+    super.close();
     this.dispatchCustomEvent(END_UPDATING_APP_SETTINGS_EVENT);
   }
 
@@ -247,10 +251,10 @@ export class AppSettingsDialogHtmlComponent extends BaseDialogHtmlComponent {
   private handleSaveButtonClickEvent() {
     this.appStateClient.saveAppState(this.appState);
     this.dispatchCustomEvent(APP_SETTINGS_CHANGE_EVENT);
-    this.hide();
+    this.close();
   }
 
   private handleCancelButtonClickEvent() {
-    this.hide();
+    this.close();
   }
 }

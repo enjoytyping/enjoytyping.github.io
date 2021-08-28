@@ -10,8 +10,8 @@ import {
   START_UPDATING_CUSTOM_TEXT_TO_TYPE_EVENT,
   TRAINING_LESSON_CHANGE_EVENT,
   PROGRESS_DIV_ID,
-  CLOSE_FEEDBACK_FORM_EVENT,
-  OPEN_FEEDBACK_FORM_EVENT,
+  OPEN_SIDE_PANEL_EVENT,
+  CLOSE_SIDE_PANEL_EVENT,
 } from '../../constants/constant';
 import { BaseHtmlComponent } from '../_core/base-component';
 import { TypedKeyStats } from '../typed-keys/typed-key-stats.model';
@@ -24,7 +24,7 @@ import { TrainingLessonStats } from '../training/training-lesson-stats.model';
 import { TrainingLesson } from '../training/training-lesson.enum';
 import { NumericInputHtmlComponent } from '../_core/numeric-input/numeric-input.component';
 
-const INACTIVITY_TIMEOUT = 10000;
+const INACTIVITY_TIMEOUT = 30000;
 const BACKSPACE_KEY = 'Backspace';
 const SPACE_KEY = ' ';
 const ENTER_KEY = 'Enter';
@@ -104,8 +104,8 @@ export class TextToTypeHtmlComponent extends BaseHtmlComponent {
     this.addCustomEventListener(END_UPDATING_CUSTOM_TEXT_TO_TYPE_EVENT, this.enable.bind(this));
     this.addCustomEventListener(CUSTOM_TEXTS_UPDATE_EVENT, this.reset.bind(this));
     this.addCustomEventListener(TRAINING_LESSON_CHANGE_EVENT, this.reset.bind(this));
-    this.addCustomEventListener(OPEN_FEEDBACK_FORM_EVENT, this.disable.bind(this));
-    this.addCustomEventListener(CLOSE_FEEDBACK_FORM_EVENT, this.enable.bind(this));
+    this.addCustomEventListener(OPEN_SIDE_PANEL_EVENT, this.disable.bind(this));
+    this.addCustomEventListener(CLOSE_SIDE_PANEL_EVENT, this.enable.bind(this));
   }
 
   private onFontSizeInputChange(newValue: number) {

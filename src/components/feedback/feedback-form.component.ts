@@ -32,6 +32,10 @@ export class FeedbackFormHtmlComponent extends BaseSidePanelHtmlComponent {
     `;
   }
 
+  getSidePanelCssClass(): string {
+    return 'feedback-form-side-panel';
+  }
+
   preInsertHtml(): void {
     super.preInsertHtml();
     this.emailInput.preInsertHtml();

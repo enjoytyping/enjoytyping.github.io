@@ -1,5 +1,5 @@
 import './navbar.scss';
-import { AppSettingsDialogHtmlComponent } from '../app-settings-dialog/app-settings-dialog.component';
+import { AppSettingsHtmlComponent } from '../app-settings/app-settings.component';
 import { ChangeThemeIconHtmlComponent } from '../change-theme-icon/change-theme-icon.component';
 import { BaseHtmlComponent } from '../_core/base-component';
 import { AppStateClient } from '../../state/app-state.client';
@@ -18,7 +18,7 @@ const ADD_CUSTOM_TEXT_TO_TYPE_ICON_ID = 'ADD_CUSTOM_TEXT_TO_TYPE_ICON_ID';
 export class NavbarHtmlComponent extends BaseHtmlComponent {
   private navbar: HTMLElement;
   private appSettingsIcon: HTMLElement;
-  private appSettingsDialog: AppSettingsDialogHtmlComponent;
+  private appSettingsDialog: AppSettingsHtmlComponent;
   private enableSoundsIcon: EnableSoundsIconHtmlComponent;
   private addCustomTextToTypeIcon: HTMLElement;
   private addCustomTextToTypeDialog: AddCustomTextToTypeDialogHtmlComponent;
@@ -31,7 +31,7 @@ export class NavbarHtmlComponent extends BaseHtmlComponent {
   constructor(private appStateClient: IAppStateClient) {
     super();
     const appState = this.appStateClient.getAppState();
-    this.appSettingsDialog = new AppSettingsDialogHtmlComponent(AppStateClient.getInstance());
+    this.appSettingsDialog = new AppSettingsHtmlComponent(AppStateClient.getInstance());
     this.addCustomTextToTypeDialog = new AddCustomTextToTypeDialogHtmlComponent(AppStateClient.getInstance());
     this.changeThemeIcon = new ChangeThemeIconHtmlComponent(AppStateClient.getInstance());
     this.textToTypeCategoriesSelect = new SelectHtmlComponent<TextToTypeCategory>({
@@ -102,7 +102,7 @@ export class NavbarHtmlComponent extends BaseHtmlComponent {
 
   private handleAppSettingsIconClickEvent(event) {
     event.stopPropagation();
-    this.appSettingsDialog.show();
+    this.appSettingsDialog.open();
   }
 
   private handleAAddCustomTextToTypeIconClickEvent(event) {
