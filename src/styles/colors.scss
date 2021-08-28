@@ -52,6 +52,7 @@ body.light {
   --text-to-type-reference-color: var(--primary-color);
   --input-color: var(--body-color);
   --input-background-color: var(--background-color-03);
+  --select-background-color: var(--background-color-03);
   --input-border-color: var(--border-color);
   --input-border-color-on-active: var(--primary-color);
   --error-message-color: #f1505e;
@@ -156,6 +157,7 @@ body.dark {
   --text-to-type-reference-color: var(--primary-color);
   --input-color: var(--body-color);
   --input-background-color: var(--background-color-03);
+  --select-background-color: var(--background-color-03);
   --input-border-color: var(--border-color);
   --input-border-color-on-active: var(--primary-color);
   --error-message-color: #f1505e;
