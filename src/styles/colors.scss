@@ -100,6 +100,9 @@ body.light {
   --side-panel-background-background-color: #eeeeee44;
   --side-panel-background-color: var(--background-color-01);
   --icon-background-color: var(--background-color-04);
+  --toast-color: #004889;
+  --toast-background-color: #cce5ff;
+  --toast-border-color: #b8daff;
 }
 
 body.dark {
@@ -205,4 +208,7 @@ body.dark {
   --side-panel-background-background-color: #3b3b3b44;
   --side-panel-background-color: var(--background-color-01);
   --icon-background-color: var(--background-color-04);
+  --toast-color: #004889;
+  --toast-background-color: #cce5ff;
+  --toast-border-color: #b8daff;
 }

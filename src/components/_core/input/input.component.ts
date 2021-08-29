@@ -66,6 +66,10 @@ export class InputHtmlComponent extends BaseHtmlComponent {
     return this.input.value;
   }
 
+  dispatchChangeEvent(): void {
+    this.input.dispatchEvent(new Event('change'));
+  }
+
   private onInputChange() {
     try {
       this.validators.forEach((validator) => validator(this.input.value));

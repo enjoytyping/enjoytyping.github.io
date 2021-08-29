@@ -57,6 +57,8 @@ export class FeedbackFormHtmlComponent extends BaseSidePanelHtmlComponent {
 
   private handleSubmitButtonClickEvent() {
     if (this.emailInput.isNotValid() || this.messageInput.isNotValid()) {
+      this.emailInput.dispatchChangeEvent();
+      this.messageInput.dispatchChangeEvent();
       return;
     }
     const body = {

@@ -83,6 +83,10 @@ export class TextAreaHtmlComponent extends BaseHtmlComponent {
     return this.container.classList.contains('error') || !this.getValue();
   }
 
+  dispatchChangeEvent(): void {
+    this.textArea.dispatchEvent(new Event('change'));
+  }
+
   private onTextAreaChange() {
     try {
       this.validators.forEach((validator) => validator(this.textArea.value));
