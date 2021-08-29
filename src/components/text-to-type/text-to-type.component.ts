@@ -13,6 +13,8 @@ import {
   OPEN_SIDE_PANEL_EVENT,
   CLOSE_SIDE_PANEL_EVENT,
   CHANGE_TEXT_TO_TYPE,
+  ENABLE_TEXT_TO_TYPE,
+  DISABLE_TEXT_TO_TYPE,
 } from '../../constants/constant';
 import { BaseHtmlComponent } from '../_core/base-component';
 import { TypedKeyStats } from '../typed-keys/typed-key-stats.model';
@@ -108,6 +110,8 @@ export class TextToTypeHtmlComponent extends BaseHtmlComponent {
     this.addCustomEventListener(CHANGE_TEXT_TO_TYPE, this.reset.bind(this));
     this.addCustomEventListener(OPEN_SIDE_PANEL_EVENT, this.disable.bind(this));
     this.addCustomEventListener(CLOSE_SIDE_PANEL_EVENT, this.enable.bind(this));
+    this.addCustomEventListener(ENABLE_TEXT_TO_TYPE, this.enable.bind(this));
+    this.addCustomEventListener(DISABLE_TEXT_TO_TYPE, this.disable.bind(this));
   }
 
   private onFontSizeInputChange(newValue: number) {
@@ -141,7 +145,6 @@ export class TextToTypeHtmlComponent extends BaseHtmlComponent {
     const oldValue = appState.trainingSize;
     appState.trainingSize = newValue;
     this.appStateClient.saveAppState(appState);
-    console.log(`newValue: ${newValue}, oldValue: ${oldValue}`);
     if (oldValue > newValue) {
       this.textToType.text = this.textToType.text.substring(0, newValue);
     } else {

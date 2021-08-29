@@ -1,3 +1,4 @@
+import { ENABLE_TEXT_TO_TYPE, DISABLE_TEXT_TO_TYPE, ENTER_KEY_CODE } from '../../../constants/constant';
 import { BaseHtmlComponent } from '../base-component';
 import './numeric-input.scss';
 
@@ -6,8 +7,8 @@ export class NumericInputHtmlComponent extends BaseHtmlComponent {
   private increaseButtonDomElement: HTMLElement;
   private decreaseButtonDomElementId: string;
   private decreaseButtonDomElement: HTMLElement;
-  private valueDomElementId: string;
-  private valueDomElement: HTMLElement;
+  private valueInputDomElementId: string;
+  private valueInputDomElement: HTMLInputElement;
   private containerId: string;
   private callbacks: ((value: number) => void)[] = [];
 
@@ -15,7 +16,7 @@ export class NumericInputHtmlComponent extends BaseHtmlComponent {
     super();
     this.increaseButtonDomElementId = this.generateId();
     this.decreaseButtonDomElementId = this.generateId();
-    this.valueDomElementId = this.generateId();
+    this.valueInputDomElementId = this.generateId();
     this.containerId = this.generateId();
   }
 
@@ -25,7 +26,7 @@ export class NumericInputHtmlComponent extends BaseHtmlComponent {
     return /* html */ `
       <div id="${this.containerId}" class="increase-decrease-value-container">
         <span id="${this.decreaseButtonDomElementId}" class="increase-value">-</span>
-        <span id="${this.valueDomElementId}" class="value">${this.value}</span>
+        <input id="${this.valueInputDomElementId}" class="value" size="${this.getInputSize()}" value="${this.value}" />
         <span id="${this.increaseButtonDomElementId}" class="decrease-value">+</span>
       </div>
     `;
@@ -34,18 +35,52 @@ export class NumericInputHtmlComponent extends BaseHtmlComponent {
   postInsertHtml() {
     this.increaseButtonDomElement = document.getElementById(this.increaseButtonDomElementId);
     this.decreaseButtonDomElement = document.getElementById(this.decreaseButtonDomElementId);
-    this.valueDomElement = document.getElementById(this.valueDomElementId);
+    this.valueInputDomElement = document.getElementById(this.valueInputDomElementId) as HTMLInputElement;
     this.increaseButtonDomElement.addEventListener('click', () => this.updateValue(1));
     this.decreaseButtonDomElement.addEventListener('click', () => this.updateValue(-1));
+    this.valueInputDomElement.addEventListener('blur', this.handleValueInputBlurEvent.bind(this));
+    this.valueInputDomElement.addEventListener('focus', this.handleValueInputFocusEvent.bind(this));
+    this.valueInputDomElement.addEventListener('change', this.handleValueInputChangeEvent.bind(this));
+    this.valueInputDomElement.addEventListener('keyup', this.handleValueInputKeyDownEvent.bind(this));
+  }
+
+  private handleValueInputKeyDownEvent(event) {
+    if (event.keyCode == ENTER_KEY_CODE) {
+      this.valueInputDomElement.blur();
+    }
+  }
+
+  private handleValueInputBlurEvent() {
+    this.dispatchCustomEvent(ENABLE_TEXT_TO_TYPE);
+  }
+
+  private handleValueInputFocusEvent() {
+    this.dispatchCustomEvent(DISABLE_TEXT_TO_TYPE);
+  }
+
+  private handleValueInputChangeEvent() {
+    if (!/[0-9]+/.test(this.valueInputDomElement.value)) {
+      console.error('only numeric values are accepted');
+      this.valueInputDomElement.value = `${this.value}`;
+      return;
+    }
+    this.value = parseInt(this.valueInputDomElement.value);
+    this.valueInputDomElement.size = this.getInputSize();
+    this.callbacks.forEach((callback) => callback(this.value));
   }
 
   private updateValue(valueChange: number) {
     this.value += valueChange;
-    this.valueDomElement.innerHTML = `${this.value}`;
+    this.valueInputDomElement.value = `${this.value}`;
+    this.valueInputDomElement.size = this.getInputSize();
     this.callbacks.forEach((callback) => callback(this.value));
   }
 
   onUpdate(callback: (value: number) => void) {
     this.callbacks.push(callback);
+  }
+
+  private getInputSize(): number {
+    return new String(this.value).length - 1;
   }
 }

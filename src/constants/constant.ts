@@ -3,7 +3,10 @@ export const PROGRESS_DIV_ID = 'ProgressDivId';
 export const MIN_STATS_TO_DISPLAY_PROGRESS_GRAPH = 1;
 export const LIGHT_THEME_VALUE = 'light';
 export const DARK_THEME_VALUE = 'dark';
+export const ENTER_KEY_CODE = 13;
 
+export const DISABLE_TEXT_TO_TYPE = 'disable-text-to-type';
+export const ENABLE_TEXT_TO_TYPE = 'enable-text-to-type';
 export const END_TYPING_EVENT = 'end-typing-event';
 export const OPEN_FEEDBACK_FORM_EVENT = 'open-feedback-form-event';
 export const CLOSE_FEEDBACK_FORM_EVENT = 'close-feedback-form-event';
