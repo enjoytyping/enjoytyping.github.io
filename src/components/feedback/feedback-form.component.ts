@@ -47,12 +47,26 @@ export class FeedbackFormHtmlComponent extends BaseSidePanelHtmlComponent {
   postInsertHtml(): void {
     super.postInsertHtml();
     this.emailInput.postInsertHtml();
-    this.emailInput.focus();
     this.messageInput.postInsertHtml();
+    this.emailInput.onValidate(this.validateEmail.bind(this));
     this.submitButton.postInsertHtml();
     this.cancelButton.postInsertHtml();
     this.cancelButton.onClick(this.close.bind(this));
     this.submitButton.onClick(this.handleSubmitButtonClickEvent.bind(this));
+  }
+
+  open() {
+    super.open();
+    this.emailInput.focus();
+  }
+
+  private validateEmail(email) {
+    // code inspiration: https://stackoverflow.com/questions/46155/how-to-validate-an-email-address-in-javascript
+    const re =
+      /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+    if (!re.test(String(email).toLowerCase())) {
+      throw Error('Not valid email');
+    }
   }
 
   private handleSubmitButtonClickEvent() {
