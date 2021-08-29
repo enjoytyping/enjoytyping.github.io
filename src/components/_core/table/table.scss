@@ -28,6 +28,7 @@ body.dark {
   & .table-header {
     padding: 1rem 0;
     background-color: var(--table-head-background-color);
+    font-weight: bold;
   }
 
   & .table-row {
