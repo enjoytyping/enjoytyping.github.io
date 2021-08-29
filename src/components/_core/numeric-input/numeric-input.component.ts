@@ -1,4 +1,4 @@
-import { ENABLE_TEXT_TO_TYPE, DISABLE_TEXT_TO_TYPE, ENTER_KEY_CODE } from '../../../constants/constant';
+import { ENABLE_TEXT_TO_TYPE, DISABLE_TEXT_TO_TYPE, ENTER_KEY_CODE, ARROW_UP_KEY_CODE, ARROW_DOWN_KEY_CODE } from '../../../constants/constant';
 import { ToastClient } from '../../../services/toast/toast.service';
 import { BaseHtmlComponent } from '../base-component';
 import './numeric-input.scss';
@@ -42,12 +42,18 @@ export class NumericInputHtmlComponent extends BaseHtmlComponent {
     this.valueInputDomElement.addEventListener('blur', this.handleValueInputBlurEvent.bind(this));
     this.valueInputDomElement.addEventListener('focus', this.handleValueInputFocusEvent.bind(this));
     this.valueInputDomElement.addEventListener('change', this.handleValueInputChangeEvent.bind(this));
-    this.valueInputDomElement.addEventListener('keyup', this.handleValueInputKeyDownEvent.bind(this));
+    this.valueInputDomElement.addEventListener('keydown', this.handleValueInputKeyDownEvent.bind(this));
   }
 
   private handleValueInputKeyDownEvent(event) {
     if (event.keyCode == ENTER_KEY_CODE) {
       this.valueInputDomElement.blur();
+    }
+    if (event.keyCode == ARROW_UP_KEY_CODE) {
+      this.updateValue(1);
+    }
+    if (event.keyCode == ARROW_DOWN_KEY_CODE) {
+      this.updateValue(-1);
     }
   }
 
