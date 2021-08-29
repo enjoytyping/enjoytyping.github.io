@@ -176,7 +176,7 @@ export class AddCustomTextToTypeHtmlComponent extends BaseSidePanelHtmlComponent
   private getCustomTextToAddColumns(): TableColumn[] {
     return [
       {
-        label: 'Text',
+        label: 'Custom Text',
         fieldName: 'text',
       },
     ];
