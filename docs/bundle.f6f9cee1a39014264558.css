@@ -2008,6 +2008,7 @@ body.light {
     margin-left: 1.2rem; }
 
 .added-custom-texts-table {
+  overflow: scroll;
   margin-top: 3.5rem; }
 
 .add-custom-text-to-type-side-panel {

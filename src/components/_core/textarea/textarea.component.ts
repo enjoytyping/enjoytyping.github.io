@@ -83,6 +83,10 @@ export class TextAreaHtmlComponent extends BaseHtmlComponent {
     return this.container.classList.contains('error') || !this.getValue();
   }
 
+  isEmpty() {
+    return !this.getValue();
+  }
+
   dispatchChangeEvent(): void {
     this.textArea.dispatchEvent(new Event('change'));
   }
