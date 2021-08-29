@@ -28,6 +28,8 @@
   & .value {
     border: none;
     outline: none;
+    background-color: var(--body-background-color);
+    color: var(--body-color);
     border-left: 1px solid var(--border-color);
     border-right: 1px solid var(--border-color);
     font-family: 'Roboto Mono', monospace;

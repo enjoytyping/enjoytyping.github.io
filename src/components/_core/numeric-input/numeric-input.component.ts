@@ -61,7 +61,7 @@ export class NumericInputHtmlComponent extends BaseHtmlComponent {
 
   private handleValueInputChangeEvent() {
     if (!/^[0-9]+$/.test(this.valueInputDomElement.value)) {
-      this.toastClient.show('Only numeric values are accepted');
+      this.toastClient.error('Only numeric values are accepted');
       this.valueInputDomElement.value = `${this.value}`;
       return;
     }

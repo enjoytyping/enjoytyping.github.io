@@ -17,7 +17,19 @@ export class ToastClient {
     return ToastClient.instance;
   }
 
-  show(message: string): void {
+  info(message: string): void {
+    this.container.classList.remove('error', 'info');
+    this.container.classList.add('info');
+    this.show(message);
+  }
+
+  error(message: string): void {
+    this.container.classList.remove('error', 'info');
+    this.container.classList.add('error');
+    this.show(message);
+  }
+
+  private show(message: string): void {
     this.container.innerHTML = message;
     this.container.style.right = '2rem';
     setTimeout(this.hide.bind(this), 4000);

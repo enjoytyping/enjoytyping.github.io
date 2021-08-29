@@ -83,6 +83,6 @@ export class FeedbackFormHtmlComponent extends BaseSidePanelHtmlComponent {
     this.httpClient.setRequestHeader('Content-Type', 'application/json;charset=UTF-8');
     this.httpClient.send(JSON.stringify(body));
     this.close();
-    setTimeout(() => this.toastClient.show('Thank you for your feedback!'), 500);
+    setTimeout(() => this.toastClient.info('Thank you for your feedback!'), 500);
   }
 }
