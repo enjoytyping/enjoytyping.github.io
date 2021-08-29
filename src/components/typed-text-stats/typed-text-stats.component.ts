@@ -1,10 +1,8 @@
 import './typed-text-stats.scss';
-import { APP_SETTINGS_CHANGE_EVENT, END_TYPING_EVENT } from '../../constants/constant';
+import { CHANGE_TEXT_TO_TYPE, END_TYPING_EVENT } from '../../constants/constant';
 import { BaseHtmlComponent } from '../_core/base-component';
 import { TypedTextStats } from './typed-text-stats.model';
 import { IAppStateClient } from '../../state/app-state.client.interface';
-import { AppState } from '../../state/app-state.model';
-import { TextToTypeCategory } from '../../state/text-to-type-category.enum';
 
 const TYPED_TEXT_WPM_DOM_ELEMENT_ID = 'TypedTextWpm';
 const TYPED_TEXT_ERRORS_DOM_ELEMENT_ID = 'TypedTextErrors';
@@ -65,14 +63,14 @@ export class TypedTextStatsHtmlComponent extends BaseHtmlComponent {
     const appState = this.appStateClient.getAppState();
     appState.textToTypeIndex = this.appStateClient.previousTextToTypeIndex();
     this.appStateClient.saveAppState(appState);
-    this.dispatchCustomEvent(APP_SETTINGS_CHANGE_EVENT);
+    this.dispatchCustomEvent(CHANGE_TEXT_TO_TYPE);
   }
 
   private handleNextTextTextToTypeClickEvent() {
     const appState = this.appStateClient.getAppState();
     appState.textToTypeIndex = this.appStateClient.nextTextToTypeIndex();
     this.appStateClient.saveAppState(appState);
-    this.dispatchCustomEvent(APP_SETTINGS_CHANGE_EVENT);
+    this.dispatchCustomEvent(CHANGE_TEXT_TO_TYPE);
   }
 
   private handleEndTypingEvent(event) {

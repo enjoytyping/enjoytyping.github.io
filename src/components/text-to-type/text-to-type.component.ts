@@ -12,6 +12,7 @@ import {
   PROGRESS_DIV_ID,
   OPEN_SIDE_PANEL_EVENT,
   CLOSE_SIDE_PANEL_EVENT,
+  CHANGE_TEXT_TO_TYPE,
 } from '../../constants/constant';
 import { BaseHtmlComponent } from '../_core/base-component';
 import { TypedKeyStats } from '../typed-keys/typed-key-stats.model';
@@ -104,6 +105,7 @@ export class TextToTypeHtmlComponent extends BaseHtmlComponent {
     this.addCustomEventListener(END_UPDATING_CUSTOM_TEXT_TO_TYPE_EVENT, this.enable.bind(this));
     this.addCustomEventListener(CUSTOM_TEXTS_UPDATE_EVENT, this.reset.bind(this));
     this.addCustomEventListener(TRAINING_LESSON_CHANGE_EVENT, this.reset.bind(this));
+    this.addCustomEventListener(CHANGE_TEXT_TO_TYPE, this.reset.bind(this));
     this.addCustomEventListener(OPEN_SIDE_PANEL_EVENT, this.disable.bind(this));
     this.addCustomEventListener(CLOSE_SIDE_PANEL_EVENT, this.enable.bind(this));
   }

@@ -11,6 +11,7 @@ export const OPEN_SIDE_PANEL_EVENT = 'open-side-panel-event';
 export const CLOSE_SIDE_PANEL_EVENT = 'close-side-panel-event';
 export const CHANGE_THEME_EVENT = 'change-theme-event';
 export const APP_SETTINGS_CHANGE_EVENT = 'app-settings-change-event';
+export const CHANGE_TEXT_TO_TYPE = 'change-text-to-type';
 export const TRAINING_LESSON_CHANGE_EVENT = 'training-lesson-change-event';
 export const START_UPDATING_APP_SETTINGS_EVENT = 'start-changing-app-settings-event';
 export const END_UPDATING_APP_SETTINGS_EVENT = 'end-changing-app-settings-event';
