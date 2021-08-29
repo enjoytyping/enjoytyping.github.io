@@ -38,8 +38,7 @@ export abstract class BaseSidePanelHtmlComponent extends BaseHtmlComponent {
     this.container = document.getElementById(this.containerId);
     this.background = document.getElementById(this.backgroundId);
     this.sidePanel = document.getElementById(this.sidePanelId) as HTMLFormElement;
-    this.background.addEventListener('click', this.close.bind(this));
-    this.sidePanel.addEventListener('click', this.handleSidePanelClickEvent.bind(this));
+    this.background.addEventListener('click', this.handleSidePanelBackgroundClickEvent.bind(this));
   }
 
   onClose(callback: () => void) {
@@ -57,7 +56,9 @@ export abstract class BaseSidePanelHtmlComponent extends BaseHtmlComponent {
     this.callbacks.forEach((callback) => callback());
   }
 
-  private handleSidePanelClickEvent(event) {
-    event.stopPropagation();
+  private handleSidePanelBackgroundClickEvent(event) {
+    if (event.composedPath().indexOf(this.sidePanel) == -1) {
+      this.close();
+    }
   }
 }
