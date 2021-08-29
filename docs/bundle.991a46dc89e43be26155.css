@@ -1665,34 +1665,27 @@ body.dark {
   width: 8rem;
   height: 8rem;
   background-color: var(--training-keys-background-color);
+  border-bottom: 5px solid var(--training-keys-background-color);
   margin-right: 0.5rem;
   font-size: 1.6rem;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center; }
-  .training-lesson-container.selected span {
-    color: var(--secondary-color); }
-  .training-lesson-container.avg-wpm-lt-10::after, .training-lesson-container.avg-wpm-lt-20::after, .training-lesson-container.avg-wpm-lt-30::after, .training-lesson-container.avg-wpm-lt-40::after, .training-lesson-container.avg-wpm-lt-50::after, .training-lesson-container.avg-wpm-gte-50::after {
-    content: '';
-    position: absolute;
-    bottom: 0.4rem;
-    left: 0.4rem;
-    right: 0.4rem;
-    height: 0.6rem;
-    border-radius: 100rem; }
-  .training-lesson-container.avg-wpm-lt-10::after {
-    background-color: var(--typed-key-avg-wpm-lt-10); }
-  .training-lesson-container.avg-wpm-lt-20::after {
-    background-color: var(--typed-key-avg-wpm-lt-20); }
-  .training-lesson-container.avg-wpm-lt-30::after {
-    background-color: var(--typed-key-avg-wpm-lt-30); }
-  .training-lesson-container.avg-wpm-lt-40::after {
-    background-color: var(--typed-key-avg-wpm-lt-40); }
-  .training-lesson-container.avg-wpm-lt-50::after {
-    background-color: var(--typed-key-avg-wpm-lt-50); }
-  .training-lesson-container.avg-wpm-gte-50::after {
-    background-color: var(--typed-key-avg-wpm-gte-50); }
+  .training-lesson-container.selected {
+    border-color: var(--secondary-color); }
+  .training-lesson-container.avg-wpm-lt-10 {
+    color: var(--typed-key-avg-wpm-lt-10); }
+  .training-lesson-container.avg-wpm-lt-20 {
+    color: var(--typed-key-avg-wpm-lt-20); }
+  .training-lesson-container.avg-wpm-lt-30 {
+    color: var(--typed-key-avg-wpm-lt-30); }
+  .training-lesson-container.avg-wpm-lt-40 {
+    color: var(--typed-key-avg-wpm-lt-40); }
+  .training-lesson-container.avg-wpm-lt-50 {
+    color: var(--typed-key-avg-wpm-lt-50); }
+  .training-lesson-container.avg-wpm-gte-50 {
+    color: var(--typed-key-avg-wpm-gte-50); }
   .training-lesson-container .lesson-label {
     font-weight: bold;
     font-size: 2rem; }
