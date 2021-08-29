@@ -341,9 +341,9 @@ body.dark {
   --side-panel-background-background-color: #3b3b3b44;
   --side-panel-background-color: var(--background-color-01);
   --icon-background-color: var(--background-color-04);
-  --toast-color: #004889;
-  --toast-background-color: #cce5ff;
-  --toast-border-color: #b8daff; }
+  --toast-color: #a6d5fa;
+  --toast-background-color: #063f75;
+  --toast-border-color: #030e18; }
 
 @font-face {
   font-family: 'Anonymous Pro';
