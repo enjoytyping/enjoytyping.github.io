@@ -125,6 +125,7 @@ export class AddCustomTextToTypeHtmlComponent extends BaseSidePanelHtmlComponent
 
   open(): void {
     super.open();
+    this.customTextsUpdated = false;
     this.appState = this.appStateClient.getAppState();
     this.customTextToAddTextArea.focus();
     this.dispatchCustomEvent(START_UPDATING_CUSTOM_TEXT_TO_TYPE_EVENT);
@@ -137,7 +138,7 @@ export class AddCustomTextToTypeHtmlComponent extends BaseSidePanelHtmlComponent
   }
 
   private handleSaveButtonClickEvent() {
-    if (this.customTextToAddTextArea.isEmpty()) {
+    if (this.customTextToAddTextArea.isEmpty() && this.customTextsUpdated) {
       this.appStateClient.saveAppState(this.appState);
       this.dispatchCustomEvent(APP_SETTINGS_CHANGE_EVENT);
       this.close();
