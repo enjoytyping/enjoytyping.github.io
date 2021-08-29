@@ -1,4 +1,5 @@
 import { ENABLE_TEXT_TO_TYPE, DISABLE_TEXT_TO_TYPE, ENTER_KEY_CODE } from '../../../constants/constant';
+import { ToastClient } from '../../../services/toast/toast.service';
 import { BaseHtmlComponent } from '../base-component';
 import './numeric-input.scss';
 
@@ -12,7 +13,7 @@ export class NumericInputHtmlComponent extends BaseHtmlComponent {
   private containerId: string;
   private callbacks: ((value: number) => void)[] = [];
 
-  constructor(private value: number) {
+  constructor(private value: number, private toastClient: ToastClient = ToastClient.getInstance()) {
     super();
     this.increaseButtonDomElementId = this.generateId();
     this.decreaseButtonDomElementId = this.generateId();
@@ -59,8 +60,8 @@ export class NumericInputHtmlComponent extends BaseHtmlComponent {
   }
 
   private handleValueInputChangeEvent() {
-    if (!/[0-9]+/.test(this.valueInputDomElement.value)) {
-      console.error('only numeric values are accepted');
+    if (!/^[0-9]+$/.test(this.valueInputDomElement.value)) {
+      this.toastClient.show('Only numeric values are accepted');
       this.valueInputDomElement.value = `${this.value}`;
       return;
     }
