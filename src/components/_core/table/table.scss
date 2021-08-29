@@ -1,14 +1,12 @@
 body.light {
-  --table-head-background-color: var(--background-color-03);
-  --table-row-background-color: var(--background-color-02);
-  --table-body-background-color-on-hover: var(--background-color-04);
+  --table-head-background-color: var(--background-color-04);
+  --table-row-background-color: var(--background-color-03);
   --table-color: var(--body-color);
 }
 
 body.dark {
   --table-head-background-color: var(--background-color-03);
   --table-row-background-color: var(--background-color-02);
-  --table-body-background-color-on-hover: var(--background-color-04);
   --table-color: var(--body-color);
 }
 
