@@ -33,7 +33,7 @@ export class AddCustomTextToTypeHtmlComponent extends BaseSidePanelHtmlComponent
     this.cancelButton = new ButtonHtmlComponent('Cancel', ButtonStyle.SECONDARY);
     this.customTextToAddTextArea = new TextAreaHtmlComponent('', '100%', '20rem');
     this.appState = this.appStateClient.getAppState();
-    this.displayedCustomTextToAddTable = new TableHtmlComponent<DisplayedCustomTextToAdd>();
+    this.displayedCustomTextToAddTable = new TableHtmlComponent<DisplayedCustomTextToAdd>('No custom text has been added yet!');
     this.addIconId = this.generateId();
   }
 

@@ -2099,6 +2099,12 @@ body.dark {
   .table .table-row:hover .table-row-actions {
     display: inline; }
 
+.empty-table {
+  font-size: 1.3rem;
+  padding: 1.2rem 1.5rem;
+  font-style: italic;
+  background-color: var(--table-row-background-color); }
+
 .welcome-message-dialog {
   top: 50%;
   left: 50%;
