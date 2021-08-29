@@ -71,7 +71,8 @@ body.light {
   --typed-key-avg-wpm-lt-40: rgb(32, 197, 88);
   --typed-key-avg-wpm-lt-50: rgb(14, 218, 97);
   --typed-key-avg-wpm-gte-50: rgb(30, 243, 115);
-  --typed-key-avg-error-eq-0: rgb(14, 218, 97);
+  --typed-key-avg-wpm-color: rgb(19, 231, 104);
+  --typed-key-avg-error-eq-0: rgb(16, 236, 104);
   --typed-key-avg-error-lt-3: #f8969e;
   --typed-key-avg-error-lt-6: #fa7580;
   --typed-key-avg-error-lt-10: #fc6370;
@@ -179,6 +180,7 @@ body.dark {
   --typed-key-avg-wpm-lt-40: rgb(32, 197, 88);
   --typed-key-avg-wpm-lt-50: rgb(14, 218, 97);
   --typed-key-avg-wpm-gte-50: rgb(30, 243, 115);
+  --typed-key-avg-wpm-color: rgb(30, 243, 115);
   --typed-key-avg-error-eq-0: rgb(14, 218, 97);
   --typed-key-avg-error-lt-3: #f8969e;
   --typed-key-avg-error-lt-6: #fa7580;

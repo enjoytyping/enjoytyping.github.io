@@ -8,6 +8,8 @@ import { TrainingLesson } from './training-lesson.enum';
 export class TrainingKeysHtmlComponent extends BaseHtmlComponent {
   private containerId: string;
   private container: HTMLElement;
+  private wpmId: string;
+  private wpm: HTMLElement;
 
   constructor(
     protected trainingLesson: TrainingLesson,
@@ -16,6 +18,7 @@ export class TrainingKeysHtmlComponent extends BaseHtmlComponent {
   ) {
     super();
     this.containerId = this.generateId();
+    this.wpmId = this.generateId();
   }
 
   preInsertHtml(): void {}
@@ -25,12 +28,14 @@ export class TrainingKeysHtmlComponent extends BaseHtmlComponent {
       <div id="${this.containerId}" class="training-lesson-container ${this.getContainerClass()}">
         <span class="lesson-label">${this.getLessonAsString()}</span>
         <span class="lesson-category">${this.getLessonCategory()}</span>
+        <span id="${this.wpmId}" class="wpm"></span>
       </div>
     `;
   }
 
   postInsertHtml(): void {
     this.container = document.getElementById(this.containerId);
+    this.wpm = document.getElementById(this.wpmId);
     this.update();
     this.addCustomEventListener(TRAINING_LESSON_CHANGE_EVENT, this.update.bind(this));
     this.addCustomEventListener(END_TYPING_EVENT, this.update.bind(this));
@@ -74,6 +79,7 @@ export class TrainingKeysHtmlComponent extends BaseHtmlComponent {
       } else {
         this.container.classList.add('avg-wpm-gte-50');
       }
+      this.wpm.innerHTML = `${avgWpm}`;
       this.container.title = `Typing speed: ${avgWpm}wpm`;
     }
   }

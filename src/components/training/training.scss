@@ -65,23 +65,13 @@
     border-color: var(--secondary-color);
   }
 
-  &.avg-wpm-lt-10 {
-    color: var(--typed-key-avg-wpm-lt-10);
-  }
-  &.avg-wpm-lt-20 {
-    color: var(--typed-key-avg-wpm-lt-20);
-  }
-  &.avg-wpm-lt-30 {
-    color: var(--typed-key-avg-wpm-lt-30);
-  }
-  &.avg-wpm-lt-40 {
-    color: var(--typed-key-avg-wpm-lt-40);
-  }
-  &.avg-wpm-lt-50 {
-    color: var(--typed-key-avg-wpm-lt-50);
-  }
-  &.avg-wpm-gte-50 {
-    color: var(--typed-key-avg-wpm-gte-50);
+  & .wpm {
+    position: absolute;
+    top: 0.2rem;
+    right: 0.4rem;
+    font-size: 1.15rem;
+    font-weight: bold;
+    color: var(--typed-key-avg-wpm-color);
   }
 
   & .lesson-label {
@@ -89,30 +79,6 @@
     font-size: 2rem;
   }
 }
-
-// .training-row-container {
-//   margin-right: 1.5rem;
-//   position: relative;
-
-//   &::after {
-//     content: '';
-//     width: 0.5rem;
-//     border-radius: 0.3rem;
-//     position: absolute;
-//     top: 0;
-//     bottom: 0;
-//     right: -1rem;
-//     background-color: var(--training-keys-background-color);
-//   }
-// }
-
-// .training-row-container:last-of-type {
-//   margin-right: 0;
-
-//   &::after {
-//     display: none;
-//   }
-// }
 
 @media screen and (max-width: 768px) {
   .training-title {
