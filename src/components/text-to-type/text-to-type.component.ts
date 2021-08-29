@@ -301,7 +301,6 @@ export class TextToTypeHtmlComponent extends BaseHtmlComponent {
     if (!appState.enablePunctuationCharacters) {
       textToTypeText = textToTypeText.replace(CHARS_To_TYPE_WITHOUT_PUNCTUATION, '');
     }
-    textToTypeText = textToTypeText.substring(0, appState.maxCharactersToType);
     textToTypeText = textToTypeText.trim();
     const textToTypeLength = textToTypeText.split('').length;
     let textToTypeCharArrayAfterTransformation = [];

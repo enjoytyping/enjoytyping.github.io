@@ -10,7 +10,6 @@ export class AppState {
   visitWebsiteForTheFirstTime: boolean = true;
   textToTypeCategory: TextToTypeCategory = TextToTypeCategory.TRAINING;
   textToTypeSubCategory: TextToTypeSubCategory = TextToTypeSubCategory.QWERTY_KEYBOARD;
-  maxCharactersToType: number;
   currentTheme: string;
   enableSounds: boolean;
   enableCapitalLetters: boolean;
