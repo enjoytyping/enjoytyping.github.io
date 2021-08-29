@@ -1644,6 +1644,7 @@ body.dark {
   .increase-decrease-value-container .value {
     border: none;
     outline: none;
+    text-align: center;
     background-color: var(--body-background-color);
     color: var(--body-color);
     border-left: 1px solid var(--border-color);
@@ -1827,7 +1828,6 @@ nav .right {
     .app-settings .app-setting span {
       color: var(--body-color); }
     .app-settings .app-setting .app-setting-label {
-      font-weight: bold;
       font-size: 1.4rem; }
     .app-settings .app-setting .app-setting-input,
     .app-settings .app-setting .app-setting-select {

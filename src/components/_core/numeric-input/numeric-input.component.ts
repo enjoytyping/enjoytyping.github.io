@@ -82,6 +82,6 @@ export class NumericInputHtmlComponent extends BaseHtmlComponent {
   }
 
   private getInputSize(): number {
-    return new String(this.value).length - 1;
+    return new String(this.value).length;
   }
 }
