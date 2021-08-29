@@ -321,7 +321,7 @@ export class AppStateClient implements IAppStateClient {
     }
     return [
       {
-        text: result,
+        text: result.substring(0, length),
         author: '',
       },
     ];

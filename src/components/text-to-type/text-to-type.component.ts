@@ -138,9 +138,17 @@ export class TextToTypeHtmlComponent extends BaseHtmlComponent {
 
   private onTrainingSizeInputChange(newValue: number) {
     const appState = this.appStateClient.getAppState();
+    const oldValue = appState.trainingSize;
     appState.trainingSize = newValue;
     this.appStateClient.saveAppState(appState);
-    this.reset();
+    console.log(`newValue: ${newValue}, oldValue: ${oldValue}`);
+    if (oldValue > newValue) {
+      this.textToType.text = this.textToType.text.substring(0, newValue);
+    } else {
+      const newTextToAdd = this.getTextToType().text.substring(this.textToType.text.length);
+      this.textToType.text = this.textToType.text + newTextToAdd;
+    }
+    this.setTextToType(this.textToType);
   }
 
   private updateFontSize() {
