@@ -1858,7 +1858,8 @@ body.dark {
       opacity: 0.85; }
 
 .side-panel-container {
-  z-index: 1000000; }
+  z-index: 1000000;
+  max-height: 100vh; }
   .side-panel-container .side-panel-background {
     display: none;
     background-color: var(--side-panel-background-background-color);
@@ -1938,7 +1939,8 @@ body.dark {
 .input-container {
   display: flex;
   flex-direction: column;
-  align-items: flex-end; }
+  align-items: flex-end;
+  position: relative; }
   .input-container .input {
     padding: 0.8rem 1rem;
     border: none;
@@ -1955,6 +1957,8 @@ body.dark {
   .input-container .input-error-message {
     display: none; }
   .input-container.error .input-error-message {
+    position: absolute;
+    bottom: -1.6rem;
     display: inline;
     font-size: 1.2rem;
     color: var(--error-message-color);
@@ -2016,7 +2020,8 @@ body.light {
 .textarea-container {
   display: flex;
   flex-direction: column;
-  align-items: flex-end; }
+  align-items: flex-end;
+  position: relative; }
   .textarea-container .textarea {
     padding: 0.8rem 1rem;
     border-radius: 0.3rem;
@@ -2036,6 +2041,8 @@ body.light {
   .textarea-container .textarea-error-message {
     display: none; }
   .textarea-container.error .textarea-error-message {
+    position: absolute;
+    bottom: -1.6rem;
     display: inline;
     font-size: 1.2rem;
     color: var(--error-message-color);

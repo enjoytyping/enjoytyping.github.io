@@ -2,6 +2,7 @@
   display: flex;
   flex-direction: column;
   align-items: flex-end;
+  position: relative;
 
   & .textarea {
     padding: 0.8rem 1rem;
@@ -28,6 +29,8 @@
   }
 
   &.error .textarea-error-message {
+    position: absolute;
+    bottom: -1.6rem;
     display: inline;
     font-size: 1.2rem;
     color: var(--error-message-color);

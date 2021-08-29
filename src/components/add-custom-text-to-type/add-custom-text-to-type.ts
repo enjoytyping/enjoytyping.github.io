@@ -6,6 +6,7 @@ import {
   END_UPDATING_CUSTOM_TEXT_TO_TYPE_EVENT,
   CUSTOM_TEXTS_UPDATE_EVENT,
   START_UPDATING_CUSTOM_TEXT_TO_TYPE_EVENT,
+  APP_SETTINGS_CHANGE_EVENT,
 } from '../../constants/constant';
 import { AppState } from '../../state/app-state.model';
 import { TableAction, TableColumn, TableHtmlComponent } from '../_core/table/table.component';
@@ -101,34 +102,25 @@ export class AddCustomTextToTypeHtmlComponent extends BaseSidePanelHtmlComponent
     }
   }
 
-  private validateCustomTextToAddTextArea() {
-    if (!this.customTextToAddTextArea.getValue()) {
-      const errorMessage = 'Empty values are not allowed';
-      this.customTextToAddTextArea.setErrorMessage(errorMessage);
-      throw new Error(errorMessage);
-    }
-  }
-
   private updateInnerHTML() {
     this.displayedCustomTextToAddTable.reset(this.getCustomTextToAddColumns(), this.getCustomTextToAddRows());
   }
 
   private handleAddIconClickEvent() {
-    try {
-      this.validateCustomTextToAddTextArea();
-      if (!this.appState.customTextsToType) this.appState.customTextsToType = [];
-      this.appState.customTextsToType.unshift({
-        text: this.customTextToAddTextArea.getValue(),
-        author: '',
-      });
-      this.customTextToAddTextArea.reset();
-      this.appState.textToTypeCategory = TextToTypeCategory.CUSTOM_TEXT;
-      this.appState.textToTypeIndex = 0;
-      this.customTextsUpdated = true;
-      this.updateInnerHTML();
-    } catch (error) {
-      console.error(error);
+    if (this.customTextToAddTextArea.isNotValid()) {
+      this.customTextToAddTextArea.dispatchChangeEvent();
+      return;
     }
+    if (!this.appState.customTextsToType) this.appState.customTextsToType = [];
+    this.appState.customTextsToType.unshift({
+      text: this.customTextToAddTextArea.getValue(),
+      author: '',
+    });
+    this.customTextToAddTextArea.reset();
+    this.appState.textToTypeCategory = TextToTypeCategory.CUSTOM_TEXT;
+    this.appState.textToTypeIndex = 0;
+    this.customTextsUpdated = true;
+    this.updateInnerHTML();
   }
 
   open(): void {
@@ -145,7 +137,21 @@ export class AddCustomTextToTypeHtmlComponent extends BaseSidePanelHtmlComponent
   }
 
   private handleSaveButtonClickEvent() {
+    if (this.customTextToAddTextArea.isNotValid()) {
+      this.customTextToAddTextArea.dispatchChangeEvent();
+      return;
+    }
+    if (!this.appState.customTextsToType) this.appState.customTextsToType = [];
+    this.appState.customTextsToType.unshift({
+      text: this.customTextToAddTextArea.getValue(),
+      author: '',
+    });
+    this.customTextToAddTextArea.reset();
+    this.appState.textToTypeCategory = TextToTypeCategory.CUSTOM_TEXT;
+    this.appState.textToTypeIndex = 0;
+    this.updateInnerHTML();
     this.appStateClient.saveAppState(this.appState);
+    this.dispatchCustomEvent(APP_SETTINGS_CHANGE_EVENT);
     this.close();
   }
 

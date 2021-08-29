@@ -1,5 +1,6 @@
 .side-panel-container {
   z-index: 1000000;
+  max-height: 100vh;
   & .side-panel-background {
     display: none;
     background-color: var(--side-panel-background-background-color);
