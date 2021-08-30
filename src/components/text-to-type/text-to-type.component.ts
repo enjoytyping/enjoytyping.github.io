@@ -409,7 +409,7 @@ export class TextToTypeHtmlComponent extends BaseHtmlComponent {
   }
 
   private preventDefaultEventExceptFunctionKeys(event: any) {
-    if (!/F[1-9]+/.test(event.key) && !'Tab' == event.key && !'Shift' == event.key) {
+    if (!/F[1-9]+/.test(event.key) && !'Tab' == event.key && !'Shift' == event.key && !'Enter' == event.key) {
       event.preventDefault();
     }
   }

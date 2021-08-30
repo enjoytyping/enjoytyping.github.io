@@ -69,12 +69,12 @@ export class NavbarHtmlComponent extends BaseHtmlComponent {
           <span class="select text-to-type-subcategory" id="${
             this.textToTypeSubCategoryContainerId
           }">${this.textToTypeSubCategorySelect.toHtml()}</span>
-          <span class="enable-sounds">${this.enableSoundsIcon.toHtml()}</span>
-          <span id="${ADD_CUSTOM_TEXT_TO_TYPE_ICON_ID}" title="Add custom text to type"><span class="iconify" data-icon="grommet-icons:add" data-inline="false"></span></span>
-          <span id="${APP_SETTINGS_ICON_ID}" title="App Settings"><span class="iconify" data-icon="jam:settings-alt" data-inline="false" data-rotate="270deg"></span></span>
-          <div class="app-settings-drop-down">${this.appSettingsDialog.toHtml()}<div>
-          <div class="app-custom-text-to-type-dialog-container">${this.addCustomTextToTypeDialog.toHtml()}<div>
-          <span title="Change App Theme">${this.changeThemeIcon.toHtml()}</span>
+          <span class="navbar-icon enable-sounds">${this.enableSoundsIcon.toHtml()}</span>
+          <span class="navbar-icon" tabindex="0" id="${ADD_CUSTOM_TEXT_TO_TYPE_ICON_ID}" title="Add custom text to type"><span class="iconify" data-icon="grommet-icons:add" data-inline="false"></span></span>
+          <span class="navbar-icon" tabindex="0" id="${APP_SETTINGS_ICON_ID}" title="App Settings"><span class="iconify" data-icon="jam:settings-alt" data-inline="false" data-rotate="270deg"></span></span>
+          <div class="app-settings-drop-down">${this.appSettingsDialog.toHtml()}</div>
+          <div class="app-custom-text-to-type-dialog-container">${this.addCustomTextToTypeDialog.toHtml()}</div>
+          <span class="navbar-icon" title="Change App Theme">${this.changeThemeIcon.toHtml()}</span>
         </div>
       </nav>
     `;

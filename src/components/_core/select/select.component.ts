@@ -45,7 +45,7 @@ export class SelectHtmlComponent<T> extends BaseHtmlComponent {
 
   toHtml() {
     return /* html */ `
-      <div id="${this.selectContainerId}" class="select-container">
+      <div tabindex="0" id="${this.selectContainerId}" class="select-container">
         <div id="${this.selectHeaderId}" class="select-header">
           <span id="${this.selectHeaderLabelId}"></span>
           <span id="${this.arrowDownId}" class="iconify" data-icon="eva:arrow-ios-downward-outline" data-inline="false"></span>

@@ -27,7 +27,7 @@ export class TypedTextStatsHtmlComponent extends BaseHtmlComponent {
   toHtml() {
     return /* html */ `
       <div class="typed-text-stats-container">
-        <div class="typed-text-stat-container change-text-to-type">
+        <div tabindex="0" class="typed-text-stat-container change-text-to-type">
           <span id="${this.previousTextTextToTypeId}" class="iconify-container previous"><span class="iconify" data-icon="eva:arrow-ios-back-outline" data-inline="false"></span></span>
         </div>
         <div class="typed-text-stat-container">
@@ -38,7 +38,7 @@ export class TypedTextStatsHtmlComponent extends BaseHtmlComponent {
           <span id="${TYPED_TEXT_ERRORS_DOM_ELEMENT_ID}" class="typed-text-stat-value">0</span>
           <span class="typed-text-stat-label">errors</span>
         </div>
-        <div class="typed-text-stat-container change-text-to-type">
+        <div tabindex="0" class="typed-text-stat-container change-text-to-type">
           <span id="${this.nextTextTextToTypeId}" class="iconify-container next"><span class="iconify" data-icon="eva:arrow-ios-forward-fill" data-inline="false"></span></span>
         </div>
       </div>

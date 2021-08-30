@@ -25,7 +25,7 @@ export class TrainingKeysHtmlComponent extends BaseHtmlComponent {
 
   toHtml() {
     return /* html */ `
-      <div id="${this.containerId}" class="training-lesson-container ${this.getContainerClass()}">
+      <div tabindex="0" id="${this.containerId}" class="training-lesson-container ${this.getContainerClass()}">
         <span class="lesson-label">${this.getLessonAsString()}</span>
         <span class="lesson-category">${this.getLessonCategory()}</span>
         <span id="${this.wpmId}" class="wpm"></span>

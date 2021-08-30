@@ -8,14 +8,12 @@ const CHANGE_TO_LIGHT_THEME_ICON_ID = 'CHANGE_TO_LIGHT_THEME_ICON_ID';
 export class ChangeThemeIconHtmlComponent extends BaseHtmlComponent {
   private changeToDarkThemeButtonDomElement: HTMLElement;
   private changeToLightThemeButtonDomElement: HTMLElement;
-  private containerId: string;
 
   constructor(private appStateClient: IAppStateClient) {
     super();
   }
 
   preInsertHtml(): void {
-    this.containerId = this.generateId();
     const appState = this.appStateClient.getAppState();
     appState.currentTheme = appState.currentTheme || LIGHT_THEME_VALUE;
     document.body.classList.remove(DARK_THEME_VALUE, LIGHT_THEME_VALUE);
@@ -25,13 +23,11 @@ export class ChangeThemeIconHtmlComponent extends BaseHtmlComponent {
 
   toHtml() {
     return /* html */ `
-      <span id="${this.containerId}" class="change-theme-icon-container">
-        <span id='${CHANGE_TO_DARK_THEME_ICON_ID}' class='pointer change-theme-icon'>
-          <span class='iconify' data-icon='bx:bx-moon' data-inline='false'></span>
-        </span>
-        <span id='${CHANGE_TO_LIGHT_THEME_ICON_ID}' class='pointer change-theme-icon'>
-          <span class='iconify' data-icon='heroicons-solid:sun' data-inline='false'></span>
-        </span>
+      <span tabindex="0" id='${CHANGE_TO_DARK_THEME_ICON_ID}' class='pointer change-theme-icon'>
+        <span class='iconify' data-icon='bx:bx-moon' data-inline='false'></span>
+      </span>
+      <span tabindex="0" id='${CHANGE_TO_LIGHT_THEME_ICON_ID}' class='pointer change-theme-icon'>
+        <span class='iconify' data-icon='heroicons-solid:sun' data-inline='false'></span>
       </span>
     `;
   }

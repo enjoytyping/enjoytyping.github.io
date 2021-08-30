@@ -14,7 +14,7 @@ export class FeedbackHtmlComponent extends BaseHtmlComponent {
 
   toHtml() {
     return /* html */ `
-      <span id="${this.feedbackIconId}" class="feedback-icon-container">
+      <span tabindex="0" id="${this.feedbackIconId}" class="feedback-icon-container">
         <span class="feedback-label">Your feedback help us a lot :)</span>
         <span class="iconify" data-icon="jam:message"></span>
       </span>
