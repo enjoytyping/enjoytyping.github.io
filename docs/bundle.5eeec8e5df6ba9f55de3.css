@@ -1924,10 +1924,10 @@ body.dark {
     .button-container button.secondary:hover {
       opacity: 0.85; }
 
-.side-panel-container {
+.container {
   z-index: 1000000;
   max-height: 100vh; }
-  .side-panel-container .side-panel-background {
+  .container .side-panel-background {
     display: none;
     background-color: var(--side-panel-background-background-color);
     position: fixed;
@@ -1935,11 +1935,9 @@ body.dark {
     right: 0;
     left: 0;
     bottom: 0; }
-  .side-panel-container .side-panel {
+  .container .side-panel-container {
     --side-panel-width: 40rem;
     box-shadow: var(--box-shadow-02);
-    display: flex;
-    flex-direction: column;
     padding: 2rem;
     z-index: 300;
     background-color: var(--side-panel-background-color);
@@ -1949,14 +1947,17 @@ body.dark {
     right: calc(var(--side-panel-width) * -1);
     width: var(--side-panel-width);
     transition: 0.5s; }
-  .side-panel-container .side-panel-title {
+  .container .side-panel {
+    display: none;
+    flex-direction: column; }
+  .container .side-panel-title {
     font-size: 2.5rem;
     font-weight: bold;
     margin-bottom: 2rem;
     color: var(--primary-color); }
-  .side-panel-container.active .side-panel-background {
+  .container.active .side-panel-background {
     display: block; }
-  .side-panel-container.active .side-panel {
+  .container.active .side-panel-container {
     right: 0; }
 
 @media only screen and (max-width: 45rem) {

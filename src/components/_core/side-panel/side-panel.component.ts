@@ -5,6 +5,8 @@ import { CLOSE_SIDE_PANEL_EVENT, OPEN_SIDE_PANEL_EVENT } from '../../../constant
 export abstract class BaseSidePanelHtmlComponent extends BaseHtmlComponent {
   private containerId: string;
   private container: HTMLElement;
+  private sidePanelContainerId: string;
+  private sidePanelContainer: HTMLElement;
   private sidePanelId: string;
   private sidePanel: HTMLElement;
   private backgroundId: string;
@@ -17,16 +19,19 @@ export abstract class BaseSidePanelHtmlComponent extends BaseHtmlComponent {
 
   preInsertHtml(): void {
     this.containerId = this.generateId();
+    this.sidePanelContainerId = this.generateId();
     this.sidePanelId = this.generateId();
     this.backgroundId = this.generateId();
   }
 
   toHtml() {
     return /* html */ `
-      <div id="${this.containerId}" class="side-panel-container">
-        <div id="${this.sidePanelId}" class="side-panel ${this.getSidePanelCssClass()}">
-          <h2 class="side-panel-title">${this.getTitle()}</h2>
-          ${this.getBody()}
+      <div id="${this.containerId}" class="container">
+        <div id="${this.sidePanelContainerId}" class="side-panel-container ${this.getSidePanelCssClass()}">
+          <div id="${this.sidePanelId}" class="side-panel">
+            <h2 class="side-panel-title">${this.getTitle()}</h2>
+            ${this.getBody()}
+          </div>
         </div>
         <div id="${this.backgroundId}" class="side-panel-background">
         </div>
@@ -37,7 +42,8 @@ export abstract class BaseSidePanelHtmlComponent extends BaseHtmlComponent {
   postInsertHtml(): void {
     this.container = document.getElementById(this.containerId);
     this.background = document.getElementById(this.backgroundId);
-    this.sidePanel = document.getElementById(this.sidePanelId) as HTMLFormElement;
+    this.sidePanelContainer = document.getElementById(this.sidePanelContainerId);
+    this.sidePanel = document.getElementById(this.sidePanelId);
     this.background.addEventListener('click', this.handleSidePanelBackgroundClickEvent.bind(this));
   }
 
@@ -46,6 +52,7 @@ export abstract class BaseSidePanelHtmlComponent extends BaseHtmlComponent {
   }
 
   open() {
+    this.sidePanel.style.display = 'flex';
     this.container.classList.add('active');
     this.dispatchCustomEvent(OPEN_SIDE_PANEL_EVENT);
   }
@@ -54,6 +61,7 @@ export abstract class BaseSidePanelHtmlComponent extends BaseHtmlComponent {
     this.container.classList.remove('active');
     this.dispatchCustomEvent(CLOSE_SIDE_PANEL_EVENT);
     this.callbacks.forEach((callback) => callback());
+    setTimeout(() => (this.sidePanel.style.display = 'none'), 500);
   }
 
   private handleSidePanelBackgroundClickEvent(event) {

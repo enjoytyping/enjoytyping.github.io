@@ -1,4 +1,4 @@
-.side-panel-container {
+.container {
   z-index: 1000000;
   max-height: 100vh;
   & .side-panel-background {
@@ -11,11 +11,9 @@
     bottom: 0;
   }
 
-  & .side-panel {
+  .side-panel-container {
     --side-panel-width: 40rem;
     box-shadow: var(--box-shadow-02);
-    display: flex;
-    flex-direction: column;
     padding: 2rem;
     z-index: 300;
     background-color: var(--side-panel-background-color);
@@ -25,6 +23,11 @@
     right: calc(var(--side-panel-width) * -1);
     width: var(--side-panel-width);
     transition: 0.5s;
+  }
+
+  & .side-panel {
+    display: none;
+    flex-direction: column;
   }
 
   & .side-panel-title {
@@ -38,7 +41,7 @@
     & .side-panel-background {
       display: block;
     }
-    & .side-panel {
+    & .side-panel-container {
       right: 0;
     }
   }
