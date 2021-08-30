@@ -18,13 +18,19 @@ export class ToastClient {
   }
 
   info(message: string): void {
-    this.container.classList.remove('error', 'info');
+    this.container.classList.remove('error', 'warn', 'info');
     this.container.classList.add('info');
     this.show(message);
   }
 
+  warn(message: string): void {
+    this.container.classList.remove('error', 'warn', 'info');
+    this.container.classList.add('warn');
+    this.show(message);
+  }
+
   error(message: string): void {
-    this.container.classList.remove('error', 'info');
+    this.container.classList.remove('error', 'warn', 'info');
     this.container.classList.add('error');
     this.show(message);
   }

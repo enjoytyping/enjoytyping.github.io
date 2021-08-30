@@ -15,6 +15,12 @@
     border: 1px solid var(--toast-info-border-color);
   }
 
+  &.warn {
+    background-color: var(--toast-warn-background-color);
+    color: var(--toast-warn-color);
+    border: 1px solid var(--toast-warn-border-color);
+  }
+
   &.error {
     background-color: var(--toast-error-background-color);
     color: var(--toast-error-color);

@@ -1,6 +1,6 @@
-import { APP_SETTINGS_CHANGE_EVENT } from '../../constants/constant';
 import { BaseHtmlComponent } from '../_core/base-component';
 import { IAppStateClient } from '../../state/app-state.client.interface';
+import { ToastClient } from '../../services/toast/toast.service';
 
 const ENABLE_SOUNDS_ICON_ID = 'ENABLE_SOUND_ICON_ID';
 const DISABLE_SOUNDS_ICON_ID = 'DISABLE_SOUND_ICON_ID';
@@ -10,7 +10,7 @@ export class EnableSoundsIconHtmlComponent extends BaseHtmlComponent {
   private disableSoundButtonDomElement: HTMLElement;
   private containerId: string;
 
-  constructor(private appStateClient: IAppStateClient) {
+  constructor(private appStateClient: IAppStateClient, private toastClient: ToastClient = ToastClient.getInstance()) {
     super();
   }
 
@@ -50,7 +50,13 @@ export class EnableSoundsIconHtmlComponent extends BaseHtmlComponent {
 
   private handleToggleSoundsClickEvent(event: any) {
     event.stopPropagation();
+    const isChrome = /chrome/.test(navigator.userAgent.toLowerCase());
+    const isEdge = /edge/.test(navigator.userAgent.toLowerCase());
     const appState = this.appStateClient.getAppState();
+    if (!appState.enableSounds && !isChrome && !isEdge) {
+      this.toastClient.warn('Sorry, the sound works properly only on Chrome or Edge browsers :(');
+      return;
+    }
     appState.enableSounds = !appState.enableSounds;
     this.appStateClient.saveAppState(appState);
     this.updateInnerHTML();
