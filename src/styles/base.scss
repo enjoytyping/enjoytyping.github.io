@@ -11,6 +11,14 @@
   display: none;
 }
 
+*:focus {
+  // outline: none;
+  // border-radius: 0.3rem;
+  // border: 1px solid var(--focus-border-color);
+  // box-shadow: var(--focus-box-shadow);
+  // outline-color: var(--primary-color);
+}
+
 html {
   font-size: var(--font-size);
   scroll-behavior: smooth;

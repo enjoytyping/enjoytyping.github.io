@@ -27,8 +27,8 @@ export class TypedTextStatsHtmlComponent extends BaseHtmlComponent {
   toHtml() {
     return /* html */ `
       <div class="typed-text-stats-container">
-        <div tabindex="0" class="typed-text-stat-container change-text-to-type">
-          <span id="${this.previousTextTextToTypeId}" class="iconify-container previous"><span class="iconify" data-icon="eva:arrow-ios-back-outline" data-inline="false"></span></span>
+        <div id="${this.previousTextTextToTypeId}" tabindex="0" class="typed-text-stat-container change-text-to-type">
+          <span class="iconify-container previous"><span class="iconify" data-icon="eva:arrow-ios-back-outline" data-inline="false"></span></span>
         </div>
         <div class="typed-text-stat-container">
           <span id="${TYPED_TEXT_WPM_DOM_ELEMENT_ID}" class="typed-text-stat-value">0</span>
@@ -38,8 +38,8 @@ export class TypedTextStatsHtmlComponent extends BaseHtmlComponent {
           <span id="${TYPED_TEXT_ERRORS_DOM_ELEMENT_ID}" class="typed-text-stat-value">0</span>
           <span class="typed-text-stat-label">errors</span>
         </div>
-        <div tabindex="0" class="typed-text-stat-container change-text-to-type">
-          <span id="${this.nextTextTextToTypeId}" class="iconify-container next"><span class="iconify" data-icon="eva:arrow-ios-forward-fill" data-inline="false"></span></span>
+        <div id="${this.nextTextTextToTypeId}" tabindex="0" class="typed-text-stat-container change-text-to-type">
+          <span class="iconify-container next"><span class="iconify" data-icon="eva:arrow-ios-forward-fill" data-inline="false"></span></span>
         </div>
       </div>
     `;
@@ -51,7 +51,9 @@ export class TypedTextStatsHtmlComponent extends BaseHtmlComponent {
     this.previousTextTextToType = document.getElementById(this.previousTextTextToTypeId);
     this.nextTextTextToType = document.getElementById(this.nextTextTextToTypeId);
     this.previousTextTextToType.addEventListener('click', this.handlePreviousTextTextToTypeClickEvent.bind(this));
+    this.previousTextTextToType.addEventListener('keyup', this.handlePreviousTextTextToTypeKeyUpEvent.bind(this));
     this.nextTextTextToType.addEventListener('click', this.handleNextTextTextToTypeClickEvent.bind(this));
+    this.nextTextTextToType.addEventListener('keyup', this.handleNextTextTextToTypeKeyUpEvent.bind(this));
     this.addCustomEventListener(END_TYPING_EVENT, this.handleEndTypingEvent.bind(this));
     const appStorage = this.appStateClient.getAppState();
     if (appStorage.typedTextsStats.length > 0) {
@@ -59,11 +61,25 @@ export class TypedTextStatsHtmlComponent extends BaseHtmlComponent {
     }
   }
 
+  private handlePreviousTextTextToTypeKeyUpEvent(event) {
+    if (event.key !== 'Enter' && event.key !== ' ') {
+      return;
+    }
+    this.previousTextTextToType.dispatchEvent(new Event('click'));
+  }
+
   private handlePreviousTextTextToTypeClickEvent() {
     const appState = this.appStateClient.getAppState();
     appState.textToTypeIndex = this.appStateClient.previousTextToTypeIndex();
     this.appStateClient.saveAppState(appState);
     this.dispatchCustomEvent(CHANGE_TEXT_TO_TYPE);
+  }
+
+  private handleNextTextTextToTypeKeyUpEvent(event) {
+    if (event.key !== 'Enter' && event.key !== ' ') {
+      return;
+    }
+    this.nextTextTextToType.dispatchEvent(new Event('click'));
   }
 
   private handleNextTextTextToTypeClickEvent() {

@@ -40,6 +40,14 @@ export class TrainingKeysHtmlComponent extends BaseHtmlComponent {
     this.addCustomEventListener(TRAINING_LESSON_CHANGE_EVENT, this.update.bind(this));
     this.addCustomEventListener(END_TYPING_EVENT, this.update.bind(this));
     this.container.addEventListener('click', this.handleContainerClickEvent.bind(this));
+    this.container.addEventListener('keyup', this.handleContainerKeyUpEvent.bind(this));
+  }
+
+  private handleContainerKeyUpEvent(event) {
+    if (event.key !== 'Enter' && event.key !== ' ') {
+      return;
+    }
+    this.container.dispatchEvent(new Event('click'));
   }
 
   protected getContainerClass() {
