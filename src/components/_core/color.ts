@@ -14,5 +14,5 @@ export class Color {
   }
 }
 
-export const TYPING_SPEED_GRAPH_BAR_COLOR = new Color('#AECBFA', '#2C79ED');
-export const TYPING_ERROR_GRAPH_BAR_COLOR = new Color('#FFB1C1', '#EF1919');
+export const TYPING_SPEED_GRAPH_BAR_COLOR = new Color('#AECBFA', '#0496ff');
+export const TYPING_ERROR_GRAPH_BAR_COLOR = new Color('#FFB1C1', '#e01929');

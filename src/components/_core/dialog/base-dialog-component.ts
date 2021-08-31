@@ -61,13 +61,13 @@ export abstract class BaseDialogHtmlComponent extends BaseHtmlComponent {
     document.addEventListener('click', this.handleDocumentClickEvent.bind(this));
   }
 
-  show(): void {
+  open(): void {
     this.isVisible = true;
     this.dialog.classList.remove('hide');
     (this.callbacks.get(DialogPhase.POST_DIALOG_SHOW) || []).forEach((callback) => callback());
   }
 
-  hide(): void {
+  close(): void {
     if (!this.isVisible) return;
     this.isVisible = false;
     this.dialog.classList.add('hide');
@@ -82,12 +82,12 @@ export abstract class BaseDialogHtmlComponent extends BaseHtmlComponent {
   }
 
   private handleDialogCloseButtonClickEvent() {
-    this.hide();
+    this.close();
   }
 
   private handleDocumentClickEvent(event) {
     if (!this.dialogContainer.contains(event.target)) {
-      this.hide();
+      this.close();
     }
   }
 }

@@ -1,6 +1,7 @@
 import './welcome-message-dialog.scss';
 import { BaseDialogHtmlComponent } from '../_core/dialog/base-dialog-component';
 import { IAppStateClient } from '../../state/app-state.client.interface';
+import { ESCAPE_KEY_CODE } from '../../constants/constant';
 
 export class WelcomeMessageDialogHtmlComponent extends BaseDialogHtmlComponent {
   constructor(private appStateClient: IAppStateClient) {
@@ -41,9 +42,16 @@ export class WelcomeMessageDialogHtmlComponent extends BaseDialogHtmlComponent {
     super.postInsertHtml();
     const appState = this.appStateClient.getAppState();
     if (appState.visitWebsiteForTheFirstTime) {
-      this.show();
+      this.open();
       appState.visitWebsiteForTheFirstTime = false;
       this.appStateClient.saveAppState(appState);
+      document.addEventListener('keydown', this.handleKeyDownEvent.bind(this));
+    }
+  }
+
+  private handleKeyDownEvent(event) {
+    if (event.keyCode == ESCAPE_KEY_CODE) {
+      this.close();
     }
   }
 }

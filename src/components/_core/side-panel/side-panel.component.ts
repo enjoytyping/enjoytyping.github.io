@@ -48,7 +48,7 @@ export abstract class BaseSidePanelHtmlComponent extends BaseHtmlComponent {
     this.background = document.getElementById(this.backgroundId);
     this.sidePanel = document.getElementById(this.sidePanelId);
     this.background.addEventListener('click', this.handleSidePanelBackgroundClickEvent.bind(this));
-    document.addEventListener('keydown', this.handleBackgroundKeyDownEvent.bind(this));
+    document.addEventListener('keydown', this.handleKeyDownEvent.bind(this));
     this.closeButton.postInsertHtml();
     this.closeButton.onClick(this.handleCloseIconClickEvent.bind(this));
   }
@@ -74,7 +74,7 @@ export abstract class BaseSidePanelHtmlComponent extends BaseHtmlComponent {
     this.close();
   }
 
-  private handleBackgroundKeyDownEvent(event) {
+  private handleKeyDownEvent(event) {
     if (event.keyCode == ESCAPE_KEY_CODE) {
       this.close();
     }
