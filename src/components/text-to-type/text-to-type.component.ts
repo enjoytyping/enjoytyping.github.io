@@ -15,6 +15,8 @@ import {
   CHANGE_TEXT_TO_TYPE,
   ENABLE_TEXT_TO_TYPE,
   DISABLE_TEXT_TO_TYPE,
+  ENTER_KEY_CODE,
+  SPACE_KEY_CODE,
 } from '../../constants/constant';
 import { BaseHtmlComponent } from '../_core/base-component';
 import { TypedKeyStats } from '../typed-keys/typed-key-stats.model';
@@ -409,8 +411,10 @@ export class TextToTypeHtmlComponent extends BaseHtmlComponent {
   }
 
   private preventDefaultEventExceptFunctionKeys(event: any) {
-    if (!/F[1-9]+/.test(event.key) && !'Tab' == event.key && !'Shift' == event.key && !'Enter' == event.key) {
+    if (event.keyCode == SPACE_KEY_CODE) {
       event.preventDefault();
+    }
+    if (!/F[1-9]+/.test(event.key) && !'Tab' == event.key && !'Shift' == event.key && !'Enter' == event.key) {
     }
   }
 }

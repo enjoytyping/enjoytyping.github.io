@@ -1,5 +1,5 @@
 import './typed-text-stats.scss';
-import { CHANGE_TEXT_TO_TYPE, END_TYPING_EVENT } from '../../constants/constant';
+import { CHANGE_TEXT_TO_TYPE, END_TYPING_EVENT, ENTER_KEY_CODE } from '../../constants/constant';
 import { BaseHtmlComponent } from '../_core/base-component';
 import { TypedTextStats } from './typed-text-stats.model';
 import { IAppStateClient } from '../../state/app-state.client.interface';
@@ -51,9 +51,9 @@ export class TypedTextStatsHtmlComponent extends BaseHtmlComponent {
     this.previousTextTextToType = document.getElementById(this.previousTextTextToTypeId);
     this.nextTextTextToType = document.getElementById(this.nextTextTextToTypeId);
     this.previousTextTextToType.addEventListener('click', this.handlePreviousTextTextToTypeClickEvent.bind(this));
-    this.previousTextTextToType.addEventListener('keyup', this.handlePreviousTextTextToTypeKeyUpEvent.bind(this));
+    this.previousTextTextToType.addEventListener('keydown', this.handlePreviousTextTextToTypeKeyDownEvent.bind(this));
     this.nextTextTextToType.addEventListener('click', this.handleNextTextTextToTypeClickEvent.bind(this));
-    this.nextTextTextToType.addEventListener('keyup', this.handleNextTextTextToTypeKeyUpEvent.bind(this));
+    this.nextTextTextToType.addEventListener('keydown', this.handleNextTextTextToTypeKeyDownEvent.bind(this));
     this.addCustomEventListener(END_TYPING_EVENT, this.handleEndTypingEvent.bind(this));
     const appStorage = this.appStateClient.getAppState();
     if (appStorage.typedTextsStats.length > 0) {
@@ -61,10 +61,11 @@ export class TypedTextStatsHtmlComponent extends BaseHtmlComponent {
     }
   }
 
-  private handlePreviousTextTextToTypeKeyUpEvent(event) {
-    if (event.key !== 'Enter' && event.key !== ' ') {
+  private handlePreviousTextTextToTypeKeyDownEvent(event) {
+    if (event.keyCode !== ENTER_KEY_CODE) {
       return;
     }
+    event.stopPropagation();
     this.previousTextTextToType.dispatchEvent(new Event('click'));
   }
 
@@ -75,10 +76,11 @@ export class TypedTextStatsHtmlComponent extends BaseHtmlComponent {
     this.dispatchCustomEvent(CHANGE_TEXT_TO_TYPE);
   }
 
-  private handleNextTextTextToTypeKeyUpEvent(event) {
-    if (event.key !== 'Enter' && event.key !== ' ') {
+  private handleNextTextTextToTypeKeyDownEvent(event) {
+    if (event.keyCode !== ENTER_KEY_CODE) {
       return;
     }
+    event.stopPropagation();
     this.nextTextTextToType.dispatchEvent(new Event('click'));
   }
 

@@ -1807,9 +1807,8 @@ nav .right {
   display: flex;
   align-items: center; }
   nav .right .iconify {
-    font-size: 2.75rem; }
-  nav .right .navbar-icon {
-    margin-left: 1.5rem; }
+    padding: 0.5rem;
+    font-size: 3.5rem; }
   nav .right .app-settings-drop-down {
     z-index: 999; }
   nav .right .select {

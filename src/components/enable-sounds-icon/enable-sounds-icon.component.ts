@@ -1,6 +1,7 @@
 import { BaseHtmlComponent } from '../_core/base-component';
 import { IAppStateClient } from '../../state/app-state.client.interface';
 import { ToastClient } from '../../services/toast/toast.service';
+import { ENTER_KEY_CODE, SPACE_KEY_CODE } from '../../constants/constant';
 
 const ENABLE_SOUNDS_ICON_ID = 'ENABLE_SOUND_ICON_ID';
 const DISABLE_SOUNDS_ICON_ID = 'DISABLE_SOUND_ICON_ID';
@@ -35,7 +36,27 @@ export class EnableSoundsIconHtmlComponent extends BaseHtmlComponent {
     this.disableSoundButtonDomElement = document.getElementById(DISABLE_SOUNDS_ICON_ID);
     this.updateInnerHTML();
     this.enableSoundButtonDomElement.addEventListener('click', this.handleToggleSoundsClickEvent.bind(this));
+    this.enableSoundButtonDomElement.addEventListener('keydown', this.handleEnableSoundsKeyDownEvent.bind(this));
     this.disableSoundButtonDomElement.addEventListener('click', this.handleToggleSoundsClickEvent.bind(this));
+    this.disableSoundButtonDomElement.addEventListener('keydown', this.handleDisableSoundsKeyDownEvent.bind(this));
+  }
+
+  private handleEnableSoundsKeyDownEvent(event) {
+    if (event.keyCode !== ENTER_KEY_CODE) {
+      return;
+    }
+    event.stopPropagation();
+    this.enableSoundButtonDomElement.dispatchEvent(new Event('click'));
+    this.disableSoundButtonDomElement.focus();
+  }
+
+  private handleDisableSoundsKeyDownEvent(event) {
+    if (event.key !== 'Enter') {
+      return;
+    }
+    event.stopPropagation();
+    this.disableSoundButtonDomElement.dispatchEvent(new Event('click'));
+    this.enableSoundButtonDomElement.focus();
   }
 
   private updateInnerHTML() {

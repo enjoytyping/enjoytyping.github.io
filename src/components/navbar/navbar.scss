@@ -46,11 +46,11 @@ nav .right {
   display: flex;
   align-items: center;
   & .iconify {
-    font-size: 2.75rem;
+    padding: 0.5rem;
+    font-size: 3.5rem;
   }
 
   & .navbar-icon {
-    margin-left: 1.5rem;
   }
 
   & .app-settings-drop-down {

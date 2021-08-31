@@ -2,7 +2,7 @@ import './training.scss';
 import { BaseHtmlComponent } from '../_core/base-component';
 import { IAppStateClient } from '../../state/app-state.client.interface';
 import { AppStateClient } from '../../state/app-state.client';
-import { END_TYPING_EVENT, MIN_STATS_TO_DISPLAY_PROGRESS_GRAPH, TRAINING_LESSON_CHANGE_EVENT } from '../../constants/constant';
+import { END_TYPING_EVENT, ENTER_KEY_CODE, MIN_STATS_TO_DISPLAY_PROGRESS_GRAPH, TRAINING_LESSON_CHANGE_EVENT } from '../../constants/constant';
 import { TrainingLesson } from './training-lesson.enum';
 
 export class TrainingKeysHtmlComponent extends BaseHtmlComponent {
@@ -40,13 +40,14 @@ export class TrainingKeysHtmlComponent extends BaseHtmlComponent {
     this.addCustomEventListener(TRAINING_LESSON_CHANGE_EVENT, this.update.bind(this));
     this.addCustomEventListener(END_TYPING_EVENT, this.update.bind(this));
     this.container.addEventListener('click', this.handleContainerClickEvent.bind(this));
-    this.container.addEventListener('keyup', this.handleContainerKeyUpEvent.bind(this));
+    this.container.addEventListener('keydown', this.handleContainerKeyDownEvent.bind(this));
   }
 
-  private handleContainerKeyUpEvent(event) {
-    if (event.key !== 'Enter' && event.key !== ' ') {
+  private handleContainerKeyDownEvent(event) {
+    if (event.keyCode !== ENTER_KEY_CODE) {
       return;
     }
+    event.stopPropagation();
     this.container.dispatchEvent(new Event('click'));
   }
 
