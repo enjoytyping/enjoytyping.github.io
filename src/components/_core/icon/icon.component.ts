@@ -1,7 +1,7 @@
-import './button-icon.scss';
+import './icon.scss';
 import { BaseHtmlComponent } from '../base-component';
 
-export class ButtonIconHtmlComponent extends BaseHtmlComponent {
+export class IconHtmlComponent extends BaseHtmlComponent {
   private button: HTMLElement;
   private buttonId: string;
   private callbacks: (() => void)[] = [];

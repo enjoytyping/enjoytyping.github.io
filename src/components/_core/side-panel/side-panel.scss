@@ -30,11 +30,21 @@
     flex-direction: column;
   }
 
+  & .side-panel-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 2rem;
+  }
+
   & .side-panel-title {
     font-size: 2.5rem;
     font-weight: bold;
-    margin-bottom: 2rem;
     color: var(--primary-color);
+  }
+
+  & .side-panel-header .button-icon:hover .iconify {
+    color: var(--close-color);
   }
 
   &.active {

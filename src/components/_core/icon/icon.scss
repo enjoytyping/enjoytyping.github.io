@@ -8,6 +8,10 @@
   align-items: center;
   justify-content: center;
   background-color: var(--button-background-color);
+
+  &:hover {
+    background-color: var(--button-background-color-on-hover);
+  }
 }
 
 .button-icon .iconify {

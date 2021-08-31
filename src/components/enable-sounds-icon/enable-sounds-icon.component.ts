@@ -1,11 +1,11 @@
 import { BaseHtmlComponent } from '../_core/base-component';
 import { IAppStateClient } from '../../state/app-state.client.interface';
 import { ToastClient } from '../../services/toast/toast.service';
-import { ButtonIconHtmlComponent } from '../_core/button-icon/button-icon.component';
+import { IconHtmlComponent } from '../_core/icon/icon.component';
 
 export class EnableSoundsIconHtmlComponent extends BaseHtmlComponent {
-  private enableSoundButtonDomElement: ButtonIconHtmlComponent;
-  private disableSoundButtonDomElement: ButtonIconHtmlComponent;
+  private enableSoundButtonDomElement: IconHtmlComponent;
+  private disableSoundButtonDomElement: IconHtmlComponent;
 
   constructor(private appStateClient: IAppStateClient, private toastClient: ToastClient = ToastClient.getInstance()) {
     super();
@@ -16,8 +16,8 @@ export class EnableSoundsIconHtmlComponent extends BaseHtmlComponent {
     appState.enableSounds = appState.enableSounds || false;
     this.appStateClient.saveAppState(appState);
 
-    this.enableSoundButtonDomElement = new ButtonIconHtmlComponent('akar-icons:sound-off', 'Enable Sound');
-    this.disableSoundButtonDomElement = new ButtonIconHtmlComponent('akar-icons:sound-on', 'Disable Sound');
+    this.enableSoundButtonDomElement = new IconHtmlComponent('akar-icons:sound-off', 'Enable Sound');
+    this.disableSoundButtonDomElement = new IconHtmlComponent('akar-icons:sound-on', 'Disable Sound');
     this.enableSoundButtonDomElement.preInsertHtml();
     this.disableSoundButtonDomElement.preInsertHtml();
   }

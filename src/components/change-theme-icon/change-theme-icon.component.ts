@@ -1,11 +1,11 @@
 import { CHANGE_THEME_EVENT, DARK_THEME_VALUE, LIGHT_THEME_VALUE } from '../../constants/constant';
 import { BaseHtmlComponent } from '../_core/base-component';
 import { IAppStateClient } from '../../state/app-state.client.interface';
-import { ButtonIconHtmlComponent } from '../_core/button-icon/button-icon.component';
+import { IconHtmlComponent } from '../_core/icon/icon.component';
 
 export class ChangeThemeIconHtmlComponent extends BaseHtmlComponent {
-  private changeToDarkThemeButtonDomElement: ButtonIconHtmlComponent;
-  private changeToLightThemeButtonDomElement: ButtonIconHtmlComponent;
+  private changeToDarkThemeButtonDomElement: IconHtmlComponent;
+  private changeToLightThemeButtonDomElement: IconHtmlComponent;
 
   constructor(private appStateClient: IAppStateClient) {
     super();
@@ -17,8 +17,8 @@ export class ChangeThemeIconHtmlComponent extends BaseHtmlComponent {
     document.body.classList.remove(DARK_THEME_VALUE, LIGHT_THEME_VALUE);
     document.body.classList.add(appState.currentTheme);
     this.appStateClient.saveAppState(appState);
-    this.changeToDarkThemeButtonDomElement = new ButtonIconHtmlComponent('bx:bx-moon', 'Toggle Theme');
-    this.changeToLightThemeButtonDomElement = new ButtonIconHtmlComponent('heroicons-solid:sun', 'Toggle Theme');
+    this.changeToDarkThemeButtonDomElement = new IconHtmlComponent('bx:bx-moon', 'Toggle Theme');
+    this.changeToLightThemeButtonDomElement = new IconHtmlComponent('heroicons-solid:sun', 'Toggle Theme');
     this.changeToDarkThemeButtonDomElement.preInsertHtml();
     this.changeToLightThemeButtonDomElement.preInsertHtml();
   }

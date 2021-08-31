@@ -1,12 +1,12 @@
 import './side-panel.scss';
 import { BaseHtmlComponent } from '../base-component';
-import { CLOSE_SIDE_PANEL_EVENT, OPEN_SIDE_PANEL_EVENT } from '../../../constants/constant';
+import { CLOSE_SIDE_PANEL_EVENT, ESCAPE_KEY_CODE, OPEN_SIDE_PANEL_EVENT } from '../../../constants/constant';
+import { IconHtmlComponent } from '../icon/icon.component';
 
 export abstract class BaseSidePanelHtmlComponent extends BaseHtmlComponent {
   private containerId: string;
   private container: HTMLElement;
-  private sidePanelContainerId: string;
-  private sidePanelContainer: HTMLElement;
+  private closeButton: IconHtmlComponent;
   private sidePanelId: string;
   private sidePanel: HTMLElement;
   private backgroundId: string;
@@ -18,8 +18,9 @@ export abstract class BaseSidePanelHtmlComponent extends BaseHtmlComponent {
   abstract getSidePanelCssClass(): string;
 
   preInsertHtml(): void {
+    this.closeButton = new IconHtmlComponent('clarity:window-close-line', 'close');
+    this.closeButton.preInsertHtml();
     this.containerId = this.generateId();
-    this.sidePanelContainerId = this.generateId();
     this.sidePanelId = this.generateId();
     this.backgroundId = this.generateId();
   }
@@ -27,9 +28,12 @@ export abstract class BaseSidePanelHtmlComponent extends BaseHtmlComponent {
   toHtml() {
     return /* html */ `
       <div id="${this.containerId}" class="container">
-        <div id="${this.sidePanelContainerId}" class="side-panel-container ${this.getSidePanelCssClass()}">
+        <div class="side-panel-container ${this.getSidePanelCssClass()}">
           <div id="${this.sidePanelId}" class="side-panel">
-            <h2 class="side-panel-title">${this.getTitle()}</h2>
+            <div class="side-panel-header">
+              <h2 class="side-panel-title">${this.getTitle()}</h2>
+              ${this.closeButton.toHtml()}
+            </div>
             ${this.getBody()}
           </div>
         </div>
@@ -42,9 +46,11 @@ export abstract class BaseSidePanelHtmlComponent extends BaseHtmlComponent {
   postInsertHtml(): void {
     this.container = document.getElementById(this.containerId);
     this.background = document.getElementById(this.backgroundId);
-    this.sidePanelContainer = document.getElementById(this.sidePanelContainerId);
     this.sidePanel = document.getElementById(this.sidePanelId);
     this.background.addEventListener('click', this.handleSidePanelBackgroundClickEvent.bind(this));
+    document.addEventListener('keydown', this.handleBackgroundKeyDownEvent.bind(this));
+    this.closeButton.postInsertHtml();
+    this.closeButton.onClick(this.handleCloseIconClickEvent.bind(this));
   }
 
   onClose(callback: () => void) {
@@ -62,6 +68,16 @@ export abstract class BaseSidePanelHtmlComponent extends BaseHtmlComponent {
     this.dispatchCustomEvent(CLOSE_SIDE_PANEL_EVENT);
     this.callbacks.forEach((callback) => callback());
     setTimeout(() => (this.sidePanel.style.display = 'none'), 500);
+  }
+
+  private handleCloseIconClickEvent() {
+    this.close();
+  }
+
+  private handleBackgroundKeyDownEvent(event) {
+    if (event.keyCode == ESCAPE_KEY_CODE) {
+      this.close();
+    }
   }
 
   private handleSidePanelBackgroundClickEvent(event) {

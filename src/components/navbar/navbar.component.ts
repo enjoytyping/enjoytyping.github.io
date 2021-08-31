@@ -11,14 +11,14 @@ import { getTextToTypeSubCategory, TextToTypeSubCategory } from '../../state/tex
 import { APP_SETTINGS_CHANGE_EVENT } from '../../constants/constant';
 import { EnableSoundsIconHtmlComponent } from '../enable-sounds-icon/enable-sounds-icon.component';
 import { TrainingLesson } from '../training/training-lesson.enum';
-import { ButtonIconHtmlComponent } from '../_core/button-icon/button-icon.component';
+import { IconHtmlComponent } from '../_core/icon/icon.component';
 
 export class NavbarHtmlComponent extends BaseHtmlComponent {
   private navbar: HTMLElement;
-  private appSettingsIcon: ButtonIconHtmlComponent;
+  private appSettingsIcon: IconHtmlComponent;
   private appSettingsSidePanel: AppSettingsSidePanelHtmlComponent;
   private enableSoundsIcon: EnableSoundsIconHtmlComponent;
-  private addCustomTextToTypeIcon: ButtonIconHtmlComponent;
+  private addCustomTextToTypeIcon: IconHtmlComponent;
   private addCustomTextToTypeSidePanel: AddCustomTextToTypeSidePanelHtmlComponent;
   private changeThemeIcon: ChangeThemeIconHtmlComponent;
   private textToTypeCategoriesSelect: SelectHtmlComponent<TextToTypeCategory>;
@@ -27,8 +27,8 @@ export class NavbarHtmlComponent extends BaseHtmlComponent {
   constructor(private appStateClient: IAppStateClient) {
     super();
     const appState = this.appStateClient.getAppState();
-    this.appSettingsIcon = new ButtonIconHtmlComponent('jam:settings-alt', 'App Settings', '270deg');
-    this.addCustomTextToTypeIcon = new ButtonIconHtmlComponent('grommet-icons:add', 'Add custom text to type');
+    this.appSettingsIcon = new IconHtmlComponent('jam:settings-alt', 'App Settings', '270deg');
+    this.addCustomTextToTypeIcon = new IconHtmlComponent('grommet-icons:add', 'Add custom text to type');
     this.appSettingsSidePanel = new AppSettingsSidePanelHtmlComponent(AppStateClient.getInstance());
     this.addCustomTextToTypeSidePanel = new AddCustomTextToTypeSidePanelHtmlComponent(AppStateClient.getInstance());
     this.changeThemeIcon = new ChangeThemeIconHtmlComponent(AppStateClient.getInstance());

@@ -96,6 +96,7 @@ body.light {
   --input-color: var(--body-color);
   --input-background-color: var(--background-color-03);
   --select-background-color: var(--background-color-03);
+  --select-background-color-on-hover: var(--background-color-04);
   --input-border-color: var(--border-color);
   --input-border-color-on-active: var(--primary-color);
   --error-message-color: #f1505e;
@@ -154,6 +155,7 @@ body.light {
   --toast-error-background-color: #fdecea;
   --toast-error-border-color: #fadad7;
   --button-background-color: var(--background-color-03);
+  --button-background-color-on-hover: var(--background-color-04);
   --button-icon-color: var(--body-color); }
 
 body.dark {
@@ -213,6 +215,7 @@ body.dark {
   --input-color: var(--body-color);
   --input-background-color: var(--background-color-03);
   --select-background-color: var(--background-color-03);
+  --select-background-color-on-hover: var(--background-color-04);
   --input-border-color: var(--border-color);
   --input-border-color-on-active: var(--primary-color);
   --error-message-color: #f1505e;
@@ -271,6 +274,7 @@ body.dark {
   --toast-error-background-color: #180605;
   --toast-error-border-color: #180605;
   --button-background-color: var(--background-color-03);
+  --button-background-color-on-hover: var(--background-color-04);
   --button-icon-color: var(--body-color); }
 
 *,
@@ -1878,6 +1882,8 @@ select {
   background-position: calc(100% - 0.7rem);
   background-repeat: no-repeat;
   font-size: 1.5rem; }
+  select:hover {
+    background-color: var(--select-background-color-on-hover); }
   select option {
     padding: 0.75rem 1.2rem;
     cursor: pointer; }
@@ -1897,7 +1903,6 @@ body.dark {
   cursor: pointer;
   border-radius: 0.2rem;
   border: none;
-  outline: none;
   font-weight: bold;
   transition: var(--transition);
   transition-property: opacity; }
@@ -1938,11 +1943,17 @@ body.dark {
   .container .side-panel {
     display: none;
     flex-direction: column; }
+  .container .side-panel-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 2rem; }
   .container .side-panel-title {
     font-size: 2.5rem;
     font-weight: bold;
-    margin-bottom: 2rem;
     color: var(--primary-color); }
+  .container .side-panel-header .button-icon:hover .iconify {
+    color: var(--close-color); }
   .container.active .side-panel-background {
     display: block; }
   .container.active .side-panel-container {
@@ -1962,6 +1973,8 @@ body.dark {
   align-items: center;
   justify-content: center;
   background-color: var(--button-background-color); }
+  .button-icon:hover {
+    background-color: var(--button-background-color-on-hover); }
 
 .button-icon .iconify {
   color: var(--button-icon-color);
