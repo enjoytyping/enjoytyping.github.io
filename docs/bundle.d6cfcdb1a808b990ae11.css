@@ -1809,6 +1809,8 @@ nav .right {
   nav .right .iconify {
     padding: 0.5rem;
     font-size: 3.5rem; }
+  nav .right select {
+    width: 17rem; }
   nav .right .app-settings-drop-down {
     z-index: 999; }
   nav .right .select {
@@ -1857,45 +1859,31 @@ nav .right {
   .app-settings-side-panel {
     --side-panel-width: 80% !important; } }
 
-.select-container {
-  position: relative;
-  cursor: pointer;
-  width: 100%; }
-  .select-container.open {
-    z-index: 100; }
-  .select-container .select-header {
-    padding: 0.5rem 0.8rem 0.5rem 1.4rem;
-    border-radius: 0.3rem;
-    background-color: var(--select-background-color);
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    font-size: 1.5rem; }
-    .select-container .select-header .iconify {
-      margin-left: 1rem; }
-  .select-container .select-options {
-    font-size: 1.5rem;
-    position: absolute;
-    top: calc(100% + 0.5rem);
-    left: 0;
-    right: 0;
-    display: flex;
-    flex-direction: column;
-    background-color: var(--select-options-background-color);
-    box-shadow: var(--select-options-box-shadow);
-    border-radius: 0.3rem;
-    padding: 0.5rem 0;
-    max-height: 40rem;
-    overflow-y: scroll; }
-  .select-container .select-option {
-    padding: 0.8rem 1.6rem; }
-  .select-container .select-option:hover {
-    background-color: var(--select-option-background-color-on-hover); }
+body.light select {
+  background-image: url(data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHhtbG5zOnhsaW5rPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5L3hsaW5rIiBhcmlhLWhpZGRlbj0idHJ1ZSIgcm9sZT0iaW1nIiB3aWR0aD0iMS41ZW0iIGhlaWdodD0iMS41ZW0iIHByZXNlcnZlQXNwZWN0UmF0aW89InhNaWRZTWlkIG1lZXQiIHZpZXdCb3g9IjAgMCAyNCAyNCI+IDxwYXRoIGZpbGw9ImN1cnJlbnRDb2xvciIgZD0iTTEyIDE2YTEgMSAwIDAgMS0uNjQtLjIzbC02LTVhMSAxIDAgMSAxIDEuMjgtMS41NEwxMiAxMy43MWw1LjM2LTQuMzJhMSAxIDAgMCAxIDEuNDEuMTVhMSAxIDAgMCAxLS4xNCAxLjQ2bC02IDQuODNBMSAxIDAgMCAxIDEyIDE2eiIvPiA8L3N2Zz4=); }
 
-.select-label {
-  font-size: 1.3rem;
-  font-weight: bold;
-  border-radius: 100rem; }
+body.dark select {
+  background-image: url(data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHhtbG5zOnhsaW5rPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5L3hsaW5rIiBhcmlhLWhpZGRlbj0idHJ1ZSIgcm9sZT0iaW1nIiB3aWR0aD0iMS41ZW0iIGhlaWdodD0iMS41ZW0iIHByZXNlcnZlQXNwZWN0UmF0aW89InhNaWRZTWlkIG1lZXQiIHZpZXdCb3g9IjAgMCAyNCAyNCI+IDxwYXRoIGZpbGw9IiNFRUUiIGQ9Ik0xMiAxNmExIDEgMCAwIDEtLjY0LS4yM2wtNi01YTEgMSAwIDEgMSAxLjI4LTEuNTRMMTIgMTMuNzFsNS4zNi00LjMyYTEgMSAwIDAgMSAxLjQxLjE1YTEgMSAwIDAgMS0uMTQgMS40NmwtNiA0LjgzQTEgMSAwIDAgMSAxMiAxNnoiLz4gPC9zdmc+); }
+
+select {
+  cursor: pointer;
+  width: 100%;
+  padding: 0.75rem 1.2rem;
+  border-radius: 0.3rem;
+  border: none;
+  -webkit-appearance: none;
+     -moz-appearance: none;
+          appearance: none;
+  color: var(--body-color);
+  background-color: var(--select-background-color);
+  background-position: calc(100% - 0.7rem);
+  background-repeat: no-repeat;
+  font-size: 1.5rem; }
+  select option {
+    padding: 0.75rem 1.2rem;
+    cursor: pointer; }
+    select option:hover {
+      background-color: var(--select-option-background-color-on-hover); }
 
 body.light {
   --button-secondary-background-color: var(--background-color-04);
