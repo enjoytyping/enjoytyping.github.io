@@ -152,7 +152,9 @@ body.light {
   --toast-warn-border-color: #fcead0;
   --toast-error-color: #611a15;
   --toast-error-background-color: #fdecea;
-  --toast-error-border-color: #fadad7; }
+  --toast-error-border-color: #fadad7;
+  --button-background-color: var(--background-color-03);
+  --button-icon-color: var(--body-color); }
 
 body.dark {
   --primary-color: #078eed;
@@ -267,7 +269,9 @@ body.dark {
   --toast-warn-border-color: #190f00;
   --toast-error-color: #fab3ae;
   --toast-error-background-color: #180605;
-  --toast-error-border-color: #180605; }
+  --toast-error-border-color: #180605;
+  --button-background-color: var(--background-color-03);
+  --button-icon-color: var(--body-color); }
 
 *,
 *::after,
@@ -1805,18 +1809,12 @@ nav .right {
   z-index: 999;
   position: relative;
   display: flex;
-  align-items: center; }
-  nav .right .iconify {
-    padding: 0.5rem;
-    font-size: 3.5rem; }
-  nav .right select {
+  align-items: stretch; }
+  nav .right > select {
     width: 17rem; }
-  nav .right .app-settings-drop-down {
-    z-index: 999; }
-  nav .right .select {
-    margin-right: 1.5rem; }
-    nav .right .select .select-container {
-      width: 21rem; }
+  nav .right > select,
+  nav .right > button {
+    margin-left: 1rem; }
 
 @media only screen and (max-width: 768px) {
   nav .text-to-type-category,
@@ -1866,6 +1864,7 @@ body.dark select {
   background-image: url(data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHhtbG5zOnhsaW5rPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5L3hsaW5rIiBhcmlhLWhpZGRlbj0idHJ1ZSIgcm9sZT0iaW1nIiB3aWR0aD0iMS41ZW0iIGhlaWdodD0iMS41ZW0iIHByZXNlcnZlQXNwZWN0UmF0aW89InhNaWRZTWlkIG1lZXQiIHZpZXdCb3g9IjAgMCAyNCAyNCI+IDxwYXRoIGZpbGw9IiNFRUUiIGQ9Ik0xMiAxNmExIDEgMCAwIDEtLjY0LS4yM2wtNi01YTEgMSAwIDEgMSAxLjI4LTEuNTRMMTIgMTMuNzFsNS4zNi00LjMyYTEgMSAwIDAgMSAxLjQxLjE1YTEgMSAwIDAgMS0uMTQgMS40NmwtNiA0LjgzQTEgMSAwIDAgMSAxMiAxNnoiLz4gPC9zdmc+); }
 
 select {
+  font-family: inherit;
   cursor: pointer;
   width: 100%;
   padding: 0.75rem 1.2rem;
@@ -1952,6 +1951,21 @@ body.dark {
 @media only screen and (max-width: 45rem) {
   .side-panel-container .side-panel {
     --side-panel-width: 80%; } }
+
+.button-icon {
+  cursor: pointer;
+  border: none;
+  border-radius: 0.3rem;
+  height: 4rem;
+  width: 4rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--button-background-color); }
+
+.button-icon .iconify {
+  color: var(--button-icon-color);
+  font-size: 2.75rem; }
 
 body.dark {
   --text-to-add-textarea-label-color: var(--text-color-03);

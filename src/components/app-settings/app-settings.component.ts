@@ -10,7 +10,7 @@ import { IAppStateClient } from '../../state/app-state.client.interface';
 import { TrainingLesson } from '../training/training-lesson.enum';
 import { BaseSidePanelHtmlComponent } from '../_core/side-panel/side-panel.component';
 
-export class AppSettingsHtmlComponent extends BaseSidePanelHtmlComponent {
+export class AppSettingsSidePanelHtmlComponent extends BaseSidePanelHtmlComponent {
   private stopOnErrorSwitch: SwitchHtmlComponent;
   private enableCapitalLettersSwitch: SwitchHtmlComponent;
   private enablePunctuationCharactersSwitch: SwitchHtmlComponent;

@@ -44,25 +44,15 @@ nav .right {
   z-index: 999;
   position: relative;
   display: flex;
-  align-items: center;
-  & .iconify {
-    padding: 0.5rem;
-    font-size: 3.5rem;
-  }
+  align-items: stretch;
 
-  & select {
+  & > select {
     width: 17rem;
   }
 
-  & .app-settings-drop-down {
-    z-index: 999;
-  }
-
-  & .select {
-    margin-right: 1.5rem;
-    & .select-container {
-      width: 21rem;
-    }
+  & > select,
+  & > button {
+    margin-left: 1rem;
   }
 }
 

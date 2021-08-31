@@ -50,6 +50,26 @@ export class SelectHtmlComponent<T> extends BaseHtmlComponent {
     this.callbacks.push(callback);
   }
 
+  show() {
+    if (this.input.options.length == 0) {
+      this.hide();
+    } else {
+      this.select.classList.remove('hide');
+    }
+  }
+
+  hide() {
+    this.select.classList.add('hide');
+  }
+
+  focus() {
+    this.select.focus();
+  }
+
+  blur() {
+    this.select.blur();
+  }
+
   private updateInnerHTML(): void {
     this.select.innerHTML = this.input.options
       .map((o) => `<option value="${o.value}" ${this.input.selectedOptionValue == o.value ? 'selected' : ''}>${o.label}</option>`)

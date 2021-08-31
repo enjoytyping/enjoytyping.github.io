@@ -1,76 +1,53 @@
 import { BaseHtmlComponent } from '../_core/base-component';
 import { IAppStateClient } from '../../state/app-state.client.interface';
 import { ToastClient } from '../../services/toast/toast.service';
-import { ENTER_KEY_CODE, SPACE_KEY_CODE } from '../../constants/constant';
-
-const ENABLE_SOUNDS_ICON_ID = 'ENABLE_SOUND_ICON_ID';
-const DISABLE_SOUNDS_ICON_ID = 'DISABLE_SOUND_ICON_ID';
+import { ButtonIconHtmlComponent } from '../_core/button-icon/button-icon.component';
 
 export class EnableSoundsIconHtmlComponent extends BaseHtmlComponent {
-  private enableSoundButtonDomElement: HTMLElement;
-  private disableSoundButtonDomElement: HTMLElement;
-  private containerId: string;
+  private enableSoundButtonDomElement: ButtonIconHtmlComponent;
+  private disableSoundButtonDomElement: ButtonIconHtmlComponent;
 
   constructor(private appStateClient: IAppStateClient, private toastClient: ToastClient = ToastClient.getInstance()) {
     super();
   }
 
   preInsertHtml(): void {
-    this.containerId = this.generateId();
     const appState = this.appStateClient.getAppState();
     appState.enableSounds = appState.enableSounds || false;
     this.appStateClient.saveAppState(appState);
+
+    this.enableSoundButtonDomElement = new ButtonIconHtmlComponent('akar-icons:sound-off', 'Enable Sound');
+    this.disableSoundButtonDomElement = new ButtonIconHtmlComponent('akar-icons:sound-on', 'Disable Sound');
+    this.enableSoundButtonDomElement.preInsertHtml();
+    this.disableSoundButtonDomElement.preInsertHtml();
   }
 
   toHtml() {
     return /* html */ `
-      <span id="${this.containerId}" class="enable-sound-icon-container">
-        <span tabindex="0" id="${ENABLE_SOUNDS_ICON_ID}" title="Enable Sound"><span class="iconify" data-icon="akar-icons:sound-off"></span></span>
-        <span tabindex="0" id="${DISABLE_SOUNDS_ICON_ID}" title="Disable Sound"><span class="iconify" data-icon="akar-icons:sound-on"></span></span>
-      </span>
+      ${this.enableSoundButtonDomElement.toHtml()}
+      ${this.disableSoundButtonDomElement.toHtml()}
     `;
   }
 
   postInsertHtml() {
-    this.enableSoundButtonDomElement = document.getElementById(ENABLE_SOUNDS_ICON_ID);
-    this.disableSoundButtonDomElement = document.getElementById(DISABLE_SOUNDS_ICON_ID);
+    this.enableSoundButtonDomElement.postInsertHtml();
+    this.disableSoundButtonDomElement.postInsertHtml();
+    this.enableSoundButtonDomElement.onClick(this.handleToggleSoundsClickEvent.bind(this));
+    this.disableSoundButtonDomElement.onClick(this.handleToggleSoundsClickEvent.bind(this));
     this.updateInnerHTML();
-    this.enableSoundButtonDomElement.addEventListener('click', this.handleToggleSoundsClickEvent.bind(this));
-    this.enableSoundButtonDomElement.addEventListener('keydown', this.handleEnableSoundsKeyDownEvent.bind(this));
-    this.disableSoundButtonDomElement.addEventListener('click', this.handleToggleSoundsClickEvent.bind(this));
-    this.disableSoundButtonDomElement.addEventListener('keydown', this.handleDisableSoundsKeyDownEvent.bind(this));
-  }
-
-  private handleEnableSoundsKeyDownEvent(event) {
-    if (event.keyCode !== ENTER_KEY_CODE) {
-      return;
-    }
-    event.stopPropagation();
-    this.enableSoundButtonDomElement.dispatchEvent(new Event('click'));
-    this.disableSoundButtonDomElement.focus();
-  }
-
-  private handleDisableSoundsKeyDownEvent(event) {
-    if (event.key !== 'Enter') {
-      return;
-    }
-    event.stopPropagation();
-    this.disableSoundButtonDomElement.dispatchEvent(new Event('click'));
-    this.enableSoundButtonDomElement.focus();
   }
 
   private updateInnerHTML() {
-    this.enableSoundButtonDomElement.style.display = 'none';
-    this.disableSoundButtonDomElement.style.display = 'none';
+    this.enableSoundButtonDomElement.hide();
+    this.disableSoundButtonDomElement.hide();
     if (this.appStateClient.getAppState().enableSounds) {
-      this.disableSoundButtonDomElement.style.display = 'flex';
+      this.disableSoundButtonDomElement.show();
     } else {
-      this.enableSoundButtonDomElement.style.display = 'flex';
+      this.enableSoundButtonDomElement.show();
     }
   }
 
-  private handleToggleSoundsClickEvent(event: any) {
-    event.stopPropagation();
+  private handleToggleSoundsClickEvent() {
     const isChrome = /chrome/.test(navigator.userAgent.toLowerCase());
     const isEdge = /edge/.test(navigator.userAgent.toLowerCase());
     const appState = this.appStateClient.getAppState();
@@ -81,5 +58,7 @@ export class EnableSoundsIconHtmlComponent extends BaseHtmlComponent {
     appState.enableSounds = !appState.enableSounds;
     this.appStateClient.saveAppState(appState);
     this.updateInnerHTML();
+    this.enableSoundButtonDomElement.focus();
+    this.disableSoundButtonDomElement.focus();
   }
 }

@@ -177,7 +177,7 @@ export class TextToTypeHtmlComponent extends BaseHtmlComponent {
 
   private handleKeyDownEvent(event) {
     if (this.isDisabled) return;
-    this.preventDefaultEventExceptFunctionKeys(event);
+    this.preventSpaceDefaultEvent(event);
     clearTimeout(this.inactivityTimeout);
     this.inactivityTimeout = setTimeout(this.handleInactivityTimeoutEvent.bind(this), INACTIVITY_TIMEOUT);
     const typedKey = event.key;
@@ -410,11 +410,9 @@ export class TextToTypeHtmlComponent extends BaseHtmlComponent {
     };
   }
 
-  private preventDefaultEventExceptFunctionKeys(event: any) {
+  private preventSpaceDefaultEvent(event: any) {
     if (event.keyCode == SPACE_KEY_CODE) {
       event.preventDefault();
-    }
-    if (!/F[1-9]+/.test(event.key) && !'Tab' == event.key && !'Shift' == event.key && !'Enter' == event.key) {
     }
   }
 }

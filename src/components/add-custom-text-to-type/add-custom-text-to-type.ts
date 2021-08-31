@@ -18,7 +18,7 @@ class DisplayedCustomTextToAdd {
   text: string;
 }
 
-export class AddCustomTextToTypeHtmlComponent extends BaseSidePanelHtmlComponent {
+export class AddCustomTextToTypeSidePanelHtmlComponent extends BaseSidePanelHtmlComponent {
   private saveButton: ButtonHtmlComponent;
   private cancelButton: ButtonHtmlComponent;
   private customTextToAddTextArea: TextAreaHtmlComponent;

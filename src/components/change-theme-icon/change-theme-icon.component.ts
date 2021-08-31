@@ -1,13 +1,11 @@
-import { CHANGE_THEME_EVENT, DARK_THEME_VALUE, ENTER_KEY_CODE, LIGHT_THEME_VALUE } from '../../constants/constant';
+import { CHANGE_THEME_EVENT, DARK_THEME_VALUE, LIGHT_THEME_VALUE } from '../../constants/constant';
 import { BaseHtmlComponent } from '../_core/base-component';
 import { IAppStateClient } from '../../state/app-state.client.interface';
-
-const CHANGE_TO_DARK_THEME_ICON_ID = 'CHANGE_TO_DARK_THEME_ICON_ID';
-const CHANGE_TO_LIGHT_THEME_ICON_ID = 'CHANGE_TO_LIGHT_THEME_ICON_ID';
+import { ButtonIconHtmlComponent } from '../_core/button-icon/button-icon.component';
 
 export class ChangeThemeIconHtmlComponent extends BaseHtmlComponent {
-  private changeToDarkThemeButtonDomElement: HTMLElement;
-  private changeToLightThemeButtonDomElement: HTMLElement;
+  private changeToDarkThemeButtonDomElement: ButtonIconHtmlComponent;
+  private changeToLightThemeButtonDomElement: ButtonIconHtmlComponent;
 
   constructor(private appStateClient: IAppStateClient) {
     super();
@@ -19,60 +17,38 @@ export class ChangeThemeIconHtmlComponent extends BaseHtmlComponent {
     document.body.classList.remove(DARK_THEME_VALUE, LIGHT_THEME_VALUE);
     document.body.classList.add(appState.currentTheme);
     this.appStateClient.saveAppState(appState);
+    this.changeToDarkThemeButtonDomElement = new ButtonIconHtmlComponent('bx:bx-moon', 'Toggle Theme');
+    this.changeToLightThemeButtonDomElement = new ButtonIconHtmlComponent('heroicons-solid:sun', 'Toggle Theme');
+    this.changeToDarkThemeButtonDomElement.preInsertHtml();
+    this.changeToLightThemeButtonDomElement.preInsertHtml();
   }
 
   toHtml() {
     return /* html */ `
-      <span tabindex="0" id='${CHANGE_TO_DARK_THEME_ICON_ID}' class='pointer change-theme-icon'>
-        <span class='iconify' data-icon='bx:bx-moon' data-inline='false'></span>
-      </span>
-      <span tabindex="0" id='${CHANGE_TO_LIGHT_THEME_ICON_ID}' class='pointer change-theme-icon'>
-        <span class='iconify' data-icon='heroicons-solid:sun' data-inline='false'></span>
-      </span>
+      ${this.changeToDarkThemeButtonDomElement.toHtml()}
+      ${this.changeToLightThemeButtonDomElement.toHtml()}
     `;
   }
 
   postInsertHtml() {
-    this.changeToDarkThemeButtonDomElement = document.getElementById(CHANGE_TO_DARK_THEME_ICON_ID);
-    this.changeToLightThemeButtonDomElement = document.getElementById(CHANGE_TO_LIGHT_THEME_ICON_ID);
+    this.changeToDarkThemeButtonDomElement.postInsertHtml();
+    this.changeToLightThemeButtonDomElement.postInsertHtml();
+    this.changeToDarkThemeButtonDomElement.onClick(this.handleToggleThemeClickEvent.bind(this));
+    this.changeToLightThemeButtonDomElement.onClick(this.handleToggleThemeClickEvent.bind(this));
     this.updateInnerHTML();
-    this.changeToDarkThemeButtonDomElement.addEventListener('click', this.handleToggleThemeClickEvent.bind(this));
-    this.changeToDarkThemeButtonDomElement.addEventListener('keydown', this.handleChangeToDarkThemeKeyDownEvent.bind(this));
-
-    this.changeToLightThemeButtonDomElement.addEventListener('click', this.handleToggleThemeClickEvent.bind(this));
-    this.changeToLightThemeButtonDomElement.addEventListener('keydown', this.handleChangeToLightThemeClickEvent.bind(this));
-  }
-
-  private handleChangeToDarkThemeKeyDownEvent(event) {
-    if (event.keyCode !== ENTER_KEY_CODE) {
-      return;
-    }
-    event.stopPropagation();
-    this.changeToDarkThemeButtonDomElement.dispatchEvent(new Event('click'));
-    this.changeToLightThemeButtonDomElement.focus();
-  }
-
-  private handleChangeToLightThemeClickEvent(event) {
-    if (event.keyCode !== ENTER_KEY_CODE) {
-      return;
-    }
-    event.stopPropagation();
-    this.changeToLightThemeButtonDomElement.dispatchEvent(new Event('click'));
-    this.changeToDarkThemeButtonDomElement.focus();
   }
 
   private updateInnerHTML() {
-    this.changeToDarkThemeButtonDomElement.style.display = 'none';
-    this.changeToLightThemeButtonDomElement.style.display = 'none';
+    this.changeToDarkThemeButtonDomElement.hide();
+    this.changeToLightThemeButtonDomElement.hide();
     if (this.appStateClient.getAppState().currentTheme === LIGHT_THEME_VALUE) {
-      this.changeToDarkThemeButtonDomElement.style.display = 'flex';
+      this.changeToDarkThemeButtonDomElement.show();
     } else {
-      this.changeToLightThemeButtonDomElement.style.display = 'flex';
+      this.changeToLightThemeButtonDomElement.show();
     }
   }
 
-  private handleToggleThemeClickEvent(event: any) {
-    event.stopPropagation();
+  private handleToggleThemeClickEvent() {
     const appStorage = this.appStateClient.getAppState();
     if (appStorage.currentTheme === LIGHT_THEME_VALUE) {
       document.body.classList.remove(DARK_THEME_VALUE, LIGHT_THEME_VALUE);
@@ -88,6 +64,8 @@ export class ChangeThemeIconHtmlComponent extends BaseHtmlComponent {
       this.dispatchChangeThemeEvent(LIGHT_THEME_VALUE);
     }
     this.updateInnerHTML();
+    this.changeToDarkThemeButtonDomElement.focus();
+    this.changeToLightThemeButtonDomElement.focus();
   }
 
   private dispatchChangeThemeEvent(newTheme: string) {

@@ -114,6 +114,8 @@ body.light {
   --toast-error-color: #611a15;
   --toast-error-background-color: #fdecea;
   --toast-error-border-color: #fadad7;
+  --button-background-color: var(--background-color-03);
+  --button-icon-color: var(--body-color);
 }
 
 body.dark {
@@ -231,4 +233,6 @@ body.dark {
   --toast-error-color: #fab3ae;
   --toast-error-background-color: #180605;
   --toast-error-border-color: #180605;
+  --button-background-color: var(--background-color-03);
+  --button-icon-color: var(--body-color);
 }
