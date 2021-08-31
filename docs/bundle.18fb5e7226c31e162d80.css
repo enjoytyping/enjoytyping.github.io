@@ -2218,33 +2218,34 @@ body.dark {
   .dialog {
     --dialog-width: 80%; } }
 
-.feedback-icon-container {
+.feedback-button {
   position: fixed;
   bottom: 2rem;
   right: 2rem;
+  border: none;
   background-color: var(--feedback-icon-container-background-color);
   border-radius: 100rem;
   display: flex;
   align-items: center;
   box-shadow: var(--box-shadow-02); }
-  .feedback-icon-container .feedback-label,
-  .feedback-icon-container .iconify {
+  .feedback-button .feedback-label,
+  .feedback-button .iconify {
     transition: 0.6s; }
-  .feedback-icon-container .iconify {
+  .feedback-button .iconify {
     font-size: 5rem;
     padding: 1rem;
     border-radius: 100rem;
     border: 3px solid var(--feedback-icon-container-background-color); }
-  .feedback-icon-container .feedback-label {
+  .feedback-button .feedback-label {
     white-space: nowrap;
     width: 0;
     overflow: hidden;
     font-size: 1.35rem;
     font-weight: bold; }
-  .feedback-icon-container:hover .feedback-label {
+  .feedback-button:hover .feedback-label {
     width: 23rem;
     padding-left: 2rem; }
-  .feedback-icon-container:hover .iconify {
+  .feedback-button:hover .iconify {
     background-color: var(--feedback-icon-background-color-on-hover); }
 
 .feedback-form {

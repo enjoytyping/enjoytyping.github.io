@@ -14,10 +14,10 @@ export class FeedbackHtmlComponent extends BaseHtmlComponent {
 
   toHtml() {
     return /* html */ `
-      <span tabindex="0" id="${this.feedbackIconId}" class="feedback-icon-container">
+      <button id="${this.feedbackIconId}" class="feedback-button">
         <span class="feedback-label">Your feedback help us a lot :)</span>
         <span class="iconify" data-icon="jam:message"></span>
-      </span>
+      </button>
       ${this.feedbackForm.toHtml()}
     `;
   }
