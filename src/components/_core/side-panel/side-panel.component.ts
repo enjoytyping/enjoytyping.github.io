@@ -1,7 +1,10 @@
 import './side-panel.scss';
 import { BaseHtmlComponent } from '../base-component';
-import { CLOSE_SIDE_PANEL_EVENT, ESCAPE_KEY_CODE, OPEN_SIDE_PANEL_EVENT } from '../../../constants/constant';
+import { CLOSE_SIDE_PANEL_EVENT, ESCAPE_KEY_CODE, OPEN_SIDE_PANEL_EVENT, TAB_KEY_CODE } from '../../../constants/constant';
 import { IconHtmlComponent } from '../icon/icon.component';
+
+const FOCUSABLE_ELEMENTS_QUERY_SELECTOR =
+  'a[href], area[href], input:not([disabled]), select:not([disabled]), textarea:not([disabled]), button:not([disabled]), iframe, object, embed, [tabindex="0"], [contenteditable]';
 
 export abstract class BaseSidePanelHtmlComponent extends BaseHtmlComponent {
   private containerId: string;
@@ -12,6 +15,9 @@ export abstract class BaseSidePanelHtmlComponent extends BaseHtmlComponent {
   private backgroundId: string;
   private background: HTMLElement;
   private callbacks: (() => void)[] = [];
+  private focusedElementBeforeOpen: HTMLElement;
+  private firstFocusableElement;
+  private lastFocusableElement;
 
   abstract getTitle(): string;
   abstract getBody(): string;
@@ -48,9 +54,12 @@ export abstract class BaseSidePanelHtmlComponent extends BaseHtmlComponent {
     this.background = document.getElementById(this.backgroundId);
     this.sidePanel = document.getElementById(this.sidePanelId);
     this.background.addEventListener('click', this.handleSidePanelBackgroundClickEvent.bind(this));
-    document.addEventListener('keydown', this.handleKeyDownEvent.bind(this));
+    this.container.addEventListener('keydown', this.handleKeyDownEvent.bind(this));
     this.closeButton.postInsertHtml();
     this.closeButton.onClick(this.handleCloseIconClickEvent.bind(this));
+    const focusableElements = this.container.querySelectorAll(FOCUSABLE_ELEMENTS_QUERY_SELECTOR);
+    this.firstFocusableElement = focusableElements[0];
+    this.lastFocusableElement = focusableElements[focusableElements.length - 1];
   }
 
   onClose(callback: () => void) {
@@ -58,16 +67,22 @@ export abstract class BaseSidePanelHtmlComponent extends BaseHtmlComponent {
   }
 
   open() {
+    this.focusedElementBeforeOpen = document.activeElement as HTMLElement;
     this.sidePanel.style.display = 'flex';
     this.container.classList.add('active');
     this.dispatchCustomEvent(OPEN_SIDE_PANEL_EVENT);
   }
 
   close() {
+    this.focusedElementBeforeOpen.focus();
     this.container.classList.remove('active');
     this.dispatchCustomEvent(CLOSE_SIDE_PANEL_EVENT);
     this.callbacks.forEach((callback) => callback());
     setTimeout(() => (this.sidePanel.style.display = 'none'), 500);
+  }
+
+  isClosed() {
+    return this.container.classList.contains('hide');
   }
 
   private handleCloseIconClickEvent() {
@@ -75,8 +90,24 @@ export abstract class BaseSidePanelHtmlComponent extends BaseHtmlComponent {
   }
 
   private handleKeyDownEvent(event) {
+    if (this.isClosed()) {
+      return;
+    }
     if (event.keyCode == ESCAPE_KEY_CODE) {
       this.close();
+    }
+    if (event.keyCode == TAB_KEY_CODE) {
+      if (event.shiftKey) {
+        if (document.activeElement === this.firstFocusableElement) {
+          event.preventDefault();
+          this.lastFocusableElement.focus();
+        }
+      } else {
+        if (document.activeElement === this.lastFocusableElement) {
+          event.preventDefault();
+          this.firstFocusableElement.focus();
+        }
+      }
     }
   }
 

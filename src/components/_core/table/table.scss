@@ -44,7 +44,11 @@ body.dark {
     background-color: var(--table-row-background-color);
     padding: 0;
 
-    & .iconify.delete:hover {
+    & .delete {
+      font-size: 3rem;
+    }
+
+    & .delete:hover {
       color: red;
     }
   }

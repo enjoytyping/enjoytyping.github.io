@@ -13,6 +13,7 @@ import { TableAction, TableColumn, TableHtmlComponent } from '../_core/table/tab
 import { TextToTypeCategory } from '../../state/text-to-type-category.enum';
 import { TextToTypeSubCategory } from '../../state/text-to-type-sub-category.enum';
 import { BaseSidePanelHtmlComponent } from '../_core/side-panel/side-panel.component';
+import { IconHtmlComponent } from '../_core/icon/icon.component';
 
 class DisplayedCustomTextToAdd {
   text: string;
@@ -22,7 +23,7 @@ export class AddCustomTextToTypeSidePanelHtmlComponent extends BaseSidePanelHtml
   private saveButton: ButtonHtmlComponent;
   private cancelButton: ButtonHtmlComponent;
   private customTextToAddTextArea: TextAreaHtmlComponent;
-  private addIconId: string;
+  private addIcon: IconHtmlComponent;
   private appState: AppState;
   private displayedCustomTextToAddTable: TableHtmlComponent<DisplayedCustomTextToAdd>;
   private customTextsUpdated: boolean = false;
@@ -34,7 +35,7 @@ export class AddCustomTextToTypeSidePanelHtmlComponent extends BaseSidePanelHtml
     this.customTextToAddTextArea = new TextAreaHtmlComponent('', '100%', '20rem');
     this.appState = this.appStateClient.getAppState();
     this.displayedCustomTextToAddTable = new TableHtmlComponent<DisplayedCustomTextToAdd>('No custom text has been added yet!');
-    this.addIconId = this.generateId();
+    this.addIcon = new IconHtmlComponent('ion:add-outline', 'Add');
   }
 
   preInsertHtml(): void {
@@ -43,6 +44,7 @@ export class AddCustomTextToTypeSidePanelHtmlComponent extends BaseSidePanelHtml
     this.cancelButton.preInsertHtml();
     this.customTextToAddTextArea.preInsertHtml();
     this.displayedCustomTextToAddTable.preInsertHtml();
+    this.addIcon.preInsertHtml();
   }
 
   getSidePanelCssClass(): string {
@@ -57,7 +59,7 @@ export class AddCustomTextToTypeSidePanelHtmlComponent extends BaseSidePanelHtml
     return /* html */ `
       <div class="text-to-add-textarea-header">
         <span class="label">Text to add</span>
-        <span id="${this.addIconId}" title="Add"><span class="iconify" data-icon="ion:add-outline" data-inline="false"></span></span>
+        ${this.addIcon.toHtml()}
       </div>
       ${this.customTextToAddTextArea.toHtml()}
       <div class="added-custom-texts-table">
@@ -72,6 +74,7 @@ export class AddCustomTextToTypeSidePanelHtmlComponent extends BaseSidePanelHtml
 
   postInsertHtml(): void {
     super.postInsertHtml();
+    this.addIcon.postInsertHtml();
     this.saveButton.postInsertHtml();
     this.cancelButton.postInsertHtml();
     this.customTextToAddTextArea.postInsertHtml();
@@ -81,7 +84,7 @@ export class AddCustomTextToTypeSidePanelHtmlComponent extends BaseSidePanelHtml
     this.updateInnerHTML();
     this.saveButton.onClick(this.handleSaveButtonClickEvent.bind(this));
     this.cancelButton.onClick(this.handleCancelButtonClickEvent.bind(this));
-    document.getElementById(this.addIconId).addEventListener('click', this.handleAddIconClickEvent.bind(this));
+    this.addIcon.onClick(this.handleAddIconClickEvent.bind(this));
     this.customTextToAddTextArea.onValidate(this.validateCustomTextToAddTextAreaOnChange.bind(this));
   }
 
