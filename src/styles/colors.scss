@@ -1,6 +1,8 @@
 body.light {
   --primary-color: #078eed;
   --secondary-color: #f57173;
+  --focus-color: #0060df;
+  --focus-box-shadow-secondary: 0px 0px 3px 2px var(--secondary-color);
   --white-color: #fff;
   --black-color: #222;
   --text-color-01: #1e1e1e;
@@ -18,7 +20,6 @@ body.light {
   --box-shadow-02: 0 0 5px 2px rgba(74, 74, 74, 0.2);
   --focus-box-shadow: 0 0 0 4px #0074cc26;
   --border-color: #dfe1e5;
-  --focus-border-color: #6bbbf7;
   --icon-color: var(--text-color-03);
   --pre-load-background: linear-gradient(270deg, var(--background-color-05), var(--background-color-04), var(--background-color-03));
   --box-shadow-01: 0 2px 5px 0 rgba(74, 74, 74, 0.2);
@@ -123,6 +124,8 @@ body.light {
 body.dark {
   --primary-color: #078eed;
   --secondary-color: #f57173;
+  --focus-color: #0060df;
+  --focus-box-shadow-secondary: 0px 0px 3px 2px var(--secondary-color);
   --white-color: #fff;
   --black-color: #222;
   --text-color-01: #fafafa;

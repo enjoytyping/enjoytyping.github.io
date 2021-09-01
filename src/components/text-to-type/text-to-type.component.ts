@@ -17,6 +17,7 @@ import {
   DISABLE_TEXT_TO_TYPE,
   ENTER_KEY_CODE,
   SPACE_KEY_CODE,
+  QUOTE_KEY_CODE,
 } from '../../constants/constant';
 import { BaseHtmlComponent } from '../_core/base-component';
 import { TypedKeyStats } from '../typed-keys/typed-key-stats.model';
@@ -411,7 +412,7 @@ export class TextToTypeHtmlComponent extends BaseHtmlComponent {
   }
 
   private preventSpaceDefaultEvent(event: any) {
-    if (event.keyCode == SPACE_KEY_CODE) {
+    if (event.keyCode == SPACE_KEY_CODE || event.keyCode == QUOTE_KEY_CODE) {
       event.preventDefault();
     }
   }

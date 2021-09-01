@@ -43,6 +43,8 @@
 body.light {
   --primary-color: #078eed;
   --secondary-color: #f57173;
+  --focus-color: #0060df;
+  --focus-box-shadow-secondary: 0px 0px 3px 2px var(--secondary-color);
   --white-color: #fff;
   --black-color: #222;
   --text-color-01: #1e1e1e;
@@ -60,7 +62,6 @@ body.light {
   --box-shadow-02: 0 0 5px 2px rgba(74, 74, 74, 0.2);
   --focus-box-shadow: 0 0 0 4px #0074cc26;
   --border-color: #dfe1e5;
-  --focus-border-color: #6bbbf7;
   --icon-color: var(--text-color-03);
   --pre-load-background: linear-gradient(270deg, var(--background-color-05), var(--background-color-04), var(--background-color-03));
   --box-shadow-01: 0 2px 5px 0 rgba(74, 74, 74, 0.2);
@@ -161,6 +162,8 @@ body.light {
 body.dark {
   --primary-color: #078eed;
   --secondary-color: #f57173;
+  --focus-color: #0060df;
+  --focus-box-shadow-secondary: 0px 0px 3px 2px var(--secondary-color);
   --white-color: #fff;
   --black-color: #222;
   --text-color-01: #fafafa;
@@ -297,6 +300,11 @@ body.dark {
 ::-webkit-scrollbar {
   display: none; }
 
+*:focus,
+*:focus-visible {
+  outline: none;
+  border-color: var(--focus-color) !important; }
+
 html {
   font-size: var(--font-size);
   scroll-behavior: smooth; }
@@ -324,7 +332,9 @@ a {
   font-size: 1.6rem;
   color: var(--primary-color);
   text-decoration: none;
-  cursor: pointer; }
+  cursor: pointer;
+  border: 2px solid transparent;
+  border-radius: 0.3rem; }
   a:hover {
     text-decoration: underline; }
 
@@ -1272,6 +1282,9 @@ p {
       color: var(--delete-progress-data-button-color-on-hover);
       background-color: var(--delete-progress-data-button-background-color-on-hover);
       box-shadow: var(--delete-progress-data-button-box-shadow); }
+    .delete-progress-data-button-container button:focus {
+      border-color: initial !important;
+      box-shadow: var(--focus-box-shadow-secondary); }
 
 @media screen and (max-width: 426px) {
   .progress-by-key {
@@ -1345,7 +1358,8 @@ p {
   justify-content: center; }
 
 .switch-container button {
-  border: none;
+  border-radius: 0.3rem;
+  border: 2px solid transparent;
   background-color: transparent; }
 
 .labeled-switch {
@@ -1417,6 +1431,9 @@ p {
     .typed-text-stats-container .change-text-to-type .previous {
       border-bottom-left-radius: 100rem;
       border-top-left-radius: 100rem; }
+    .typed-text-stats-container .change-text-to-type:focus {
+      border-color: var(--secondary-color) !important;
+      box-shadow: var(--focus-box-shadow-secondary); }
 
 .typed-keys-stats-container {
   max-width: 82rem;
@@ -1547,7 +1564,11 @@ p {
   color: var(--secondary-color);
   margin-top: 0.3rem;
   margin-bottom: 3rem;
-  align-self: flex-end; }
+  align-self: flex-end;
+  border: 2px solid transparent;
+  border-radius: 0.3rem; }
+  .view-typing-progress-link:focus {
+    border-color: var(--secondary-color) !important; }
 
 .text-to-type-container {
   width: 100%;
@@ -1610,19 +1631,6 @@ p {
   align-items: center;
   justify-content: center; }
 
-.view-typing-progress-button {
-  color: var(--secondary-color);
-  font-weight: bold;
-  font-size: 1.35rem;
-  margin: 1.6rem;
-  padding: 0.4rem 3rem;
-  text-align: center;
-  transition: all 0.2s ease-in;
-  border-radius: 100rem;
-  border: 2px solid var(--secondary-color); }
-  .view-typing-progress-button:hover {
-    text-decoration: none; }
-
 .toast-container {
   z-index: 100000;
   position: fixed;
@@ -1678,6 +1686,10 @@ p {
     border-left: 1px solid var(--border-color);
     border-right: 1px solid var(--border-color);
     font-family: 'Roboto Mono', monospace; }
+    .increase-decrease-value-container .value:focus, .increase-decrease-value-container .value:focus-visible {
+      border: none !important;
+      border-left: 1px solid var(--border-color) !important;
+      border-right: 1px solid var(--border-color) !important; }
 
 .training-title {
   margin: 2rem 8rem 0.4rem;
@@ -1723,15 +1735,22 @@ p {
   width: 8rem;
   height: 8rem;
   background-color: var(--training-keys-background-color);
-  border-bottom: 5px solid var(--training-keys-background-color);
+  border: 2px solid transparent;
   margin-right: 0.5rem;
   font-size: 1.6rem;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center; }
-  .training-lesson-container.selected {
-    border-color: var(--secondary-color); }
+  .training-lesson-container.selected::after {
+    content: '';
+    position: absolute;
+    bottom: 0px;
+    left: 0px;
+    right: 0px;
+    height: 5px;
+    border-radius: 0.3rem;
+    background-color: var(--secondary-color); }
   .training-lesson-container .wpm {
     position: absolute;
     top: 0.2rem;
@@ -1882,7 +1901,7 @@ select {
   width: 100%;
   padding: 0.75rem 1.2rem;
   border-radius: 0.3rem;
-  border: none;
+  border: 2px solid transparent;
   -webkit-appearance: none;
      -moz-appearance: none;
           appearance: none;
@@ -1911,7 +1930,7 @@ body.dark {
   padding: 0.6rem 1.5rem;
   cursor: pointer;
   border-radius: 0.2rem;
-  border: none;
+  border: 2px solid transparent;
   font-weight: bold;
   transition: var(--transition);
   transition-property: opacity; }
@@ -1974,7 +1993,7 @@ body.dark {
 
 .button-icon {
   cursor: pointer;
-  border: none;
+  border: 2px solid transparent;
   border-radius: 0.3rem;
   height: 4rem;
   width: 4rem;
@@ -2227,7 +2246,7 @@ body.dark {
   position: fixed;
   bottom: 2rem;
   right: 2rem;
-  border: none;
+  border: 2px solid transparent;
   background-color: var(--feedback-icon-container-background-color);
   border-radius: 100rem;
   display: flex;

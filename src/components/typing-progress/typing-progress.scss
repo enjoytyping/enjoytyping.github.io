@@ -90,6 +90,11 @@
       background-color: var(--delete-progress-data-button-background-color-on-hover);
       box-shadow: var(--delete-progress-data-button-box-shadow);
     }
+
+    &:focus {
+      border-color: initial !important;
+      box-shadow: var(--focus-box-shadow-secondary);
+    }
   }
 }
 

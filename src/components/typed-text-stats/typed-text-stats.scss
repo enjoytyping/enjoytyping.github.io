@@ -74,6 +74,11 @@
       border-bottom-left-radius: 100rem;
       border-top-left-radius: 100rem;
     }
+
+    &:focus {
+      border-color: var(--secondary-color) !important;
+      box-shadow: var(--focus-box-shadow-secondary);
+    }
   }
 }
 

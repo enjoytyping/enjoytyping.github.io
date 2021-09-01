@@ -53,7 +53,7 @@
   width: 8rem;
   height: 8rem;
   background-color: var(--training-keys-background-color);
-  border-bottom: 5px solid var(--training-keys-background-color);
+  border: 2px solid transparent;
   margin-right: 0.5rem;
   font-size: 1.6rem;
   display: flex;
@@ -61,8 +61,18 @@
   align-items: center;
   justify-content: center;
 
-  &.selected {
-    border-color: var(--secondary-color);
+  &.selected::after {
+    content: '';
+    position: absolute;
+    bottom: 0px;
+    left: 0px;
+    right: 0px;
+    height: 5px;
+    border-radius: 0.3rem;
+    background-color: var(--secondary-color);
+  }
+
+  &:focus {
   }
 
   & .wpm {

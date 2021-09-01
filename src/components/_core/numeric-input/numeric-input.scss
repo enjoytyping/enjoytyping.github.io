@@ -34,5 +34,12 @@
     border-left: 1px solid var(--border-color);
     border-right: 1px solid var(--border-color);
     font-family: 'Roboto Mono', monospace;
+
+    &:focus,
+    &:focus-visible {
+      border: none !important;
+      border-left: 1px solid var(--border-color) !important;
+      border-right: 1px solid var(--border-color) !important;
+    }
   }
 }

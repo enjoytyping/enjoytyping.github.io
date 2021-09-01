@@ -5,6 +5,7 @@ export const LIGHT_THEME_VALUE = 'light';
 export const DARK_THEME_VALUE = 'dark';
 export const ENTER_KEY_CODE = 13;
 export const SPACE_KEY_CODE = 32;
+export const QUOTE_KEY_CODE = 52;
 export const ESCAPE_KEY_CODE = 27;
 export const TAB_KEY_CODE = 9;
 export const ARROW_UP_KEY_CODE = 38;

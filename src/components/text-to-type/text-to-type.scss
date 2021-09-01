@@ -22,6 +22,12 @@
   margin-top: 0.3rem;
   margin-bottom: 3rem;
   align-self: flex-end;
+  border: 2px solid transparent;
+  border-radius: 0.3rem;
+
+  &:focus {
+    border-color: var(--secondary-color) !important;
+  }
 }
 
 .text-to-type-container {
@@ -113,20 +119,4 @@
   display: flex;
   align-items: center;
   justify-content: center;
-}
-
-.view-typing-progress-button {
-  color: var(--secondary-color);
-  font-weight: bold;
-  font-size: 1.35rem;
-  margin: 1.6rem;
-  padding: 0.4rem 3rem;
-  text-align: center;
-  transition: all 0.2s ease-in;
-  border-radius: 100rem;
-  border: 2px solid var(--secondary-color);
-
-  &:hover {
-    text-decoration: none;
-  }
 }

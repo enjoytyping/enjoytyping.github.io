@@ -42,8 +42,7 @@ export class ButtonHtmlComponent extends BaseHtmlComponent {
     this.callbacks.push(callback);
   }
 
-  private handleClickEvent(event) {
-    event.preventDefault();
+  private handleClickEvent() {
     this.callbacks.forEach((callback) => callback());
   }
 }

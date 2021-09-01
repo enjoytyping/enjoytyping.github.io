@@ -11,12 +11,10 @@
   display: none;
 }
 
-*:focus {
-  // outline: none;
-  // border-radius: 0.3rem;
-  // border: 1px solid var(--focus-border-color);
-  // box-shadow: var(--focus-box-shadow);
-  // outline-color: var(--primary-color);
+*:focus,
+*:focus-visible {
+  outline: none;
+  border-color: var(--focus-color) !important;
 }
 
 html {
@@ -51,6 +49,8 @@ a {
   color: var(--primary-color);
   text-decoration: none;
   cursor: pointer;
+  border: 2px solid transparent;
+  border-radius: 0.3rem;
   &:hover {
     text-decoration: underline;
   }
