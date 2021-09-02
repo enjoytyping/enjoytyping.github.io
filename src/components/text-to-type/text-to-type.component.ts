@@ -13,11 +13,10 @@ import {
   OPEN_SIDE_PANEL_EVENT,
   CLOSE_SIDE_PANEL_EVENT,
   CHANGE_TEXT_TO_TYPE,
-  ENABLE_TEXT_TO_TYPE,
-  DISABLE_TEXT_TO_TYPE,
-  ENTER_KEY_CODE,
   SPACE_KEY_CODE,
   QUOTE_KEY_CODE,
+  TAB_KEY_CODE,
+  ESCAPE_KEY_CODE,
 } from '../../constants/constant';
 import { BaseHtmlComponent } from '../_core/base-component';
 import { TypedKeyStats } from '../typed-keys/typed-key-stats.model';
@@ -29,6 +28,7 @@ import { TextToType } from './text-to-type.model';
 import { TrainingLessonStats } from '../training/training-lesson-stats.model';
 import { TrainingLesson } from '../training/training-lesson.enum';
 import { NumericInputHtmlComponent } from '../_core/numeric-input/numeric-input.component';
+import { LabeledSwitchHtmlComponent } from '../_core/switch/labled-switch.component';
 
 const INACTIVITY_TIMEOUT = 30000;
 const BACKSPACE_KEY = 'Backspace';
@@ -36,10 +36,13 @@ const SPACE_KEY = ' ';
 const ENTER_KEY = 'Enter';
 const TEXT_TO_TYPE_DOM_ELEMENT_ID = 'TextToTypeId';
 const TEXT_TO_TYPE_CONTAINER_DOM_ELEMENT_ID = 'TextToTypeContainerId';
+const TEXT_TO_TYPE_CONTAINER_CONTAINER_DOM_ELEMENT_ID = 'TextToTypeContainerContainerId';
 const CHARS_To_TYPE: RegExp = /(^[A-Za-z0-9é"'\(-èëê_çàôùœâ\)=:/;.,?<>!~#{\[|@\]}+% ]$|Enter)/;
 const CHARS_To_TYPE_WITHOUT_PUNCTUATION: RegExp = /[^A-Za-z0-9àçéèëêôùœâ\n ]/g;
 
 export class TextToTypeHtmlComponent extends BaseHtmlComponent {
+  private toggleTypingButtonId: string;
+  private toggleTypingButton: HTMLElement;
   private textToTypeDomElement: HTMLElement;
   private textToTypeContainerDomElement: HTMLElement;
   private currentCharToTypeDomElement: HTMLElement;
@@ -64,6 +67,7 @@ export class TextToTypeHtmlComponent extends BaseHtmlComponent {
 
   preInsertHtml(): void {
     this.referenceId = this.generateId();
+    this.toggleTypingButtonId = this.generateId();
     this.keyboardSound = new Audio('keyboard-press-sound-effect.mp3');
     this.fontSizeInput.preInsertHtml();
     this.trainingSizeInput.preInsertHtml();
@@ -78,8 +82,11 @@ export class TextToTypeHtmlComponent extends BaseHtmlComponent {
           ${this.getTrainingSizeHtml()}
           <span class="label font-size-label">Font size</span>
           ${this.fontSizeInput.toHtml()}
+          </div>
         </div>
-      </div>
+        <div class="toggle-typing-button-container">
+          <button id="${this.toggleTypingButtonId}" class="toggle-typing-button">Click to enable...</button>
+        </div>
       <div id="${TEXT_TO_TYPE_CONTAINER_DOM_ELEMENT_ID}" class="text-to-type-container">
         <div id="${TEXT_TO_TYPE_DOM_ELEMENT_ID}" class="text-to-type">
         </div>
@@ -91,6 +98,9 @@ export class TextToTypeHtmlComponent extends BaseHtmlComponent {
   }
 
   postInsertHtml(): void {
+    this.toggleTypingButton = document.getElementById(this.toggleTypingButtonId);
+    this.toggleTypingButton.classList.add('hide');
+    this.toggleTypingButton.addEventListener('click', this.enable.bind(this));
     this.fontSizeInput.postInsertHtml();
     this.fontSizeInput.onUpdate((value) => this.onFontSizeInputChange(value));
     this.postInsertTrainingSizeHtml();
@@ -113,8 +123,6 @@ export class TextToTypeHtmlComponent extends BaseHtmlComponent {
     this.addCustomEventListener(CHANGE_TEXT_TO_TYPE, this.reset.bind(this));
     this.addCustomEventListener(OPEN_SIDE_PANEL_EVENT, this.disable.bind(this));
     this.addCustomEventListener(CLOSE_SIDE_PANEL_EVENT, this.enable.bind(this));
-    this.addCustomEventListener(ENABLE_TEXT_TO_TYPE, this.enable.bind(this));
-    this.addCustomEventListener(DISABLE_TEXT_TO_TYPE, this.disable.bind(this));
   }
 
   private onFontSizeInputChange(newValue: number) {
@@ -164,11 +172,13 @@ export class TextToTypeHtmlComponent extends BaseHtmlComponent {
 
   private disable() {
     this.textToTypeDomElement.classList.add('disabled');
+    this.toggleTypingButton.classList.remove('hide');
     this.isDisabled = true;
   }
 
   private enable() {
     this.textToTypeDomElement.classList.remove('disabled');
+    this.toggleTypingButton.classList.add('hide');
     this.isDisabled = false;
   }
 
@@ -177,6 +187,8 @@ export class TextToTypeHtmlComponent extends BaseHtmlComponent {
   }
 
   private handleKeyDownEvent(event) {
+    this.disableOnTabKeyDownEvent(event);
+    this.enableOnEscapeKeyDownEvent(event);
     if (this.isDisabled) return;
     this.preventSpaceDefaultEvent(event);
     clearTimeout(this.inactivityTimeout);
@@ -219,6 +231,18 @@ export class TextToTypeHtmlComponent extends BaseHtmlComponent {
       this.updateAppStorageOnEndTyping();
       this.dispatchCustomEvent(END_TYPING_EVENT, this.typedTextStats);
       this.setTextToType(this.getTextToType());
+    }
+  }
+
+  private enableOnEscapeKeyDownEvent(event: any) {
+    if (event.keyCode == ESCAPE_KEY_CODE) {
+      this.enable();
+    }
+  }
+
+  private disableOnTabKeyDownEvent(event: any) {
+    if (event.keyCode == TAB_KEY_CODE) {
+      this.disable();
     }
   }
 

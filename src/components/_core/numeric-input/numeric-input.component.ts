@@ -39,8 +39,6 @@ export class NumericInputHtmlComponent extends BaseHtmlComponent {
     this.valueInputDomElement = document.getElementById(this.valueInputDomElementId) as HTMLInputElement;
     this.increaseButtonDomElement.addEventListener('click', () => this.updateValue(1));
     this.decreaseButtonDomElement.addEventListener('click', () => this.updateValue(-1));
-    this.valueInputDomElement.addEventListener('blur', this.handleValueInputBlurEvent.bind(this));
-    this.valueInputDomElement.addEventListener('focus', this.handleValueInputFocusEvent.bind(this));
     this.valueInputDomElement.addEventListener('change', this.handleValueInputChangeEvent.bind(this));
     this.valueInputDomElement.addEventListener('keydown', this.handleValueInputKeyDownEvent.bind(this));
   }
@@ -55,14 +53,6 @@ export class NumericInputHtmlComponent extends BaseHtmlComponent {
     if (event.keyCode == ARROW_DOWN_KEY_CODE) {
       this.updateValue(-1);
     }
-  }
-
-  private handleValueInputBlurEvent() {
-    this.dispatchCustomEvent(ENABLE_TEXT_TO_TYPE);
-  }
-
-  private handleValueInputFocusEvent() {
-    this.dispatchCustomEvent(DISABLE_TEXT_TO_TYPE);
   }
 
   private handleValueInputChangeEvent() {

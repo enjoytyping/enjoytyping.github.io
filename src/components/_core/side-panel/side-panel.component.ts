@@ -90,6 +90,7 @@ export abstract class BaseSidePanelHtmlComponent extends BaseHtmlComponent {
   }
 
   private handleKeyDownEvent(event) {
+    console.log(event.keyCode);
     if (this.isClosed()) {
       return;
     }

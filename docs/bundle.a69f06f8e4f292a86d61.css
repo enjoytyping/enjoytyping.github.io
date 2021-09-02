@@ -157,7 +157,8 @@ body.light {
   --toast-error-border-color: #fadad7;
   --button-background-color: var(--background-color-03);
   --button-background-color-on-hover: var(--background-color-04);
-  --button-icon-color: var(--body-color); }
+  --button-icon-color: var(--body-color);
+  --toggle-typing-button-background-color: var(--background-color-03); }
 
 body.dark {
   --primary-color: #078eed;
@@ -278,7 +279,8 @@ body.dark {
   --toast-error-border-color: #180605;
   --button-background-color: var(--background-color-03);
   --button-background-color-on-hover: var(--background-color-04);
-  --button-icon-color: var(--body-color); }
+  --button-icon-color: var(--body-color);
+  --toggle-typing-button-background-color: var(--background-color-03); }
 
 *,
 *::after,
@@ -1570,7 +1572,27 @@ p {
   .view-typing-progress-link:focus {
     border-color: var(--secondary-color) !important; }
 
+.toggle-typing-button-container {
+  position: relative; }
+
+.toggle-typing-button {
+  position: absolute;
+  top: 1.5rem;
+  right: 1.5rem;
+  cursor: pointer;
+  z-index: 100;
+  background-color: transparent;
+  color: var(--body-color);
+  font-size: 1.35rem;
+  font-weight: bold;
+  padding: 0.4rem 1rem;
+  border-radius: 0.3rem;
+  border: 2px solid transparent;
+  box-shadow: var(--box-shadow-02);
+  background-color: var(--background-color-05); }
+
 .text-to-type-container {
+  position: relative;
   width: 100%;
   margin: 0 auto;
   overflow-y: scroll; }

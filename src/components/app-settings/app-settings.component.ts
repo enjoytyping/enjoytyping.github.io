@@ -140,6 +140,7 @@ export class AppSettingsSidePanelHtmlComponent extends BaseSidePanelHtmlComponen
 
   open(): void {
     super.open();
+    this.textToTypeCategoriesSelect.focus();
     this.appState = this.appStateClient.getAppState();
     this.updateInnerHTML();
     this.dispatchCustomEvent(START_UPDATING_APP_SETTINGS_EVENT);
