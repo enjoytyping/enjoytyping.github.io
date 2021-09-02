@@ -92,7 +92,7 @@ body.light {
   --selected-key-background-color: var(--primary-color);
   --typed-key-with-lt-min-stats-to-display-in-app-storage-background-color: var(--secondary-color);
   --progress-by-key-icon-color: var(--primary-color);
-  --text-to-type-background-color: #fbfbfb;
+  --text-to-type-background-color: var(--background-color-03);
   --click-to-enable-color: var(--text-color-01);
   --click-to-enable-background-color: var(--background-color-01);
   --training-keys-background-color: #f1f1f1;
@@ -245,5 +245,5 @@ body.dark {
   --button-background-color-on-hover: var(--background-color-04);
   --button-icon-color: var(--body-color);
   --toggle-typing-button-background-color: var(--background-color-03);
-  --scrollbar-color: #888;
+  --scrollbar-color: #727272;
 }

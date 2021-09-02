@@ -57,10 +57,6 @@ export class TextToTypeHtmlComponent extends BaseHtmlComponent {
   private fontSizeInput: NumericInputHtmlComponent;
   private trainingSizeInput: NumericInputHtmlComponent;
   private textToType: TextToType;
-  private scrollToTopVisualHelperId: string;
-  private scrollToTopVisualHelper: HTMLElement;
-  private scrollToBottomVisualHelperId: string;
-  private scrollToBottomVisualHelper: HTMLElement;
 
   constructor(private appStateClient: IAppStateClient) {
     super();
@@ -70,8 +66,6 @@ export class TextToTypeHtmlComponent extends BaseHtmlComponent {
 
   preInsertHtml(): void {
     this.referenceId = this.generateId();
-    this.scrollToTopVisualHelperId = this.generateId();
-    this.scrollToBottomVisualHelperId = this.generateId();
     this.toggleTypingButtonId = this.generateId();
     this.keyboardSound = new Audio('keyboard-press-sound-effect.mp3');
     this.fontSizeInput.preInsertHtml();
@@ -92,15 +86,9 @@ export class TextToTypeHtmlComponent extends BaseHtmlComponent {
       <div class="toggle-typing-button-container">
         <button id="${this.toggleTypingButtonId}" class="toggle-typing-button">Click to enable...</button>
       </div>
-      <div class="scroll-visual-helper-container">
-        <div id="${this.scrollToTopVisualHelperId}" class="scroll-visual-helper scroll-to-top-visual-helper"></div>
-      </div>
       <div id="${TEXT_TO_TYPE_CONTAINER_DOM_ELEMENT_ID}" class="text-to-type-container">
         <div id="${TEXT_TO_TYPE_DOM_ELEMENT_ID}" class="text-to-type">
         </div>
-      </div>
-      <div class="scroll-visual-helper-container">
-        <div id="${this.scrollToBottomVisualHelperId}" class="scroll-visual-helper scroll-to-bottom-visual-helper"></div>
       </div>
       <a class="view-typing-progress-link" href="#${PROGRESS_DIV_ID}">
         View typing progress
@@ -109,8 +97,6 @@ export class TextToTypeHtmlComponent extends BaseHtmlComponent {
   }
 
   postInsertHtml(): void {
-    this.scrollToBottomVisualHelper = document.getElementById(this.scrollToBottomVisualHelperId);
-    this.scrollToTopVisualHelper = document.getElementById(this.scrollToTopVisualHelperId);
     this.toggleTypingButton = document.getElementById(this.toggleTypingButtonId);
     this.reference = document.getElementById(this.referenceId);
     this.textToTypeDomElement = document.getElementById(TEXT_TO_TYPE_DOM_ELEMENT_ID);
@@ -125,10 +111,8 @@ export class TextToTypeHtmlComponent extends BaseHtmlComponent {
     this.appStateClient.saveAppState(appState);
     this.setTextToType(this.getTextToType());
     this.updateFontSize();
-    this.updateScrollVisualHelper();
 
     this.textToTypeDomElement.addEventListener('click', this.enable.bind(this));
-    this.textToTypeContainerDomElement.addEventListener('scroll', this.handleTextToTypeContainerScrollEvent.bind(this));
     this.toggleTypingButton.addEventListener('click', this.enable.bind(this));
     document.body.addEventListener('keydown', this.handleKeyDownEvent.bind(this));
     this.addCustomEventListener(APP_SETTINGS_CHANGE_EVENT, this.reset.bind(this));
@@ -141,32 +125,6 @@ export class TextToTypeHtmlComponent extends BaseHtmlComponent {
     this.addCustomEventListener(CHANGE_TEXT_TO_TYPE, this.reset.bind(this));
     this.addCustomEventListener(OPEN_SIDE_PANEL_EVENT, this.disable.bind(this));
     this.addCustomEventListener(CLOSE_SIDE_PANEL_EVENT, this.enable.bind(this));
-  }
-
-  private updateScrollVisualHelper() {
-    this.scrollToTopVisualHelper.classList.add('hide');
-    this.scrollToBottomVisualHelper.classList.add('hide');
-    const textToTypeContainerHeight = this.textToTypeContainerDomElement.getBoundingClientRect().height;
-    const textToTypeHeight = this.textToTypeDomElement.getBoundingClientRect().height;
-    if (textToTypeHeight > textToTypeContainerHeight) {
-      this.scrollToBottomVisualHelper.classList.remove('hide');
-    }
-  }
-
-  private handleTextToTypeContainerScrollEvent(event) {
-    if (this.textToTypeContainerDomElement.scrollTop > 0) {
-      this.scrollToTopVisualHelper.classList.remove('hide');
-    } else {
-      this.scrollToTopVisualHelper.classList.add('hide');
-    }
-
-    const scrollHeight = this.textToTypeContainerDomElement.getBoundingClientRect().height + this.textToTypeContainerDomElement.scrollTop;
-    const textToTypeHeight = this.textToTypeDomElement.getBoundingClientRect().height;
-    if (Math.abs(scrollHeight - textToTypeHeight) > 1) {
-      this.scrollToBottomVisualHelper.classList.remove('hide');
-    } else {
-      this.scrollToBottomVisualHelper.classList.add('hide');
-    }
   }
 
   private onFontSizeInputChange(newValue: number) {
