@@ -1655,6 +1655,23 @@ p {
   align-items: center;
   justify-content: center; }
 
+.scroll-visual-helper-container {
+  position: relative; }
+
+.scroll-visual-helper {
+  z-index: 1;
+  position: absolute;
+  width: 100%;
+  height: 4rem; }
+
+.scroll-to-top-visual-helper {
+  top: 0;
+  background: linear-gradient(to bottom, rgba(0, 0, 0, 0.1) 0%, rgba(0, 0, 0, 0) 100%); }
+
+.scroll-to-bottom-visual-helper {
+  bottom: 0;
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.1) 0%, rgba(0, 0, 0, 0) 100%); }
+
 .toast-container {
   z-index: 100000;
   position: fixed;
