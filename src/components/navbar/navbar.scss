@@ -57,10 +57,7 @@ nav .right {
 }
 
 @media only screen and (max-width: 768px) {
-  nav .text-to-type-category,
-  nav .increase-decrease-font-size,
-  nav .enable-sounds,
-  nav .text-to-type-subcategory {
+  nav .right > select {
     display: none;
   }
 }
