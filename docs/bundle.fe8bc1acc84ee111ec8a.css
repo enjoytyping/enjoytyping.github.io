@@ -158,7 +158,8 @@ body.light {
   --button-background-color: var(--background-color-03);
   --button-background-color-on-hover: var(--background-color-04);
   --button-icon-color: var(--body-color);
-  --toggle-typing-button-background-color: var(--background-color-03); }
+  --toggle-typing-button-background-color: var(--background-color-03);
+  --scrollbar-color: rgba(0, 0, 0, 0.15); }
 
 body.dark {
   --primary-color: #078eed;
@@ -280,27 +281,25 @@ body.dark {
   --button-background-color: var(--background-color-03);
   --button-background-color-on-hover: var(--background-color-04);
   --button-icon-color: var(--body-color);
-  --toggle-typing-button-background-color: var(--background-color-03); }
+  --toggle-typing-button-background-color: var(--background-color-03);
+  --scrollbar-color: #888; }
 
 *,
 *::after,
 *::before {
   padding: 0;
   margin: 0;
-  box-sizing: border-box;
-  /* Hide scrollbar for IE, Edge and Firefox */
-  -ms-overflow-style: none;
-  /* IE and Edge */
-  scrollbar-width: none;
-  /* Firefox */
-  /* Hide scrollbar for Chrome, Safari and Opera */ }
-  *::-webkit-scrollbar,
-  *::after::-webkit-scrollbar,
-  *::before::-webkit-scrollbar {
-    display: none; }
+  box-sizing: border-box; }
 
 ::-webkit-scrollbar {
-  display: none; }
+  width: 1.6em;
+  background-color: var(--body-background-color); }
+
+::-webkit-scrollbar-thumb {
+  border: 0.4em solid transparent;
+  background-clip: padding-box;
+  border-radius: 100rem;
+  background-color: var(--scrollbar-color); }
 
 *:focus,
 *:focus-visible {
@@ -1595,7 +1594,9 @@ p {
   position: relative;
   width: 100%;
   margin: 0 auto;
-  overflow-y: scroll; }
+  overflow-y: auto; }
+  .text-to-type-container::-webkit-scrollbar {
+    background-color: var(--text-to-type-background-color); }
   .text-to-type-container .text-to-type {
     position: relative;
     padding: 2rem;
@@ -1766,7 +1767,11 @@ p {
   display: flex;
   flex-direction: row;
   flex-wrap: nowrap;
-  overflow-x: scroll; }
+  overflow-x: auto;
+  -ms-overflow-style: none;
+  scrollbar-width: none; }
+  .training-container1::-webkit-scrollbar {
+    display: none; }
 
 .training-lesson-container {
   position: relative;
@@ -2006,7 +2011,7 @@ body.dark {
     position: fixed;
     top: 0;
     bottom: 0;
-    right: calc(var(--side-panel-width) * -1);
+    right: calc((var(--side-panel-width) * -1) - 2rem);
     width: var(--side-panel-width);
     transition: 0.5s; }
   .container .side-panel {
@@ -2076,7 +2081,7 @@ body.light {
     margin-left: 1.2rem; }
 
 .added-custom-texts-table {
-  overflow: scroll;
+  overflow: auto;
   margin-top: 3.5rem; }
 
 .add-custom-text-to-type-side-panel {

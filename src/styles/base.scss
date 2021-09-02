@@ -4,11 +4,18 @@
   padding: 0;
   margin: 0;
   box-sizing: border-box;
-  @include hide-scroll-bar;
 }
 
 ::-webkit-scrollbar {
-  display: none;
+  width: 1.6em;
+  background-color: var(--body-background-color);
+}
+
+::-webkit-scrollbar-thumb {
+  border: 0.4em solid transparent;
+  background-clip: padding-box;
+  border-radius: 100rem;
+  background-color: var(--scrollbar-color);
 }
 
 *:focus,

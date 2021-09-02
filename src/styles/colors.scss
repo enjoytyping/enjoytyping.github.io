@@ -120,6 +120,7 @@ body.light {
   --button-background-color-on-hover: var(--background-color-04);
   --button-icon-color: var(--body-color);
   --toggle-typing-button-background-color: var(--background-color-03);
+  --scrollbar-color: rgba(0, 0, 0, 0.15);
 }
 
 body.dark {
@@ -244,4 +245,5 @@ body.dark {
   --button-background-color-on-hover: var(--background-color-04);
   --button-icon-color: var(--body-color);
   --toggle-typing-button-background-color: var(--background-color-03);
+  --scrollbar-color: #888;
 }

@@ -20,7 +20,7 @@
     position: fixed;
     top: 0;
     bottom: 0;
-    right: calc(var(--side-panel-width) * -1);
+    right: calc((var(--side-panel-width) * -1) - 2rem);
     width: var(--side-panel-width);
     transition: 0.5s;
   }
