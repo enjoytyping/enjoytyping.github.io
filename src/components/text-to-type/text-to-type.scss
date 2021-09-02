@@ -26,7 +26,7 @@
   border-radius: 0.3rem;
 
   &:focus {
-    border-color: var(--secondary-color) !important;
+    color: var(--primary-color);
   }
 }
 
@@ -70,6 +70,7 @@
     }
 
     &.disabled {
+      cursor: pointer;
       & span {
         opacity: 0.5;
       }

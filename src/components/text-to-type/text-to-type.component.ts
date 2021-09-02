@@ -109,6 +109,7 @@ export class TextToTypeHtmlComponent extends BaseHtmlComponent {
     appState.textToTypeSubCategory = appState.textToTypeSubCategory || TextToTypeSubCategory.ENGLISH;
     this.appStateClient.saveAppState(appState);
     this.textToTypeDomElement = document.getElementById(TEXT_TO_TYPE_DOM_ELEMENT_ID);
+    this.textToTypeDomElement.addEventListener('click', this.enable.bind(this));
     this.textToTypeContainerDomElement = document.getElementById(TEXT_TO_TYPE_CONTAINER_DOM_ELEMENT_ID);
     this.setTextToType(this.getTextToType());
     this.updateFontSize();

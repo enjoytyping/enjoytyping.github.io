@@ -1570,7 +1570,7 @@ p {
   border: 2px solid transparent;
   border-radius: 0.3rem; }
   .view-typing-progress-link:focus {
-    border-color: var(--secondary-color) !important; }
+    color: var(--primary-color); }
 
 .toggle-typing-button-container {
   position: relative; }
@@ -1605,11 +1605,13 @@ p {
     .text-to-type-container .text-to-type.blink span.cursor {
       color: var(--current-char-to-type-color);
       background-color: var(--current-char-to-type-background-color); }
-    .text-to-type-container .text-to-type.disabled span {
-      opacity: 0.5; }
-    .text-to-type-container .text-to-type.disabled span.cursor {
-      color: var(--body-color);
-      background-color: var(--body-background-color); }
+    .text-to-type-container .text-to-type.disabled {
+      cursor: pointer; }
+      .text-to-type-container .text-to-type.disabled span {
+        opacity: 0.5; }
+      .text-to-type-container .text-to-type.disabled span.cursor {
+        color: var(--body-color);
+        background-color: var(--body-background-color); }
   .text-to-type-container span {
     font-family: 'Roboto Mono'; }
   .text-to-type-container span.whitespace {
