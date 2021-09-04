@@ -117,7 +117,9 @@ body.light {
   --button-background-color-on-hover: var(--background-color-04);
   --button-icon-color: var(--body-color);
   --toggle-typing-button-background-color: var(--background-color-03);
-  --scrollbar-color: rgba(0, 0, 0, 0.15); }
+  --scrollbar-color: rgba(0, 0, 0, 0.15);
+  --cookies-consentement-container-color: #fafafa;
+  --cookies-consentement-container-background-color: #006dfc; }
 
 body.dark {
   --primary-color: #078eed;
@@ -240,7 +242,9 @@ body.dark {
   --button-background-color-on-hover: var(--background-color-04);
   --button-icon-color: var(--body-color);
   --toggle-typing-button-background-color: var(--background-color-03);
-  --scrollbar-color: #727272; }
+  --scrollbar-color: #727272;
+  --cookies-consentement-container-color: #fafafa;
+  --cookies-consentement-container-background-color: #006dfc; }
 
 *,
 *::after,
@@ -1817,9 +1821,6 @@ body.dark {
   max-width: 200rem;
   display: flex;
   margin: 0 auto; }
-  @media screen and (min-width: 1441px) {
-    .main-with-ads-container {
-      width: 90%; } }
   @media screen and (min-width: 1921px) {
     .main-with-ads-container {
       width: 80%; } }
@@ -2063,8 +2064,8 @@ main {
 
 @media screen and (max-width: 426px) {
   .typed-text-stat-container {
-    width: 10rem !important;
-    height: 10rem !important;
+    width: 9rem !important;
+    height: 9rem !important;
     margin: 0.5rem; } }
 
 @media screen and (max-width: 320px) {
@@ -2405,4 +2406,46 @@ main {
     font-weight: bold;
     white-space: nowrap;
     transform: rotate(-90deg); }
+
+.cookies-consentement-container {
+  position: fixed;
+  bottom: -100%;
+  left: 0;
+  right: 0;
+  padding: 4rem;
+  background-color: #242427;
+  opacity: 0.85;
+  color: var(--cookies-consentement-container-color);
+  transition: 1.5s;
+  box-shadow: var(--box-shadow-02);
+  display: flex;
+  align-items: center;
+  justify-content: space-between; }
+  .cookies-consentement-container.active {
+    bottom: 0; }
+  .cookies-consentement-container .cookies-consentement-left {
+    margin-right: 10rem; }
+  .cookies-consentement-container .cookies-consentement-header {
+    text-transform: uppercase;
+    font-weight: bold;
+    font-size: 1.6rem;
+    margin-bottom: 1.5rem;
+    color: white; }
+  .cookies-consentement-container p {
+    font-size: 1.4rem;
+    color: #999; }
+  .cookies-consentement-container a {
+    font-size: 1.4rem;
+    color: #999;
+    text-decoration: underline; }
+  .cookies-consentement-container button {
+    font-size: 1.8rem;
+    cursor: pointer;
+    border-radius: 100rem;
+    white-space: nowrap;
+    padding: 1rem 6rem;
+    border: 2px solid #3c3c3c;
+    background-color: white;
+    color: #3c3c3c;
+    box-shadow: 0 0 0 0 #ddd; }
 

@@ -22,4 +22,5 @@ export class AppState {
   fontSize: number = 22;
   trainingSize: number = TRAINING_SIZE_DEFAULT_VALUE;
   trainingLesson = TrainingLesson.KEYS_F_AND_J;
+  cookiesConsentementAlreadyShown = false;
 }

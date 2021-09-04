@@ -9,6 +9,7 @@ import { WelcomeMessageDialogHtmlComponent } from './components/welcome-message-
 import { FeedbackHtmlComponent } from './components/feedback/feedback.component';
 import { ESCAPE_KEY_CODE } from './constants/constant';
 import { MainWithAdsHtmlComponent } from './components/main/main-with-ads.component';
+import { CookiesConsentementHtmlComponent } from './components/cookies-consentement/cookies-consentement.component';
 
 const components: IHtmlComponent[] = [];
 components.push(new WelcomeMessageDialogHtmlComponent(AppStateClient.getInstance()));
@@ -16,6 +17,7 @@ components.push(new NavbarHtmlComponent(AppStateClient.getInstance()));
 components.push(new MainWithAdsHtmlComponent());
 components.push(new FooterHtmlComponent());
 components.push(new FeedbackHtmlComponent());
+components.push(new CookiesConsentementHtmlComponent());
 
 components.forEach((component) => component.preInsertHtml());
 components.forEach((component) => component.insertHtml(document.body, 'beforeend'));
