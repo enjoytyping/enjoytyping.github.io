@@ -1,0 +1,27 @@
+main {
+  --main-max-width: 2000px;
+  padding-top: var(--navbar-height);
+  width: var(--main-width);
+  max-width: var(--main-max-width);
+  margin: 0 auto;
+
+  @media screen and (max-width: 426px) {
+    --main-width: 90%;
+  }
+
+  @media screen and (min-width: 427px) and (max-width: 768px) {
+    --main-width: 85%;
+  }
+
+  @media screen and (min-width: 769px) and (max-width: 1024px) {
+    --main-width: 80%;
+  }
+
+  @media screen and (min-width: 1025px) and (max-width: 1920px) {
+    --main-width: 80%;
+  }
+
+  @media screen and (min-width: 1921px) {
+    --main-width: 80%;
+  }
+}

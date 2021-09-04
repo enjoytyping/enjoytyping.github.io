@@ -1,3 +1,4 @@
+import './main.scss';
 import { TypingProgressSectionHtmlComponent } from '../typing-progress/typing-progress-section.component';
 import { IHtmlComponent } from '../_core/component.interface';
 import { BaseHtmlContainer } from '../_core/base-container';
