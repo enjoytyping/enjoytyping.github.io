@@ -27,7 +27,7 @@ export class CookiesConsentementHtmlComponent extends BaseHtmlComponent {
           </p>
           <p class="cookies-consentement-msg">
             This website uses cookies to improve user experience. By using our website you consent to all cookies
-            in accordance with our Cookies Policy. <a href="#">Read more</a>
+            in accordance with our <a href="/cookies-policy.html" target="_blank">Cookies Policy</a>
           </p>
         </div>
         <button id="${this.buttonId}">Accept all</button> 
