@@ -11,7 +11,7 @@
 }
 
 .advertise-container {
-  min-width: 20rem;
+  width: 12rem;
   max-width: 40rem;
   height: calc(100vh - var(--navbar-height));
   margin: 2rem;
@@ -20,6 +20,13 @@
 
   @media screen and (max-width: 768px) {
     display: none;
+  }
+
+  & iframe {
+    margin-bottom: 1rem;
+    // border-radius: 0.5rem;
+    // box-shadow: var(--box-shadow-02);
+    // border: 1px solid var(--border-color);
   }
 }
 

@@ -1826,7 +1826,7 @@ body.dark {
       width: 80%; } }
 
 .advertise-container {
-  min-width: 20rem;
+  width: 12rem;
   max-width: 40rem;
   height: calc(100vh - var(--navbar-height));
   margin: 2rem;
@@ -1836,6 +1836,8 @@ body.dark {
   @media screen and (max-width: 768px) {
     .advertise-container {
       display: none; } }
+  .advertise-container iframe {
+    margin-bottom: 1rem; }
 
 main {
   flex: 1;
