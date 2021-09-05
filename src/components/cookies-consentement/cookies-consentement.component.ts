@@ -26,13 +26,11 @@ export class CookiesConsentementHtmlComponent extends BaseHtmlComponent {
             This website uses cookies
           </p>
           <p class="cookies-consentement-msg">
-            We use cookies to personalize ads and to analyse our traffic. 
-            We also share information about your use of our site with our advertising and analytics partners 
-            who may combine it with other information that you’ve provided to them or that they’ve collected from your use 
-            of their services.
+            This website uses cookies to improve user experience. By using our website you consent to all cookies
+            in accordance with our Cookies Policy. <a href="#">Read more</a>
           </p>
         </div>
-        <button id="${this.buttonId}">Allow all cookies</button> 
+        <button id="${this.buttonId}">Accept all</button> 
       </div>
     `;
   }
