@@ -1,5 +1,3 @@
-import Ads from './ads.model';
-
 export default interface IAdsService {
-  getAds(count: number): Ads;
+  get160x600Ads(count: number): string[];
 }

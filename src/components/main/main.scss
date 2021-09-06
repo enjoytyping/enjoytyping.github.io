@@ -11,12 +11,9 @@
 }
 
 .advertise-container {
-  width: 12rem;
-  max-width: 40rem;
+  width: 16rem;
   height: calc(100vh - var(--navbar-height));
   margin: 2rem;
-  position: sticky;
-  top: calc(2rem + var(--navbar-height));
 
   @media screen and (max-width: 768px) {
     display: none;
