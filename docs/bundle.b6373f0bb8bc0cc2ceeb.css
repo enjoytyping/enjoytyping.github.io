@@ -1826,13 +1826,9 @@ body.dark {
       width: 80%; } }
 
 .advertise-container {
-  width: 12rem;
-  max-width: 40rem;
+  width: 16rem;
   height: calc(100vh - var(--navbar-height));
-  margin: 2rem;
-  position: -webkit-sticky;
-  position: sticky;
-  top: calc(2rem + var(--navbar-height)); }
+  margin: 2rem; }
   @media screen and (max-width: 768px) {
     .advertise-container {
       display: none; } }
@@ -1850,42 +1846,47 @@ main {
   max-width: 100rem;
   margin: 0 auto; }
 
-.progress-graph {
-  margin-top: 12rem; }
-  .progress-graph:first-child {
-    margin-top: 0rem; }
-  .progress-graph .not-enough-samples {
-    padding: 4rem 2rem;
-    border: 0.1rem solid var(--border-color);
-    border-radius: 0.3rem;
-    text-align: center; }
-  .progress-graph .chartjs-graph-container {
-    height: 40rem; }
-  .progress-graph .progress-header {
-    display: flex;
-    align-items: center;
-    margin-bottom: 2rem; }
-  .progress-graph .progress-name {
-    font-size: 2rem;
-    font-family: 'Poppins', sans-serif;
-    font-weight: bold; }
-  .progress-graph .progress-ctrl {
-    display: flex;
-    align-items: center;
-    margin-left: 2rem; }
-  .progress-graph .progress-by-key {
-    margin-left: 1rem; }
-  .progress-graph .progress-slider {
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    float: right; }
-    .progress-graph .progress-slider .label {
-      margin-right: 1.5rem;
-      font-size: 1.4rem;
-      font-weight: 700; }
-    .progress-graph .progress-slider .progress-smoothness-slider {
-      flex: 1; }
+.progress-graph:first-child {
+  margin-top: 0rem; }
+
+.progress-graph .not-enough-samples {
+  padding: 4rem 2rem;
+  border: 0.1rem solid var(--border-color);
+  border-radius: 0.3rem;
+  text-align: center; }
+
+.progress-graph .chartjs-graph-container {
+  height: 40rem; }
+
+.progress-graph .progress-header {
+  display: flex;
+  align-items: center;
+  margin-bottom: 2rem; }
+
+.progress-graph .progress-name {
+  font-size: 2rem;
+  font-family: 'Poppins', sans-serif;
+  font-weight: bold; }
+
+.progress-graph .progress-ctrl {
+  display: flex;
+  align-items: center;
+  margin-left: 2rem; }
+
+.progress-graph .progress-by-key {
+  margin-left: 1rem; }
+
+.progress-graph .progress-slider {
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  float: right; }
+  .progress-graph .progress-slider .label {
+    margin-right: 1.5rem;
+    font-size: 1.4rem;
+    font-weight: 700; }
+  .progress-graph .progress-slider .progress-smoothness-slider {
+    flex: 1; }
 
 .typed-keys-progress {
   margin-bottom: 2.5rem; }
@@ -1920,6 +1921,14 @@ main {
     display: none !important; }
   .slider-container {
     width: 10rem !important; } }
+
+.typing-progress-advertise-container {
+  display: flex;
+  margin-bottom: 3rem; }
+  .typing-progress-advertise-container.ad1 {
+    margin-top: 5rem; }
+  .typing-progress-advertise-container iframe {
+    margin: 0 auto; }
 
 .typed-keys-container {
   display: grid;
